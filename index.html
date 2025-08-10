@@ -3,1642 +3,1471 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Studyfy - منصة التعلم الذكية</title>
+    <title>Studyfy - منصة التعلم الطبي</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap');
-        
-        body {
+        * {
             font-family: 'Cairo', sans-serif;
         }
         
         .gradient-bg {
-            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 25%, #60a5fa 50%, #93c5fd 75%, #dbeafe 100%);
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #60a5fa 100%);
         }
         
-        .brain-pulse {
-            animation: pulse 2s infinite;
+        .gradient-text {
+            background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
         
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+        .hover-scale {
+            transition: transform 0.3s ease;
         }
         
-        .card-hover {
+        .hover-scale:hover {
+            transform: scale(1.05);
+        }
+        
+        .dropdown {
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            pointer-events: none;
+        }
+        
+        .dropdown.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+        
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+            pointer-events: none;
+        }
+        
+        .mobile-menu.show {
+            transform: translateX(0);
+            pointer-events: auto;
+        }
+        
+        .brain-logo {
+            width: 50px;
+            height: 50px;
+        }
+        
+        .page-content {
+            display: none;
+        }
+        
+        .page-content.active {
+            display: block;
+        }
+        
+        .lecture-item {
             transition: all 0.3s ease;
         }
         
-        .card-hover:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.3);
+        .lecture-item:hover {
+            transform: translateX(-5px);
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.15);
         }
         
-        .feature-icon {
-            background: linear-gradient(45deg, #3b82f6, #1d4ed8);
+        /* Loading Screen Styles */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #60a5fa 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+        }
+        
+        .loading-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+        
+        /* Skeleton Animation */
+        .skeleton-container {
+            position: relative;
+            width: 300px;
+            height: 400px;
+            margin-bottom: 30px;
+        }
+        
+        .skeleton {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 200px;
+            height: 350px;
+        }
+        
+        /* Skull */
+        .skull {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 70px;
+            background: #ffffff;
+            border-radius: 50% 50% 45% 45%;
+            animation: skullFloat 3s ease-in-out infinite;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+        }
+        
+        .skull::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 15px;
+            width: 8px;
+            height: 8px;
+            background: #1e3a8a;
+            border-radius: 50%;
+            box-shadow: 22px 0 0 #1e3a8a;
+        }
+        
+        .skull::after {
+            content: '';
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 15px;
+            background: #1e3a8a;
+            border-radius: 0 0 50% 50%;
+        }
+        
+        /* Spine */
+        .spine {
+            position: absolute;
+            top: 65px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 8px;
+            height: 180px;
+            background: linear-gradient(to bottom, #ffffff 0%, #e2e8f0 50%, #ffffff 100%);
+            border-radius: 4px;
+            animation: spineGlow 2s ease-in-out infinite alternate;
+        }
+        
+        .vertebra {
+            position: absolute;
+            width: 16px;
+            height: 12px;
+            background: #ffffff;
+            border-radius: 50%;
+            left: -4px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+        
+        .vertebra:nth-child(1) { top: 10px; animation: vertebraFloat 2.5s ease-in-out infinite; }
+        .vertebra:nth-child(2) { top: 30px; animation: vertebraFloat 2.5s ease-in-out infinite 0.2s; }
+        .vertebra:nth-child(3) { top: 50px; animation: vertebraFloat 2.5s ease-in-out infinite 0.4s; }
+        .vertebra:nth-child(4) { top: 70px; animation: vertebraFloat 2.5s ease-in-out infinite 0.6s; }
+        .vertebra:nth-child(5) { top: 90px; animation: vertebraFloat 2.5s ease-in-out infinite 0.8s; }
+        .vertebra:nth-child(6) { top: 110px; animation: vertebraFloat 2.5s ease-in-out infinite 1s; }
+        .vertebra:nth-child(7) { top: 130px; animation: vertebraFloat 2.5s ease-in-out infinite 1.2s; }
+        .vertebra:nth-child(8) { top: 150px; animation: vertebraFloat 2.5s ease-in-out infinite 1.4s; }
+        
+        /* Ribs */
+        .rib {
+            position: absolute;
+            border: 3px solid #ffffff;
+            border-radius: 50%;
+            animation: ribExpand 3s ease-in-out infinite;
+        }
+        
+        .rib:nth-child(1) { 
+            top: 80px; left: 50%; transform: translateX(-50%);
+            width: 80px; height: 25px;
+            animation-delay: 0s;
+        }
+        .rib:nth-child(2) { 
+            top: 100px; left: 50%; transform: translateX(-50%);
+            width: 90px; height: 30px;
+            animation-delay: 0.2s;
+        }
+        .rib:nth-child(3) { 
+            top: 120px; left: 50%; transform: translateX(-50%);
+            width: 95px; height: 35px;
+            animation-delay: 0.4s;
+        }
+        .rib:nth-child(4) { 
+            top: 140px; left: 50%; transform: translateX(-50%);
+            width: 90px; height: 30px;
+            animation-delay: 0.6s;
+        }
+        .rib:nth-child(5) { 
+            top: 160px; left: 50%; transform: translateX(-50%);
+            width: 85px; height: 25px;
+            animation-delay: 0.8s;
+        }
+        .rib:nth-child(6) { 
+            top: 180px; left: 50%; transform: translateX(-50%);
+            width: 75px; height: 20px;
+            animation-delay: 1s;
+        }
+        
+        /* Arms */
+        .arm {
+            position: absolute;
+            width: 4px;
+            background: #ffffff;
+            border-radius: 2px;
+            top: 90px;
+            animation: armSwing 4s ease-in-out infinite;
+        }
+        
+        .arm.left {
+            left: 20px;
+            height: 80px;
+            transform-origin: top center;
+            animation-delay: 0s;
+        }
+        
+        .arm.right {
+            right: 20px;
+            height: 80px;
+            transform-origin: top center;
+            animation-delay: 2s;
+        }
+        
+        .forearm {
+            position: absolute;
+            bottom: -40px;
+            left: -2px;
+            width: 4px;
+            height: 40px;
+            background: #e2e8f0;
+            border-radius: 2px;
+            transform-origin: top center;
+            animation: forearmSwing 4s ease-in-out infinite;
+        }
+        
+        .arm.left .forearm { animation-delay: 0.5s; }
+        .arm.right .forearm { animation-delay: 2.5s; }
+        
+        /* Legs */
+        .leg {
+            position: absolute;
+            width: 6px;
+            height: 100px;
+            background: #ffffff;
+            border-radius: 3px;
+            top: 240px;
+            animation: legMove 3.5s ease-in-out infinite;
+        }
+        
+        .leg.left {
+            left: 45%;
+            animation-delay: 0s;
+        }
+        
+        .leg.right {
+            right: 45%;
+            animation-delay: 1.75s;
+        }
+        
+        .shin {
+            position: absolute;
+            bottom: -50px;
+            left: -1px;
+            width: 6px;
+            height: 50px;
+            background: #e2e8f0;
+            border-radius: 3px;
+            transform-origin: top center;
+            animation: shinMove 3.5s ease-in-out infinite;
+        }
+        
+        .leg.left .shin { animation-delay: 0.3s; }
+        .leg.right .shin { animation-delay: 2.05s; }
+        
+        /* Loading Text */
+        .loading-text {
+            color: #ffffff;
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 20px;
+            animation: textPulse 2s ease-in-out infinite;
+        }
+        
+        .loading-subtext {
+            color: #e2e8f0;
+            font-size: 16px;
+            margin-top: 10px;
+            animation: textFade 3s ease-in-out infinite;
+        }
+        
+        /* Animations */
+        @keyframes skullFloat {
+            0%, 100% { transform: translateX(-50%) translateY(0px); }
+            50% { transform: translateX(-50%) translateY(-8px); }
+        }
+        
+        @keyframes spineGlow {
+            0% { box-shadow: 0 0 10px rgba(255, 255, 255, 0.3); }
+            100% { box-shadow: 0 0 25px rgba(255, 255, 255, 0.8); }
+        }
+        
+        @keyframes vertebraFloat {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.1) rotate(2deg); }
+        }
+        
+        @keyframes ribExpand {
+            0%, 100% { transform: translateX(-50%) scale(1); opacity: 0.7; }
+            50% { transform: translateX(-50%) scale(1.05); opacity: 1; }
+        }
+        
+        @keyframes armSwing {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(15deg); }
+            75% { transform: rotate(-10deg); }
+        }
+        
+        @keyframes forearmSwing {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(-20deg); }
+        }
+        
+        @keyframes legMove {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(10deg); }
+            75% { transform: rotate(-8deg); }
+        }
+        
+        @keyframes shinMove {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(15deg); }
+        }
+        
+        @keyframes textPulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.02); }
+        }
+        
+        @keyframes textFade {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+        
+        /* Progress Bar */
+        .progress-container {
+            width: 300px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 2px;
+            margin-top: 30px;
+            overflow: hidden;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #ffffff, #e2e8f0, #ffffff);
+            border-radius: 2px;
+            width: 0%;
+            animation: progressLoad 4s ease-out forwards;
+        }
+        
+        @keyframes progressLoad {
+            0% { width: 0%; }
+            25% { width: 30%; }
+            50% { width: 60%; }
+            75% { width: 85%; }
+            100% { width: 100%; }
+        }
+        
+        /* Floating Icons */
+        .floating-icons {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+        
+        .floating-icon {
+            position: absolute;
+            animation: floatIcon 4s ease-in-out infinite;
+        }
+        
+        @keyframes floatIcon {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+        
+        /* Animated Particles */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+        
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            animation: particleFloat 6s linear infinite;
+        }
+        
+        @keyframes particleFloat {
+            0% {
+                transform: translateY(100vh) scale(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) scale(1);
+                opacity: 0;
+            }
+        }
+        
+        /* Medical Cross Background */
+        .medical-cross {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0.05;
+            z-index: 1;
+        }
+        
+        .cross-horizontal {
+            width: 200px;
+            height: 40px;
+            background: white;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: crossPulse 3s ease-in-out infinite;
+        }
+        
+        .cross-vertical {
+            width: 40px;
+            height: 200px;
+            background: white;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: crossPulse 3s ease-in-out infinite 1.5s;
+        }
+        
+        @keyframes crossPulse {
+            0%, 100% { opacity: 0.05; transform: translate(-50%, -50%) scale(1); }
+            50% { opacity: 0.1; transform: translate(-50%, -50%) scale(1.1); }
+        }
+        
+        /* Pulsing Circles */
+        .pulse-circles {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+        }
+        
+        .pulse-circle {
+            position: absolute;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: pulseExpand 4s ease-out infinite;
+        }
+        
+        .pulse-1 {
+            width: 300px;
+            height: 300px;
+            top: -150px;
+            left: -150px;
+            animation-delay: 0s;
+        }
+        
+        .pulse-2 {
+            width: 500px;
+            height: 500px;
+            top: -250px;
+            left: -250px;
+            animation-delay: 1.3s;
+        }
+        
+        .pulse-3 {
+            width: 700px;
+            height: 700px;
+            top: -350px;
+            left: -350px;
+            animation-delay: 2.6s;
+        }
+        
+        @keyframes pulseExpand {
+            0% {
+                transform: scale(0);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 0;
+            }
+        }
+        
+        /* Loading Tips */
+        .loading-tips {
+            margin-top: 20px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .tip {
+            color: #e2e8f0;
+            font-size: 14px;
+            opacity: 0;
+            position: absolute;
+            transition: opacity 0.5s ease;
+        }
+        
+        .tip.active {
+            opacity: 1;
+        }
+        
+        /* Progress Text */
+        .progress-text {
+            color: #ffffff;
+            font-size: 12px;
+            text-align: center;
+            margin-top: 8px;
+            font-weight: bold;
+        }
+        
+        /* Loading Dots */
+        .loading-dots {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+        
+        .dot {
+            width: 8px;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 50%;
+            margin: 0 4px;
+            animation: dotBounce 1.4s ease-in-out infinite both;
+        }
+        
+        .dot:nth-child(1) { animation-delay: -0.32s; }
+        .dot:nth-child(2) { animation-delay: -0.16s; }
+        .dot:nth-child(3) { animation-delay: 0s; }
+        
+        @keyframes dotBounce {
+            0%, 80%, 100% {
+                transform: scale(0);
+            }
+            40% {
+                transform: scale(1);
+            }
         }
     </style>
 </head>
-<body class="gradient-bg min-h-screen">
-    <!-- Header -->
-    <header class="bg-blue-900/20 backdrop-blur-sm border-b border-blue-300/20">
-        <div class="container mx-auto px-6 py-4">
-            <div class="flex items-center justify-between">
-                <!-- Logo -->
-                <div class="flex items-center space-x-3 space-x-reverse">
-                    <div class="brain-pulse">
-                        <svg width="50" height="50" viewBox="0 0 100 100" class="text-white">
-                            <!-- الدائرة الخارجية -->
-                            <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" stroke-width="3"/>
-                            
-                            <!-- شكل الكتاب المفتوح -->
-                            <path d="M25 35 Q50 25, 75 35 L75 65 Q50 55, 25 65 Z" fill="currentColor" opacity="0.9"/>
-                            
-                            <!-- الخطوط الداخلية للكتاب -->
-                            <path d="M30 40 L45 40" stroke="#1e3a8a" stroke-width="2" stroke-linecap="round"/>
-                            <path d="M55 40 L70 40" stroke="#1e3a8a" stroke-width="2" stroke-linecap="round"/>
-                            <path d="M30 45 L45 45" stroke="#1e3a8a" stroke-width="2" stroke-linecap="round"/>
-                            <path d="M55 45 L70 45" stroke="#1e3a8a" stroke-width="2" stroke-linecap="round"/>
-                            <path d="M30 50 L45 50" stroke="#1e3a8a" stroke-width="2" stroke-linecap="round"/>
-                            <path d="M55 50 L70 50" stroke="#1e3a8a" stroke-width="2" stroke-linecap="round"/>
-                            
-                            <!-- الخط الأوسط للكتاب -->
-                            <path d="M50 30 L50 65" stroke="#3b82f6" stroke-width="2"/>
-                            
-                            <!-- نجمة صغيرة في الأعلى -->
-                            <path d="M50 15 L52 21 L58 21 L53 25 L55 31 L50 27 L45 31 L47 25 L42 21 L48 21 Z" fill="#fbbf24"/>
-                        </svg>
-                    </div>
-                    <h1 class="text-3xl font-bold text-white" style="font-family: 'Cairo', sans-serif; letter-spacing: -0.5px;">
-                        <span style="color: #60a5fa;">Study</span><span style="color: #ffffff;">fy</span>
-                    </h1>
-                </div>
-                
-                <!-- شريط البحث -->
-                <div class="hidden md:flex items-center relative">
-                    <div class="relative">
-                        <input 
-                            type="text" 
-                            id="search-input"
-                            placeholder="ابحث في المحاضرات والمواد..." 
-                            class="bg-white/10 backdrop-blur-sm border border-blue-300/30 rounded-full px-4 py-2 pr-10 text-white placeholder-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent w-64 transition-all"
-                            oninput="performSearch()"
-                            onfocus="showSearchResults()"
-                        >
-                        <svg class="absolute right-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-blue-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-                        </svg>
-                        
-                        <!-- نتائج البحث -->
-                        <div id="search-results" class="absolute top-full right-0 mt-2 w-80 bg-white rounded-lg shadow-xl border border-blue-100 max-h-96 overflow-y-auto z-50 hidden">
-                            <div id="search-content" class="p-4">
-                                <div class="text-gray-500 text-center py-4">ابدأ بكتابة كلمة للبحث...</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Navigation -->
-                <nav class="hidden md:flex space-x-8 space-x-reverse">
-                    <a href="#home" onclick="scrollToHome()" class="text-white hover:text-blue-200 transition-colors font-medium cursor-pointer">الرئيسية</a>
-                    
-                    <!-- الشروحات - قائمة منسدلة -->
-                    <div class="relative group">
-                        <button class="text-white hover:text-blue-200 transition-colors font-medium flex items-center">
-                            الشروحات
-                            <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/>
-                            </svg>
-                        </button>
-                        <div class="absolute top-full right-0 mt-2 w-48 bg-white rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
-                            <a href="#year1-term1" onclick="showPage('year1-term1')" class="block px-4 py-3 text-blue-900 hover:bg-blue-50 rounded-t-lg">فرقة أولى ترم أول</a>
-                            <a href="#year1-term2" onclick="showPage('year1-term2')" class="block px-4 py-3 text-blue-900 hover:bg-blue-50">فرقة أولى ترم تاني</a>
-                            <a href="#year2-term1" onclick="showPage('year2-term1')" class="block px-4 py-3 text-blue-900 hover:bg-blue-50">فرقة تانية ترم أول</a>
-                            <a href="#year2-term2" onclick="showPage('year2-term2')" class="block px-4 py-3 text-blue-900 hover:bg-blue-50 rounded-b-lg">فرقة تانية ترم تاني</a>
-                        </div>
-                    </div>
-                    
-                    <a href="#about" onclick="showPage('about')" class="text-white hover:text-blue-200 transition-colors font-medium cursor-pointer">حولنا</a>
-                    
-                    <!-- تواصل معي - قائمة منسدلة -->
-                    <div class="relative group">
-                        <button class="text-white hover:text-blue-200 transition-colors font-medium flex items-center">
-                            تواصل معي
-                            <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/>
-                            </svg>
-                        </button>
-                        <div class="absolute top-full right-0 mt-2 w-48 bg-white rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
-                            <div class="px-4 py-3 text-blue-900 border-b border-blue-100">
-                                <div class="font-semibold mb-2">اتصل بي:</div>
-                                <a href="tel:+201018421673" class="text-sm text-blue-600 hover:text-blue-800 font-semibold transition-colors flex items-center gap-2">
-                                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                                        <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/>
-                                    </svg>
-                                    01018421673
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </nav>
-                
-                <!-- قائمة الموبايل -->
-                <div class="md:hidden flex items-center space-x-2 space-x-reverse">
-                    <!-- أيقونة البحث للموبايل -->
-                    <button id="mobile-search-btn" class="bg-white/10 backdrop-blur-sm border border-blue-300/30 rounded-full p-2 text-white hover:bg-white/20 transition-colors" onclick="toggleMobileSearch()">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-                        </svg>
-                    </button>
-                    
-                    <!-- أيقونة القائمة للموبايل -->
-                    <button id="mobile-menu-btn" class="bg-white/10 backdrop-blur-sm border border-blue-300/30 rounded-full p-2 text-white hover:bg-white/20 transition-colors" onclick="toggleMobileMenu()">
-                        <svg id="menu-icon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-                        </svg>
-                        <svg id="close-icon" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-                        </svg>
-                    </button>
-                </div>
-
-                <!-- CTA Button -->
-                <button onclick="showPage('explanations')" class="hidden md:block bg-white text-blue-900 px-6 py-2 rounded-full font-semibold hover:bg-blue-50 transition-colors">
-                    ابدأ التعلم
-                </button>
-            </div>
-        </div>
-        
-        <!-- شريط البحث للموبايل -->
-        <div id="mobile-search" class="md:hidden bg-blue-900/30 backdrop-blur-sm border-t border-blue-300/20 px-6 py-4 hidden">
-            <div class="relative">
-                <input 
-                    type="text" 
-                    id="mobile-search-input"
-                    placeholder="ابحث في المحاضرات والمواد..." 
-                    class="w-full bg-white/10 backdrop-blur-sm border border-blue-300/30 rounded-full px-4 py-3 pr-10 text-white placeholder-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all"
-                    oninput="performMobileSearch()"
-                    onfocus="showMobileSearchResults()"
-                >
-                <svg class="absolute right-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-blue-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+<body class="bg-gray-50">
+    <!-- Loading Screen -->
+    <div id="loadingScreen" class="loading-screen">
+        <!-- Floating Medical Icons -->
+        <div class="floating-icons">
+            <div class="floating-icon" style="top: 10%; left: 15%; animation-delay: 0s;">
+                <svg class="w-8 h-8 text-white opacity-30" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M19 8l-4 4h3c0 3.31-2.69 6-6 6-1.01 0-1.97-.25-2.8-.7l-1.46 1.46C8.97 19.54 10.43 20 12 20c4.42 0 8-3.58 8-8h3l-4-4zM6 12c0-3.31 2.69-6 6-6 1.01 0 1.97.25 2.8.7l1.46-1.46C15.03 4.46 13.57 4 12 4c-4.42 0-8 3.58-8 8H1l4 4 4-4H6z"/>
                 </svg>
             </div>
-            
-            <!-- نتائج البحث للموبايل -->
-            <div id="mobile-search-results" class="mt-3 bg-white rounded-lg shadow-xl border border-blue-100 max-h-80 overflow-y-auto hidden">
-                <div id="mobile-search-content" class="p-4">
-                    <div class="text-gray-500 text-center py-4">ابدأ بكتابة كلمة للبحث...</div>
+            <div class="floating-icon" style="top: 20%; right: 20%; animation-delay: 1s;">
+                <svg class="w-6 h-6 text-white opacity-25" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                </svg>
+            </div>
+            <div class="floating-icon" style="top: 60%; left: 10%; animation-delay: 2s;">
+                <svg class="w-7 h-7 text-white opacity-20" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                </svg>
+            </div>
+            <div class="floating-icon" style="top: 70%; right: 15%; animation-delay: 0.5s;">
+                <svg class="w-5 h-5 text-white opacity-30" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm2-7h-1V2h-2v2H8V2H6v2H5c-1.1 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"/>
+                </svg>
+            </div>
+            <div class="floating-icon" style="top: 15%; left: 70%; animation-delay: 1.5s;">
+                <svg class="w-6 h-6 text-white opacity-25" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm3.5 6L12 10.5 8.5 8 12 5.5 15.5 8zM8.5 16L12 13.5 15.5 16 12 18.5 8.5 16z"/>
+                </svg>
+            </div>
+            <div class="floating-icon" style="top: 80%; left: 25%; animation-delay: 2.5s;">
+                <svg class="w-8 h-8 text-white opacity-20" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                </svg>
+            </div>
+        </div>
+
+        <!-- Animated Background Particles -->
+        <div class="particles">
+            <div class="particle" style="left: 5%; animation-delay: 0s;"></div>
+            <div class="particle" style="left: 15%; animation-delay: 0.5s;"></div>
+            <div class="particle" style="left: 25%; animation-delay: 1s;"></div>
+            <div class="particle" style="left: 35%; animation-delay: 1.5s;"></div>
+            <div class="particle" style="left: 45%; animation-delay: 2s;"></div>
+            <div class="particle" style="left: 55%; animation-delay: 2.5s;"></div>
+            <div class="particle" style="left: 65%; animation-delay: 3s;"></div>
+            <div class="particle" style="left: 75%; animation-delay: 3.5s;"></div>
+            <div class="particle" style="left: 85%; animation-delay: 4s;"></div>
+            <div class="particle" style="left: 95%; animation-delay: 4.5s;"></div>
+        </div>
+
+        <!-- Medical Cross Background -->
+        <div class="medical-cross">
+            <div class="cross-horizontal"></div>
+            <div class="cross-vertical"></div>
+        </div>
+
+        <!-- Pulsing Circles -->
+        <div class="pulse-circles">
+            <div class="pulse-circle pulse-1"></div>
+            <div class="pulse-circle pulse-2"></div>
+            <div class="pulse-circle pulse-3"></div>
+        </div>
+
+        <div class="skeleton-container">
+            <div class="skeleton">
+                <!-- Skull -->
+                <div class="skull"></div>
+                
+                <!-- Spine with Vertebrae -->
+                <div class="spine">
+                    <div class="vertebra"></div>
+                    <div class="vertebra"></div>
+                    <div class="vertebra"></div>
+                    <div class="vertebra"></div>
+                    <div class="vertebra"></div>
+                    <div class="vertebra"></div>
+                    <div class="vertebra"></div>
+                    <div class="vertebra"></div>
+                </div>
+                
+                <!-- Ribs -->
+                <div class="ribs">
+                    <div class="rib"></div>
+                    <div class="rib"></div>
+                    <div class="rib"></div>
+                    <div class="rib"></div>
+                    <div class="rib"></div>
+                    <div class="rib"></div>
+                </div>
+                
+                <!-- Arms -->
+                <div class="arm left">
+                    <div class="forearm"></div>
+                </div>
+                <div class="arm right">
+                    <div class="forearm"></div>
+                </div>
+                
+                <!-- Legs -->
+                <div class="leg left">
+                    <div class="shin"></div>
+                </div>
+                <div class="leg right">
+                    <div class="shin"></div>
                 </div>
             </div>
         </div>
         
-        <!-- قائمة التنقل للموبايل -->
-        <div id="mobile-menu" class="md:hidden bg-blue-900/30 backdrop-blur-sm border-t border-blue-300/20 hidden">
-            <div class="px-6 py-4 space-y-4">
-                <a href="#home" onclick="scrollToHome(); closeMobileMenu();" class="block text-white hover:text-blue-200 transition-colors font-medium py-2">الرئيسية</a>
-                
-                <!-- الشروحات للموبايل -->
-                <div class="space-y-2">
-                    <div class="text-white font-medium py-2 border-b border-blue-300/20">الشروحات</div>
-                    <a href="#year1-term1" onclick="showPage('year1-term1'); closeMobileMenu();" class="block text-blue-200 hover:text-white transition-colors py-2 pr-4">فرقة أولى ترم أول</a>
-                    <a href="#year1-term2" onclick="showPage('year1-term2'); closeMobileMenu();" class="block text-blue-200 hover:text-white transition-colors py-2 pr-4">فرقة أولى ترم تاني</a>
-                    <a href="#year2-term1" onclick="showPage('year2-term1'); closeMobileMenu();" class="block text-blue-200 hover:text-white transition-colors py-2 pr-4">فرقة تانية ترم أول</a>
-                    <a href="#year2-term2" onclick="showPage('year2-term2'); closeMobileMenu();" class="block text-blue-200 hover:text-white transition-colors py-2 pr-4">فرقة تانية ترم تاني</a>
+        <div class="loading-text">جاري تحميل المنصة</div>
+        <div class="loading-subtext">منصة Studyfy للعلاج الطبيعي</div>
+        
+        <!-- Loading Tips -->
+        <div class="loading-tips">
+            <div class="tip active" id="tip1">💡 تعلم مع أفضل الشروحات التفاعلية</div>
+            <div class="tip" id="tip2">📚 محتوى متخصص لطلاب العلاج الطبيعي</div>
+            <div class="tip" id="tip3">🎯 أسئلة متنوعة لتعزيز الفهم</div>
+            <div class="tip" id="tip4">⚡ منصة سريعة وسهلة الاستخدام</div>
+        </div>
+        
+        <div class="progress-container">
+            <div class="progress-bar"></div>
+            <div class="progress-text">0%</div>
+        </div>
+
+        <!-- Loading Dots -->
+        <div class="loading-dots">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
+    </div>
+    <!-- Header -->
+    <header class="gradient-bg shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo -->
+                <div class="flex items-center space-x-3 space-x-reverse">
+                    <div class="brain-logo">
+                        <svg viewBox="0 0 100 100" class="w-full h-full">
+                            <defs>
+                                <linearGradient id="brainGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#1e3a8a"/>
+                                    <stop offset="50%" style="stop-color:#3b82f6"/>
+                                    <stop offset="100%" style="stop-color:#60a5fa"/>
+                                </linearGradient>
+                            </defs>
+                            <!-- Left hemisphere -->
+                            <path d="M20 30 C15 25, 15 35, 18 40 C12 45, 15 55, 20 58 C18 65, 22 70, 28 68 C25 75, 30 80, 38 78 C35 85, 42 88, 48 85 C48 82, 48 78, 50 75" fill="url(#brainGradient)" stroke="white" stroke-width="1.5"/>
+                            <!-- Right hemisphere -->
+                            <path d="M80 30 C85 25, 85 35, 82 40 C88 45, 85 55, 80 58 C82 65, 78 70, 72 68 C75 75, 70 80, 62 78 C65 85, 58 88, 52 85 C52 82, 52 78, 50 75" fill="url(#brainGradient)" stroke="white" stroke-width="1.5"/>
+                            <!-- Cerebellum -->
+                            <path d="M35 75 C40 78, 45 78, 50 75 C55 78, 60 78, 65 75 C68 78, 65 82, 60 80 C55 83, 45 83, 40 80 C35 82, 32 78, 35 75" fill="url(#brainGradient)" stroke="white" stroke-width="1.5"/>
+                            <!-- Brain stem -->
+                            <path d="M48 85 C49 88, 51 88, 52 85 C52 90, 48 90, 48 85" fill="url(#brainGradient)" stroke="white" stroke-width="1.5"/>
+                            <!-- Brain folds and details -->
+                            <path d="M25 35 C30 32, 35 35, 40 32" stroke="white" stroke-width="1" fill="none"/>
+                            <path d="M60 32 C65 35, 70 32, 75 35" stroke="white" stroke-width="1" fill="none"/>
+                            <path d="M22 45 C28 42, 32 45, 38 43" stroke="white" stroke-width="1" fill="none"/>
+                            <path d="M62 43 C68 45, 72 42, 78 45" stroke="white" stroke-width="1" fill="none"/>
+                            <path d="M25 55 C30 52, 35 55, 42 53" stroke="white" stroke-width="1" fill="none"/>
+                            <path d="M58 53 C65 55, 70 52, 75 55" stroke="white" stroke-width="1" fill="none"/>
+                            <!-- Central sulcus -->
+                            <path d="M50 25 C50 35, 50 45, 50 55" stroke="white" stroke-width="1.5" fill="none"/>
+                        </svg>
+                    </div>
+                    <h1 class="text-2xl font-bold">
+                        <span class="bg-gradient-to-r from-blue-300 to-blue-100 bg-clip-text text-transparent">Study</span><span class="text-white">fy</span>
+                    </h1>
                 </div>
-                
-                <a href="#about" onclick="showPage('about'); closeMobileMenu();" class="block text-white hover:text-blue-200 transition-colors font-medium py-2">حولنا</a>
-                
-                <!-- تواصل معي للموبايل -->
-                <div class="space-y-2">
-                    <div class="text-white font-medium py-2 border-b border-blue-300/20">تواصل معي</div>
-                    <div class="text-blue-200 py-2 pr-4">
-                        <div class="font-semibold mb-1">اتصل بي:</div>
-                        <a href="tel:+201018421673" class="text-sm text-blue-300 hover:text-white font-semibold transition-colors flex items-center gap-2">
-                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/>
+
+                <!-- Search Bar -->
+                <div class="hidden md:flex flex-1 max-w-md mx-8">
+                    <div class="relative w-full">
+                        <input type="text" id="searchInput" placeholder="ابحث في المحتوى..." class="w-full px-4 py-2 pr-10 rounded-lg border-0 focus:ring-2 focus:ring-blue-300 text-gray-800 bg-white">
+                        <button class="absolute left-3 top-2.5 text-gray-500 hover:text-gray-700">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                             </svg>
-                            01018421673
-                        </a>
+                        </button>
                     </div>
                 </div>
-                
-                <button onclick="showPage('explanations'); closeMobileMenu();" class="w-full bg-white text-blue-900 px-6 py-3 rounded-full font-semibold hover:bg-blue-50 transition-colors mt-4">
-                    ابدأ التعلم
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex items-center space-x-8 space-x-reverse">
+                    <a href="#" onclick="showPage('home')" class="text-white hover:text-blue-200 transition-colors">الرئيسية</a>
+                    
+                    <div class="relative group">
+                        <button class="text-white hover:text-blue-200 transition-colors flex items-center" onclick="toggleDropdown('explanations')">
+                            الشروحات
+                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div id="explanations-dropdown" class="dropdown absolute top-full right-0 mt-2 w-64 bg-white rounded-lg shadow-xl py-2">
+                            <a href="#" onclick="showPage('first-year-first')" class="block px-4 py-2 text-gray-800 hover:bg-blue-50 transition-colors">فرقة أولى ترم أول</a>
+                            <a href="#" onclick="showPage('first-year-second')" class="block px-4 py-2 text-gray-800 hover:bg-blue-50 transition-colors">فرقة أولى ترم تاني</a>
+                            <a href="#" onclick="showPage('second-year-first')" class="block px-4 py-2 text-gray-800 hover:bg-blue-50 transition-colors">فرقة تانية ترم أول</a>
+                            <a href="#" onclick="showPage('second-year-second')" class="block px-4 py-2 text-gray-800 hover:bg-blue-50 transition-colors">فرقة تانية ترم تاني</a>
+                        </div>
+                    </div>
+                    
+                    <a href="#" onclick="showPage('about')" class="text-white hover:text-blue-200 transition-colors">حولنا</a>
+                    <a href="#" onclick="showPage('start-journey')" class="bg-white text-blue-600 px-4 py-2 rounded-lg hover:bg-blue-50 transition-colors font-semibold">ابدأ رحلتك التعليمية</a>
+                </nav>
+
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden text-white" onclick="toggleMobileMenu()">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
                 </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="mobile-menu fixed top-0 right-0 h-full w-80 bg-white shadow-xl z-50 md:hidden">
+            <div class="p-4">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-xl font-bold gradient-text">القائمة</h2>
+                    <button onclick="toggleMobileMenu()" class="text-gray-500">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+                
+                <div class="space-y-4">
+                    <a href="#" onclick="showPage('home'); toggleMobileMenu()" class="block py-2 text-gray-800 hover:text-blue-600">الرئيسية</a>
+                    
+                    <div>
+                        <button onclick="toggleMobileDropdown('mobile-explanations')" class="w-full text-right py-2 text-gray-800 hover:text-blue-600 flex justify-between items-center">
+                            الشروحات
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div id="mobile-explanations" class="dropdown pr-4 space-y-2">
+                            <a href="#" onclick="showPage('first-year-first'); toggleMobileMenu()" class="block py-1 text-gray-600 hover:text-blue-600">فرقة أولى ترم أول</a>
+                            <a href="#" onclick="showPage('first-year-second'); toggleMobileMenu()" class="block py-1 text-gray-600 hover:text-blue-600">فرقة أولى ترم تاني</a>
+                            <a href="#" onclick="showPage('second-year-first'); toggleMobileMenu()" class="block py-1 text-gray-600 hover:text-blue-600">فرقة تانية ترم أول</a>
+                            <a href="#" onclick="showPage('second-year-second'); toggleMobileMenu()" class="block py-1 text-gray-600 hover:text-blue-600">فرقة تانية ترم تاني</a>
+                        </div>
+                    </div>
+                    
+                    <a href="#" onclick="showPage('about'); toggleMobileMenu()" class="block py-2 text-gray-800 hover:text-blue-600">حولنا</a>
+                    <a href="#" onclick="showPage('start-journey'); toggleMobileMenu()" class="block py-2 bg-blue-600 text-white rounded-lg px-4 text-center">ابدأ رحلتك التعليمية</a>
+                </div>
             </div>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="py-20">
-        <div class="container mx-auto px-6 text-center">
-            <div class="max-w-4xl mx-auto">
-                <h2 class="text-5xl md:text-6xl font-bold text-white mb-6">
-                    تعلم بذكاء مع
-                    <span class="text-blue-200">Studyfy</span>
-                </h2>
-                <p class="text-2xl text-blue-100 mb-8 leading-relaxed font-semibold">
-                    ذاكر بذكاء مش بجهد
-                </p>
-                <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                    <button onclick="showPage('explanations')" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-full text-lg font-semibold transition-colors">
-                        ابدأ رحلتك التعليمية
-                    </button>
-                    <button class="bg-transparent border-2 border-white text-white hover:bg-white hover:text-blue-900 px-8 py-4 rounded-full text-lg font-semibold transition-colors">
-                        شاهد الفيديو التعريفي
-                    </button>
+    <!-- Main Content -->
+    <main class="min-h-screen">
+        <!-- Home Page -->
+        <div id="home-page" class="page-content active">
+            <!-- Hero Section -->
+            <section class="gradient-bg py-20">
+                <div class="container mx-auto px-4 text-center">
+                    <h2 class="text-4xl md:text-6xl font-bold text-white mb-6">مرحباً بك في <span class="bg-gradient-to-r from-blue-300 to-blue-100 bg-clip-text text-transparent">Study</span><span class="text-white">fy</span></h2>
+                    <p class="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">منصتك التعليمية المتخصصة في العلاج الطبيعي - تعلم مع أفضل الشروحات والمحاضرات التفاعلية</p>
+                    <button onclick="showPage('start-journey')" class="bg-white text-blue-600 px-8 py-4 rounded-lg text-lg font-semibold hover-scale hover:shadow-xl transition-all">ابدأ رحلتك التعليمية الآن</button>
                 </div>
-            </div>
+            </section>
+
+            <!-- Features Section -->
+            <section class="py-16 bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700">
+                <div class="container mx-auto px-4">
+                    <h3 class="text-3xl font-bold text-center text-white mb-12">ليه تختار <span class="bg-gradient-to-r from-blue-300 to-blue-100 bg-clip-text text-transparent">Study</span><span class="text-white">fy</span>؟</h3>
+                    <div class="grid md:grid-cols-3 gap-8">
+                        <div class="text-center p-6 rounded-lg hover-scale bg-gradient-to-br from-blue-800 to-blue-600">
+                            <div class="w-16 h-16 bg-gradient-to-br from-blue-600 to-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                                </svg>
+                            </div>
+                            <h4 class="text-xl font-semibold mb-2 text-white">محتوى متخصص</h4>
+                            <p class="text-blue-100">لمناهج أولى وتانية علاج طبيعي نظري وعملي</p>
+                        </div>
+                        
+                        <div class="text-center p-6 rounded-lg hover-scale bg-gradient-to-br from-blue-800 to-blue-600">
+                            <div class="w-16 h-16 bg-gradient-to-br from-blue-600 to-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                                </svg>
+                            </div>
+                            <h4 class="text-xl font-semibold mb-2 text-white">شرح مبسط</h4>
+                            <p class="text-blue-100">فيديوهات مشروحة كويس لفهم أحسن ومبسط</p>
+                        </div>
+                        
+                        <div class="text-center p-6 rounded-lg hover-scale bg-gradient-to-br from-blue-800 to-blue-600">
+                            <div class="w-16 h-16 bg-gradient-to-br from-blue-600 to-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                                </svg>
+                            </div>
+                            <h4 class="text-xl font-semibold mb-2 text-white">أسئلة متنوعة</h4>
+                            <p class="text-blue-100">أسئلة على كل المحاضرات تزود الفهم بتاعك للمحاضرة وأسئلة من السنين السابقة</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Statistics Section -->
+            <section class="py-16 bg-white">
+                <div class="container mx-auto px-4">
+                    <div class="grid md:grid-cols-3 gap-8 text-center">
+                        <div class="p-6">
+                            <div class="text-4xl font-bold gradient-text mb-2">100+</div>
+                            <p class="text-gray-600">محاضرة متاحة</p>
+                        </div>
+                        <div class="p-6">
+                            <div class="text-4xl font-bold gradient-text mb-2">10</div>
+                            <p class="text-gray-600">مواد دراسية</p>
+                        </div>
+                        <div class="p-6">
+                            <div class="text-4xl font-bold gradient-text mb-2">2</div>
+                            <p class="text-gray-600">فرق دراسية</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Study Path Section -->
+            <section class="py-16 bg-gradient-to-br from-gray-50 to-blue-50">
+                <div class="container mx-auto px-4">
+                    <h3 class="text-3xl font-bold text-center gradient-text mb-12">مسارك التعليمي</h3>
+                    <div class="max-w-4xl mx-auto">
+                        <div class="grid md:grid-cols-2 gap-8">
+                            <!-- First Year Path -->
+                            <div class="bg-white rounded-lg shadow-lg p-8 hover-scale">
+                                <div class="flex items-center mb-6">
+                                    <div class="w-12 h-12 bg-gradient-to-br from-blue-600 to-blue-500 rounded-full flex items-center justify-center text-white font-bold text-lg">1</div>
+                                    <h4 class="text-xl font-bold gradient-text mr-4">الفرقة الأولى</h4>
+                                </div>
+                                <div class="space-y-3">
+                                    <div class="flex items-center">
+                                        <div class="w-2 h-2 bg-blue-500 rounded-full ml-3"></div>
+                                        <span class="text-gray-700">Physiology 1</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <div class="w-2 h-2 bg-blue-500 rounded-full ml-3"></div>
+                                        <span class="text-gray-700">Anatomy 1</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <div class="w-2 h-2 bg-blue-500 rounded-full ml-3"></div>
+                                        <span class="text-gray-700">Histology 1</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <div class="w-2 h-2 bg-blue-500 rounded-full ml-3"></div>
+                                        <span class="text-gray-700">Biophysics</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <div class="w-2 h-2 bg-blue-500 rounded-full ml-3"></div>
+                                        <span class="text-gray-700">Computer Skills</span>
+                                    </div>
+                                </div>
+                                <button onclick="showPage('first-year-first')" class="w-full mt-6 bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors">ابدأ التعلم</button>
+                            </div>
+
+                            <!-- Second Year Path -->
+                            <div class="bg-white rounded-lg shadow-lg p-8 hover-scale">
+                                <div class="flex items-center mb-6">
+                                    <div class="w-12 h-12 bg-gradient-to-br from-green-600 to-green-500 rounded-full flex items-center justify-center text-white font-bold text-lg">2</div>
+                                    <h4 class="text-xl font-bold gradient-text mr-4">الفرقة الثانية</h4>
+                                </div>
+                                <div class="space-y-3">
+                                    <div class="flex items-center">
+                                        <div class="w-2 h-2 bg-green-500 rounded-full ml-3"></div>
+                                        <span class="text-gray-700">Neuroanatomy</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <div class="w-2 h-2 bg-green-500 rounded-full ml-3"></div>
+                                        <span class="text-gray-700">Biomechanics</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <div class="w-2 h-2 bg-green-500 rounded-full ml-3"></div>
+                                        <span class="text-gray-700">Test and Measurements 1</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <div class="w-2 h-2 bg-green-500 rounded-full ml-3"></div>
+                                        <span class="text-gray-700">Electrotherapy 1</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <div class="w-2 h-2 bg-green-500 rounded-full ml-3"></div>
+                                        <span class="text-gray-700">Hydrotherapy</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <div class="w-2 h-2 bg-green-500 rounded-full ml-3"></div>
+                                        <span class="text-gray-700">Physiology 3</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <div class="w-2 h-2 bg-green-500 rounded-full ml-3"></div>
+                                        <span class="text-gray-700">Biochemistry 2</span>
+                                    </div>
+                                </div>
+                                <button onclick="showPage('second-year-first')" class="w-full mt-6 bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition-colors">قريباً</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Latest Updates Section -->
+            <section class="py-16 bg-white">
+                <div class="container mx-auto px-4">
+                    <h3 class="text-3xl font-bold text-center gradient-text mb-12">آخر التحديثات</h3>
+                    <div class="max-w-4xl mx-auto grid md:grid-cols-3 gap-6">
+                        <div class="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-6 hover-scale">
+                            <div class="flex items-center mb-4">
+                                <div class="w-3 h-3 bg-green-500 rounded-full ml-2"></div>
+                                <span class="text-sm text-gray-600">منذ يومين</span>
+                            </div>
+                            <h4 class="text-lg font-semibold gradient-text mb-2">محاضرة جديدة</h4>
+                            <p class="text-gray-600 text-sm">تم إضافة المحاضرة الأولى من Physiology 1</p>
+                        </div>
+                        
+                        <div class="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-6 hover-scale">
+                            <div class="flex items-center mb-4">
+                                <div class="w-3 h-3 bg-blue-500 rounded-full ml-2"></div>
+                                <span class="text-sm text-gray-600">منذ أسبوع</span>
+                            </div>
+                            <h4 class="text-lg font-semibold gradient-text mb-2">تحسينات المنصة</h4>
+                            <p class="text-gray-600 text-sm">تحسين سرعة التحميل وإضافة ميزات جديدة</p>
+                        </div>
+                        
+                        <div class="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-6 hover-scale">
+                            <div class="flex items-center mb-4">
+                                <div class="w-3 h-3 bg-purple-500 rounded-full ml-2"></div>
+                                <span class="text-sm text-gray-600">الآن</span>
+                            </div>
+                            <h4 class="text-lg font-semibold gradient-text mb-2">عدد الطلاب</h4>
+                            <p class="text-gray-600 text-sm">387 طالب منضم للمنصة</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Call to Action Section -->
+            <section class="py-16 bg-gradient-to-br from-blue-600 to-blue-800">
+                <div class="container mx-auto px-4 text-center">
+                    <h3 class="text-3xl font-bold text-white mb-6">جاهز تبدأ رحلتك وحكايتك؟</h3>
+                    <p class="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">لكل واحد حكاية ورحلة لازم يحكيها لو حكيتها وانت منتصر وناجح فيها افتخر بنفسك ولو فشلت فيها احكي قد اي انتا سعيت واجتهدت فيها وافتخر بنفسك ❤️</p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <button onclick="showPage('start-journey')" class="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover-scale hover:shadow-xl transition-all">ابدأ الآن مجاناً</button>
+                        <a href="https://chat.whatsapp.com/HYF2QApNRNa3iqkAIkfT4H?mode=ac_t" target="_blank" class="bg-transparent border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-all">تواصل معنا</a>
+                    </div>
+                </div>
+            </section>
         </div>
-    </section>
 
-    <!-- Features Section -->
-    <section class="py-16">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16">
-                <h3 class="text-4xl font-bold text-white mb-4">لماذا تختار Studyfy؟</h3>
-                <p class="text-xl text-blue-100">اكتشف المميزات التي تجعلنا الخيار الأمثل لتعليمك</p>
-            </div>
-            
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Feature 1 -->
-                <div class="card-hover bg-white/10 backdrop-blur-sm rounded-2xl p-8 text-center border border-blue-300/20 cursor-pointer group" onclick="showPage('wisdom')">
-                    <div class="feature-icon w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
-                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                        </svg>
-                    </div>
-                    <h4 class="text-2xl font-bold text-white mb-4 group-hover:text-blue-200 transition-colors">خد رسالتك</h4>
-                    <p class="text-blue-100 leading-relaxed group-hover:text-blue-50 transition-colors">
-                        حسيت ان دي اشارة 😂
-                    </p>
-                    <div class="mt-4 opacity-0 group-hover:opacity-100 transition-opacity">
-                        <span class="text-blue-200 text-sm">اضغط للحصول على حكمة!</span>
+        <!-- About Page -->
+        <div id="about-page" class="page-content">
+            <section class="py-16 bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700">
+                <div class="container mx-auto px-4">
+                    <div class="max-w-4xl mx-auto">
+                        <h2 class="text-3xl font-bold text-center text-white mb-12">حولنا</h2>
+                        
+                        <div class="text-center mb-12">
+                            <div class="w-48 h-48 mx-auto mb-6 rounded-full overflow-hidden shadow-lg bg-gradient-to-br from-blue-600 to-blue-500">
+                                <img src="https://i.postimg.cc/KzqZDt6w/IMG-20250323-WA0160.jpg" alt="د/ أحمد باسم" class="w-full h-full object-cover" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-white text-6xl font-bold\'>أ.ب</div>';">
+                            </div>
+                            <h3 class="text-2xl font-bold text-white mb-4">د/ أحمد باسم</h3>
+                        </div>
+                        
+                        <div class="bg-gradient-to-br from-blue-800 to-blue-600 rounded-lg p-8 mb-8">
+                            <h4 class="text-xl font-semibold text-white mb-4">احنا مين؟</h4>
+                            <p class="text-blue-100 leading-relaxed mb-6">
+                                احنا تيم زمايلك في الفرقة التالتة علاج طبيعي، بنحب نساعد زمايلنا في الفرق الأولى والتانية يفهموا المواد بطريقة سهلة ومبسطة. 
+                                هدفنا إننا نخلي التعلم ممتع ومفيد، ونقدم شروحات واضحة تساعدكم تتفوقوا في دراستكم. 
+                                احنا هنا عشان نساندكم في رحلتكم التعليمية ونخليها أسهل وأكتر متعة!
+                            </p>
+                        </div>
+                        
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div class="bg-gradient-to-br from-blue-700 to-blue-600 rounded-lg shadow-lg p-6 hover-scale">
+                                <h4 class="text-lg font-semibold text-white mb-3">التخصص</h4>
+                                <p class="text-blue-100">العلاج الطبيعي - الفرقة الثالثة</p>
+                            </div>
+                            
+                            <div class="bg-gradient-to-br from-blue-700 to-blue-600 rounded-lg shadow-lg p-6 hover-scale">
+                                <h4 class="text-lg font-semibold text-white mb-3">الفرق المتاحة</h4>
+                                <p class="text-blue-100">الفرقة الأولى والثانية</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                
-                <!-- Feature 2 -->
-                <div class="card-hover bg-white/10 backdrop-blur-sm rounded-2xl p-8 text-center border border-blue-300/20">
-                    <div class="feature-icon w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
-                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3z"/>
-                        </svg>
-                    </div>
-                    <h4 class="text-2xl font-bold text-white mb-4">مدربين خبراء</h4>
-                    <p class="text-blue-100 leading-relaxed">
-                        فريق من أفضل المدربين والخبراء في مختلف المجالات لضمان جودة التعليم
-                    </p>
-                </div>
-                
-                <!-- Feature 3 -->
-                <div class="card-hover bg-white/10 backdrop-blur-sm rounded-2xl p-8 text-center border border-blue-300/20">
-                    <div class="feature-icon w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
-                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M12 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2M3 12l6.414 6.414a2 2 0 001.414.586H19a2 2 0 002-2V7a2 2 0 00-2-2h-8.172a2 2 0 00-1.414.586L3 12z"/>
-                        </svg>
-                    </div>
-                    <h4 class="text-2xl font-bold text-white mb-4">شهادات معتمدة</h4>
-                    <p class="text-blue-100 leading-relaxed">
-                        احصل على شهادات معتمدة دولياً تساعدك في تطوير مسيرتك المهنية
-                    </p>
-                </div>
-            </div>
+            </section>
         </div>
-    </section>
 
-
-
-    <!-- CTA Section -->
-    <section class="py-20">
-        <div class="container mx-auto px-6 text-center">
-            <div class="max-w-3xl mx-auto">
-                <h3 class="text-4xl font-bold text-white mb-6">
-                    ابدأ رحلتك التعليمية اليوم
-                </h3>
-                <p class="text-xl text-blue-100 mb-8">
-                    انضم إلى آلاف الطلاب الذين يطورون مهاراتهم مع Studyfy
-                </p>
-                <button onclick="showPage('explanations')" class="bg-blue-600 hover:bg-blue-700 text-white px-10 py-4 rounded-full text-xl font-semibold transition-colors">
-                    سجل الآن مجاناً
-                </button>
-            </div>
+        <!-- Start Journey Page -->
+        <div id="start-journey-page" class="page-content">
+            <section class="py-16 bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700">
+                <div class="container mx-auto px-4">
+                    <h2 class="text-3xl font-bold text-center text-white mb-12">ابدأ رحلتك التعليمية</h2>
+                    
+                    <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                        <div class="bg-gradient-to-br from-blue-800 to-blue-600 rounded-lg p-8 hover-scale">
+                            <h3 class="text-2xl font-bold text-white mb-6 text-center">الفرقة الأولى</h3>
+                            <div class="space-y-4">
+                                <button onclick="showPage('first-year-first')" class="w-full bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700 transition-colors font-semibold">الترم الأول</button>
+                                <button onclick="showPage('first-year-second')" class="w-full bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700 transition-colors font-semibold">الترم الثاني</button>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-gradient-to-br from-blue-800 to-blue-600 rounded-lg p-8 hover-scale">
+                            <h3 class="text-2xl font-bold text-white mb-6 text-center">الفرقة الثانية</h3>
+                            <div class="space-y-4">
+                                <button onclick="showPage('second-year-first')" class="w-full bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700 transition-colors font-semibold">الترم الأول</button>
+                                <button onclick="showPage('second-year-second')" class="w-full bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700 transition-colors font-semibold">الترم الثاني</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </div>
-    </section>
+
+        <!-- First Year First Term Page -->
+        <div id="first-year-first-page" class="page-content">
+            <section class="py-16 bg-white">
+                <div class="container mx-auto px-4">
+                    <h2 class="text-3xl font-bold text-center gradient-text mb-12">فرقة أولى - الترم الأول</h2>
+                    
+                    <div class="max-w-2xl mx-auto">
+                        <div class="bg-gradient-to-br from-blue-800 to-blue-600 rounded-lg p-8 hover-scale">
+                            <h3 class="text-2xl font-bold gradient-text mb-6 text-center">Physiology 1</h3>
+                            <div class="text-center">
+                                <button onclick="showPage('physiology-lectures')" class="bg-blue-600 text-white py-3 px-8 rounded-lg hover:bg-blue-700 transition-colors font-semibold text-lg">الشرح</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Other Year Pages (Placeholders) -->
+        <div id="first-year-second-page" class="page-content">
+            <section class="py-16 bg-white">
+                <div class="container mx-auto px-4">
+                    <h2 class="text-3xl font-bold text-center gradient-text mb-12">فرقة أولى - الترم الثاني</h2>
+                    <div class="text-center">
+                        <p class="text-gray-600 text-lg">المحتوى قريباً...</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div id="second-year-first-page" class="page-content">
+            <section class="py-16 bg-white">
+                <div class="container mx-auto px-4">
+                    <h2 class="text-3xl font-bold text-center gradient-text mb-12">فرقة تانية - الترم الأول</h2>
+                    <div class="text-center">
+                        <p class="text-gray-600 text-lg">المحتوى قريباً...</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div id="second-year-second-page" class="page-content">
+            <section class="py-16 bg-white">
+                <div class="container mx-auto px-4">
+                    <h2 class="text-3xl font-bold text-center gradient-text mb-12">فرقة تانية - الترم الثاني</h2>
+                    <div class="text-center">
+                        <p class="text-gray-600 text-lg">المحتوى قريباً...</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Physiology Lectures Page -->
+        <div id="physiology-lectures-page" class="page-content">
+            <section class="py-16 bg-white">
+                <div class="container mx-auto px-4">
+                    <div class="flex items-center mb-8">
+                        <button onclick="showPage('first-year-first')" class="text-blue-600 hover:text-blue-800 flex items-center">
+                            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                            </svg>
+                            العودة
+                        </button>
+                    </div>
+                    
+                    <h2 class="text-3xl font-bold text-center gradient-text mb-12">محاضرات Physiology 1</h2>
+                    
+                    <div class="max-w-4xl mx-auto space-y-6">
+                        <!-- First Lecture with Video -->
+                        <div class="lecture-item bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-6">
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="text-xl font-semibold gradient-text">المحاضرة الأولى</h3>
+                                <span class="bg-blue-600 text-white px-3 py-1 rounded-full text-sm">10 دقائق</span>
+                            </div>
+                            
+                            <div class="bg-white rounded-lg p-4 mb-4">
+                                <div class="aspect-video bg-gray-100 rounded-lg overflow-hidden">
+                                    <iframe 
+                                        src="https://drive.google.com/file/d/1-56g393DALtfsUJVxtykjaI1E_w93CQX/preview" 
+                                        class="w-full h-full border-0"
+                                        allow="autoplay"
+                                        loading="lazy">
+                                    </iframe>
+                                </div>
+                            </div>
+                            
+                            <p class="text-gray-600">مقدمة في علم وظائف الأعضاء - الأساسيات والمفاهيم الأولية</p>
+                        </div>
+                        
+                        <!-- Other Lectures -->
+                        <div class="lecture-item bg-white rounded-lg shadow-lg p-6 border-r-4 border-blue-600">
+                            <div class="flex items-center justify-between">
+                                <h3 class="text-xl font-semibold gradient-text">المحاضرة الثانية</h3>
+                                <span class="text-gray-500 text-sm">قريباً</span>
+                            </div>
+                            <p class="text-gray-600 mt-2">الجهاز العصبي - التركيب والوظائف</p>
+                        </div>
+                        
+                        <div class="lecture-item bg-white rounded-lg shadow-lg p-6 border-r-4 border-blue-600">
+                            <div class="flex items-center justify-between">
+                                <h3 class="text-xl font-semibold gradient-text">المحاضرة الثالثة</h3>
+                                <span class="text-gray-500 text-sm">قريباً</span>
+                            </div>
+                            <p class="text-gray-600 mt-2">الجهاز الدوري - القلب والأوعية الدموية</p>
+                        </div>
+                        
+                        <div class="lecture-item bg-white rounded-lg shadow-lg p-6 border-r-4 border-blue-600">
+                            <div class="flex items-center justify-between">
+                                <h3 class="text-xl font-semibold gradient-text">المحاضرة الرابعة</h3>
+                                <span class="text-gray-500 text-sm">قريباً</span>
+                            </div>
+                            <p class="text-gray-600 mt-2">الجهاز التنفسي - آلية التنفس</p>
+                        </div>
+                        
+                        <div class="lecture-item bg-white rounded-lg shadow-lg p-6 border-r-4 border-blue-600">
+                            <div class="flex items-center justify-between">
+                                <h3 class="text-xl font-semibold gradient-text">المحاضرة الخامسة</h3>
+                                <span class="text-gray-500 text-sm">قريباً</span>
+                            </div>
+                            <p class="text-gray-600 mt-2">الجهاز الهضمي - الهضم والامتصاص</p>
+                        </div>
+                        
+                        <div class="lecture-item bg-white rounded-lg shadow-lg p-6 border-r-4 border-blue-600">
+                            <div class="flex items-center justify-between">
+                                <h3 class="text-xl font-semibold gradient-text">المحاضرة السادسة</h3>
+                                <span class="text-gray-500 text-sm">قريباً</span>
+                            </div>
+                            <p class="text-gray-600 mt-2">الجهاز البولي - الكلى والتوازن المائي</p>
+                        </div>
+                        
+                        <div class="lecture-item bg-white rounded-lg shadow-lg p-6 border-r-4 border-blue-600">
+                            <div class="flex items-center justify-between">
+                                <h3 class="text-xl font-semibold gradient-text">المحاضرة السابعة</h3>
+                                <span class="text-gray-500 text-sm">قريباً</span>
+                            </div>
+                            <p class="text-gray-600 mt-2">الجهاز الغدي - الهرمونات والتنظيم</p>
+                        </div>
+                        
+                        <div class="lecture-item bg-white rounded-lg shadow-lg p-6 border-r-4 border-blue-600">
+                            <div class="flex items-center justify-between">
+                                <h3 class="text-xl font-semibold gradient-text">المحاضرة الثامنة</h3>
+                                <span class="text-gray-500 text-sm">قريباً</span>
+                            </div>
+                            <p class="text-gray-600 mt-2">الجهاز العضلي - انقباض العضلات</p>
+                        </div>
+                        
+                        <div class="lecture-item bg-white rounded-lg shadow-lg p-6 border-r-4 border-blue-600">
+                            <div class="flex items-center justify-between">
+                                <h3 class="text-xl font-semibold gradient-text">المحاضرة التاسعة</h3>
+                                <span class="text-gray-500 text-sm">قريباً</span>
+                            </div>
+                            <p class="text-gray-600 mt-2">الجهاز المناعي - الدفاع عن الجسم</p>
+                        </div>
+                        
+                        <div class="lecture-item bg-white rounded-lg shadow-lg p-6 border-r-4 border-blue-600">
+                            <div class="flex items-center justify-between">
+                                <h3 class="text-xl font-semibold gradient-text">المحاضرة العاشرة</h3>
+                                <span class="text-gray-500 text-sm">قريباً</span>
+                            </div>
+                            <p class="text-gray-600 mt-2">مراجعة شاملة وتطبيقات عملية</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
 
     <!-- Footer -->
-    <footer class="bg-blue-900/30 backdrop-blur-sm border-t border-blue-300/20 py-12">
-        <div class="container mx-auto px-6">
-            <div class="flex flex-col md:flex-row items-center justify-between gap-8">
-                <!-- اللوجو والاسم -->
-                <div class="flex items-center space-x-3 space-x-reverse">
-                    <svg width="40" height="40" viewBox="0 0 100 100" class="text-white">
-                        <!-- الدائرة الخارجية -->
-                        <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" stroke-width="3"/>
-                        
-                        <!-- شكل الكتاب المفتوح -->
-                        <path d="M25 35 Q50 25, 75 35 L75 65 Q50 55, 25 65 Z" fill="currentColor" opacity="0.9"/>
-                        
-                        <!-- الخطوط الداخلية للكتاب -->
-                        <path d="M30 40 L45 40" stroke="#1e3a8a" stroke-width="2" stroke-linecap="round"/>
-                        <path d="M55 40 L70 40" stroke="#1e3a8a" stroke-width="2" stroke-linecap="round"/>
-                        <path d="M30 45 L45 45" stroke="#1e3a8a" stroke-width="2" stroke-linecap="round"/>
-                        <path d="M55 45 L70 45" stroke="#1e3a8a" stroke-width="2" stroke-linecap="round"/>
-                        <path d="M30 50 L45 50" stroke="#1e3a8a" stroke-width="2" stroke-linecap="round"/>
-                        <path d="M55 50 L70 50" stroke="#1e3a8a" stroke-width="2" stroke-linecap="round"/>
-                        
-                        <!-- الخط الأوسط للكتاب -->
-                        <path d="M50 30 L50 65" stroke="#3b82f6" stroke-width="2"/>
-                        
-                        <!-- نجمة صغيرة في الأعلى -->
-                        <path d="M50 15 L52 21 L58 21 L53 25 L55 31 L50 27 L45 31 L47 25 L42 21 L48 21 Z" fill="#fbbf24"/>
-                    </svg>
-                    <h4 class="text-2xl font-bold text-white" style="font-family: 'Cairo', sans-serif;">
-                        <span style="color: #60a5fa;">Study</span><span style="color: #ffffff;">fy</span>
-                    </h4>
-                </div>
-                
-                <!-- تابعنا -->
-                <div class="text-center">
-                    <h5 class="text-lg font-semibold text-white mb-4">تابعنا</h5>
-                    <div class="flex space-x-4 space-x-reverse justify-center">
-                        <!-- واتساب -->
-                        <a href="https://chat.whatsapp.com/HYF2QApNRNa3iqkAIkfT4H?mode=ac_t" target="_blank" class="group bg-green-500 hover:bg-green-600 p-3 rounded-full transition-all duration-300 transform hover:scale-110 hover:shadow-lg">
-                            <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.465 3.488"/>
-                            </svg>
-                        </a>
-                        
-                        <!-- تليجرام -->
-                        <a href="https://t.me/Studyfy1bot" target="_blank" class="group bg-blue-500 hover:bg-blue-600 p-3 rounded-full transition-all duration-300 transform hover:scale-110 hover:shadow-lg">
-                            <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
-                            </svg>
-                        </a>
+    <footer class="gradient-bg text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center justify-between">
+                <div class="flex items-center space-x-3 space-x-reverse mb-4 md:mb-0">
+                    <div class="brain-logo">
+                        <svg viewBox="0 0 100 100" class="w-full h-full">
+                            <defs>
+                                <linearGradient id="footerBrainGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#60a5fa"/>
+                                    <stop offset="50%" style="stop-color:#3b82f6"/>
+                                    <stop offset="100%" style="stop-color:#1e3a8a"/>
+                                </linearGradient>
+                            </defs>
+                            <!-- Left hemisphere -->
+                            <path d="M20 30 C15 25, 15 35, 18 40 C12 45, 15 55, 20 58 C18 65, 22 70, 28 68 C25 75, 30 80, 38 78 C35 85, 42 88, 48 85 C48 82, 48 78, 50 75" fill="url(#footerBrainGradient)" stroke="white" stroke-width="1.5"/>
+                            <!-- Right hemisphere -->
+                            <path d="M80 30 C85 25, 85 35, 82 40 C88 45, 85 55, 80 58 C82 65, 78 70, 72 68 C75 75, 70 80, 62 78 C65 85, 58 88, 52 85 C52 82, 52 78, 50 75" fill="url(#footerBrainGradient)" stroke="white" stroke-width="1.5"/>
+                            <!-- Cerebellum -->
+                            <path d="M35 75 C40 78, 45 78, 50 75 C55 78, 60 78, 65 75 C68 78, 65 82, 60 80 C55 83, 45 83, 40 80 C35 82, 32 78, 35 75" fill="url(#footerBrainGradient)" stroke="white" stroke-width="1.5"/>
+                            <!-- Brain stem -->
+                            <path d="M48 85 C49 88, 51 88, 52 85 C52 90, 48 90, 48 85" fill="url(#footerBrainGradient)" stroke="white" stroke-width="1.5"/>
+                            <!-- Brain folds and details -->
+                            <path d="M25 35 C30 32, 35 35, 40 32" stroke="white" stroke-width="1" fill="none"/>
+                            <path d="M60 32 C65 35, 70 32, 75 35" stroke="white" stroke-width="1" fill="none"/>
+                            <path d="M22 45 C28 42, 32 45, 38 43" stroke="white" stroke-width="1" fill="none"/>
+                            <path d="M62 43 C68 45, 72 42, 78 45" stroke="white" stroke-width="1" fill="none"/>
+                            <path d="M25 55 C30 52, 35 55, 42 53" stroke="white" stroke-width="1" fill="none"/>
+                            <path d="M58 53 C65 55, 70 52, 75 55" stroke="white" stroke-width="1" fill="none"/>
+                            <!-- Central sulcus -->
+                            <path d="M50 25 C50 35, 50 45, 50 55" stroke="white" stroke-width="1.5" fill="none"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold">
+                            <span class="bg-gradient-to-r from-blue-300 to-blue-100 bg-clip-text text-transparent">Study</span><span class="text-white">fy</span>
+                        </h3>
+                        <p class="text-blue-200 text-sm">© 2025 جميع الحقوق محفوظة</p>
                     </div>
                 </div>
-            </div>
-            
-            <div class="border-t border-blue-300/20 mt-8 pt-8 text-center">
-                <p class="text-blue-200">© 2025 Studyfy. جميع الحقوق محفوظة.</p>
+                
+                <div class="flex items-center space-x-4 space-x-reverse">
+                    <a href="https://chat.whatsapp.com/HYF2QApNRNa3iqkAIkfT4H?mode=ac_t" target="_blank" class="bg-green-500 hover:bg-green-600 p-3 rounded-full transition-colors">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
+                        </svg>
+                    </a>
+                    
+                    <a href="https://t.me/Studyfy1bot" target="_blank" class="bg-blue-500 hover:bg-blue-600 p-3 rounded-full transition-colors">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+                        </svg>
+                    </a>
+                </div>
             </div>
         </div>
     </footer>
 
-    <!-- الصفحات المختلفة -->
-    <div id="pages-container" class="hidden">
-        <!-- صفحة الشروحات الرئيسية -->
-        <div id="explanations-page" class="page-content hidden">
-            <div class="min-h-screen gradient-bg py-20">
-                <div class="container mx-auto px-6">
-                    <div class="text-center mb-16">
-                        <h1 class="text-5xl font-bold text-white mb-6">الشروحات</h1>
-                        <p class="text-xl text-blue-100 mb-8">اختر الفرقة الدراسية للوصول للمحتوى التعليمي</p>
-                    </div>
-                    
-                    <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                        <!-- فرقة أولى -->
-                        <div class="card-hover bg-white/10 backdrop-blur-sm rounded-2xl p-8 text-center border border-blue-300/20 group">
-                            <div class="feature-icon w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
-                                <svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 20 20">
-                                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                                </svg>
-                            </div>
-                            <h3 class="text-3xl font-bold text-white mb-6 group-hover:text-blue-200 transition-colors">فرقة أولى</h3>
-                            <p class="text-blue-100 mb-8 leading-relaxed">
-                                المواد الأساسية والتأسيسية للفرقة الأولى
-                            </p>
-                            
-                            <!-- أزرار الترمين -->
-                            <div class="space-y-4">
-                                <button onclick="showPage('year1-term1')" class="w-full bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-full font-semibold transition-colors">
-                                    الترم الأول
-                                </button>
-                                <button onclick="showPage('year1-term2')" class="w-full bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-full font-semibold transition-colors">
-                                    الترم الثاني
-                                </button>
-                            </div>
-                        </div>
-                        
-                        <!-- فرقة تانية -->
-                        <div class="card-hover bg-white/10 backdrop-blur-sm rounded-2xl p-8 text-center border border-blue-300/20 group">
-                            <div class="feature-icon w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
-                                <svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 20 20">
-                                    <path d="M12 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2M3 12l6.414 6.414a2 2 0 001.414.586H19a2 2 0 002-2V7a2 2 0 00-2-2h-8.172a2 2 0 00-1.414.586L3 12z"/>
-                                </svg>
-                            </div>
-                            <h3 class="text-3xl font-bold text-white mb-6 group-hover:text-blue-200 transition-colors">فرقة تانية</h3>
-                            <p class="text-blue-100 mb-8 leading-relaxed">
-                                المواد المتقدمة والتخصصية للفرقة الثانية
-                            </p>
-                            
-                            <!-- أزرار الترمين -->
-                            <div class="space-y-4">
-                                <button onclick="showPage('year2-term1')" class="w-full bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-full font-semibold transition-colors">
-                                    الترم الأول
-                                </button>
-                                <button onclick="showPage('year2-term2')" class="w-full bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-full font-semibold transition-colors">
-                                    الترم الثاني
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="text-center mt-12">
-                        <button onclick="showHomePage()" class="bg-white text-blue-900 px-8 py-3 rounded-full font-semibold hover:bg-blue-50 transition-colors">
-                            العودة للرئيسية
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- صفحة فرقة أولى ترم أول -->
-        <div id="year1-term1-page" class="page-content hidden">
-            <div class="min-h-screen gradient-bg py-20">
-                <div class="container mx-auto px-6">
-                    <div class="text-center mb-12">
-                        <h1 class="text-4xl font-bold text-white mb-4">فرقة أولى ترم أول</h1>
-                        <p class="text-xl text-blue-100">جميع المواد والشروحات للفرقة الأولى الترم الأول</p>
-                    </div>
-                    <div class="grid md:grid-cols-1 lg:grid-cols-1 gap-6 max-w-md mx-auto">
-                        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-blue-300/20">
-                            <h3 class="text-xl font-bold text-white mb-3">Physiology 1</h3>
-                            <p class="text-blue-100 mb-4">شروحات مفصلة لمادة علم وظائف الأعضاء</p>
-                            <button onclick="showLectures()" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg">الشرح</button>
-                        </div>
-                    </div>
-                    <div class="text-center mt-8">
-                        <button onclick="showPage('explanations')" class="bg-white text-blue-900 px-6 py-3 rounded-full font-semibold hover:bg-blue-50 mr-4">العودة للشروحات</button>
-                        <button onclick="showHomePage()" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-full font-semibold">العودة للرئيسية</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- صفحة فرقة أولى ترم تاني -->
-        <div id="year1-term2-page" class="page-content hidden">
-            <div class="min-h-screen gradient-bg py-20">
-                <div class="container mx-auto px-6">
-                    <div class="text-center mb-12">
-                        <h1 class="text-4xl font-bold text-white mb-4">فرقة أولى ترم تاني</h1>
-                        <p class="text-xl text-blue-100">جميع المواد والشروحات للفرقة الأولى الترم الثاني</p>
-                    </div>
-                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-blue-300/20">
-                            <h3 class="text-xl font-bold text-white mb-3">التفاضل والتكامل</h3>
-                            <p class="text-blue-100 mb-4">شروحات متقدمة في التفاضل والتكامل</p>
-                            <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg">ابدأ المشاهدة</button>
-                        </div>
-                        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-blue-300/20">
-                            <h3 class="text-xl font-bold text-white mb-3">الميكانيكا</h3>
-                            <p class="text-blue-100 mb-4">أساسيات الميكانيكا والحركة</p>
-                            <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg">ابدأ المشاهدة</button>
-                        </div>
-                        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-blue-300/20">
-                            <h3 class="text-xl font-bold text-white mb-3">الكيمياء العضوية</h3>
-                            <p class="text-blue-100 mb-4">مقدمة في الكيمياء العضوية</p>
-                            <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg">ابدأ المشاهدة</button>
-                        </div>
-                    </div>
-                    <div class="text-center mt-8">
-                        <button onclick="showPage('explanations')" class="bg-white text-blue-900 px-6 py-3 rounded-full font-semibold hover:bg-blue-50 mr-4">العودة للشروحات</button>
-                        <button onclick="showHomePage()" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-full font-semibold">العودة للرئيسية</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- صفحة فرقة تانية ترم أول -->
-        <div id="year2-term1-page" class="page-content hidden">
-            <div class="min-h-screen gradient-bg py-20">
-                <div class="container mx-auto px-6">
-                    <div class="text-center mb-12">
-                        <h1 class="text-4xl font-bold text-white mb-4">فرقة تانية ترم أول</h1>
-                        <p class="text-xl text-blue-100">جميع المواد والشروحات للفرقة الثانية الترم الأول</p>
-                    </div>
-                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-blue-300/20">
-                            <h3 class="text-xl font-bold text-white mb-3">الجبر الخطي</h3>
-                            <p class="text-blue-100 mb-4">المصفوفات والمحددات</p>
-                            <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg">ابدأ المشاهدة</button>
-                        </div>
-                        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-blue-300/20">
-                            <h3 class="text-xl font-bold text-white mb-3">الديناميكا الحرارية</h3>
-                            <p class="text-blue-100 mb-4">قوانين الديناميكا الحرارية</p>
-                            <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg">ابدأ المشاهدة</button>
-                        </div>
-                        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-blue-300/20">
-                            <h3 class="text-xl font-bold text-white mb-3">الكيمياء التحليلية</h3>
-                            <p class="text-blue-100 mb-4">طرق التحليل الكيميائي</p>
-                            <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg">ابدأ المشاهدة</button>
-                        </div>
-                    </div>
-                    <div class="text-center mt-8">
-                        <button onclick="showPage('explanations')" class="bg-white text-blue-900 px-6 py-3 rounded-full font-semibold hover:bg-blue-50 mr-4">العودة للشروحات</button>
-                        <button onclick="showHomePage()" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-full font-semibold">العودة للرئيسية</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- صفحة فرقة تانية ترم تاني -->
-        <div id="year2-term2-page" class="page-content hidden">
-            <div class="min-h-screen gradient-bg py-20">
-                <div class="container mx-auto px-6">
-                    <div class="text-center mb-12">
-                        <h1 class="text-4xl font-bold text-white mb-4">فرقة تانية ترم تاني</h1>
-                        <p class="text-xl text-blue-100">جميع المواد والشروحات للفرقة الثانية الترم الثاني</p>
-                    </div>
-                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-blue-300/20">
-                            <h3 class="text-xl font-bold text-white mb-3">المعادلات التفاضلية</h3>
-                            <p class="text-blue-100 mb-4">حل المعادلات التفاضلية</p>
-                            <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg">ابدأ المشاهدة</button>
-                        </div>
-                        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-blue-300/20">
-                            <h3 class="text-xl font-bold text-white mb-3">الكهرومغناطيسية</h3>
-                            <p class="text-blue-100 mb-4">المجالات الكهربية والمغناطيسية</p>
-                            <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg">ابدأ المشاهدة</button>
-                        </div>
-                        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-blue-300/20">
-                            <h3 class="text-xl font-bold text-white mb-3">الكيمياء الفيزيائية</h3>
-                            <p class="text-blue-100 mb-4">الحركية الكيميائية والتوازن</p>
-                            <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg">ابدأ المشاهدة</button>
-                        </div>
-                    </div>
-                    <div class="text-center mt-8">
-                        <button onclick="showPage('explanations')" class="bg-white text-blue-900 px-6 py-3 rounded-full font-semibold hover:bg-blue-50 mr-4">العودة للشروحات</button>
-                        <button onclick="showHomePage()" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-full font-semibold">العودة للرئيسية</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- صفحة المحاضرات -->
-        <div id="lectures-page" class="page-content hidden">
-            <div class="min-h-screen gradient-bg py-20">
-                <div class="container mx-auto px-6">
-                    <div class="text-center mb-12">
-                        <h1 class="text-4xl font-bold text-white mb-4">محاضرات Physiology 1</h1>
-                        <p class="text-xl text-blue-100">اختر المحاضرة التي تريد مشاهدتها</p>
-                    </div>
-                    
-                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-                        <!-- المحاضرة الأولى -->
-                        <div class="card-hover bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-blue-300/20 cursor-pointer group" onclick="playVideo('https://drive.google.com/file/d/1-56g393DALtfsUJVxtykjaI1E_w93CQX/view?usp=drive_link', 'المحاضرة الأولى - مقدمة في علم وظائف الأعضاء')">
-                            <div class="flex items-center mb-4">
-                                <div class="bg-blue-600 rounded-full w-12 h-12 flex items-center justify-center mr-4">
-                                    <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"/>
-                                    </svg>
-                                </div>
-                                <div>
-                                    <h3 class="text-xl font-bold text-white group-hover:text-blue-200 transition-colors">المحاضرة الأولى</h3>
-                                    <p class="text-blue-200 text-sm">مقدمة في علم وظائف الأعضاء</p>
-                                </div>
-                            </div>
-                            <div class="flex items-center justify-between">
-                                <span class="text-blue-100 text-sm">⏱️ 10 دقائق</span>
-                                <span class="bg-green-500/20 text-green-300 px-2 py-1 rounded-full text-xs">متاح</span>
-                            </div>
-                        </div>
-
-                        <!-- المحاضرة الثانية -->
-                        <div class="card-hover bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-blue-300/20 cursor-pointer group">
-                            <div class="flex items-center mb-4">
-                                <div class="bg-blue-600 rounded-full w-12 h-12 flex items-center justify-center mr-4">
-                                    <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"/>
-                                    </svg>
-                                </div>
-                                <div>
-                                    <h3 class="text-xl font-bold text-white group-hover:text-blue-200 transition-colors">المحاضرة الثانية</h3>
-                                    <p class="text-blue-200 text-sm">الخلية ووظائفها الأساسية</p>
-                                </div>
-                            </div>
-                            <div class="flex items-center justify-between">
-                                <span class="text-blue-100 text-sm">⏱️ 50 دقيقة</span>
-                                <span class="bg-green-500/20 text-green-300 px-2 py-1 rounded-full text-xs">متاح</span>
-                            </div>
-                        </div>
-
-                        <!-- المحاضرة الثالثة -->
-                        <div class="card-hover bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-blue-300/20 cursor-pointer group">
-                            <div class="flex items-center mb-4">
-                                <div class="bg-blue-600 rounded-full w-12 h-12 flex items-center justify-center mr-4">
-                                    <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"/>
-                                    </svg>
-                                </div>
-                                <div>
-                                    <h3 class="text-xl font-bold text-white group-hover:text-blue-200 transition-colors">المحاضرة الثالثة</h3>
-                                    <p class="text-blue-200 text-sm">الأنسجة وأنواعها</p>
-                                </div>
-                            </div>
-                            <div class="flex items-center justify-between">
-                                <span class="text-blue-100 text-sm">⏱️ 42 دقيقة</span>
-                                <span class="bg-green-500/20 text-green-300 px-2 py-1 rounded-full text-xs">متاح</span>
-                            </div>
-                        </div>
-
-                        <!-- المحاضرة الرابعة -->
-                        <div class="card-hover bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-blue-300/20 cursor-pointer group">
-                            <div class="flex items-center mb-4">
-                                <div class="bg-blue-600 rounded-full w-12 h-12 flex items-center justify-center mr-4">
-                                    <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"/>
-                                    </svg>
-                                </div>
-                                <div>
-                                    <h3 class="text-xl font-bold text-white group-hover:text-blue-200 transition-colors">المحاضرة الرابعة</h3>
-                                    <p class="text-blue-200 text-sm">الجهاز العصبي - الجزء الأول</p>
-                                </div>
-                            </div>
-                            <div class="flex items-center justify-between">
-                                <span class="text-blue-100 text-sm">⏱️ 55 دقيقة</span>
-                                <span class="bg-green-500/20 text-green-300 px-2 py-1 rounded-full text-xs">متاح</span>
-                            </div>
-                        </div>
-
-                        <!-- المحاضرة الخامسة -->
-                        <div class="card-hover bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-blue-300/20 cursor-pointer group">
-                            <div class="flex items-center mb-4">
-                                <div class="bg-blue-600 rounded-full w-12 h-12 flex items-center justify-center mr-4">
-                                    <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"/>
-                                    </svg>
-                                </div>
-                                <div>
-                                    <h3 class="text-xl font-bold text-white group-hover:text-blue-200 transition-colors">المحاضرة الخامسة</h3>
-                                    <p class="text-blue-200 text-sm">الجهاز العصبي - الجزء الثاني</p>
-                                </div>
-                            </div>
-                            <div class="flex items-center justify-between">
-                                <span class="text-blue-100 text-sm">⏱️ 48 دقيقة</span>
-                                <span class="bg-green-500/20 text-green-300 px-2 py-1 rounded-full text-xs">متاح</span>
-                            </div>
-                        </div>
-
-                        <!-- المحاضرة السادسة -->
-                        <div class="card-hover bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-blue-300/20 cursor-pointer group">
-                            <div class="flex items-center mb-4">
-                                <div class="bg-blue-600 rounded-full w-12 h-12 flex items-center justify-center mr-4">
-                                    <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"/>
-                                    </svg>
-                                </div>
-                                <div>
-                                    <h3 class="text-xl font-bold text-white group-hover:text-blue-200 transition-colors">المحاضرة السادسة</h3>
-                                    <p class="text-blue-200 text-sm">الجهاز الدوري - القلب</p>
-                                </div>
-                            </div>
-                            <div class="flex items-center justify-between">
-                                <span class="text-blue-100 text-sm">⏱️ 52 دقيقة</span>
-                                <span class="bg-green-500/20 text-green-300 px-2 py-1 rounded-full text-xs">متاح</span>
-                            </div>
-                        </div>
-
-                        <!-- المحاضرة السابعة -->
-                        <div class="card-hover bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-blue-300/20 cursor-pointer group">
-                            <div class="flex items-center mb-4">
-                                <div class="bg-blue-600 rounded-full w-12 h-12 flex items-center justify-center mr-4">
-                                    <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"/>
-                                    </svg>
-                                </div>
-                                <div>
-                                    <h3 class="text-xl font-bold text-white group-hover:text-blue-200 transition-colors">المحاضرة السابعة</h3>
-                                    <p class="text-blue-200 text-sm">الجهاز الدوري - الأوعية الدموية</p>
-                                </div>
-                            </div>
-                            <div class="flex items-center justify-between">
-                                <span class="text-blue-100 text-sm">⏱️ 46 دقيقة</span>
-                                <span class="bg-green-500/20 text-green-300 px-2 py-1 rounded-full text-xs">متاح</span>
-                            </div>
-                        </div>
-
-                        <!-- المحاضرة الثامنة -->
-                        <div class="card-hover bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-blue-300/20 cursor-pointer group">
-                            <div class="flex items-center mb-4">
-                                <div class="bg-blue-600 rounded-full w-12 h-12 flex items-center justify-center mr-4">
-                                    <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"/>
-                                    </svg>
-                                </div>
-                                <div>
-                                    <h3 class="text-xl font-bold text-white group-hover:text-blue-200 transition-colors">المحاضرة الثامنة</h3>
-                                    <p class="text-blue-200 text-sm">الجهاز التنفسي</p>
-                                </div>
-                            </div>
-                            <div class="flex items-center justify-between">
-                                <span class="text-blue-100 text-sm">⏱️ 49 دقيقة</span>
-                                <span class="bg-green-500/20 text-green-300 px-2 py-1 rounded-full text-xs">متاح</span>
-                            </div>
-                        </div>
-
-                        <!-- المحاضرة التاسعة -->
-                        <div class="card-hover bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-blue-300/20 cursor-pointer group">
-                            <div class="flex items-center mb-4">
-                                <div class="bg-blue-600 rounded-full w-12 h-12 flex items-center justify-center mr-4">
-                                    <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"/>
-                                    </svg>
-                                </div>
-                                <div>
-                                    <h3 class="text-xl font-bold text-white group-hover:text-blue-200 transition-colors">المحاضرة التاسعة</h3>
-                                    <p class="text-blue-200 text-sm">الجهاز الهضمي - الجزء الأول</p>
-                                </div>
-                            </div>
-                            <div class="flex items-center justify-between">
-                                <span class="text-blue-100 text-sm">⏱️ 53 دقيقة</span>
-                                <span class="bg-green-500/20 text-green-300 px-2 py-1 rounded-full text-xs">متاح</span>
-                            </div>
-                        </div>
-
-                        <!-- المحاضرة العاشرة -->
-                        <div class="card-hover bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-blue-300/20 cursor-pointer group">
-                            <div class="flex items-center mb-4">
-                                <div class="bg-blue-600 rounded-full w-12 h-12 flex items-center justify-center mr-4">
-                                    <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"/>
-                                    </svg>
-                                </div>
-                                <div>
-                                    <h3 class="text-xl font-bold text-white group-hover:text-blue-200 transition-colors">المحاضرة العاشرة</h3>
-                                    <p class="text-blue-200 text-sm">الجهاز الهضمي - الجزء الثاني</p>
-                                </div>
-                            </div>
-                            <div class="flex items-center justify-between">
-                                <span class="text-blue-100 text-sm">⏱️ 47 دقيقة</span>
-                                <span class="bg-green-500/20 text-green-300 px-2 py-1 rounded-full text-xs">متاح</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="text-center mt-12">
-                        <button onclick="showPage('year1-term1')" class="bg-white text-blue-900 px-6 py-3 rounded-full font-semibold hover:bg-blue-50 mr-4">العودة للمادة</button>
-                        <button onclick="showPage('explanations')" class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-full font-semibold mr-4">العودة للشروحات</button>
-                        <button onclick="showHomePage()" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-full font-semibold">العودة للرئيسية</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- نافذة مشغل الفيديو -->
-        <div id="video-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-            <div class="bg-white/10 backdrop-blur-sm rounded-2xl border border-blue-300/20 w-full max-w-4xl">
-                <div class="flex items-center justify-between p-6 border-b border-blue-300/20">
-                    <h3 id="video-title" class="text-xl font-bold text-white">عنوان المحاضرة</h3>
-                    <button onclick="closeVideo()" class="text-white hover:text-blue-200 transition-colors">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-                        </svg>
-                    </button>
-                </div>
-                <div class="p-6">
-                    <div class="aspect-video bg-black rounded-lg overflow-hidden">
-                        <iframe id="video-frame" 
-                                class="w-full h-full" 
-                                frameborder="0" 
-                                allowfullscreen
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                sandbox="allow-same-origin allow-scripts allow-popups allow-forms">
-                        </iframe>
-                    </div>
-                    <div class="mt-4 text-center">
-                        <p class="text-blue-100 text-sm mb-3">إذا لم يظهر الفيديو، اضغط على الرابط أدناه:</p>
-                        <a id="video-link" href="#" target="_blank" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg font-semibold mr-2 inline-block">فتح في نافذة جديدة</a>
-                        <button onclick="closeVideo()" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-semibold">إغلاق</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- صفحة الحكم -->
-        <div id="wisdom-page" class="page-content hidden">
-            <div class="min-h-screen gradient-bg py-20">
-                <div class="container mx-auto px-6">
-                    <div class="max-w-4xl mx-auto">
-                        <!-- العنوان الرئيسي -->
-                        <div class="text-center mb-16">
-                            <h1 class="text-5xl font-bold text-white mb-4" style="font-family: 'Cairo', sans-serif; letter-spacing: -1px;">خد رسالتك</h1>
-                            <div class="w-24 h-1 bg-blue-300 mx-auto rounded-full mb-6"></div>
-                            <p class="text-xl text-blue-100">حكمة اليوم من قلب الحياة المصرية</p>
-                        </div>
-
-                        <!-- كارت الحكمة الرئيسي -->
-                        <div class="bg-white/10 backdrop-blur-sm rounded-3xl p-12 border border-blue-300/20 mb-12 shadow-2xl text-center relative overflow-hidden">
-                            <!-- تأثير الخلفية -->
-                            <div class="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-3xl"></div>
-                            
-                            <!-- محتوى الحكمة -->
-                            <div class="relative z-10">
-                                <!-- الإيموجي -->
-                                <div class="text-8xl mb-8 animate-bounce" id="wisdom-emoji">🌟</div>
-                                
-                                <!-- نص الحكمة -->
-                                <div class="bg-white/5 rounded-2xl p-8 mb-8 border border-blue-300/10">
-                                    <p class="text-3xl md:text-4xl font-bold text-white leading-relaxed" style="font-family: 'Cairo', sans-serif; line-height: 1.6;" id="wisdom-text">
-                                        اضغط على "حكمة جديدة" عشان تشوف رسالتك!
-                                    </p>
-                                </div>
-                                
-                                <!-- أزرار التحكم -->
-                                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                                    <button onclick="getNewWisdom()" class="bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600 text-white px-8 py-4 rounded-full text-xl font-bold transition-all duration-300 transform hover:scale-105 shadow-lg">
-                                        🎲 حكمة جديدة
-                                    </button>
-                                    
-                                    <button onclick="shareWisdom()" class="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white px-8 py-4 rounded-full text-xl font-bold transition-all duration-300 transform hover:scale-105 shadow-lg">
-                                        📱 شارك الحكمة
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- إحصائيات ممتعة -->
-                        <div class="grid md:grid-cols-3 gap-6 mb-12">
-                            <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center border border-blue-300/20 card-hover">
-                                <div class="text-4xl mb-3">📚</div>
-                                <h3 class="text-xl font-bold text-white mb-2">عدد الحكم</h3>
-                                <p class="text-blue-100 text-2xl font-bold" id="wisdom-count">50+</p>
-                            </div>
-                            
-                            <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center border border-blue-300/20 card-hover">
-                                <div class="text-4xl mb-3">🎯</div>
-                                <h3 class="text-xl font-bold text-white mb-2">حكمتك اليوم</h3>
-                                <p class="text-blue-100 text-2xl font-bold" id="daily-wisdom-number">1</p>
-                            </div>
-                            
-                            <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center border border-blue-300/20 card-hover">
-                                <div class="text-4xl mb-3">⭐</div>
-                                <h3 class="text-xl font-bold text-white mb-2">مزاجك</h3>
-                                <p class="text-blue-100 text-lg font-bold" id="mood-indicator">جاهز للحكمة!</p>
-                            </div>
-                        </div>
-
-                        <!-- زر العودة -->
-                        <div class="text-center">
-                            <button onclick="showHomePage()" class="bg-white text-blue-900 px-8 py-4 rounded-full font-bold text-lg hover:bg-blue-50 transition-all duration-300 transform hover:scale-105 shadow-lg">
-                                العودة للرئيسية
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- صفحة حولنا -->
-        <div id="about-page" class="page-content hidden">
-            <div class="min-h-screen gradient-bg py-20">
-                <div class="container mx-auto px-6">
-                    <div class="max-w-5xl mx-auto">
-                        <!-- العنوان الرئيسي -->
-                        <div class="text-center mb-16">
-                            <h1 class="text-5xl font-bold text-white mb-4" style="font-family: 'Cairo', sans-serif; letter-spacing: -1px;">حولنا</h1>
-                            <div class="w-24 h-1 bg-blue-300 mx-auto rounded-full"></div>
-                        </div>
-
-                        <!-- القسم الرئيسي -->
-                        <div class="bg-white/10 backdrop-blur-sm rounded-3xl p-10 border border-blue-300/20 mb-12 shadow-2xl">
-                            <!-- من نحن -->
-                            <div class="text-center mb-12">
-                                <div class="inline-flex items-center justify-center w-20 h-20 bg-blue-500/20 rounded-full mb-6 border-4 border-blue-300/30">
-                                    <svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 20 20">
-                                        <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3z"/>
-                                    </svg>
-                                </div>
-                                <h2 class="text-4xl font-bold text-white mb-8" style="font-family: 'Cairo', sans-serif;">احنا مين؟</h2>
-                                <div class="max-w-4xl mx-auto">
-                                    <p class="text-xl text-blue-100 leading-relaxed mb-6" style="font-family: 'Cairo', sans-serif; line-height: 2;">
-                                        احنا <span class="text-blue-200 font-semibold">تيم زمايلك</span> في الفرقة التالتة علاج طبيعي
-                                    </p>
-                                </div>
-                            </div>
-
-                            <!-- الهدف والرسالة -->
-                            <div class="bg-white/5 rounded-2xl p-8 mb-10 border border-blue-300/10">
-                                <div class="text-center mb-8">
-                                    <div class="inline-flex items-center justify-center w-16 h-16 bg-yellow-500/20 rounded-full mb-4 border-3 border-yellow-300/30">
-                                        <svg class="w-8 h-8 text-yellow-300" fill="currentColor" viewBox="0 0 20 20">
-                                            <path fill-rule="evenodd" d="M10 2L3 7v11a1 1 0 001 1h3a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1h3a1 1 0 001-1V7l-7-5z" clip-rule="evenodd"/>
-                                        </svg>
-                                    </div>
-                                    <h3 class="text-3xl font-bold text-white mb-6" style="font-family: 'Cairo', sans-serif;">هدفنا ورسالتنا</h3>
-                                </div>
-                                <div class="max-w-4xl mx-auto text-center">
-                                    <p class="text-lg text-blue-100 leading-relaxed mb-6" style="font-family: 'Cairo', sans-serif; line-height: 2;">
-                                        اللي حددناها <span class="text-blue-200 font-semibold">مبدأ لينا</span> مهما اتغيرت الأحوال والطريقة والكيفية أيا كان هو <span class="text-yellow-300 font-bold">هدف واحد</span>
-                                    </p>
-                                    <div class="bg-blue-500/10 rounded-xl p-6 border border-blue-300/20">
-                                        <p class="text-xl text-white font-semibold mb-4" style="font-family: 'Cairo', sans-serif;">
-                                            نبسط كم كبير كنا موجودين في يوم من الأيام مكانكو فيه
-                                        </p>
-                                        <p class="text-lg text-blue-100 leading-relaxed" style="font-family: 'Cairo', sans-serif; line-height: 1.8;">
-                                            نحاول كلنا <span class="text-blue-200 font-semibold">كزمايل وأخوات</span> نساعد بعض لأن في الأول والآخر
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- الشعار الأساسي -->
-                            <div class="text-center">
-                                <div class="inline-block bg-gradient-to-r from-green-400 to-blue-500 rounded-2xl p-8 shadow-2xl border-4 border-white/20">
-                                    <div class="flex items-center justify-center mb-4">
-                                        <svg class="w-12 h-12 text-white mr-3" fill="currentColor" viewBox="0 0 20 20">
-                                            <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"/>
-                                        </svg>
-                                        <svg class="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 20 20">
-                                            <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3z"/>
-                                        </svg>
-                                    </div>
-                                    <h2 class="text-3xl font-bold text-white" style="font-family: 'Cairo', sans-serif; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">
-                                        خير الناس أنفعهم للناس
-                                    </h2>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- قسم المؤسس -->
-                        <div class="text-center mb-16">
-                            <div class="max-w-md mx-auto">
-                                <div class="relative inline-block">
-                                    <!-- إطار الصورة -->
-                                    <div class="w-48 h-48 mx-auto mb-6 relative">
-                                        <div class="absolute inset-0 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full animate-pulse"></div>
-                                        <div class="absolute inset-2 bg-white rounded-full overflow-hidden shadow-2xl">
-                                            <img 
-                                                src="https://i.ibb.co/39XRFFs6/image.jpg" 
-                                                alt="د/احمد باسم - مؤسس المنصة" 
-                                                class="w-full h-full object-cover"
-                                                onerror="this.src=''; this.alt='صورة المؤسس غير متاحة'; this.style.display='none'; this.nextElementSibling.style.display='flex';"
-                                            >
-                                            <!-- بديل في حالة عدم تحميل الصورة -->
-                                            <div class="w-full h-full bg-blue-500/20 flex items-center justify-center text-4xl text-blue-300" style="display: none;">
-                                                👨‍⚕️
-                                            </div>
-                                        </div>
-                                        <!-- تأثير الإضاءة -->
-                                        <div class="absolute -inset-4 bg-gradient-to-r from-blue-400/20 to-purple-500/20 rounded-full blur-xl"></div>
-                                    </div>
-                                    
-                                    <!-- شارة التحقق -->
-                                    <div class="absolute -bottom-2 left-1/2 transform -translate-x-1/2">
-                                        <div class="bg-blue-500 text-white p-2 rounded-full shadow-lg">
-                                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
-                                                <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-                                            </svg>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <!-- معلومات المؤسس -->
-                                <div class="bg-white/5 rounded-2xl p-8 border border-blue-300/10">
-                                    <h3 class="text-3xl font-bold text-white mb-2" style="font-family: 'Cairo', sans-serif;">د/احمد باسم</h3>
-                                    <p class="text-blue-200 text-lg font-semibold mb-4">مؤسس المنصة</p>
-                                    
-                                    <!-- خط فاصل -->
-                                    <div class="w-16 h-1 bg-gradient-to-r from-blue-400 to-purple-500 mx-auto rounded-full mb-6"></div>
-                                    
-                                    <!-- وصف مختصر -->
-                                    <p class="text-blue-100 leading-relaxed mb-6" style="font-family: 'Cairo', sans-serif; line-height: 1.8;">
-                                        طالب في الفرقة التالتة علاج طبيعي
-                                    </p>
-                                    
-                                    <!-- رابط الواتساب -->
-                                    <div class="flex justify-center">
-                                        <a href="https://wa.me/201018421673" target="_blank" class="group bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-110 hover:shadow-lg flex items-center gap-3">
-                                            <svg class="w-6 h-6 group-hover:animate-pulse" fill="currentColor" viewBox="0 0 24 24">
-                                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.465 3.488"/>
-                                            </svg>
-                                            <span>تواصل معي</span>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-
-                        <!-- زر العودة -->
-                        <div class="text-center">
-                            <button onclick="showHomePage()" class="bg-white text-blue-900 px-8 py-4 rounded-full font-bold text-lg hover:bg-blue-50 transition-all duration-300 transform hover:scale-105 shadow-lg">
-                                العودة للرئيسية
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <script>
-        // إخفاء جميع الصفحات
-        function hideAllPages() {
-            const pages = document.querySelectorAll('.page-content');
-            pages.forEach(page => page.classList.add('hidden'));
-            document.getElementById('pages-container').classList.add('hidden');
-            document.querySelector('body > header').style.display = 'block';
-            document.querySelector('body > section').style.display = 'block';
-            document.querySelectorAll('body > section').forEach(section => section.style.display = 'block');
-            document.querySelector('body > footer').style.display = 'block';
-        }
-
-        // إظهار صفحة معينة
+        // Page Navigation
         function showPage(pageId) {
-            // إخفاء المحتوى الرئيسي
-            document.querySelector('body > header').style.display = 'none';
-            document.querySelectorAll('body > section').forEach(section => section.style.display = 'none');
-            document.querySelector('body > footer').style.display = 'none';
-            
-            // إظهار حاوي الصفحات
-            document.getElementById('pages-container').classList.remove('hidden');
-            
-            // إخفاء جميع الصفحات
+            // Hide all pages
             const pages = document.querySelectorAll('.page-content');
-            pages.forEach(page => page.classList.add('hidden'));
+            pages.forEach(page => page.classList.remove('active'));
             
-            // إظهار الصفحة المطلوبة
-            document.getElementById(pageId + '-page').classList.remove('hidden');
-        }
-
-        // العودة للصفحة الرئيسية
-        function showHomePage() {
-            hideAllPages();
-        }
-
-        // التمرير للرئيسية
-        function scrollToHome() {
-            hideAllPages();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        // إظهار صفحة المحاضرات
-        function showLectures() {
-            // إخفاء المحتوى الرئيسي
-            document.querySelector('body > header').style.display = 'none';
-            document.querySelectorAll('body > section').forEach(section => section.style.display = 'none');
-            document.querySelector('body > footer').style.display = 'none';
-            
-            // إظهار حاوي الصفحات
-            document.getElementById('pages-container').classList.remove('hidden');
-            
-            // إخفاء جميع الصفحات
-            const pages = document.querySelectorAll('.page-content');
-            pages.forEach(page => page.classList.add('hidden'));
-            
-            // إظهار صفحة المحاضرات
-            document.getElementById('lectures-page').classList.remove('hidden');
-        }
-
-        // تشغيل الفيديو في نافذة مدمجة
-        function playVideo(url, title) {
-            // تحويل رابط Google Drive للعرض المدمج
-            let embedUrl = '';
-            
-            // استخراج معرف الملف من الرابط
-            const fileIdMatch = url.match(/\/d\/([a-zA-Z0-9-_]+)/);
-            if (fileIdMatch) {
-                const fileId = fileIdMatch[1];
-                // استخدام رابط العرض المباشر
-                embedUrl = `https://drive.google.com/file/d/${fileId}/preview`;
-            } else {
-                // في حالة عدم وجود معرف، استخدم الرابط كما هو
-                embedUrl = url;
+            // Show selected page
+            const targetPage = document.getElementById(pageId + '-page');
+            if (targetPage) {
+                targetPage.classList.add('active');
             }
             
-            // تحديث الإطار والرابط
-            document.getElementById('video-frame').src = embedUrl;
-            document.getElementById('video-link').href = url;
-            document.getElementById('video-title').textContent = title;
-            document.getElementById('video-modal').classList.remove('hidden');
-            document.body.style.overflow = 'hidden'; // منع التمرير في الخلفية
+            // Close mobile menu if open
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.remove('show');
             
-            // إضافة معالج خطأ للإطار
-            const iframe = document.getElementById('video-frame');
-            iframe.onerror = function() {
-                console.log('فشل في تحميل الفيديو المدمج');
-            };
+            // Scroll to top
+            window.scrollTo(0, 0);
         }
 
-        // إغلاق مشغل الفيديو
-        function closeVideo() {
-            document.getElementById('video-modal').classList.add('hidden');
-            document.getElementById('video-frame').src = ''; // إيقاف الفيديو
-            document.body.style.overflow = 'auto'; // إعادة تفعيل التمرير
-        }
-
-        // إغلاق النافذة عند الضغط خارجها
-        document.getElementById('video-modal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeVideo();
-            }
-        });
-
-        // بيانات البحث
-        const searchData = [
-            // محاضرات Physiology 1
-            { title: 'المحاضرة الأولى - مقدمة في علم وظائف الأعضاء', type: 'محاضرة', subject: 'Physiology 1', year: 'فرقة أولى', term: 'ترم أول', action: () => { showLectures(); setTimeout(() => playVideo('https://drive.google.com/file/d/1-56g393DALtfsUJVxtykjaI1E_w93CQX/view?usp=drive_link', 'المحاضرة الأولى - مقدمة في علم وظائف الأعضاء'), 100); } },
-            { title: 'المحاضرة الثانية - الخلية ووظائفها الأساسية', type: 'محاضرة', subject: 'Physiology 1', year: 'فرقة أولى', term: 'ترم أول', action: () => showLectures() },
-            { title: 'المحاضرة الثالثة - الأنسجة وأنواعها', type: 'محاضرة', subject: 'Physiology 1', year: 'فرقة أولى', term: 'ترم أول', action: () => showLectures() },
-            { title: 'المحاضرة الرابعة - الجهاز العصبي الجزء الأول', type: 'محاضرة', subject: 'Physiology 1', year: 'فرقة أولى', term: 'ترم أول', action: () => showLectures() },
-            { title: 'المحاضرة الخامسة - الجهاز العصبي الجزء الثاني', type: 'محاضرة', subject: 'Physiology 1', year: 'فرقة أولى', term: 'ترم أول', action: () => showLectures() },
-            { title: 'المحاضرة السادسة - الجهاز الدوري القلب', type: 'محاضرة', subject: 'Physiology 1', year: 'فرقة أولى', term: 'ترم أول', action: () => showLectures() },
-            { title: 'المحاضرة السابعة - الجهاز الدوري الأوعية الدموية', type: 'محاضرة', subject: 'Physiology 1', year: 'فرقة أولى', term: 'ترم أول', action: () => showLectures() },
-            { title: 'المحاضرة الثامنة - الجهاز التنفسي', type: 'محاضرة', subject: 'Physiology 1', year: 'فرقة أولى', term: 'ترم أول', action: () => showLectures() },
-            { title: 'المحاضرة التاسعة - الجهاز الهضمي الجزء الأول', type: 'محاضرة', subject: 'Physiology 1', year: 'فرقة أولى', term: 'ترم أول', action: () => showLectures() },
-            { title: 'المحاضرة العاشرة - الجهاز الهضمي الجزء الثاني', type: 'محاضرة', subject: 'Physiology 1', year: 'فرقة أولى', term: 'ترم أول', action: () => showLectures() },
+        // Dropdown functionality
+        function toggleDropdown(dropdownId) {
+            const dropdown = document.getElementById(dropdownId + '-dropdown');
+            dropdown.classList.toggle('show');
             
-            // المواد
-            { title: 'Physiology 1', type: 'مادة', subject: 'Physiology 1', year: 'فرقة أولى', term: 'ترم أول', action: () => showPage('year1-term1') },
-            { title: 'التفاضل والتكامل', type: 'مادة', subject: 'التفاضل والتكامل', year: 'فرقة أولى', term: 'ترم تاني', action: () => showPage('year1-term2') },
-            { title: 'الميكانيكا', type: 'مادة', subject: 'الميكانيكا', year: 'فرقة أولى', term: 'ترم تاني', action: () => showPage('year1-term2') },
-            { title: 'الكيمياء العضوية', type: 'مادة', subject: 'الكيمياء العضوية', year: 'فرقة أولى', term: 'ترم تاني', action: () => showPage('year1-term2') },
-            { title: 'الجبر الخطي', type: 'مادة', subject: 'الجبر الخطي', year: 'فرقة تانية', term: 'ترم أول', action: () => showPage('year2-term1') },
-            { title: 'الديناميكا الحرارية', type: 'مادة', subject: 'الديناميكا الحرارية', year: 'فرقة تانية', term: 'ترم أول', action: () => showPage('year2-term1') },
-            { title: 'الكيمياء التحليلية', type: 'مادة', subject: 'الكيمياء التحليلية', year: 'فرقة تانية', term: 'ترم أول', action: () => showPage('year2-term1') },
-            { title: 'المعادلات التفاضلية', type: 'مادة', subject: 'المعادلات التفاضلية', year: 'فرقة تانية', term: 'ترم تاني', action: () => showPage('year2-term2') },
-            { title: 'الكهرومغناطيسية', type: 'مادة', subject: 'الكهرومغناطيسية', year: 'فرقة تانية', term: 'ترم تاني', action: () => showPage('year2-term2') },
-            { title: 'الكيمياء الفيزيائية', type: 'مادة', subject: 'الكيمياء الفيزيائية', year: 'فرقة تانية', term: 'ترم تاني', action: () => showPage('year2-term2') },
-            
-            // الصفحات
-            { title: 'الشروحات', type: 'صفحة', subject: 'عام', year: 'عام', term: 'عام', action: () => showPage('explanations') },
-            { title: 'فرقة أولى', type: 'صفحة', subject: 'عام', year: 'فرقة أولى', term: 'عام', action: () => showPage('explanations') },
-            { title: 'فرقة تانية', type: 'صفحة', subject: 'عام', year: 'فرقة تانية', term: 'عام', action: () => showPage('explanations') },
-            { title: 'فرقة أولى ترم أول', type: 'صفحة', subject: 'عام', year: 'فرقة أولى', term: 'ترم أول', action: () => showPage('year1-term1') },
-            { title: 'فرقة أولى ترم تاني', type: 'صفحة', subject: 'عام', year: 'فرقة أولى', term: 'ترم تاني', action: () => showPage('year1-term2') },
-            { title: 'فرقة تانية ترم أول', type: 'صفحة', subject: 'عام', year: 'فرقة تانية', term: 'ترم أول', action: () => showPage('year2-term1') },
-            { title: 'فرقة تانية ترم تاني', type: 'صفحة', subject: 'عام', year: 'فرقة تانية', term: 'ترم تاني', action: () => showPage('year2-term2') }
-        ];
-
-        // وظيفة البحث
-        function performSearch() {
-            const searchTerm = document.getElementById('search-input').value.toLowerCase().trim();
-            const resultsContainer = document.getElementById('search-content');
-            
-            if (searchTerm === '') {
-                resultsContainer.innerHTML = '<div class="text-gray-500 text-center py-4">ابدأ بكتابة كلمة للبحث...</div>';
-                return;
-            }
-            
-            // البحث في البيانات
-            const results = searchData.filter(item => 
-                item.title.toLowerCase().includes(searchTerm) ||
-                item.subject.toLowerCase().includes(searchTerm) ||
-                item.year.toLowerCase().includes(searchTerm) ||
-                item.term.toLowerCase().includes(searchTerm) ||
-                item.type.toLowerCase().includes(searchTerm)
-            );
-            
-            if (results.length === 0) {
-                resultsContainer.innerHTML = '<div class="text-gray-500 text-center py-4">لا توجد نتائج للبحث</div>';
-                return;
-            }
-            
-            // عرض النتائج
-            let resultsHTML = '';
-            results.slice(0, 8).forEach(result => { // عرض أول 8 نتائج فقط
-                const icon = result.type === 'محاضرة' ? '🎥' : result.type === 'مادة' ? '📚' : '📄';
-                resultsHTML += `
-                    <div class="search-result-item p-3 hover:bg-blue-50 cursor-pointer border-b border-gray-100 last:border-b-0 transition-colors" onclick="selectSearchResult('${result.title}')">
-                        <div class="flex items-start gap-3">
-                            <span class="text-lg">${icon}</span>
-                            <div class="flex-1">
-                                <h4 class="font-semibold text-blue-900 text-sm">${result.title}</h4>
-                                <div class="flex items-center gap-2 mt-1">
-                                    <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs">${result.type}</span>
-                                    <span class="text-gray-600 text-xs">${result.year} - ${result.term}</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                `;
-            });
-            
-            if (results.length > 8) {
-                resultsHTML += `<div class="text-center py-2 text-gray-500 text-sm">وأكثر من ${results.length - 8} نتيجة أخرى...</div>`;
-            }
-            
-            resultsContainer.innerHTML = resultsHTML;
-        }
-
-        // اختيار نتيجة البحث
-        function selectSearchResult(title) {
-            const result = searchData.find(item => item.title === title);
-            if (result && result.action) {
-                hideSearchResults();
-                document.getElementById('search-input').value = '';
-                result.action();
-            }
-        }
-
-        // إظهار نتائج البحث
-        function showSearchResults() {
-            document.getElementById('search-results').classList.remove('hidden');
-        }
-
-        // إخفاء نتائج البحث
-        function hideSearchResults() {
-            document.getElementById('search-results').classList.add('hidden');
-        }
-
-        // إخفاء نتائج البحث عند الضغط خارجها
-        document.addEventListener('click', function(e) {
-            const searchContainer = e.target.closest('#search-input, #search-results');
-            if (!searchContainer) {
-                hideSearchResults();
-            }
-        });
-
-        // البحث بالضغط على Enter
-        document.getElementById('search-input').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                const firstResult = document.querySelector('.search-result-item');
-                if (firstResult) {
-                    firstResult.click();
+            // Close other dropdowns
+            const allDropdowns = document.querySelectorAll('.dropdown');
+            allDropdowns.forEach(d => {
+                if (d.id !== dropdownId + '-dropdown') {
+                    d.classList.remove('show');
                 }
-            }
-        });
-
-        // وظائف البحث للموبايل
-        function toggleMobileSearch() {
-            const mobileSearch = document.getElementById('mobile-search');
-            const isHidden = mobileSearch.classList.contains('hidden');
-            
-            if (isHidden) {
-                mobileSearch.classList.remove('hidden');
-                document.getElementById('mobile-search-input').focus();
-                // إغلاق القائمة إذا كانت مفتوحة
-                closeMobileMenu();
-            } else {
-                mobileSearch.classList.add('hidden');
-                hideMobileSearchResults();
-                document.getElementById('mobile-search-input').value = '';
-            }
-        }
-
-        function performMobileSearch() {
-            const searchTerm = document.getElementById('mobile-search-input').value.toLowerCase().trim();
-            const resultsContainer = document.getElementById('mobile-search-content');
-            
-            if (searchTerm === '') {
-                resultsContainer.innerHTML = '<div class="text-gray-500 text-center py-4">ابدأ بكتابة كلمة للبحث...</div>';
-                return;
-            }
-            
-            // البحث في البيانات
-            const results = searchData.filter(item => 
-                item.title.toLowerCase().includes(searchTerm) ||
-                item.subject.toLowerCase().includes(searchTerm) ||
-                item.year.toLowerCase().includes(searchTerm) ||
-                item.term.toLowerCase().includes(searchTerm) ||
-                item.type.toLowerCase().includes(searchTerm)
-            );
-            
-            if (results.length === 0) {
-                resultsContainer.innerHTML = '<div class="text-gray-500 text-center py-4">لا توجد نتائج للبحث</div>';
-                return;
-            }
-            
-            // عرض النتائج
-            let resultsHTML = '';
-            results.slice(0, 6).forEach(result => { // عرض أول 6 نتائج للموبايل
-                const icon = result.type === 'محاضرة' ? '🎥' : result.type === 'مادة' ? '📚' : '📄';
-                resultsHTML += `
-                    <div class="search-result-item p-3 hover:bg-blue-50 cursor-pointer border-b border-gray-100 last:border-b-0 transition-colors" onclick="selectMobileSearchResult('${result.title}')">
-                        <div class="flex items-start gap-3">
-                            <span class="text-lg">${icon}</span>
-                            <div class="flex-1">
-                                <h4 class="font-semibold text-blue-900 text-sm">${result.title}</h4>
-                                <div class="flex items-center gap-2 mt-1">
-                                    <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs">${result.type}</span>
-                                    <span class="text-gray-600 text-xs">${result.year} - ${result.term}</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                `;
             });
-            
-            if (results.length > 6) {
-                resultsHTML += `<div class="text-center py-2 text-gray-500 text-sm">وأكثر من ${results.length - 6} نتيجة أخرى...</div>`;
-            }
-            
-            resultsContainer.innerHTML = resultsHTML;
         }
 
-        function selectMobileSearchResult(title) {
-            const result = searchData.find(item => item.title === title);
-            if (result && result.action) {
-                hideMobileSearchResults();
-                document.getElementById('mobile-search').classList.add('hidden');
-                document.getElementById('mobile-search-input').value = '';
-                result.action();
-            }
-        }
-
-        function showMobileSearchResults() {
-            document.getElementById('mobile-search-results').classList.remove('hidden');
-        }
-
-        function hideMobileSearchResults() {
-            document.getElementById('mobile-search-results').classList.add('hidden');
-        }
-
-        // البحث بالضغط على Enter للموبايل
-        document.getElementById('mobile-search-input').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                const firstResult = document.querySelector('#mobile-search-results .search-result-item');
-                if (firstResult) {
-                    firstResult.click();
-                }
-            }
-        });
-
-        // وظائف قائمة الموبايل
+        // Mobile menu functionality
         function toggleMobileMenu() {
-            const mobileMenu = document.getElementById('mobile-menu');
-            const menuIcon = document.getElementById('menu-icon');
-            const closeIcon = document.getElementById('close-icon');
-            const isHidden = mobileMenu.classList.contains('hidden');
-            
-            if (isHidden) {
-                mobileMenu.classList.remove('hidden');
-                menuIcon.classList.add('hidden');
-                closeIcon.classList.remove('hidden');
-                // إغلاق البحث إذا كان مفتوحاً
-                document.getElementById('mobile-search').classList.add('hidden');
-                hideMobileSearchResults();
-            } else {
-                mobileMenu.classList.add('hidden');
-                menuIcon.classList.remove('hidden');
-                closeIcon.classList.add('hidden');
-            }
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('show');
         }
 
-        function closeMobileMenu() {
-            const mobileMenu = document.getElementById('mobile-menu');
-            const menuIcon = document.getElementById('menu-icon');
-            const closeIcon = document.getElementById('close-icon');
-            
-            mobileMenu.classList.add('hidden');
-            menuIcon.classList.remove('hidden');
-            closeIcon.classList.add('hidden');
+        // Mobile dropdown functionality
+        function toggleMobileDropdown(dropdownId) {
+            const dropdown = document.getElementById(dropdownId);
+            dropdown.classList.toggle('show');
         }
 
-        // مصفوفة الحكم المصرية مع الإيموجيز
-        const egyptianWisdom = [
-            { text: "اللي يصبر على المر ينول الحلو في آخر الأمر", emoji: "⏰" },
-            { text: "الصبر مفتاح الفرج والعجلة من الشيطان", emoji: "🔑" },
-            { text: "اللي ميعرفش يقول عدس ولا يفهم في الحياة", emoji: "🤷‍♂️" },
-            { text: "كل فولة وليها كيال وكل واحد وله نصيب", emoji: "⚖️" },
-            { text: "اللي يحبك يحب كلبك ويقبل عيوبك", emoji: "❤️" },
-            { text: "العجلة من الشيطان والتأني من الرحمن", emoji: "😈" },
-            { text: "اللي ايده في الماية مش زي اللي ايده في النار أبداً", emoji: "🔥" },
-            { text: "الغايب عذره معاه والحاضر عليه اللوم", emoji: "🤝" },
-            { text: "اللي يخاف من العفريت يطلعله في كل مكان", emoji: "👻" },
-            { text: "كل شيء بقدر وكل حاجة بوقتها", emoji: "⚡" },
-            { text: "اللي يزرع خير يحصد خير واللي يزرع شر يحصد شر", emoji: "🌱" },
-            { text: "الضحك بلا سبب قلة أدب والبكا بلا سبب قلة عقل", emoji: "😂" },
-            { text: "اللي يعيش ياما يشوف وياما يتعلم من الحياة", emoji: "👀" },
-            { text: "كل واحد وله نصيب مكتوب من ربنا", emoji: "🎯" },
-            { text: "اللي يتجوز أمي أقوله يا عمي واحترمه", emoji: "👨‍👩‍👦" },
-            { text: "الفلوس تجيب الفلوس والشغل يجيب الرزق", emoji: "💰" },
-            { text: "اللي يشوف بلاوي الناس تهون عليه بلاه ومصايبه", emoji: "🤲" },
-            { text: "كل عقدة وليها حلال وكل مشكلة وليها حل", emoji: "🔓" },
-            { text: "اللي يقول مالوش يتقاله مالوش في الدنيا دي", emoji: "🗣️" },
-            { text: "الكلام من فضة والسكوت من دهب والحكمة من نور", emoji: "🥇" },
-            { text: "اللي يحب يطلع السما يصبر على وجع الرجلين والتعب", emoji: "🚀" },
-            { text: "كل مجنون وله فنون وكل واحد وله طريقته", emoji: "🎨" },
-            { text: "اللي يخش بين البصلة وقشرتها ميجيلوش غير ريحتها الوحشة", emoji: "🧅" },
-            { text: "الحب أعمى والغيرة عمياء والطمع أعمى", emoji: "💕" },
-            { text: "اللي يعمل خير يلاقي خير واللي يعمل شر يلاقي شر", emoji: "✨" },
-            { text: "كل إناء بما فيه ينضح وكل واحد بيظهر أصله", emoji: "🫖" },
-            { text: "اللي يسمع كلام الكبار ميتحيرش في الحياة أبداً", emoji: "👴" },
-            { text: "الوقت من دهب والعمر مايرجعش تاني", emoji: "⏳" },
-            { text: "اللي يحب الورد يصبر على شوكه ويتحمل الألم", emoji: "🌹" },
-            { text: "كل شيء له أوان وكل حاجة ليها وقت", emoji: "🕐" },
-            { text: "اللي يدور على العيب يلاقيه في كل حتة", emoji: "🔍" },
-            { text: "الحكمة ضالة المؤمن أينما وجدها فهو أحق بها", emoji: "🧠" },
-            { text: "اللي يقرا التاريخ ميعيدوش ويتعلم من أخطاء الماضي", emoji: "📚" },
-            { text: "كل بداية صعبة بس النهاية حلوة لو صبرت", emoji: "🌅" },
-            { text: "اللي يحب يعلي بيته يوطي نفسه ويشتغل بجد", emoji: "🏠" },
-            { text: "الصحة تاج على رؤوس الأصحاء لا يراه إلا المرضى", emoji: "👑" },
-            { text: "اللي يخاف من الذيب ميربيش غنم ولا يخوض المغامرات", emoji: "🐺" },
-            { text: "كل شيء يهون إلا الهوان والذل مايتقبلش", emoji: "💪" },
-            { text: "اللي يعمل المعروف ميندمش عليه أبداً في حياته", emoji: "🤗" },
-            { text: "الحياة مدرسة كبيرة وكل يوم فيها درس جديد", emoji: "🎓" },
-            { text: "اللي يحب الدنيا تتعبه وتخليه ينسى الآخرة", emoji: "🌍" },
-            { text: "كل ذنب وله توبة وكل خطأ وله تصحيح", emoji: "🙏" },
-            { text: "اللي يصدق نفسه يكدب على الناس ويعيش في وهم", emoji: "🤥" },
-            { text: "الأمل آخر حاجة بتموت في قلب الإنسان", emoji: "🌈" },
-            { text: "اللي يحب يوصل لازم يمشي ويتعب في الطريق", emoji: "🚶‍♂️" },
-            { text: "كل مشكلة وليها حل بس عاوزة صبر وتفكير", emoji: "💡" },
-            { text: "اللي يزعل من الحق يبقى على باطل وعنده مشكلة", emoji: "⚖️" },
-            { text: "الحلم مطية الغلابة والأمل نور في الظلام", emoji: "💭" },
-            { text: "اللي يحب يتعلم مفيش حاجة تقف قدامه في الدنيا", emoji: "📖" },
-            { text: "كل يوم بخيره وشره والمهم نتعلم من كل حاجة", emoji: "🌤️" },
-            { text: "اللي يعرف قدر نفسه الناس تعرف قدره وتحترمه", emoji: "🎭" },
-            { text: "الكلمة الطيبة صدقة والابتسامة في وجه أخوك صدقة", emoji: "😊" },
-            { text: "اللي يحب يكسب لازم يخاطر ويجرب حاجات جديدة", emoji: "🎲" },
-            { text: "العلم نور والجهل ظلام والقراءة غذاء الروح", emoji: "💡" },
-            { text: "اللي يحترم نفسه الناس تحترمه ويكون له مكانة", emoji: "👑" },
-            { text: "الصديق وقت الضيق والأخ وقت الشدة", emoji: "🤝" },
-            { text: "اللي يشتغل بإيده يأكل بكرامة ويعيش بعزة", emoji: "💪" },
-            { text: "الأم مدرسة إذا أعددتها أعددت شعباً طيب الأعراق", emoji: "👩‍👧‍👦" },
-            { text: "اللي يحب يبقى قوي يتعلم من أخطاؤه ويكمل", emoji: "🦁" },
-            { text: "الحياة قصيرة فاعمل فيها اللي يخليك فخور بنفسك", emoji: "⏰" },
-            { text: "اللي يزرع في قلوب الناس حب يحصد احترام ومحبة", emoji: "❤️" },
-            { text: "العقل زينة والأدب جمال والأخلاق هي الأساس", emoji: "🧠" },
-            { text: "اللي يحب يغير الدنيا يبدأ بنفسه الأول", emoji: "🌍" },
-            { text: "الصبر مر بس ثماره حلوة وجميلة في النهاية", emoji: "🍯" },
-            { text: "اللي يعيش بالأمل يموت بالأمل والحلم يتحقق", emoji: "🌟" },
-            { text: "الحب الحقيقي مش كلام بس أفعال وتضحيات", emoji: "💖" },
-            { text: "اللي يحب يكون سعيد يخلي الناس حواليه سعداء", emoji: "😄" },
-            { text: "العمل الصالح يبقى والكلام الحلو يروح مع الريح", emoji: "🌬️" },
-            { text: "اللي يحب يعيش في سلام يسامح ويتسامح مع الناس", emoji: "☮️" },
-            { text: "الحكمة مش في السن بس في التجربة والتعلم", emoji: "📚" },
-            { text: "اللي يحب يكون مميز يعمل حاجة مختلفة عن الباقي", emoji: "⭐" },
-            { text: "الأخلاق أهم من الشكل والجمال الحقيقي جمال الروح", emoji: "✨" },
-            { text: "اللي يحب يبقى غني يغني قلبه بالرضا والقناعة", emoji: "💎" },
-            { text: "الحياة زي البحر فيها أمواج وهدوء وعواصف وسكون", emoji: "🌊" },
-            { text: "اللي يحب يكون قوي يتعلم يقول لا لما يكون محتاج", emoji: "🚫" },
-            { text: "النجاح مش حظ بس شغل وتعب ومثابرة وصبر", emoji: "🏆" },
-            { text: "اللي يحب يفهم الحياة يتعلم من كل الناس حواليه", emoji: "👥" },
-            { text: "الأحلام الكبيرة تحتاج خطوات صغيرة وصبر طويل", emoji: "🎯" },
-            { text: "اللي يحب يكون مؤثر يبدأ بالتأثير على نفسه الأول", emoji: "🎭" },
-            { text: "الحب الحقيقي يخلي الإنسان أحسن مش أسوأ", emoji: "💕" },
-            { text: "اللي يحب يعيش مرتاح يتعلم يرضى بقضاء ربنا", emoji: "🕊️" },
-            { text: "الذكريات الحلوة كنز والذكريات الوحشة درس", emoji: "📸" },
-            { text: "اللي يحب يكون محبوب يحب الناس من قلبه", emoji: "💗" },
-            { text: "الحياة مش عدد السنين بس عدد اللحظات الحلوة", emoji: "⏳" },
-            { text: "اللي يحب يكون ناجح يتعلم من فشله ويكمل", emoji: "📈" },
-            { text: "الأمانة أغلى من الذهب والصدق أجمل من الجمال", emoji: "💎" },
-            { text: "اللي يحب يعيش في أمان يأمن الناس من لسانه ويده", emoji: "🛡️" },
-            { text: "الحكمة تيجي مع التجربة والعقل ينضج مع الوقت", emoji: "🧙‍♂️" },
-            { text: "اللي يحب يكون مفيد يتعلم حاجة جديدة كل يوم", emoji: "📖" },
-            { text: "الصداقة الحقيقية كنز نادر والأخ الوفي أغلى من الذهب", emoji: "👫" },
-            { text: "اللي يحب يعيش مبسوط يشكر ربنا على كل حاجة", emoji: "🙏" },
-            { text: "الحياة قصيرة فاقضيها مع الناس اللي بتحبهم", emoji: "❤️" },
-            { text: "اللي يحب يكون قدوة يبدأ بنفسه ويعمل الصح", emoji: "🌟" },
-            { text: "العدل أساس الملك والظلم مؤذن بخراب العمران", emoji: "⚖️" },
-            { text: "اللي يحب يعيش بكرامة يشتغل بإيده ويأكل من تعبه", emoji: "🔨" },
-            { text: "الأمل نور في آخر النفق والصبر مفتاح كل باب مقفول", emoji: "🔑" },
-            { text: "اللي يحب يكون حكيم يسمع أكتر ما يتكلم", emoji: "👂" },
-            { text: "الحب يخلي الصعب سهل والمستحيل ممكن", emoji: "💖" },
-            { text: "اللي يحب يعيش في سعادة يتعلم يقدر اللي عنده", emoji: "😊" },
-            { text: "الحياة مليانة فرص بس عاوزة عين تشوفها وإيد تمسكها", emoji: "👁️" },
-            { text: "اللي يحب يكون عظيم يخدم الناس ويساعدهم", emoji: "🤲" },
-            { text: "الصحة أهم من المال والوقت أغلى من الذهب", emoji: "💚" },
-            { text: "اللي يحب يعيش في راحة يتعلم يسامح نفسه والناس", emoji: "🕊️" },
-            { text: "الحكمة مش في كتر الكلام بس في قول الكلام المناسب", emoji: "🗣️" },
-            { text: "اللي يحب يكون قوي يتعلم يتحكم في نفسه وانفعالاته", emoji: "🧘‍♂️" },
-            { text: "الحياة زي الكتاب كل صفحة فيها حكاية وكل يوم درس", emoji: "📚" },
-            { text: "اللي يحب يعيش مطمئن يعمل الخير ويبعد عن الشر", emoji: "☮️" }
-        ];
-
-        let currentWisdomIndex = -1;
-        let dailyWisdomCount = 0;
-
-        // الحصول على حكمة جديدة
-        function getNewWisdom() {
-            // اختيار حكمة عشوائية مختلفة عن السابقة
-            let newIndex;
-            do {
-                newIndex = Math.floor(Math.random() * egyptianWisdom.length);
-            } while (newIndex === currentWisdomIndex && egyptianWisdom.length > 1);
-            
-            currentWisdomIndex = newIndex;
-            const wisdom = egyptianWisdom[currentWisdomIndex];
-            
-            // تحديث النص والإيموجي مع تأثير انتقالي
-            const wisdomText = document.getElementById('wisdom-text');
-            const wisdomEmoji = document.getElementById('wisdom-emoji');
-            const dailyNumber = document.getElementById('daily-wisdom-number');
-            const moodIndicator = document.getElementById('mood-indicator');
-            
-            // تأثير الاختفاء
-            wisdomText.style.opacity = '0';
-            wisdomEmoji.style.opacity = '0';
-            
-            setTimeout(() => {
-                wisdomText.textContent = wisdom.text;
-                wisdomEmoji.textContent = wisdom.emoji;
-                
-                // تحديث العداد
-                dailyWisdomCount++;
-                dailyNumber.textContent = dailyWisdomCount;
-                
-                // تحديث المزاج بناءً على عدد الحكم
-                const moods = [
-                    "متحمس! 🔥",
-                    "مستمتع! 😊", 
-                    "حكيم! 🧙‍♂️",
-                    "ملهم! ✨",
-                    "فيلسوف! 🤔",
-                    "عبقري! 🧠"
-                ];
-                const moodIndex = Math.min(dailyWisdomCount - 1, moods.length - 1);
-                moodIndicator.textContent = moods[moodIndex];
-                
-                // تأثير الظهور
-                wisdomText.style.opacity = '1';
-                wisdomEmoji.style.opacity = '1';
-                
-                // إضافة تأثير اهتزاز للإيموجي
-                wisdomEmoji.classList.remove('animate-bounce');
-                setTimeout(() => {
-                    wisdomEmoji.classList.add('animate-bounce');
-                }, 100);
-                
-            }, 300);
-            
-            // تأثير انتقالي للنص
-            wisdomText.style.transition = 'opacity 0.3s ease-in-out';
-            wisdomEmoji.style.transition = 'opacity 0.3s ease-in-out';
+        // Search functionality
+        const searchInput = document.getElementById('searchInput');
+        if (searchInput) {
+            searchInput.addEventListener('input', function(e) {
+                const searchTerm = e.target.value.toLowerCase();
+                // Simple search implementation - you can expand this
+                console.log('Searching for:', searchTerm);
+            });
         }
 
-        // مشاركة الحكمة
-        function shareWisdom() {
-            if (currentWisdomIndex === -1) {
-                // إذا لم يتم اختيار حكمة بعد، اختر واحدة أولاً
-                getNewWisdom();
-                setTimeout(shareWisdom, 500);
-                return;
-            }
-            
-            const wisdom = egyptianWisdom[currentWisdomIndex];
-            const shareText = `${wisdom.emoji} ${wisdom.text}\n\n- من موقع Studyfy`;
-            
-            // نسخ النص للحافظة مباشرة
-            if (navigator.clipboard && navigator.clipboard.writeText) {
-                navigator.clipboard.writeText(shareText).then(() => {
-                    showShareMessage('✅ تم نسخ الحكمة بنجاح!');
-                }).catch(() => {
-                    // في حالة فشل النسخ، استخدم الطريقة البديلة
-                    fallbackCopy(shareText);
+        // Close dropdowns when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.relative')) {
+                const dropdowns = document.querySelectorAll('.dropdown');
+                dropdowns.forEach(dropdown => {
+                    dropdown.classList.remove('show');
                 });
-            } else {
-                // استخدام الطريقة البديلة للمتصفحات القديمة
-                fallbackCopy(shareText);
             }
-        }
+        });
 
-        // نسخ احتياطي للمتصفحات القديمة
-        function fallbackCopy(text) {
-            // إنشاء عنصر textarea مؤقت
-            const textArea = document.createElement('textarea');
-            textArea.value = text;
-            textArea.style.position = 'fixed';
-            textArea.style.left = '-999999px';
-            textArea.style.top = '-999999px';
-            document.body.appendChild(textArea);
-            textArea.focus();
-            textArea.select();
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(e) {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const menuButton = e.target.closest('button[onclick="toggleMobileMenu()"]');
             
-            try {
-                const successful = document.execCommand('copy');
-                if (successful) {
-                    showShareMessage('✅ تم نسخ الحكمة بنجاح!');
-                } else {
-                    showShareMessage('⚠️ لم يتم النسخ، جرب مرة أخرى');
-                }
-            } catch (err) {
-                showShareMessage('⚠️ لم يتم النسخ، جرب مرة أخرى');
-            } finally {
-                document.body.removeChild(textArea);
+            if (!mobileMenu.contains(e.target) && !menuButton) {
+                mobileMenu.classList.remove('show');
             }
-        }
+        });
 
-        // إظهار رسالة المشاركة
-        function showShareMessage(message) {
-            // إنشاء عنصر الرسالة
-            const messageDiv = document.createElement('div');
-            messageDiv.className = 'fixed top-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg z-50 transform translate-x-full transition-transform duration-300';
-            messageDiv.textContent = message;
-            
-            document.body.appendChild(messageDiv);
-            
-            // إظهار الرسالة
-            setTimeout(() => {
-                messageDiv.classList.remove('translate-x-full');
-            }, 100);
-            
-            // إخفاء الرسالة بعد 3 ثوانِ
-            setTimeout(() => {
-                messageDiv.classList.add('translate-x-full');
-                setTimeout(() => {
-                    document.body.removeChild(messageDiv);
-                }, 300);
-            }, 3000);
-        }
-
-        // تهيئة الصفحة عند التحميل
+        // Loading Screen Management
         document.addEventListener('DOMContentLoaded', function() {
-            // تحديث عدد الحكم
-            document.getElementById('wisdom-count').textContent = egyptianWisdom.length + '+';
+            const loadingScreen = document.getElementById('loadingScreen');
+            const progressBar = document.querySelector('.progress-bar');
+            const progressText = document.querySelector('.progress-text');
+            const tips = document.querySelectorAll('.tip');
+            
+            if (!loadingScreen || !progressBar || !progressText || tips.length === 0) return;
+            
+            let progress = 0;
+            let currentTip = 0;
+            
+            // Progress animation
+            const progressInterval = setInterval(function() {
+                progress += Math.random() * 10 + 8;
+                if (progress > 100) progress = 100;
+                
+                progressBar.style.width = progress + '%';
+                progressText.textContent = Math.floor(progress) + '%';
+                
+                if (progress >= 100) {
+                    clearInterval(progressInterval);
+                    clearInterval(tipInterval);
+                    
+                    // Hide loading screen after completion
+                    setTimeout(function() {
+                        loadingScreen.classList.add('hidden');
+                        
+                        // Remove from DOM after transition completes
+                        setTimeout(function() {
+                            if (loadingScreen.parentNode) {
+                                loadingScreen.parentNode.removeChild(loadingScreen);
+                            }
+                        }, 800);
+                    }, 300);
+                }
+            }, 150);
+            
+            // Tips rotation
+            const tipInterval = setInterval(function() {
+                if (tips[currentTip]) {
+                    tips[currentTip].classList.remove('active');
+                }
+                currentTip = (currentTip + 1) % tips.length;
+                if (tips[currentTip]) {
+                    tips[currentTip].classList.add('active');
+                }
+            }, 1200);
         });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96c58a76a76dc8e1',t:'MTc1NDcyNDU1MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96cdffccc779b6c4',t:'MTc1NDgxMzI0Mi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
