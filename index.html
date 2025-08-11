@@ -1287,10 +1287,29 @@
                     <div class="max-w-6xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                         <!-- Physiology 1 - Available -->
                         <div class="bg-gradient-to-br from-blue-600 to-blue-700 rounded-2xl p-8 hover-scale shadow-2xl border border-blue-500/30 relative overflow-hidden" data-subject="physiology1">
+                            <!-- Doctor Image - Professional Integration -->
+                            <div class="absolute top-4 left-4 w-28 h-28 rounded-full overflow-hidden border-4 border-white/30 shadow-2xl z-20">
+                                <img src="https://i.postimg.cc/YqdhT7xt/3.png" alt="دكتور Physiology" class="w-full h-full object-cover" onerror="this.style.display='none';">
+                            </div>
+                            
+                            <!-- Doctor Speech Bubble -->
+                            <div class="absolute top-8 left-32 bg-white/95 backdrop-blur-sm rounded-lg px-3 py-2 shadow-lg z-20 max-w-32">
+                                <div class="text-sm text-blue-800 font-semibold">د/ أحمد باسم</div>
+                                <!-- Speech bubble arrow -->
+                                <div class="absolute left-0 top-1/2 transform -translate-x-1 -translate-y-1/2 w-0 h-0 border-t-4 border-b-4 border-r-4 border-transparent border-r-white/95"></div>
+                            </div>
+                            
                             <!-- Background Pattern -->
                             <div class="absolute top-0 right-0 w-32 h-32 opacity-10">
                                 <svg viewBox="0 0 100 100" class="w-full h-full">
                                     <path d="M20 20 Q50 10, 80 20 Q90 50, 80 80 Q50 90, 20 80 Q10 50, 20 20" fill="white"/>
+                                </svg>
+                            </div>
+                            
+                            <!-- Medical Icons Background -->
+                            <div class="absolute bottom-4 right-4 opacity-10">
+                                <svg class="w-16 h-16 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
                                 </svg>
                             </div>
                             
@@ -1301,7 +1320,7 @@
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
                                         </svg>
                                     </div>
-                                    <span class="bg-green-500 text-white px-3 py-1 rounded-full text-sm font-semibold">متاح</span>
+                                    <span class="bg-blue-500 text-white px-3 py-1 rounded-full text-sm font-semibold">متاح</span>
                                 </div>
                                 
                                 <h3 class="text-2xl font-bold text-white mb-3">Physiology 1</h3>
@@ -1711,7 +1730,7 @@
                                     </div>
                                     
                                     <!-- Corner Badge -->
-                                    <div class="absolute top-4 right-4 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-semibold shadow-lg">
+                                    <div class="absolute top-4 right-4 bg-blue-500 text-white px-3 py-1 rounded-full text-sm font-semibold shadow-lg">
                                         متاح الآن
                                     </div>
                                     
@@ -1760,416 +1779,559 @@
                                 </button>
                         </div>
                         
-                        <!-- Second Lecture with Video -->
-                        <div class="lecture-item bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4" data-lecture="2">
-                            <div class="flex items-center justify-between mb-3">
-                                <h3 class="text-lg font-semibold gradient-text">المحاضرة الثانية - Transport Across Cell Membrane</h3>
-                                <span class="bg-green-600 text-white px-2 py-1 rounded-full text-xs">18 دقيقة</span>
-                            </div>
-                            
-                            <!-- Lecture Progress -->
-                            <div class="mb-3">
-                                <div class="flex justify-between text-xs text-gray-600 mb-1">
-                                    <span>تقدم الإنجاز</span>
-                                    <span id="lecture-2-progress-text">0%</span>
+                            <!-- Second Lecture -->
+                            <div class="lecture-item bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-6 border border-green-200" data-lecture="2">
+                                <div class="flex items-center justify-between mb-4">
+                                    <div class="flex items-center">
+                                        <h3 class="text-xl font-semibold text-green-800 ml-3">المحاضرة 2 - Transport Across Cell Membrane</h3>
+                                        <div class="lecture-status">
+                                            <svg class="w-6 h-6 text-green-500 hidden" id="lecture-2-completed">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <span class="bg-green-600 text-white px-3 py-1 rounded-full text-sm">18 دقيقة</span>
                                 </div>
-                                <div class="w-full bg-gray-200 rounded-full h-1.5">
-                                    <div class="lecture-progress-bar bg-gradient-to-r from-green-500 to-green-600 h-1.5 rounded-full transition-all duration-500" style="width: 0%"></div>
-                                </div>
-                            </div>
-                            
-                            <!-- Video Access Button -->
-                            <a href="https://drive.google.com/file/d/1nngfPjtGnRvrJg8mBeS5QRKgandeLWsi/view?usp=drive_link" target="_blank" class="block aspect-video bg-gradient-to-br from-green-600 to-green-800 rounded-lg overflow-hidden mb-3 relative group cursor-pointer">
-                                <div class="absolute inset-0 flex items-center justify-center text-white">
-                                    <div class="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center group-hover:bg-white/30 transition-all duration-300">
-                                        <svg class="w-6 h-6 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24">
-                                            <path d="M8 5v14l11-7z"/>
-                                        </svg>
+                                
+                                <!-- Lecture Progress -->
+                                <div class="mb-4">
+                                    <div class="flex justify-between text-sm text-gray-600 mb-2">
+                                        <span>تقدم الإنجاز</span>
+                                        <span id="lecture-2-progress-text">0%</span>
+                                    </div>
+                                    <div class="w-full bg-gray-200 rounded-full h-2">
+                                        <div class="lecture-progress-bar bg-gradient-to-r from-green-500 to-green-600 h-2 rounded-full transition-all duration-500" style="width: 0%"></div>
                                     </div>
                                 </div>
-                                <div class="absolute top-2 right-2 bg-green-500 text-white px-2 py-1 rounded-full text-xs font-semibold">
-                                    متاح
-                                </div>
-                            </a>
-                            
-                            <!-- Progress Checkboxes -->
-                            <div class="bg-white rounded-lg p-3 mb-3">
-                                <div class="space-y-2">
-                                    <label class="flex items-center cursor-pointer text-sm">
-                                        <input 
-                                            type="checkbox" 
-                                            id="lecture-2-watched"
-                                            class="w-4 h-4 text-green-600 bg-gray-100 border-gray-300 rounded focus:ring-green-500 focus:ring-1 transition-all"
-                                            onchange="progressTracker.toggleTask('physiology1', 2, 'watched')"
-                                        >
-                                        <span class="mr-2 text-gray-700">📺 شاهدت المحاضرة</span>
-                                    </label>
-                                    
-                                    <label class="flex items-center cursor-pointer text-sm">
-                                        <input 
-                                            type="checkbox" 
-                                            id="lecture-2-mcq"
-                                            class="w-4 h-4 text-green-600 bg-gray-100 border-gray-300 rounded focus:ring-green-500 focus:ring-1 transition-all"
-                                            onchange="progressTracker.toggleTask('physiology1', 2, 'mcqCompleted')"
-                                        >
-                                        <span class="mr-2 text-gray-700">🎯 حليت MCQ</span>
-                                    </label>
-                                    
-                                    <label class="flex items-center cursor-pointer text-sm">
-                                        <input 
-                                            type="checkbox" 
-                                            id="lecture-2-truefalse"
-                                            class="w-4 h-4 text-green-600 bg-gray-100 border-gray-300 rounded focus:ring-green-500 focus:ring-1 transition-all"
-                                            onchange="progressTracker.toggleTask('physiology1', 2, 'trueFalseCompleted')"
-                                        >
-                                        <span class="mr-2 text-gray-700">✔️ حليت صح وخطأ</span>
-                                    </label>
-                                </div>
-                            </div>
-                            
-                            <!-- Quick Action -->
-                            <button onclick="showPage('physiology-questions')" class="w-full bg-green-600 hover:bg-green-700 text-white py-2 px-3 rounded-lg text-sm font-semibold transition-colors">
-                                حل الأسئلة
-                            </button>
-                        </div>
-                        
-                        <!-- Third Lecture with Video -->
-                        <div class="lecture-item bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4" data-lecture="3">
-                            <div class="flex items-center justify-between mb-3">
-                                <h3 class="text-lg font-semibold gradient-text">المحاضرة الثالثة - Body Fluids</h3>
-                                <span class="bg-purple-600 text-white px-2 py-1 rounded-full text-xs">8 دقائق</span>
-                            </div>
-                            
-                            <!-- Lecture Progress -->
-                            <div class="mb-3">
-                                <div class="flex justify-between text-xs text-gray-600 mb-1">
-                                    <span>تقدم الإنجاز</span>
-                                    <span id="lecture-3-progress-text">0%</span>
-                                </div>
-                                <div class="w-full bg-gray-200 rounded-full h-1.5">
-                                    <div class="lecture-progress-bar bg-gradient-to-r from-purple-500 to-purple-600 h-1.5 rounded-full transition-all duration-500" style="width: 0%"></div>
-                                </div>
-                            </div>
-                            
-                            <!-- Video Access Button -->
-                            <a href="https://drive.google.com/file/d/17tANSXjMLzeTFLL6KjElcyb7YyXqu-80/view?usp=drive_link" target="_blank" class="block aspect-video bg-gradient-to-br from-purple-600 to-purple-800 rounded-lg overflow-hidden mb-3 relative group cursor-pointer">
-                                <div class="absolute inset-0 flex items-center justify-center text-white">
-                                    <div class="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center group-hover:bg-white/30 transition-all duration-300">
-                                        <svg class="w-6 h-6 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24">
-                                            <path d="M8 5v14l11-7z"/>
-                                        </svg>
-                                    </div>
-                                </div>
-                                <div class="absolute top-2 right-2 bg-green-500 text-white px-2 py-1 rounded-full text-xs font-semibold">
-                                    متاح
-                                </div>
-                            </a>
-                            
-                            <!-- Progress Checkboxes -->
-                            <div class="bg-white rounded-lg p-3 mb-3">
-                                <div class="space-y-2">
-                                    <label class="flex items-center cursor-pointer text-sm">
-                                        <input 
-                                            type="checkbox" 
-                                            id="lecture-3-watched"
-                                            class="w-4 h-4 text-purple-600 bg-gray-100 border-gray-300 rounded focus:ring-purple-500 focus:ring-1 transition-all"
-                                            onchange="progressTracker.toggleTask('physiology1', 3, 'watched')"
-                                        >
-                                        <span class="mr-2 text-gray-700">📺 شاهدت المحاضرة</span>
-                                    </label>
-                                    
-                                    <label class="flex items-center cursor-pointer text-sm">
-                                        <input 
-                                            type="checkbox" 
-                                            id="lecture-3-mcq"
-                                            class="w-4 h-4 text-purple-600 bg-gray-100 border-gray-300 rounded focus:ring-purple-500 focus:ring-1 transition-all"
-                                            onchange="progressTracker.toggleTask('physiology1', 3, 'mcqCompleted')"
-                                        >
-                                        <span class="mr-2 text-gray-700">🎯 حليت MCQ</span>
-                                    </label>
-                                    
-                                    <label class="flex items-center cursor-pointer text-sm">
-                                        <input 
-                                            type="checkbox" 
-                                            id="lecture-3-truefalse"
-                                            class="w-4 h-4 text-purple-600 bg-gray-100 border-gray-300 rounded focus:ring-purple-500 focus:ring-1 transition-all"
-                                            onchange="progressTracker.toggleTask('physiology1', 3, 'trueFalseCompleted')"
-                                        >
-                                        <span class="mr-2 text-gray-700">✔️ حليت صح وخطأ</span>
-                                    </label>
-                                </div>
-                            </div>
-                            
-                            <!-- Quick Action -->
-                            <button onclick="showPage('physiology-questions')" class="w-full bg-purple-600 hover:bg-purple-700 text-white py-2 px-3 rounded-lg text-sm font-semibold transition-colors">
-                                حل الأسئلة
-                            </button>
-                        </div>
-                        
-                        <!-- Fourth Lecture with Video -->
-                        <div class="lecture-item bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-4" data-lecture="4">
-                            <div class="flex items-center justify-between mb-3">
-                                <h3 class="text-lg font-semibold gradient-text">المحاضرة الرابعة - Homeostasis</h3>
-                                <span class="bg-orange-600 text-white px-2 py-1 rounded-full text-xs">11 دقيقة</span>
-                            </div>
-                            
-                            <!-- Lecture Progress -->
-                            <div class="mb-3">
-                                <div class="flex justify-between text-xs text-gray-600 mb-1">
-                                    <span>تقدم الإنجاز</span>
-                                    <span id="lecture-4-progress-text">0%</span>
-                                </div>
-                                <div class="w-full bg-gray-200 rounded-full h-1.5">
-                                    <div class="lecture-progress-bar bg-gradient-to-r from-orange-500 to-orange-600 h-1.5 rounded-full transition-all duration-500" style="width: 0%"></div>
-                                </div>
-                            </div>
-                            
-                            <!-- Video Access Button -->
-                            <a href="https://drive.google.com/file/d/1Y0GR2_wxopM3-2IFzCKpJUGHNzLPDXoA/view?usp=drive_link" target="_blank" class="block aspect-video bg-gradient-to-br from-orange-600 to-orange-800 rounded-lg overflow-hidden mb-3 relative group cursor-pointer">
-                                <div class="absolute inset-0 flex items-center justify-center text-white">
-                                    <div class="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center group-hover:bg-white/30 transition-all duration-300">
-                                        <svg class="w-6 h-6 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24">
-                                            <path d="M8 5v14l11-7z"/>
-                                        </svg>
-                                    </div>
-                                </div>
-                                <div class="absolute top-2 right-2 bg-green-500 text-white px-2 py-1 rounded-full text-xs font-semibold">
-                                    متاح
-                                </div>
-                            </a>
-                            
-                            <!-- Progress Checkboxes -->
-                            <div class="bg-white rounded-lg p-3 mb-3">
-                                <div class="space-y-2">
-                                    <label class="flex items-center cursor-pointer text-sm">
-                                        <input 
-                                            type="checkbox" 
-                                            id="lecture-4-watched"
-                                            class="w-4 h-4 text-orange-600 bg-gray-100 border-gray-300 rounded focus:ring-orange-500 focus:ring-1 transition-all"
-                                            onchange="progressTracker.toggleTask('physiology1', 4, 'watched')"
-                                        >
-                                        <span class="mr-2 text-gray-700">📺 شاهدت المحاضرة</span>
-                                    </label>
-                                    
-                                    <label class="flex items-center cursor-pointer text-sm">
-                                        <input 
-                                            type="checkbox" 
-                                            id="lecture-4-mcq"
-                                            class="w-4 h-4 text-orange-600 bg-gray-100 border-gray-300 rounded focus:ring-orange-500 focus:ring-1 transition-all"
-                                            onchange="progressTracker.toggleTask('physiology1', 4, 'mcqCompleted')"
-                                        >
-                                        <span class="mr-2 text-gray-700">🎯 حليت MCQ</span>
-                                    </label>
-                                    
-                                    <label class="flex items-center cursor-pointer text-sm">
-                                        <input 
-                                            type="checkbox" 
-                                            id="lecture-4-truefalse"
-                                            class="w-4 h-4 text-orange-600 bg-gray-100 border-gray-300 rounded focus:ring-orange-500 focus:ring-1 transition-all"
-                                            onchange="progressTracker.toggleTask('physiology1', 4, 'trueFalseCompleted')"
-                                        >
-                                        <span class="mr-2 text-gray-700">✔️ حليت صح وخطأ</span>
-                                    </label>
-                                </div>
-                            </div>
-                            
-                            <!-- Quick Action -->
-                            <button onclick="showPage('physiology-questions')" class="w-full bg-orange-600 hover:bg-orange-700 text-white py-2 px-3 rounded-lg text-sm font-semibold transition-colors">
-                                حل الأسئلة
-                            </button>
-                        </div>
-                        
-                        <!-- Fifth Lecture with Video -->
-                        <div class="lecture-item bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-4" data-lecture="5">
-                            <div class="flex items-center justify-between mb-3">
-                                <h3 class="text-lg font-semibold gradient-text">المحاضرة الخامسة - Autonomic Nervous System</h3>
-                                <span class="bg-red-600 text-white px-2 py-1 rounded-full text-xs">30 دقيقة</span>
-                            </div>
-                            
-                            <!-- Lecture Progress -->
-                            <div class="mb-4">
-                                <div class="flex justify-between text-sm text-gray-600 mb-2">
-                                    <span>تقدم الإنجاز</span>
-                                    <span id="lecture-5-progress-text">0%</span>
-                                </div>
-                                <div class="w-full bg-gray-200 rounded-full h-2">
-                                    <div class="lecture-progress-bar bg-gradient-to-r from-red-500 to-red-600 h-2 rounded-full transition-all duration-500" style="width: 0%"></div>
-                                </div>
-                            </div>
-                            
-                            <div class="bg-white rounded-lg p-4 mb-4">
-                                <!-- Professional Video Access Button -->
-                                <a href="https://drive.google.com/file/d/1ya3s7ShCcwL7BOWOgncr_n6umepbJwCx/view?usp=drive_link" target="_blank" class="block aspect-video bg-gradient-to-br from-red-600 to-red-800 rounded-lg overflow-hidden mb-4 relative group cursor-pointer">
-                                    <!-- Background Pattern -->
-                                    <div class="absolute inset-0 opacity-10">
-                                        <svg class="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-                                            <defs>
-                                                <pattern id="videoPattern5" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
-                                                    <circle cx="10" cy="10" r="1" fill="white" opacity="0.3"/>
-                                                </pattern>
-                                            </defs>
-                                            <rect width="100" height="100" fill="url(#videoPattern5)"/>
-                                        </svg>
-                                    </div>
-                                    
-                                    <!-- Main Content -->
-                                    <div class="absolute inset-0 flex flex-col items-center justify-center text-white">
-                                        <!-- Play Button Icon -->
-                                        <div class="w-24 h-24 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center mb-4 group-hover:bg-white/30 transition-all duration-300 group-hover:scale-110 shadow-2xl">
-                                            <svg class="w-12 h-12 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
-                                                <path d="M8 5v14l11-7z"/>
+                                
+                                <div class="bg-white rounded-lg p-4 mb-4">
+                                    <!-- Professional Video Access Button -->
+                                    <a href="https://drive.google.com/file/d/1nngfPjtGnRvrJg8mBeS5QRKgandeLWsi/view?usp=drive_link" target="_blank" class="block aspect-video bg-gradient-to-br from-green-600 to-green-800 rounded-lg overflow-hidden mb-4 relative group cursor-pointer">
+                                        <!-- Background Pattern -->
+                                        <div class="absolute inset-0 opacity-10">
+                                            <svg class="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+                                                <defs>
+                                                    <pattern id="videoPattern2" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+                                                        <circle cx="10" cy="10" r="1" fill="white" opacity="0.3"/>
+                                                    </pattern>
+                                                </defs>
+                                                <rect width="100" height="100" fill="url(#videoPattern2)"/>
                                             </svg>
                                         </div>
                                         
-                                        <!-- Title and Description -->
-                                        <div class="text-center px-4">
-                                            <h3 class="text-2xl font-bold mb-2 group-hover:text-red-100 transition-colors">شاهد المحاضرة الآن</h3>
-                                            <p class="text-red-100 text-lg mb-4">Autonomic Nervous System - المحاضرة الخامسة</p>
-                                            
-                                            <!-- Features -->
-                                            <div class="flex items-center justify-center space-x-6 space-x-reverse text-sm">
-                                                <div class="flex items-center">
-                                                    <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                                    </svg>
-                                                    <span>30 دقيقة</span>
-                                                </div>
-                                                <div class="flex items-center">
-                                                    <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 002 2z"></path>
-                                                    </svg>
-                                                    <span>HD جودة</span>
-                                                </div>
-                                                <div class="flex items-center">
-                                                    <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-                                                    </svg>
-                                                    <span>ملفات إضافية</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
-                                        <!-- Hover Effect -->
-                                        <div class="absolute inset-0 bg-gradient-to-t from-red-900/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                                    </div>
-                                    
-                                    <!-- Corner Badge -->
-                                    <div class="absolute top-4 right-4 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-semibold shadow-lg">
-                                        متاح الآن
-                                    </div>
-                                    
-                                    <!-- Bottom Gradient -->
-                                    <div class="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-red-900/80 to-transparent"></div>
-                                </a>
-                                
-                                <!-- Additional Resources Section -->
-                                <div class="bg-gradient-to-r from-red-50 to-pink-50 rounded-lg p-4 mb-4 border border-red-200">
-                                    <h4 class="text-sm font-semibold text-red-800 mb-3">📚 مصادر إضافية للمحاضرة:</h4>
-                                    <div class="space-y-3">
-                                        <!-- Additional Video -->
-                                        <a href="https://drive.google.com/file/d/1-K8tZi5OOyCZCWk-OnQ7s0fcVDXD9YUi/view?usp=drive_link" target="_blank" class="flex items-center p-3 bg-white rounded-lg border border-red-200 hover:border-red-400 hover:shadow-md transition-all group">
-                                            <div class="w-10 h-10 bg-red-600 rounded-full flex items-center justify-center ml-3">
-                                                <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                        <!-- Main Content -->
+                                        <div class="absolute inset-0 flex flex-col items-center justify-center text-white">
+                                            <!-- Play Button Icon -->
+                                            <div class="w-24 h-24 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center mb-4 group-hover:bg-white/30 transition-all duration-300 group-hover:scale-110 shadow-2xl">
+                                                <svg class="w-12 h-12 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
                                                     <path d="M8 5v14l11-7z"/>
                                                 </svg>
                                             </div>
-                                            <div class="flex-1">
-                                                <h5 class="text-sm font-semibold text-red-800 group-hover:text-red-900">شرح إضافي - جزء من المحاضرة</h5>
-                                                <p class="text-xs text-red-600">شرح تفصيلي لجزء مهم من الجهاز العصبي اللاإرادي</p>
+                                            
+                                            <!-- Title and Description -->
+                                            <div class="text-center px-4">
+                                                <h3 class="text-2xl font-bold mb-2 group-hover:text-green-100 transition-colors">شاهد المحاضرة الآن</h3>
+                                                <p class="text-green-100 text-lg mb-4">Transport Across Cell Membrane - المحاضرة الثانية</p>
+                                                
+                                                <!-- Features -->
+                                                <div class="flex items-center justify-center space-x-6 space-x-reverse text-sm">
+                                                    <div class="flex items-center">
+                                                        <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                                        </svg>
+                                                        <span>18 دقيقة</span>
+                                                    </div>
+                                                    <div class="flex items-center">
+                                                        <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                                                        </svg>
+                                                        <span>HD جودة</span>
+                                                    </div>
+                                                    <div class="flex items-center">
+                                                        <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                                                        </svg>
+                                                        <span>ملفات PDF</span>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <svg class="w-4 h-4 text-red-600 group-hover:text-red-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
-                                            </svg>
-                                        </a>
+                                            
+                                            <!-- Hover Effect -->
+                                            <div class="absolute inset-0 bg-gradient-to-t from-green-900/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                        </div>
                                         
-                                        <!-- Image Resource -->
-                                        <a href="https://drive.google.com/file/d/1G5aIBpOg4kI-5ow9DUXSkDc2ALg8qOun/view?usp=drive_link" target="_blank" class="flex items-center p-3 bg-white rounded-lg border border-red-200 hover:border-red-400 hover:shadow-md transition-all group">
-                                            <div class="w-10 h-10 bg-pink-600 rounded-full flex items-center justify-center ml-3">
-                                                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                                                </svg>
-                                            </div>
-                                            <div class="flex-1">
-                                                <h5 class="text-sm font-semibold text-pink-800 group-hover:text-pink-900">صورة توضيحية مهمة</h5>
-                                                <p class="text-xs text-pink-600">رسم بياني للجهاز العصبي اللاإرادي - احفظها على جهازك</p>
-                                            </div>
-                                            <svg class="w-4 h-4 text-pink-600 group-hover:text-pink-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                                        <!-- Corner Badge -->
+                                        <div class="absolute top-4 right-4 bg-blue-500 text-white px-3 py-1 rounded-full text-sm font-semibold shadow-lg">
+                                            متاح الآن
+                                        </div>
+                                        
+                                        <!-- Bottom Gradient -->
+                                        <div class="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-green-900/80 to-transparent"></div>
+                                    </a>
+                                    
+                                    <!-- Progress Checkboxes -->
+                                    <div class="bg-white rounded-lg p-3 mb-3">
+                                        <div class="space-y-2">
+                                            <label class="flex items-center cursor-pointer text-sm">
+                                                <input 
+                                                    type="checkbox" 
+                                                    id="lecture-2-watched"
+                                                    class="w-4 h-4 text-green-600 bg-gray-100 border-gray-300 rounded focus:ring-green-500 focus:ring-1 transition-all"
+                                                    onchange="progressTracker.toggleTask('physiology1', 2, 'watched')"
+                                                >
+                                                <span class="mr-2 text-gray-700">📺 شاهدت المحاضرة</span>
+                                            </label>
+                                            
+                                            <label class="flex items-center cursor-pointer text-sm">
+                                                <input 
+                                                    type="checkbox" 
+                                                    id="lecture-2-mcq"
+                                                    class="w-4 h-4 text-green-600 bg-gray-100 border-gray-300 rounded focus:ring-green-500 focus:ring-1 transition-all"
+                                                    onchange="progressTracker.toggleTask('physiology1', 2, 'mcqCompleted')"
+                                                >
+                                                <span class="mr-2 text-gray-700">🎯 حليت MCQ</span>
+                                            </label>
+                                            
+                                            <label class="flex items-center cursor-pointer text-sm">
+                                                <input 
+                                                    type="checkbox" 
+                                                    id="lecture-2-truefalse"
+                                                    class="w-4 h-4 text-green-600 bg-gray-100 border-gray-300 rounded focus:ring-green-500 focus:ring-1 transition-all"
+                                                    onchange="progressTracker.toggleTask('physiology1', 2, 'trueFalseCompleted')"
+                                                >
+                                                <span class="mr-2 text-gray-700">✔️ حليت صح وخطأ</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Quick Action -->
+                                    <button onclick="showPage('physiology-questions')" class="w-full bg-green-600 hover:bg-green-700 text-white py-2 px-3 rounded-lg text-sm font-semibold transition-colors">
+                                        حل الأسئلة
+                                    </button>
+                                </div>
+                            </div>
+                        
+                            <!-- Third Lecture -->
+                            <div class="lecture-item bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-6 border border-purple-200" data-lecture="3">
+                                <div class="flex items-center justify-between mb-4">
+                                    <div class="flex items-center">
+                                        <h3 class="text-xl font-semibold text-purple-800 ml-3">المحاضرة 3 - Body Fluids</h3>
+                                        <div class="lecture-status">
+                                            <svg class="w-6 h-6 text-green-500 hidden" id="lecture-3-completed">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                                             </svg>
-                                        </a>
+                                        </div>
+                                    </div>
+                                    <span class="bg-purple-600 text-white px-3 py-1 rounded-full text-sm">8 دقائق</span>
+                                </div>
+                                
+                                <!-- Lecture Progress -->
+                                <div class="mb-4">
+                                    <div class="flex justify-between text-sm text-gray-600 mb-2">
+                                        <span>تقدم الإنجاز</span>
+                                        <span id="lecture-3-progress-text">0%</span>
+                                    </div>
+                                    <div class="w-full bg-gray-200 rounded-full h-2">
+                                        <div class="lecture-progress-bar bg-gradient-to-r from-purple-500 to-purple-600 h-2 rounded-full transition-all duration-500" style="width: 0%"></div>
                                     </div>
                                 </div>
                                 
-                                <!-- Progress Checkboxes -->
-                                <div class="bg-gray-50 rounded-lg p-4">
-                                    <h4 class="text-sm font-semibold text-gray-700 mb-3">✅ قائمة المهام:</h4>
-                                    <div class="space-y-3">
-                                        <!-- Watch Lecture Checkbox -->
-                                        <label class="flex items-center cursor-pointer group">
-                                            <input 
-                                                type="checkbox" 
-                                                id="lecture-5-watched"
-                                                class="w-5 h-5 text-red-600 bg-gray-100 border-gray-300 rounded focus:ring-red-500 focus:ring-2 transition-all"
-                                                onchange="progressTracker.toggleTask('physiology1', 5, 'watched')"
-                                            >
-                                            <span class="mr-3 text-gray-700 group-hover:text-red-600 transition-colors">
-                                                📺 شاهدت المحاضرة كاملة
-                                            </span>
-                                        </label>
+                                <div class="bg-white rounded-lg p-4 mb-4">
+                                    <!-- Professional Video Access Button -->
+                                    <a href="https://drive.google.com/file/d/17tANSXjMLzeTFLL6KjElcyb7YyXqu-80/view?usp=drive_link" target="_blank" class="block aspect-video bg-gradient-to-br from-purple-600 to-purple-800 rounded-lg overflow-hidden mb-4 relative group cursor-pointer">
+                                        <!-- Background Pattern -->
+                                        <div class="absolute inset-0 opacity-10">
+                                            <svg class="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+                                                <defs>
+                                                    <pattern id="videoPattern3" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+                                                        <circle cx="10" cy="10" r="1" fill="white" opacity="0.3"/>
+                                                    </pattern>
+                                                </defs>
+                                                <rect width="100" height="100" fill="url(#videoPattern3)"/>
+                                            </svg>
+                                        </div>
                                         
-                                        <!-- MCQ Quiz Checkbox -->
-                                        <label class="flex items-center cursor-pointer group">
-                                            <input 
-                                                type="checkbox" 
-                                                id="lecture-5-mcq"
-                                                class="w-5 h-5 text-red-600 bg-gray-100 border-gray-300 rounded focus:ring-red-500 focus:ring-2 transition-all"
-                                                onchange="progressTracker.toggleTask('physiology1', 5, 'mcqCompleted')"
-                                            >
-                                            <span class="mr-3 text-gray-700 group-hover:text-red-600 transition-colors">
-                                                🎯 حليت أسئلة الاختيار من متعدد
-                                            </span>
-                                        </label>
+                                        <!-- Main Content -->
+                                        <div class="absolute inset-0 flex flex-col items-center justify-center text-white">
+                                            <!-- Play Button Icon -->
+                                            <div class="w-24 h-24 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center mb-4 group-hover:bg-white/30 transition-all duration-300 group-hover:scale-110 shadow-2xl">
+                                                <svg class="w-12 h-12 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
+                                                    <path d="M8 5v14l11-7z"/>
+                                                </svg>
+                                            </div>
+                                            
+                                            <!-- Title and Description -->
+                                            <div class="text-center px-4">
+                                                <h3 class="text-2xl font-bold mb-2 group-hover:text-purple-100 transition-colors">شاهد المحاضرة الآن</h3>
+                                                <p class="text-purple-100 text-lg mb-4">Body Fluids - المحاضرة الثالثة</p>
+                                                
+                                                <!-- Features -->
+                                                <div class="flex items-center justify-center space-x-6 space-x-reverse text-sm">
+                                                    <div class="flex items-center">
+                                                        <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                                        </svg>
+                                                        <span>8 دقائق</span>
+                                                    </div>
+                                                    <div class="flex items-center">
+                                                        <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                                                        </svg>
+                                                        <span>HD جودة</span>
+                                                    </div>
+                                                    <div class="flex items-center">
+                                                        <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                                                        </svg>
+                                                        <span>ملفات PDF</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <!-- Hover Effect -->
+                                            <div class="absolute inset-0 bg-gradient-to-t from-purple-900/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                        </div>
                                         
-                                        <!-- True/False Quiz Checkbox -->
-                                        <label class="flex items-center cursor-pointer group">
-                                            <input 
-                                                type="checkbox" 
-                                                id="lecture-5-truefalse"
-                                                class="w-5 h-5 text-red-600 bg-gray-100 border-gray-300 rounded focus:ring-red-500 focus:ring-2 transition-all"
-                                                onchange="progressTracker.toggleTask('physiology1', 5, 'trueFalseCompleted')"
-                                            >
-                                            <span class="mr-3 text-gray-700 group-hover:text-red-600 transition-colors">
-                                                ✔️ حليت أسئلة صح وخطأ
-                                            </span>
-                                        </label>
-                                    </div>
+                                        <!-- Corner Badge -->
+                                        <div class="absolute top-4 right-4 bg-blue-500 text-white px-3 py-1 rounded-full text-sm font-semibold shadow-lg">
+                                            متاح الآن
+                                        </div>
+                                        
+                                        <!-- Bottom Gradient -->
+                                        <div class="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-purple-900/80 to-transparent"></div>
+                                    </a>
                                     
-                                    <div class="mt-4 pt-3 border-t border-gray-200">
-                                        <div class="text-xs text-gray-500 text-center">
-                                            💡 اضغط على المربعات عند إنجاز كل مهمة لتتبع تقدمك
+                                    <!-- Progress Checkboxes -->
+                                    <div class="bg-white rounded-lg p-3 mb-3">
+                                        <div class="space-y-2">
+                                            <label class="flex items-center cursor-pointer text-sm">
+                                                <input 
+                                                    type="checkbox" 
+                                                    id="lecture-3-watched"
+                                                    class="w-4 h-4 text-purple-600 bg-gray-100 border-gray-300 rounded focus:ring-purple-500 focus:ring-1 transition-all"
+                                                    onchange="progressTracker.toggleTask('physiology1', 3, 'watched')"
+                                                >
+                                                <span class="mr-2 text-gray-700">📺 شاهدت المحاضرة</span>
+                                            </label>
+                                            
+                                            <label class="flex items-center cursor-pointer text-sm">
+                                                <input 
+                                                    type="checkbox" 
+                                                    id="lecture-3-mcq"
+                                                    class="w-4 h-4 text-purple-600 bg-gray-100 border-gray-300 rounded focus:ring-purple-500 focus:ring-1 transition-all"
+                                                    onchange="progressTracker.toggleTask('physiology1', 3, 'mcqCompleted')"
+                                                >
+                                                <span class="mr-2 text-gray-700">🎯 حليت MCQ</span>
+                                            </label>
+                                            
+                                            <label class="flex items-center cursor-pointer text-sm">
+                                                <input 
+                                                    type="checkbox" 
+                                                    id="lecture-3-truefalse"
+                                                    class="w-4 h-4 text-purple-600 bg-gray-100 border-gray-300 rounded focus:ring-purple-500 focus:ring-1 transition-all"
+                                                    onchange="progressTracker.toggleTask('physiology1', 3, 'trueFalseCompleted')"
+                                                >
+                                                <span class="mr-2 text-gray-700">✔️ حليت صح وخطأ</span>
+                                            </label>
                                         </div>
                                     </div>
+                                    
+                                    <!-- Quick Action -->
+                                    <button onclick="showPage('physiology-questions')" class="w-full bg-purple-600 hover:bg-purple-700 text-white py-2 px-3 rounded-lg text-sm font-semibold transition-colors">
+                                        حل الأسئلة
+                                    </button>
                                 </div>
                             </div>
-                            
-                            <p class="text-gray-600 mb-4">الجهاز العصبي اللاإرادي - Autonomic Nervous System وتنظيم وظائف الجسم اللاإرادية</p>
-                            
-                            <!-- Quick Actions -->
-                            <div class="flex gap-3">
-                                <button onclick="showPage('physiology-questions')" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-colors flex items-center">
-                                    <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                    </svg>
-                                    حل الأسئلة
-                                </button>
-                                <button onclick="addToNotes(5)" class="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-colors flex items-center">
-                                    <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
-                                    </svg>
-                                    إضافة ملاحظة
-                                </button>
+                        
+                            <!-- Fourth Lecture -->
+                            <div class="lecture-item bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-6 border border-orange-200" data-lecture="4">
+                                <div class="flex items-center justify-between mb-4">
+                                    <div class="flex items-center">
+                                        <h3 class="text-xl font-semibold text-orange-800 ml-3">المحاضرة 4 - Homeostasis</h3>
+                                        <div class="lecture-status">
+                                            <svg class="w-6 h-6 text-green-500 hidden" id="lecture-4-completed">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <span class="bg-orange-600 text-white px-3 py-1 rounded-full text-sm">11 دقيقة</span>
+                                </div>
+                                
+                                <!-- Lecture Progress -->
+                                <div class="mb-4">
+                                    <div class="flex justify-between text-sm text-gray-600 mb-2">
+                                        <span>تقدم الإنجاز</span>
+                                        <span id="lecture-4-progress-text">0%</span>
+                                    </div>
+                                    <div class="w-full bg-gray-200 rounded-full h-2">
+                                        <div class="lecture-progress-bar bg-gradient-to-r from-orange-500 to-orange-600 h-2 rounded-full transition-all duration-500" style="width: 0%"></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-white rounded-lg p-4 mb-4">
+                                    <!-- Professional Video Access Button -->
+                                    <a href="https://drive.google.com/file/d/1Y0GR2_wxopM3-2IFzCKpJUGHNzLPDXoA/view?usp=drive_link" target="_blank" class="block aspect-video bg-gradient-to-br from-orange-600 to-orange-800 rounded-lg overflow-hidden mb-4 relative group cursor-pointer">
+                                        <!-- Background Pattern -->
+                                        <div class="absolute inset-0 opacity-10">
+                                            <svg class="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+                                                <defs>
+                                                    <pattern id="videoPattern4" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+                                                        <circle cx="10" cy="10" r="1" fill="white" opacity="0.3"/>
+                                                    </pattern>
+                                                </defs>
+                                                <rect width="100" height="100" fill="url(#videoPattern4)"/>
+                                            </svg>
+                                        </div>
+                                        
+                                        <!-- Main Content -->
+                                        <div class="absolute inset-0 flex flex-col items-center justify-center text-white">
+                                            <!-- Play Button Icon -->
+                                            <div class="w-24 h-24 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center mb-4 group-hover:bg-white/30 transition-all duration-300 group-hover:scale-110 shadow-2xl">
+                                                <svg class="w-12 h-12 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
+                                                    <path d="M8 5v14l11-7z"/>
+                                                </svg>
+                                            </div>
+                                            
+                                            <!-- Title and Description -->
+                                            <div class="text-center px-4">
+                                                <h3 class="text-2xl font-bold mb-2 group-hover:text-orange-100 transition-colors">شاهد المحاضرة الآن</h3>
+                                                <p class="text-orange-100 text-lg mb-4">Homeostasis - المحاضرة الرابعة</p>
+                                                
+                                                <!-- Features -->
+                                                <div class="flex items-center justify-center space-x-6 space-x-reverse text-sm">
+                                                    <div class="flex items-center">
+                                                        <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                                        </svg>
+                                                        <span>11 دقيقة</span>
+                                                    </div>
+                                                    <div class="flex items-center">
+                                                        <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                                                        </svg>
+                                                        <span>HD جودة</span>
+                                                    </div>
+                                                    <div class="flex items-center">
+                                                        <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                                                        </svg>
+                                                        <span>ملفات PDF</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <!-- Hover Effect -->
+                                            <div class="absolute inset-0 bg-gradient-to-t from-orange-900/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                        </div>
+                                        
+                                        <!-- Corner Badge -->
+                                        <div class="absolute top-4 right-4 bg-blue-500 text-white px-3 py-1 rounded-full text-sm font-semibold shadow-lg">
+                                            متاح الآن
+                                        </div>
+                                        
+                                        <!-- Bottom Gradient -->
+                                        <div class="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-orange-900/80 to-transparent"></div>
+                                    </a>
+                                    
+                                    <!-- Progress Checkboxes -->
+                                    <div class="bg-white rounded-lg p-3 mb-3">
+                                        <div class="space-y-2">
+                                            <label class="flex items-center cursor-pointer text-sm">
+                                                <input 
+                                                    type="checkbox" 
+                                                    id="lecture-4-watched"
+                                                    class="w-4 h-4 text-orange-600 bg-gray-100 border-gray-300 rounded focus:ring-orange-500 focus:ring-1 transition-all"
+                                                    onchange="progressTracker.toggleTask('physiology1', 4, 'watched')"
+                                                >
+                                                <span class="mr-2 text-gray-700">📺 شاهدت المحاضرة</span>
+                                            </label>
+                                            
+                                            <label class="flex items-center cursor-pointer text-sm">
+                                                <input 
+                                                    type="checkbox" 
+                                                    id="lecture-4-mcq"
+                                                    class="w-4 h-4 text-orange-600 bg-gray-100 border-gray-300 rounded focus:ring-orange-500 focus:ring-1 transition-all"
+                                                    onchange="progressTracker.toggleTask('physiology1', 4, 'mcqCompleted')"
+                                                >
+                                                <span class="mr-2 text-gray-700">🎯 حليت MCQ</span>
+                                            </label>
+                                            
+                                            <label class="flex items-center cursor-pointer text-sm">
+                                                <input 
+                                                    type="checkbox" 
+                                                    id="lecture-4-truefalse"
+                                                    class="w-4 h-4 text-orange-600 bg-gray-100 border-gray-300 rounded focus:ring-orange-500 focus:ring-1 transition-all"
+                                                    onchange="progressTracker.toggleTask('physiology1', 4, 'trueFalseCompleted')"
+                                                >
+                                                <span class="mr-2 text-gray-700">✔️ حليت صح وخطأ</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Quick Action -->
+                                    <button onclick="showPage('physiology-questions')" class="w-full bg-orange-600 hover:bg-orange-700 text-white py-2 px-3 rounded-lg text-sm font-semibold transition-colors">
+                                        حل الأسئلة
+                                    </button>
+                                </div>
+                            </div>
+                        
+                            <!-- Fifth Lecture -->
+                            <div class="lecture-item bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-6 border border-red-200" data-lecture="5">
+                                <div class="flex items-center justify-between mb-4">
+                                    <div class="flex items-center">
+                                        <h3 class="text-xl font-semibold text-red-800 ml-3">المحاضرة 5 - Autonomic Nervous System</h3>
+                                        <div class="lecture-status">
+                                            <svg class="w-6 h-6 text-green-500 hidden" id="lecture-5-completed">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <span class="bg-red-600 text-white px-3 py-1 rounded-full text-sm">30 دقيقة</span>
+                                </div>
+                                
+                                <!-- Lecture Progress -->
+                                <div class="mb-4">
+                                    <div class="flex justify-between text-sm text-gray-600 mb-2">
+                                        <span>تقدم الإنجاز</span>
+                                        <span id="lecture-5-progress-text">0%</span>
+                                    </div>
+                                    <div class="w-full bg-gray-200 rounded-full h-2">
+                                        <div class="lecture-progress-bar bg-gradient-to-r from-red-500 to-red-600 h-2 rounded-full transition-all duration-500" style="width: 0%"></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-white rounded-lg p-4 mb-4">
+                                    <!-- Professional Video Access Button -->
+                                    <a href="https://drive.google.com/file/d/1ya3s7ShCcwL7BOWOgncr_n6umepbJwCx/view?usp=drive_link" target="_blank" class="block aspect-video bg-gradient-to-br from-red-600 to-red-800 rounded-lg overflow-hidden mb-4 relative group cursor-pointer">
+                                        <!-- Background Pattern -->
+                                        <div class="absolute inset-0 opacity-10">
+                                            <svg class="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+                                                <defs>
+                                                    <pattern id="videoPattern5" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+                                                        <circle cx="10" cy="10" r="1" fill="white" opacity="0.3"/>
+                                                    </pattern>
+                                                </defs>
+                                                <rect width="100" height="100" fill="url(#videoPattern5)"/>
+                                            </svg>
+                                        </div>
+                                        
+                                        <!-- Main Content -->
+                                        <div class="absolute inset-0 flex flex-col items-center justify-center text-white">
+                                            <!-- Play Button Icon -->
+                                            <div class="w-24 h-24 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center mb-4 group-hover:bg-white/30 transition-all duration-300 group-hover:scale-110 shadow-2xl">
+                                                <svg class="w-12 h-12 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
+                                                    <path d="M8 5v14l11-7z"/>
+                                                </svg>
+                                            </div>
+                                            
+                                            <!-- Title and Description -->
+                                            <div class="text-center px-4">
+                                                <h3 class="text-2xl font-bold mb-2 group-hover:text-red-100 transition-colors">شاهد المحاضرة الآن</h3>
+                                                <p class="text-red-100 text-lg mb-4">Autonomic Nervous System - المحاضرة الخامسة</p>
+                                                
+                                                <!-- Features -->
+                                                <div class="flex items-center justify-center space-x-6 space-x-reverse text-sm">
+                                                    <div class="flex items-center">
+                                                        <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                                        </svg>
+                                                        <span>30 دقيقة</span>
+                                                    </div>
+                                                    <div class="flex items-center">
+                                                        <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                                                        </svg>
+                                                        <span>HD جودة</span>
+                                                    </div>
+                                                    <div class="flex items-center">
+                                                        <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                                                        </svg>
+                                                        <span>ملفات PDF</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <!-- Hover Effect -->
+                                            <div class="absolute inset-0 bg-gradient-to-t from-red-900/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                        </div>
+                                        
+                                        <!-- Corner Badge -->
+                                        <div class="absolute top-4 right-4 bg-blue-500 text-white px-3 py-1 rounded-full text-sm font-semibold shadow-lg">
+                                            متاح الآن
+                                        </div>
+                                        
+                                        <!-- Bottom Gradient -->
+                                        <div class="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-red-900/80 to-transparent"></div>
+                                    </a>
+                                    
+                                    <!-- Additional Resources -->
+                                    <div class="bg-red-50 rounded-lg p-4 mb-4">
+                                        <h4 class="text-sm font-semibold text-red-800 mb-3 flex items-center">
+                                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                                            </svg>
+                                            مصادر إضافية
+                                        </h4>
+                                        <div class="space-y-2">
+                                            <a href="https://drive.google.com/file/d/1-K8tZi5OOyCZCWk-OnQ7s0fcVDXD9YUi/view?usp=drive_link" target="_blank" class="flex items-center text-sm text-red-700 hover:text-red-900 hover:bg-red-100 p-2 rounded-lg transition-all">
+                                                <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                                                </svg>
+                                                شرح إضافي
+                                            </a>
+                                            <a href="https://drive.google.com/file/d/1G5aIBpOg4kI-5ow9DUXSkDc2ALg8qOun/view?usp=drive_link" target="_blank" class="flex items-center text-sm text-red-700 hover:text-red-900 hover:bg-red-100 p-2 rounded-lg transition-all">
+                                                <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                                </svg>
+                                                صورة توضيحية
+                                            </a>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Progress Checkboxes -->
+                                    <div class="bg-white rounded-lg p-3 mb-3">
+                                        <div class="space-y-2">
+                                            <label class="flex items-center cursor-pointer text-sm">
+                                                <input 
+                                                    type="checkbox" 
+                                                    id="lecture-5-watched"
+                                                    class="w-4 h-4 text-red-600 bg-gray-100 border-gray-300 rounded focus:ring-red-500 focus:ring-1 transition-all"
+                                                    onchange="progressTracker.toggleTask('physiology1', 5, 'watched')"
+                                                >
+                                                <span class="mr-2 text-gray-700">📺 شاهدت المحاضرة</span>
+                                            </label>
+                                            
+                                            <label class="flex items-center cursor-pointer text-sm">
+                                                <input 
+                                                    type="checkbox" 
+                                                    id="lecture-5-mcq"
+                                                    class="w-4 h-4 text-red-600 bg-gray-100 border-gray-300 rounded focus:ring-red-500 focus:ring-1 transition-all"
+                                                    onchange="progressTracker.toggleTask('physiology1', 5, 'mcqCompleted')"
+                                                >
+                                                <span class="mr-2 text-gray-700">🎯 حليت MCQ</span>
+                                            </label>
+                                            
+                                            <label class="flex items-center cursor-pointer text-sm">
+                                                <input 
+                                                    type="checkbox" 
+                                                    id="lecture-5-truefalse"
+                                                    class="w-4 h-4 text-red-600 bg-gray-100 border-gray-300 rounded focus:ring-red-500 focus:ring-1 transition-all"
+                                                    onchange="progressTracker.toggleTask('physiology1', 5, 'trueFalseCompleted')"
+                                                >
+                                                <span class="mr-2 text-gray-700">✔️ حليت صح وخطأ</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Quick Action -->
+                                    <button onclick="showPage('physiology-questions')" class="w-full bg-red-600 hover:bg-red-700 text-white py-2 px-3 rounded-lg text-sm font-semibold transition-colors">
+                                        حل الأسئلة
+                                    </button>
+                                </div>
                             </div>
                         </div>
+                    </div>
                         
 
                     </div>
@@ -3413,8 +3575,108 @@
             }, 500);
         }
 
-        // Initialize progress on page load
+        // Mobile Back Button Support
+        let navigationHistory = ['home'];
+        let currentPageId = 'home';
+        
+        // Override showPage to support history
+        const originalShowPage = showPage;
+        showPage = function(pageId) {
+            // Don't add to history if it's the same page
+            if (pageId !== currentPageId) {
+                // Add current page to history if not already there
+                if (navigationHistory[navigationHistory.length - 1] !== currentPageId) {
+                    navigationHistory.push(currentPageId);
+                }
+                currentPageId = pageId;
+                
+                // Update browser history
+                if (history.pushState) {
+                    history.pushState({ page: pageId }, '', `#${pageId}`);
+                }
+            }
+            
+            // Call original function
+            originalShowPage(pageId);
+        };
+        
+        // Handle browser back button
+        window.addEventListener('popstate', function(event) {
+            if (event.state && event.state.page) {
+                // Get the page from browser history
+                const pageId = event.state.page;
+                currentPageId = pageId;
+                originalShowPage(pageId);
+            } else {
+                // Handle back navigation through our history
+                if (navigationHistory.length > 1) {
+                    navigationHistory.pop(); // Remove current page
+                    const previousPage = navigationHistory[navigationHistory.length - 1];
+                    currentPageId = previousPage;
+                    originalShowPage(previousPage);
+                } else {
+                    // If no history, go to home
+                    currentPageId = 'home';
+                    originalShowPage('home');
+                }
+            }
+        });
+        
+        // Handle quiz navigation history
+        function showLectureQuizWithHistory(lectureNumber) {
+            navigationHistory.push('physiology-questions-list');
+            showLectureQuiz(lectureNumber);
+        }
+        
+        function backToLecturesListWithHistory() {
+            if (navigationHistory.length > 1) {
+                navigationHistory.pop();
+            }
+            backToLecturesList();
+        }
+        
+        function startQuizWithHistory(type) {
+            navigationHistory.push('lecture-quiz-selection');
+            startQuiz(type);
+        }
+        
+        // Override quiz functions to support history
+        const originalShowLectureQuiz = showLectureQuiz;
+        showLectureQuiz = function(lectureNumber) {
+            navigationHistory.push('physiology-questions-list');
+            originalShowLectureQuiz(lectureNumber);
+        };
+        
+        const originalBackToLecturesList = backToLecturesList;
+        backToLecturesList = function() {
+            if (navigationHistory.length > 1) {
+                navigationHistory.pop();
+            }
+            originalBackToLecturesList();
+        };
+        
+        const originalStartQuiz = startQuiz;
+        startQuiz = function(type) {
+            navigationHistory.push('lecture-quiz-selection');
+            originalStartQuiz(type);
+        };
+        
+        const originalRestartQuiz = restartQuiz;
+        restartQuiz = function() {
+            // Remove quiz from history
+            if (navigationHistory.length > 1) {
+                navigationHistory.pop();
+            }
+            originalRestartQuiz();
+        };
+        
+        // Initialize page history on load
         document.addEventListener('DOMContentLoaded', function() {
+            // Set initial browser history state
+            if (history.replaceState) {
+                history.replaceState({ page: 'home' }, '', '#home');
+            }
+            
             // Update progress UI after a short delay to ensure DOM is ready
             setTimeout(() => {
                 progressTracker.updateUI();
@@ -3471,5 +3733,5 @@
             }, 1200);
         });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96cf20d610590d4b',t:'MTc1NDgyNTA4MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96d6367c31cfe19a',t:'MTc1NDg5OTM2OC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
