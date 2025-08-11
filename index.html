@@ -850,66 +850,72 @@
                 
                 <!-- Menu Content -->
                 <div class="flex-1 overflow-y-auto p-6">
-                    <div class="space-y-2">
+                    <div class="space-y-3">
                         <!-- Home -->
-                        <a href="#" onclick="showPage('home'); toggleMobileMenu()" class="flex items-center py-3 px-4 text-gray-800 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-200">
-                            <svg class="w-5 h-5 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <a href="#" onclick="showPage('home'); toggleMobileMenu()" class="flex items-center py-4 px-4 text-gray-800 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-200 border border-transparent hover:border-blue-200">
+                            <svg class="w-6 h-6 ml-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
                             </svg>
-                            الرئيسية
+                            <span class="text-lg font-medium">الرئيسية</span>
                         </a>
                         
                         <!-- Explanations Dropdown -->
                         <div class="relative">
-                            <button onclick="toggleMobileDropdown('mobile-explanations')" class="w-full flex items-center justify-between py-3 px-4 text-gray-800 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-200">
+                            <button onclick="toggleMobileDropdown('mobile-explanations')" class="w-full flex items-center justify-between py-4 px-4 text-gray-800 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-200 border border-transparent hover:border-blue-200">
                                 <div class="flex items-center">
-                                    <svg class="w-5 h-5 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <svg class="w-6 h-6 ml-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
                                     </svg>
-                                    الشروحات
+                                    <span class="text-lg font-medium">الشروحات</span>
                                 </div>
-                                <svg class="w-4 h-4 transition-transform duration-200" id="mobile-explanations-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <svg class="w-5 h-5 transition-transform duration-200 flex-shrink-0" id="mobile-explanations-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                                 </svg>
                             </button>
-                            <div id="mobile-explanations" class="dropdown overflow-hidden transition-all duration-300 max-h-0">
-                                <div class="pr-8 space-y-1 mt-2">
-                                    <a href="#" onclick="showPage('first-year-first'); toggleMobileMenu()" class="flex items-center py-2 px-4 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-200">
-                                        <div class="w-2 h-2 bg-blue-400 rounded-full ml-3"></div>
-                                        فرقة أولى ترم أول
+                            <div id="mobile-explanations" class="overflow-hidden transition-all duration-300" style="max-height: 0;">
+                                <div class="pr-8 space-y-2 mt-2 pb-2">
+                                    <a href="#" onclick="showPage('first-year-first'); toggleMobileMenu()" class="flex items-center py-3 px-4 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-200">
+                                        <div class="w-3 h-3 bg-blue-400 rounded-full ml-3 flex-shrink-0"></div>
+                                        <span class="font-medium">فرقة أولى ترم أول</span>
                                     </a>
-                                    <a href="#" onclick="showPage('first-year-second'); toggleMobileMenu()" class="flex items-center py-2 px-4 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-200">
-                                        <div class="w-2 h-2 bg-gray-400 rounded-full ml-3"></div>
-                                        فرقة أولى ترم تاني
-                                        <span class="text-xs bg-gray-200 text-gray-600 px-2 py-1 rounded-full mr-2">قريباً</span>
+                                    <a href="#" onclick="showPage('first-year-second'); toggleMobileMenu()" class="flex items-center py-3 px-4 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-200">
+                                        <div class="w-3 h-3 bg-gray-400 rounded-full ml-3 flex-shrink-0"></div>
+                                        <div class="flex items-center justify-between w-full">
+                                            <span class="font-medium">فرقة أولى ترم تاني</span>
+                                            <span class="text-xs bg-gray-200 text-gray-600 px-2 py-1 rounded-full">قريباً</span>
+                                        </div>
                                     </a>
-                                    <a href="#" onclick="showPage('second-year-first'); toggleMobileMenu()" class="flex items-center py-2 px-4 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-200">
-                                        <div class="w-2 h-2 bg-gray-400 rounded-full ml-3"></div>
-                                        فرقة تانية ترم أول
-                                        <span class="text-xs bg-gray-200 text-gray-600 px-2 py-1 rounded-full mr-2">قريباً</span>
+                                    <a href="#" onclick="showPage('second-year-first'); toggleMobileMenu()" class="flex items-center py-3 px-4 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-200">
+                                        <div class="w-3 h-3 bg-gray-400 rounded-full ml-3 flex-shrink-0"></div>
+                                        <div class="flex items-center justify-between w-full">
+                                            <span class="font-medium">فرقة تانية ترم أول</span>
+                                            <span class="text-xs bg-gray-200 text-gray-600 px-2 py-1 rounded-full">قريباً</span>
+                                        </div>
                                     </a>
-                                    <a href="#" onclick="showPage('second-year-second'); toggleMobileMenu()" class="flex items-center py-2 px-4 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-200">
-                                        <div class="w-2 h-2 bg-gray-400 rounded-full ml-3"></div>
-                                        فرقة تانية ترم تاني
-                                        <span class="text-xs bg-gray-200 text-gray-600 px-2 py-1 rounded-full mr-2">قريباً</span>
+                                    <a href="#" onclick="showPage('second-year-second'); toggleMobileMenu()" class="flex items-center py-3 px-4 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-200">
+                                        <div class="w-3 h-3 bg-gray-400 rounded-full ml-3 flex-shrink-0"></div>
+                                        <div class="flex items-center justify-between w-full">
+                                            <span class="font-medium">فرقة تانية ترم تاني</span>
+                                            <span class="text-xs bg-gray-200 text-gray-600 px-2 py-1 rounded-full">قريباً</span>
+                                        </div>
                                     </a>
                                 </div>
                             </div>
                         </div>
                         
                         <!-- About -->
-                        <a href="#" onclick="showPage('about'); toggleMobileMenu()" class="flex items-center py-3 px-4 text-gray-800 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-200">
-                            <svg class="w-5 h-5 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <a href="#" onclick="showPage('about'); toggleMobileMenu()" class="flex items-center py-4 px-4 text-gray-800 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-200 border border-transparent hover:border-blue-200">
+                            <svg class="w-6 h-6 ml-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                             </svg>
-                            حولنا
+                            <span class="text-lg font-medium">حولنا</span>
                         </a>
                     </div>
                 </div>
                 
                 <!-- Footer -->
                 <div class="p-6 border-t border-gray-200 bg-gray-50">
-                    <a href="#" onclick="showPage('start-journey'); toggleMobileMenu()" class="block w-full py-3 px-4 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg text-center font-semibold hover:from-blue-700 hover:to-blue-800 transition-all duration-200 shadow-lg">
+                    <a href="#" onclick="showPage('start-journey'); toggleMobileMenu()" class="block w-full py-4 px-4 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg text-center font-semibold hover:from-blue-700 hover:to-blue-800 transition-all duration-200 shadow-lg">
                         <svg class="w-5 h-5 inline ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
                         </svg>
@@ -918,12 +924,12 @@
                     
                     <!-- Social Links -->
                     <div class="flex justify-center space-x-4 space-x-reverse mt-4">
-                        <a href="https://chat.whatsapp.com/HYF2QApNRNa3iqkAIkfT4H?mode=ac_t" target="_blank" class="p-2 bg-green-500 text-white rounded-full hover:bg-green-600 transition-colors">
+                        <a href="https://chat.whatsapp.com/HYF2QApNRNa3iqkAIkfT4H?mode=ac_t" target="_blank" class="p-3 bg-green-500 text-white rounded-full hover:bg-green-600 transition-colors">
                             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                                 <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
                             </svg>
                         </a>
-                        <a href="https://t.me/Studyfy1bot" target="_blank" class="p-2 bg-blue-500 text-white rounded-full hover:bg-blue-600 transition-colors">
+                        <a href="https://t.me/Studyfy1bot" target="_blank" class="p-3 bg-blue-500 text-white rounded-full hover:bg-blue-600 transition-colors">
                             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                                 <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
                             </svg>
@@ -2706,12 +2712,57 @@
                                 </div>
                                 
                                 <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                                    <button onclick="showSolutionsReview()" class="bg-purple-600 text-white px-8 py-3 rounded-lg hover:bg-purple-700 transition-colors font-semibold">
+                                        مراجعة الحلول
+                                    </button>
                                     <button onclick="restartQuiz()" class="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors font-semibold">
                                         إعادة الاختبار
+                                    </button>
+                                    <button onclick="showPage('physiology-lectures')" class="bg-green-600 text-white px-8 py-3 rounded-lg hover:bg-green-700 transition-colors font-semibold">
+                                        مراجعة المحاضرة
                                     </button>
                                     <button onclick="showPage('first-year-first')" class="bg-gray-500 text-white px-8 py-3 rounded-lg hover:bg-gray-600 transition-colors font-semibold">
                                         العودة للمادة
                                     </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Solutions Review Container (Hidden initially) -->
+                        <div id="solutions-container" class="hidden">
+                            <div class="bg-white rounded-2xl shadow-xl p-8">
+                                <!-- Solutions Header -->
+                                <div class="flex items-center justify-between mb-8">
+                                    <div>
+                                        <h3 class="text-2xl font-bold gradient-text">مراجعة الحلول</h3>
+                                        <p class="text-gray-600">راجع إجاباتك مع الحلول الصحيحة</p>
+                                    </div>
+                                    <button onclick="backToResults()" class="bg-gray-500 text-white px-6 py-3 rounded-lg hover:bg-gray-600 transition-colors font-semibold">
+                                        العودة للنتائج
+                                    </button>
+                                </div>
+                                
+                                <!-- Solutions List -->
+                                <div id="solutions-list" class="space-y-6">
+                                    <!-- Solutions will be generated here by JavaScript -->
+                                </div>
+                                
+                                <!-- Bottom Actions -->
+                                <div class="mt-12 pt-8 border-t border-gray-200">
+                                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                                        <button onclick="backToResults()" class="bg-purple-600 text-white px-8 py-3 rounded-lg hover:bg-purple-700 transition-colors font-semibold">
+                                            العودة للنتائج
+                                        </button>
+                                        <button onclick="restartQuiz()" class="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors font-semibold">
+                                            إعادة الاختبار
+                                        </button>
+                                        <button onclick="showPage('physiology-lectures')" class="bg-green-600 text-white px-8 py-3 rounded-lg hover:bg-green-700 transition-colors font-semibold">
+                                            مراجعة المحاضرة
+                                        </button>
+                                        <button onclick="showPage('first-year-first')" class="bg-gray-500 text-white px-8 py-3 rounded-lg hover:bg-gray-600 transition-colors font-semibold">
+                                            العودة للمادة
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -3206,14 +3257,12 @@
             const dropdown = document.getElementById(dropdownId);
             const arrow = document.getElementById(dropdownId + '-arrow');
             
-            if (dropdown.classList.contains('show')) {
+            if (dropdown.style.maxHeight && dropdown.style.maxHeight !== '0px') {
                 // Hide dropdown
-                dropdown.classList.remove('show');
                 dropdown.style.maxHeight = '0px';
                 if (arrow) arrow.style.transform = 'rotate(0deg)';
             } else {
                 // Show dropdown
-                dropdown.classList.add('show');
                 dropdown.style.maxHeight = dropdown.scrollHeight + 'px';
                 if (arrow) arrow.style.transform = 'rotate(180deg)';
             }
@@ -3643,9 +3692,184 @@
             userAnswers = [];
             timeRemaining = 300;
             
-            // Show lecture quiz selection and hide results
+            // Show lecture quiz selection and hide results/solutions
             document.getElementById('results-container').classList.add('hidden');
+            document.getElementById('solutions-container').classList.add('hidden');
             document.getElementById('lecture-1-quiz').classList.remove('hidden');
+        }
+        
+        // Show Solutions Review
+        function showSolutionsReview() {
+            // Hide results container and show solutions
+            document.getElementById('results-container').classList.add('hidden');
+            document.getElementById('solutions-container').classList.remove('hidden');
+            
+            // Generate solutions list
+            generateSolutionsList();
+        }
+        
+        function backToResults() {
+            // Hide solutions container and show results
+            document.getElementById('solutions-container').classList.add('hidden');
+            document.getElementById('results-container').classList.remove('hidden');
+        }
+        
+        function generateSolutionsList() {
+            const solutionsList = document.getElementById('solutions-list');
+            const questions = quizData[currentQuizType];
+            
+            solutionsList.innerHTML = '';
+            
+            questions.forEach((question, index) => {
+                const userAnswer = userAnswers[index];
+                let isCorrect = false;
+                let correctAnswerText = '';
+                let userAnswerText = '';
+                
+                if (currentQuizType === 'mcq') {
+                    isCorrect = userAnswer === question.correct;
+                    correctAnswerText = question.options[question.correct];
+                    userAnswerText = userAnswer !== null ? question.options[userAnswer] : 'لم يتم الإجابة';
+                } else { // True/False
+                    isCorrect = userAnswer === question.correct;
+                    correctAnswerText = question.correct ? 'صح' : 'خطأ';
+                    userAnswerText = userAnswer !== null ? (userAnswer ? 'صح' : 'خطأ') : 'لم يتم الإجابة';
+                }
+                
+                const solutionItem = document.createElement('div');
+                solutionItem.className = `solution-item border-2 rounded-xl p-6 ${
+                    isCorrect ? 'border-green-300 bg-green-50' : 'border-red-300 bg-red-50'
+                }`;
+                
+                solutionItem.innerHTML = `
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="flex items-center">
+                            <div class="w-8 h-8 rounded-full flex items-center justify-center text-white font-bold text-sm mr-3 ${
+                                isCorrect ? 'bg-green-500' : 'bg-red-500'
+                            }">
+                                ${index + 1}
+                            </div>
+                            <div class="flex items-center">
+                                ${isCorrect ? 
+                                    '<svg class="w-6 h-6 text-green-500 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>' :
+                                    '<svg class="w-6 h-6 text-red-500 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>'
+                                }
+                                <span class="font-semibold ${isCorrect ? 'text-green-700' : 'text-red-700'}">
+                                    ${isCorrect ? 'إجابة صحيحة' : 'إجابة خاطئة'}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Question -->
+                    <div class="mb-4">
+                        <h4 class="text-lg font-semibold text-gray-800 mb-3">${question.question}</h4>
+                    </div>
+                    
+                    <!-- Answers Comparison -->
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <!-- User Answer -->
+                        <div class="bg-white rounded-lg p-4 border-2 ${
+                            isCorrect ? 'border-green-200' : 'border-red-200'
+                        }">
+                            <div class="flex items-center mb-2">
+                                <svg class="w-5 h-5 text-gray-600 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                                </svg>
+                                <span class="font-semibold text-gray-700">إجابتك:</span>
+                            </div>
+                            <p class="text-gray-800 font-medium ${
+                                userAnswer === null ? 'text-gray-500 italic' : ''
+                            }">${userAnswerText}</p>
+                        </div>
+                        
+                        <!-- Correct Answer -->
+                        <div class="bg-white rounded-lg p-4 border-2 border-green-200">
+                            <div class="flex items-center mb-2">
+                                <svg class="w-5 h-5 text-green-600 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                                <span class="font-semibold text-green-700">الإجابة الصحيحة:</span>
+                            </div>
+                            <p class="text-green-800 font-medium">${correctAnswerText}</p>
+                        </div>
+                    </div>
+                    
+                    ${currentQuizType === 'mcq' && question.options ? `
+                        <!-- All Options (for MCQ) -->
+                        <div class="mt-4 bg-gray-50 rounded-lg p-4">
+                            <h5 class="font-semibold text-gray-700 mb-3">جميع الخيارات:</h5>
+                            <div class="space-y-2">
+                                ${question.options.map((option, optionIndex) => `
+                                    <div class="flex items-center p-2 rounded ${
+                                        optionIndex === question.correct ? 'bg-green-100 text-green-800' :
+                                        optionIndex === userAnswer && !isCorrect ? 'bg-red-100 text-red-800' :
+                                        'text-gray-700'
+                                    }">
+                                        <span class="w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold mr-3 ${
+                                            optionIndex === question.correct ? 'bg-green-500 text-white' :
+                                            optionIndex === userAnswer && !isCorrect ? 'bg-red-500 text-white' :
+                                            'bg-gray-300 text-gray-600'
+                                        }">
+                                            ${String.fromCharCode(65 + optionIndex)}
+                                        </span>
+                                        <span>${option}</span>
+                                        ${optionIndex === question.correct ? 
+                                            '<svg class="w-4 h-4 text-green-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>' : 
+                                            optionIndex === userAnswer && !isCorrect ? 
+                                            '<svg class="w-4 h-4 text-red-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>' : 
+                                            ''
+                                        }
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                    ` : ''}
+                `;
+                
+                solutionsList.appendChild(solutionItem);
+            });
+            
+            // Add summary at the top
+            const summaryDiv = document.createElement('div');
+            summaryDiv.className = 'bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl p-6 mb-8 border border-blue-200';
+            
+            const correctCount = userAnswers.filter((answer, index) => {
+                if (currentQuizType === 'mcq') {
+                    return answer === questions[index].correct;
+                } else {
+                    return answer === questions[index].correct;
+                }
+            }).length;
+            
+            const totalQuestions = questions.length;
+            const percentage = Math.round((correctCount / totalQuestions) * 100);
+            
+            summaryDiv.innerHTML = `
+                <div class="text-center">
+                    <h3 class="text-xl font-bold gradient-text mb-4">ملخص الأداء</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <div class="bg-white rounded-lg p-4 shadow-sm">
+                            <div class="text-2xl font-bold text-blue-600">${totalQuestions}</div>
+                            <div class="text-sm text-gray-600">إجمالي الأسئلة</div>
+                        </div>
+                        <div class="bg-white rounded-lg p-4 shadow-sm">
+                            <div class="text-2xl font-bold text-green-600">${correctCount}</div>
+                            <div class="text-sm text-gray-600">إجابات صحيحة</div>
+                        </div>
+                        <div class="bg-white rounded-lg p-4 shadow-sm">
+                            <div class="text-2xl font-bold text-red-600">${totalQuestions - correctCount}</div>
+                            <div class="text-sm text-gray-600">إجابات خاطئة</div>
+                        </div>
+                        <div class="bg-white rounded-lg p-4 shadow-sm">
+                            <div class="text-2xl font-bold text-purple-600">${percentage}%</div>
+                            <div class="text-sm text-gray-600">النسبة المئوية</div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            solutionsList.insertBefore(summaryDiv, solutionsList.firstChild);
         }
 
         // Lecture Details Functions
@@ -3858,5 +4082,5 @@
             }, 1200);
         });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96d63fb407b9e19a',t:'MTc1NDg5OTc0Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96d64f7d74b7e19a',t:'MTc1NDkwMDM5Mi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
