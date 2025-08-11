@@ -815,38 +815,120 @@
             </div>
         </div>
 
+        <!-- Mobile Menu Overlay -->
+        <div id="mobileMenuOverlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 md:hidden opacity-0 invisible transition-all duration-300"></div>
+        
         <!-- Mobile Menu -->
-        <div id="mobileMenu" class="mobile-menu fixed top-0 right-0 h-full w-80 bg-white shadow-xl z-50 md:hidden">
-            <div class="p-4">
-                <div class="flex justify-between items-center mb-6">
-                    <h2 class="text-xl font-bold gradient-text">القائمة</h2>
-                    <button onclick="toggleMobileMenu()" class="text-gray-500">
+        <div id="mobileMenu" class="mobile-menu fixed top-0 right-0 h-full w-80 max-w-[85vw] bg-white shadow-xl z-50 md:hidden">
+            <div class="flex flex-col h-full">
+                <!-- Header -->
+                <div class="flex justify-between items-center p-6 border-b border-gray-200 bg-gradient-to-r from-blue-50 to-blue-100">
+                    <div class="flex items-center space-x-3 space-x-reverse">
+                        <div class="w-8 h-8">
+                            <svg viewBox="0 0 100 100" class="w-full h-full">
+                                <defs>
+                                    <linearGradient id="mobileBrainGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" style="stop-color:#1e3a8a"/>
+                                        <stop offset="50%" style="stop-color:#3b82f6"/>
+                                        <stop offset="100%" style="stop-color:#60a5fa"/>
+                                    </linearGradient>
+                                </defs>
+                                <path d="M20 30 C15 25, 15 35, 18 40 C12 45, 15 55, 20 58 C18 65, 22 70, 28 68 C25 75, 30 80, 38 78 C35 85, 42 88, 48 85 C48 82, 48 78, 50 75" fill="url(#mobileBrainGradient)" stroke="white" stroke-width="1.5"/>
+                                <path d="M80 30 C85 25, 85 35, 82 40 C88 45, 85 55, 80 58 C82 65, 78 70, 72 68 C75 75, 70 80, 62 78 C65 85, 58 88, 52 85 C52 82, 52 78, 50 75" fill="url(#mobileBrainGradient)" stroke="white" stroke-width="1.5"/>
+                                <path d="M35 75 C40 78, 45 78, 50 75 C55 78, 60 78, 65 75 C68 78, 65 82, 60 80 C55 83, 45 83, 40 80 C35 82, 32 78, 35 75" fill="url(#mobileBrainGradient)" stroke="white" stroke-width="1.5"/>
+                                <path d="M48 85 C49 88, 51 88, 52 85 C52 90, 48 90, 48 85" fill="url(#mobileBrainGradient)" stroke="white" stroke-width="1.5"/>
+                            </svg>
+                        </div>
+                        <h2 class="text-lg font-bold gradient-text">Studyfy</h2>
+                    </div>
+                    <button onclick="toggleMobileMenu()" class="text-gray-500 hover:text-gray-700 p-2 rounded-full hover:bg-gray-100 transition-colors">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                         </svg>
                     </button>
                 </div>
                 
-                <div class="space-y-4">
-                    <a href="#" onclick="showPage('home'); toggleMobileMenu()" class="block py-2 text-gray-800 hover:text-blue-600">الرئيسية</a>
-                    
-                    <div>
-                        <button onclick="toggleMobileDropdown('mobile-explanations')" class="w-full text-right py-2 text-gray-800 hover:text-blue-600 flex justify-between items-center">
-                            الشروحات
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                <!-- Menu Content -->
+                <div class="flex-1 overflow-y-auto p-6">
+                    <div class="space-y-2">
+                        <!-- Home -->
+                        <a href="#" onclick="showPage('home'); toggleMobileMenu()" class="flex items-center py-3 px-4 text-gray-800 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-200">
+                            <svg class="w-5 h-5 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
                             </svg>
-                        </button>
-                        <div id="mobile-explanations" class="dropdown pr-4 space-y-2">
-                            <a href="#" onclick="showPage('first-year-first'); toggleMobileMenu()" class="block py-1 text-gray-600 hover:text-blue-600">فرقة أولى ترم أول</a>
-                            <a href="#" onclick="showPage('first-year-second'); toggleMobileMenu()" class="block py-1 text-gray-600 hover:text-blue-600">فرقة أولى ترم تاني</a>
-                            <a href="#" onclick="showPage('second-year-first'); toggleMobileMenu()" class="block py-1 text-gray-600 hover:text-blue-600">فرقة تانية ترم أول</a>
-                            <a href="#" onclick="showPage('second-year-second'); toggleMobileMenu()" class="block py-1 text-gray-600 hover:text-blue-600">فرقة تانية ترم تاني</a>
+                            الرئيسية
+                        </a>
+                        
+                        <!-- Explanations Dropdown -->
+                        <div class="relative">
+                            <button onclick="toggleMobileDropdown('mobile-explanations')" class="w-full flex items-center justify-between py-3 px-4 text-gray-800 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-200">
+                                <div class="flex items-center">
+                                    <svg class="w-5 h-5 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                                    </svg>
+                                    الشروحات
+                                </div>
+                                <svg class="w-4 h-4 transition-transform duration-200" id="mobile-explanations-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                </svg>
+                            </button>
+                            <div id="mobile-explanations" class="dropdown overflow-hidden transition-all duration-300 max-h-0">
+                                <div class="pr-8 space-y-1 mt-2">
+                                    <a href="#" onclick="showPage('first-year-first'); toggleMobileMenu()" class="flex items-center py-2 px-4 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-200">
+                                        <div class="w-2 h-2 bg-blue-400 rounded-full ml-3"></div>
+                                        فرقة أولى ترم أول
+                                    </a>
+                                    <a href="#" onclick="showPage('first-year-second'); toggleMobileMenu()" class="flex items-center py-2 px-4 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-200">
+                                        <div class="w-2 h-2 bg-gray-400 rounded-full ml-3"></div>
+                                        فرقة أولى ترم تاني
+                                        <span class="text-xs bg-gray-200 text-gray-600 px-2 py-1 rounded-full mr-2">قريباً</span>
+                                    </a>
+                                    <a href="#" onclick="showPage('second-year-first'); toggleMobileMenu()" class="flex items-center py-2 px-4 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-200">
+                                        <div class="w-2 h-2 bg-gray-400 rounded-full ml-3"></div>
+                                        فرقة تانية ترم أول
+                                        <span class="text-xs bg-gray-200 text-gray-600 px-2 py-1 rounded-full mr-2">قريباً</span>
+                                    </a>
+                                    <a href="#" onclick="showPage('second-year-second'); toggleMobileMenu()" class="flex items-center py-2 px-4 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-200">
+                                        <div class="w-2 h-2 bg-gray-400 rounded-full ml-3"></div>
+                                        فرقة تانية ترم تاني
+                                        <span class="text-xs bg-gray-200 text-gray-600 px-2 py-1 rounded-full mr-2">قريباً</span>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
+                        
+                        <!-- About -->
+                        <a href="#" onclick="showPage('about'); toggleMobileMenu()" class="flex items-center py-3 px-4 text-gray-800 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-200">
+                            <svg class="w-5 h-5 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            حولنا
+                        </a>
                     </div>
+                </div>
+                
+                <!-- Footer -->
+                <div class="p-6 border-t border-gray-200 bg-gray-50">
+                    <a href="#" onclick="showPage('start-journey'); toggleMobileMenu()" class="block w-full py-3 px-4 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg text-center font-semibold hover:from-blue-700 hover:to-blue-800 transition-all duration-200 shadow-lg">
+                        <svg class="w-5 h-5 inline ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
+                        ابدأ رحلتك التعليمية
+                    </a>
                     
-                    <a href="#" onclick="showPage('about'); toggleMobileMenu()" class="block py-2 text-gray-800 hover:text-blue-600">حولنا</a>
-                    <a href="#" onclick="showPage('start-journey'); toggleMobileMenu()" class="block py-2 bg-blue-600 text-white rounded-lg px-4 text-center">ابدأ رحلتك التعليمية</a>
+                    <!-- Social Links -->
+                    <div class="flex justify-center space-x-4 space-x-reverse mt-4">
+                        <a href="https://chat.whatsapp.com/HYF2QApNRNa3iqkAIkfT4H?mode=ac_t" target="_blank" class="p-2 bg-green-500 text-white rounded-full hover:bg-green-600 transition-colors">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
+                            </svg>
+                        </a>
+                        <a href="https://t.me/Studyfy1bot" target="_blank" class="p-2 bg-blue-500 text-white rounded-full hover:bg-blue-600 transition-colors">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+                            </svg>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -3102,13 +3184,39 @@
         // Mobile menu functionality
         function toggleMobileMenu() {
             const mobileMenu = document.getElementById('mobileMenu');
-            mobileMenu.classList.toggle('show');
+            const overlay = document.getElementById('mobileMenuOverlay');
+            
+            if (mobileMenu.classList.contains('show')) {
+                // Hide menu
+                mobileMenu.classList.remove('show');
+                overlay.classList.remove('opacity-100', 'visible');
+                overlay.classList.add('opacity-0', 'invisible');
+                document.body.classList.remove('overflow-hidden');
+            } else {
+                // Show menu
+                mobileMenu.classList.add('show');
+                overlay.classList.remove('opacity-0', 'invisible');
+                overlay.classList.add('opacity-100', 'visible');
+                document.body.classList.add('overflow-hidden');
+            }
         }
 
         // Mobile dropdown functionality
         function toggleMobileDropdown(dropdownId) {
             const dropdown = document.getElementById(dropdownId);
-            dropdown.classList.toggle('show');
+            const arrow = document.getElementById(dropdownId + '-arrow');
+            
+            if (dropdown.classList.contains('show')) {
+                // Hide dropdown
+                dropdown.classList.remove('show');
+                dropdown.style.maxHeight = '0px';
+                if (arrow) arrow.style.transform = 'rotate(0deg)';
+            } else {
+                // Show dropdown
+                dropdown.classList.add('show');
+                dropdown.style.maxHeight = dropdown.scrollHeight + 'px';
+                if (arrow) arrow.style.transform = 'rotate(180deg)';
+            }
         }
 
         // Search functionality
@@ -3131,13 +3239,30 @@
             }
         });
 
-        // Close mobile menu when clicking outside
+        // Close mobile menu when clicking outside or on overlay
         document.addEventListener('click', function(e) {
             const mobileMenu = document.getElementById('mobileMenu');
+            const overlay = document.getElementById('mobileMenuOverlay');
             const menuButton = e.target.closest('button[onclick="toggleMobileMenu()"]');
             
-            if (!mobileMenu.contains(e.target) && !menuButton) {
-                mobileMenu.classList.remove('show');
+            // Close menu if clicking on overlay
+            if (e.target === overlay) {
+                toggleMobileMenu();
+            }
+            
+            // Close menu if clicking outside and not on menu button
+            if (!mobileMenu.contains(e.target) && !menuButton && mobileMenu.classList.contains('show')) {
+                toggleMobileMenu();
+            }
+        });
+        
+        // Close mobile menu on escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                const mobileMenu = document.getElementById('mobileMenu');
+                if (mobileMenu.classList.contains('show')) {
+                    toggleMobileMenu();
+                }
             }
         });
 
@@ -3733,5 +3858,5 @@
             }, 1200);
         });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96d6367c31cfe19a',t:'MTc1NDg5OTM2OC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96d63fb407b9e19a',t:'MTc1NDg5OTc0Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
