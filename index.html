@@ -598,6 +598,115 @@
                 transform: scale(1);
             }
         }
+        
+        /* Search Enhancements */
+        .search-result-item {
+            transition: all 0.2s ease;
+        }
+        
+        .search-result-item:hover {
+            background-color: #f8fafc;
+            transform: translateX(-2px);
+        }
+        
+        .line-clamp-1 {
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        .line-clamp-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        /* Search Input Focus Effects */
+        #searchInput:focus,
+        #mobileSearchInput:focus {
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+            border-color: #3b82f6;
+        }
+        
+        /* Search Results Animation */
+        #searchResults,
+        #mobileSearchResults {
+            animation: searchResultsSlideIn 0.2s ease-out;
+        }
+        
+        @keyframes searchResultsSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Search Loading Animation */
+        .animate-spin {
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        
+        /* Search Highlight */
+        mark {
+            background-color: #fef3c7;
+            color: #92400e;
+            padding: 1px 2px;
+            border-radius: 2px;
+            font-weight: 600;
+        }
+        
+        /* Mobile Search Improvements */
+        @media (max-width: 768px) {
+            #mobileSearchResults {
+                border: 1px solid #e5e7eb;
+                border-radius: 8px;
+                box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            }
+        }
+        
+        /* Search Button Hover Effects */
+        #searchButton:hover,
+        #mobileSearchButton:hover {
+            transform: scale(1.05);
+        }
+        
+        /* Search Results Scrollbar */
+        #searchResults::-webkit-scrollbar,
+        #mobileSearchResults::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        #searchResults::-webkit-scrollbar-track,
+        #mobileSearchResults::-webkit-scrollbar-track {
+            background: #f1f5f9;
+            border-radius: 3px;
+        }
+        
+        #searchResults::-webkit-scrollbar-thumb,
+        #mobileSearchResults::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 3px;
+        }
+        
+        #searchResults::-webkit-scrollbar-thumb:hover,
+        #mobileSearchResults::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
     </style>
 </head>
 <body class="bg-gray-50">
@@ -738,72 +847,72 @@
             <div class="flex items-center justify-between h-16">
                 <!-- Logo -->
                 <div class="flex items-center space-x-3 space-x-reverse">
-                    <div class="brain-logo">
-                        <svg viewBox="0 0 100 100" class="w-full h-full">
-                            <defs>
-                                <linearGradient id="brainGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                    <stop offset="0%" style="stop-color:#1e3a8a"/>
-                                    <stop offset="50%" style="stop-color:#3b82f6"/>
-                                    <stop offset="100%" style="stop-color:#60a5fa"/>
-                                </linearGradient>
-                            </defs>
-                            <!-- Left hemisphere -->
-                            <path d="M20 30 C15 25, 15 35, 18 40 C12 45, 15 55, 20 58 C18 65, 22 70, 28 68 C25 75, 30 80, 38 78 C35 85, 42 88, 48 85 C48 82, 48 78, 50 75" fill="url(#brainGradient)" stroke="white" stroke-width="1.5"/>
-                            <!-- Right hemisphere -->
-                            <path d="M80 30 C85 25, 85 35, 82 40 C88 45, 85 55, 80 58 C82 65, 78 70, 72 68 C75 75, 70 80, 62 78 C65 85, 58 88, 52 85 C52 82, 52 78, 50 75" fill="url(#brainGradient)" stroke="white" stroke-width="1.5"/>
-                            <!-- Cerebellum -->
-                            <path d="M35 75 C40 78, 45 78, 50 75 C55 78, 60 78, 65 75 C68 78, 65 82, 60 80 C55 83, 45 83, 40 80 C35 82, 32 78, 35 75" fill="url(#brainGradient)" stroke="white" stroke-width="1.5"/>
-                            <!-- Brain stem -->
-                            <path d="M48 85 C49 88, 51 88, 52 85 C52 90, 48 90, 48 85" fill="url(#brainGradient)" stroke="white" stroke-width="1.5"/>
-                            <!-- Brain folds and details -->
-                            <path d="M25 35 C30 32, 35 35, 40 32" stroke="white" stroke-width="1" fill="none"/>
-                            <path d="M60 32 C65 35, 70 32, 75 35" stroke="white" stroke-width="1" fill="none"/>
-                            <path d="M22 45 C28 42, 32 45, 38 43" stroke="white" stroke-width="1" fill="none"/>
-                            <path d="M62 43 C68 45, 72 42, 78 45" stroke="white" stroke-width="1" fill="none"/>
-                            <path d="M25 55 C30 52, 35 55, 42 53" stroke="white" stroke-width="1" fill="none"/>
-                            <path d="M58 53 C65 55, 70 52, 75 55" stroke="white" stroke-width="1" fill="none"/>
-                            <!-- Central sulcus -->
-                            <path d="M50 25 C50 35, 50 45, 50 55" stroke="white" stroke-width="1.5" fill="none"/>
-                        </svg>
-                    </div>
-                    <h1 class="text-2xl font-bold">
-                        <span class="bg-gradient-to-r from-blue-300 to-blue-100 bg-clip-text text-transparent">Study</span><span class="text-white">fy</span>
-                    </h1>
+                    <a href="#" onclick="showPage('home')" class="flex items-center space-x-3 space-x-reverse hover:opacity-80 transition-opacity cursor-pointer">
+                        <div class="brain-logo">
+                            <svg viewBox="0 0 100 100" class="w-full h-full">
+                                <defs>
+                                    <linearGradient id="brainGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" style="stop-color:#1e3a8a"/>
+                                        <stop offset="50%" style="stop-color:#3b82f6"/>
+                                        <stop offset="100%" style="stop-color:#60a5fa"/>
+                                    </linearGradient>
+                                </defs>
+                                <!-- Left hemisphere -->
+                                <path d="M20 30 C15 25, 15 35, 18 40 C12 45, 15 55, 20 58 C18 65, 22 70, 28 68 C25 75, 30 80, 38 78 C35 85, 42 88, 48 85 C48 82, 48 78, 50 75" fill="url(#brainGradient)" stroke="white" stroke-width="1.5"/>
+                                <!-- Right hemisphere -->
+                                <path d="M80 30 C85 25, 85 35, 82 40 C88 45, 85 55, 80 58 C82 65, 78 70, 72 68 C75 75, 70 80, 62 78 C65 85, 58 88, 52 85 C52 82, 52 78, 50 75" fill="url(#brainGradient)" stroke="white" stroke-width="1.5"/>
+                                <!-- Cerebellum -->
+                                <path d="M35 75 C40 78, 45 78, 50 75 C55 78, 60 78, 65 75 C68 78, 65 82, 60 80 C55 83, 45 83, 40 80 C35 82, 32 78, 35 75" fill="url(#brainGradient)" stroke="white" stroke-width="1.5"/>
+                                <!-- Brain stem -->
+                                <path d="M48 85 C49 88, 51 88, 52 85 C52 90, 48 90, 48 85" fill="url(#brainGradient)" stroke="white" stroke-width="1.5"/>
+                                <!-- Brain folds and details -->
+                                <path d="M25 35 C30 32, 35 35, 40 32" stroke="white" stroke-width="1" fill="none"/>
+                                <path d="M60 32 C65 35, 70 32, 75 35" stroke="white" stroke-width="1" fill="none"/>
+                                <path d="M22 45 C28 42, 32 45, 38 43" stroke="white" stroke-width="1" fill="none"/>
+                                <path d="M62 43 C68 45, 72 42, 78 45" stroke="white" stroke-width="1" fill="none"/>
+                                <path d="M25 55 C30 52, 35 55, 42 53" stroke="white" stroke-width="1" fill="none"/>
+                                <path d="M58 53 C65 55, 70 52, 75 55" stroke="white" stroke-width="1" fill="none"/>
+                                <!-- Central sulcus -->
+                                <path d="M50 25 C50 35, 50 45, 50 55" stroke="white" stroke-width="1.5" fill="none"/>
+                            </svg>
+                        </div>
+                        <h1 class="text-2xl font-bold">
+                            <span class="bg-gradient-to-r from-blue-300 to-blue-100 bg-clip-text text-transparent">Study</span><span class="text-white">fy</span>
+                        </h1>
+                    </a>
                 </div>
 
                 <!-- Search Bar -->
                 <div class="hidden md:flex flex-1 max-w-md mx-8">
                     <div class="relative w-full">
-                        <input type="text" id="searchInput" placeholder="ابحث في المحتوى..." class="w-full px-4 py-2 pr-10 rounded-lg border-0 focus:ring-2 focus:ring-blue-300 text-gray-800 bg-white">
-                        <button class="absolute left-3 top-2.5 text-gray-500 hover:text-gray-700">
+                        <input type="text" id="searchInput" placeholder="ابحث في المحتوى..." class="w-full px-4 py-2 pr-10 rounded-lg border-0 focus:ring-2 focus:ring-blue-300 text-gray-800 bg-white transition-all duration-300 focus:shadow-lg">
+                        <button id="searchButton" class="absolute left-3 top-2.5 text-gray-500 hover:text-blue-600 transition-colors">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                             </svg>
                         </button>
+                        
+                        <!-- Search Results Dropdown -->
+                        <div id="searchResults" class="absolute top-full left-0 right-0 bg-white rounded-lg shadow-xl border border-gray-200 mt-2 max-h-96 overflow-y-auto z-50 hidden">
+                            <div id="searchResultsContent">
+                                <!-- Search results will be populated here -->
+                            </div>
+                        </div>
+                        
+                        <!-- Search Loading -->
+                        <div id="searchLoading" class="absolute top-full left-0 right-0 bg-white rounded-lg shadow-xl border border-gray-200 mt-2 p-4 z-50 hidden">
+                            <div class="flex items-center justify-center">
+                                <div class="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-600"></div>
+                                <span class="mr-3 text-gray-600">جاري البحث...</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Desktop Navigation -->
                 <nav class="hidden md:flex items-center space-x-8 space-x-reverse">
-                    <a href="#" onclick="showPage('home')" class="text-white hover:text-blue-200 transition-colors">الرئيسية</a>
-                    
-                    <div class="relative group">
-                        <button class="text-white hover:text-blue-200 transition-colors flex items-center" onclick="toggleDropdown('explanations')">
-                            الشروحات
-                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                            </svg>
-                        </button>
-                        <div id="explanations-dropdown" class="dropdown absolute top-full right-0 mt-2 w-64 bg-white rounded-lg shadow-xl py-2">
-                            <a href="#" onclick="showPage('first-year-first')" class="block px-4 py-2 text-gray-800 hover:bg-blue-50 transition-colors">فرقة أولى ترم أول</a>
-                            <a href="#" onclick="showPage('first-year-second')" class="block px-4 py-2 text-gray-800 hover:bg-blue-50 transition-colors">فرقة أولى ترم تاني</a>
-                            <a href="#" onclick="showPage('second-year-first')" class="block px-4 py-2 text-gray-800 hover:bg-blue-50 transition-colors">فرقة تانية ترم أول</a>
-                            <a href="#" onclick="showPage('second-year-second')" class="block px-4 py-2 text-gray-800 hover:bg-blue-50 transition-colors">فرقة تانية ترم تاني</a>
-                        </div>
-                    </div>
-                    
-                    <a href="#" onclick="showPage('about')" class="text-white hover:text-blue-200 transition-colors">حولنا</a>
-                    <a href="#" onclick="showPage('start-journey')" class="bg-white text-blue-600 px-4 py-2 rounded-lg hover:bg-blue-50 transition-colors font-semibold">ابدأ رحلتك التعليمية</a>
+                    <a href="#" onclick="showPage('home')" class="text-white hover:text-blue-200 transition-colors font-medium">الرئيسية</a>
+                    <a href="#" onclick="showPage('start-journey')" class="text-white hover:text-blue-200 transition-colors font-medium">ابدأ التعلم</a>
                 </nav>
 
                 <!-- Mobile Menu Button -->
@@ -823,7 +932,7 @@
             <div class="flex flex-col h-full">
                 <!-- Header -->
                 <div class="flex justify-between items-center p-6 border-b border-gray-200 bg-gradient-to-r from-blue-50 to-blue-100">
-                    <div class="flex items-center space-x-3 space-x-reverse">
+                    <a href="#" onclick="showPage('home'); toggleMobileMenu()" class="flex items-center space-x-3 space-x-reverse hover:opacity-80 transition-opacity cursor-pointer">
                         <div class="w-8 h-8">
                             <svg viewBox="0 0 100 100" class="w-full h-full">
                                 <defs>
@@ -840,7 +949,7 @@
                             </svg>
                         </div>
                         <h2 class="text-lg font-bold gradient-text">Studyfy</h2>
-                    </div>
+                    </a>
                     <button onclick="toggleMobileMenu()" class="text-gray-500 hover:text-gray-700 p-2 rounded-full hover:bg-gray-100 transition-colors">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
@@ -850,80 +959,46 @@
                 
                 <!-- Menu Content -->
                 <div class="flex-1 overflow-y-auto p-6">
-                    <div class="space-y-3">
-                        <!-- Home -->
-                        <a href="#" onclick="showPage('home'); toggleMobileMenu()" class="flex items-center py-4 px-4 text-gray-800 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-200 border border-transparent hover:border-blue-200">
-                            <svg class="w-6 h-6 ml-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
-                            </svg>
-                            <span class="text-lg font-medium">الرئيسية</span>
-                        </a>
-                        
-                        <!-- Explanations Dropdown -->
+                    <!-- Mobile Search -->
+                    <div class="mb-6">
                         <div class="relative">
-                            <button onclick="toggleMobileDropdown('mobile-explanations')" class="w-full flex items-center justify-between py-4 px-4 text-gray-800 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-200 border border-transparent hover:border-blue-200">
-                                <div class="flex items-center">
-                                    <svg class="w-6 h-6 ml-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
-                                    </svg>
-                                    <span class="text-lg font-medium">الشروحات</span>
-                                </div>
-                                <svg class="w-5 h-5 transition-transform duration-200 flex-shrink-0" id="mobile-explanations-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            <input type="text" id="mobileSearchInput" placeholder="ابحث في المحتوى..." class="w-full px-4 py-3 pr-10 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-800 bg-white transition-all duration-300">
+                            <button id="mobileSearchButton" class="absolute left-3 top-3.5 text-gray-500 hover:text-blue-600 transition-colors">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                                 </svg>
                             </button>
-                            <div id="mobile-explanations" class="overflow-hidden transition-all duration-300" style="max-height: 0;">
-                                <div class="pr-8 space-y-2 mt-2 pb-2">
-                                    <a href="#" onclick="showPage('first-year-first'); toggleMobileMenu()" class="flex items-center py-3 px-4 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-200">
-                                        <div class="w-3 h-3 bg-blue-400 rounded-full ml-3 flex-shrink-0"></div>
-                                        <span class="font-medium">فرقة أولى ترم أول</span>
-                                    </a>
-                                    <a href="#" onclick="showPage('first-year-second'); toggleMobileMenu()" class="flex items-center py-3 px-4 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-200">
-                                        <div class="w-3 h-3 bg-gray-400 rounded-full ml-3 flex-shrink-0"></div>
-                                        <div class="flex items-center justify-between w-full">
-                                            <span class="font-medium">فرقة أولى ترم تاني</span>
-                                            <span class="text-xs bg-gray-200 text-gray-600 px-2 py-1 rounded-full">قريباً</span>
-                                        </div>
-                                    </a>
-                                    <a href="#" onclick="showPage('second-year-first'); toggleMobileMenu()" class="flex items-center py-3 px-4 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-200">
-                                        <div class="w-3 h-3 bg-gray-400 rounded-full ml-3 flex-shrink-0"></div>
-                                        <div class="flex items-center justify-between w-full">
-                                            <span class="font-medium">فرقة تانية ترم أول</span>
-                                            <span class="text-xs bg-gray-200 text-gray-600 px-2 py-1 rounded-full">قريباً</span>
-                                        </div>
-                                    </a>
-                                    <a href="#" onclick="showPage('second-year-second'); toggleMobileMenu()" class="flex items-center py-3 px-4 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-200">
-                                        <div class="w-3 h-3 bg-gray-400 rounded-full ml-3 flex-shrink-0"></div>
-                                        <div class="flex items-center justify-between w-full">
-                                            <span class="font-medium">فرقة تانية ترم تاني</span>
-                                            <span class="text-xs bg-gray-200 text-gray-600 px-2 py-1 rounded-full">قريباً</span>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
                         </div>
                         
-                        <!-- About -->
-                        <a href="#" onclick="showPage('about'); toggleMobileMenu()" class="flex items-center py-4 px-4 text-gray-800 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-200 border border-transparent hover:border-blue-200">
-                            <svg class="w-6 h-6 ml-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        <!-- Mobile Search Results -->
+                        <div id="mobileSearchResults" class="mt-3 bg-gray-50 rounded-lg max-h-64 overflow-y-auto hidden">
+                            <div id="mobileSearchResultsContent">
+                                <!-- Mobile search results will be populated here -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-3">
+                        <a href="#" onclick="showPage('home'); toggleMobileMenu()" class="flex items-center p-4 text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-colors">
+                            <svg class="w-6 h-6 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
                             </svg>
-                            <span class="text-lg font-medium">حولنا</span>
+                            <span class="font-medium">الرئيسية</span>
+                        </a>
+                        
+                        <a href="#" onclick="showPage('start-journey'); toggleMobileMenu()" class="flex items-center p-4 text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-colors">
+                            <svg class="w-6 h-6 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                            </svg>
+                            <span class="font-medium">ابدأ التعلم</span>
                         </a>
                     </div>
                 </div>
                 
                 <!-- Footer -->
                 <div class="p-6 border-t border-gray-200 bg-gray-50">
-                    <a href="#" onclick="showPage('start-journey'); toggleMobileMenu()" class="block w-full py-4 px-4 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg text-center font-semibold hover:from-blue-700 hover:to-blue-800 transition-all duration-200 shadow-lg">
-                        <svg class="w-5 h-5 inline ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                        </svg>
-                        ابدأ رحلتك التعليمية
-                    </a>
-                    
                     <!-- Social Links -->
-                    <div class="flex justify-center space-x-4 space-x-reverse mt-4">
+                    <div class="flex justify-center space-x-4 space-x-reverse">
                         <a href="https://chat.whatsapp.com/HYF2QApNRNa3iqkAIkfT4H?mode=ac_t" target="_blank" class="p-3 bg-green-500 text-white rounded-full hover:bg-green-600 transition-colors">
                             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                                 <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
@@ -947,7 +1022,54 @@
             <!-- Hero Section -->
             <section class="gradient-bg py-20">
                 <div class="container mx-auto px-4 text-center">
-                    <h2 class="text-4xl md:text-6xl font-bold text-white mb-6">مرحباً بك في <span class="bg-gradient-to-r from-blue-300 to-blue-100 bg-clip-text text-transparent">Study</span><span class="text-white">fy</span></h2>
+                    <!-- Platform Logo and Motto -->
+                    <div class="flex items-center justify-center mb-8">
+                        <div class="brain-logo w-16 h-16 mr-4">
+                            <svg viewBox="0 0 100 100" class="w-full h-full">
+                                <defs>
+                                    <linearGradient id="heroLogoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" style="stop-color:#60a5fa"/>
+                                        <stop offset="50%" style="stop-color:#3b82f6"/>
+                                        <stop offset="100%" style="stop-color:#1e3a8a"/>
+                                    </linearGradient>
+                                    <filter id="glow">
+                                        <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                                        <feMerge> 
+                                            <feMergeNode in="coloredBlur"/>
+                                            <feMergeNode in="SourceGraphic"/>
+                                        </feMerge>
+                                    </filter>
+                                </defs>
+                                <!-- Left hemisphere -->
+                                <path d="M20 30 C15 25, 15 35, 18 40 C12 45, 15 55, 20 58 C18 65, 22 70, 28 68 C25 75, 30 80, 38 78 C35 85, 42 88, 48 85 C48 82, 48 78, 50 75" fill="url(#heroLogoGradient)" stroke="white" stroke-width="2" filter="url(#glow)"/>
+                                <!-- Right hemisphere -->
+                                <path d="M80 30 C85 25, 85 35, 82 40 C88 45, 85 55, 80 58 C82 65, 78 70, 72 68 C75 75, 70 80, 62 78 C65 85, 58 88, 52 85 C52 82, 52 78, 50 75" fill="url(#heroLogoGradient)" stroke="white" stroke-width="2" filter="url(#glow)"/>
+                                <!-- Cerebellum -->
+                                <path d="M35 75 C40 78, 45 78, 50 75 C55 78, 60 78, 65 75 C68 78, 65 82, 60 80 C55 83, 45 83, 40 80 C35 82, 32 78, 35 75" fill="url(#heroLogoGradient)" stroke="white" stroke-width="2" filter="url(#glow)"/>
+                                <!-- Brain stem -->
+                                <path d="M48 85 C49 88, 51 88, 52 85 C52 90, 48 90, 48 85" fill="url(#heroLogoGradient)" stroke="white" stroke-width="2" filter="url(#glow)"/>
+                                <!-- Brain folds and details -->
+                                <path d="M25 35 C30 32, 35 35, 40 32" stroke="white" stroke-width="1.5" fill="none" filter="url(#glow)"/>
+                                <path d="M60 32 C65 35, 70 32, 75 35" stroke="white" stroke-width="1.5" fill="none" filter="url(#glow)"/>
+                                <path d="M22 45 C28 42, 32 45, 38 43" stroke="white" stroke-width="1.5" fill="none" filter="url(#glow)"/>
+                                <path d="M62 43 C68 45, 72 42, 78 45" stroke="white" stroke-width="1.5" fill="none" filter="url(#glow)"/>
+                                <path d="M25 55 C30 52, 35 55, 42 53" stroke="white" stroke-width="1.5" fill="none" filter="url(#glow)"/>
+                                <path d="M58 53 C65 55, 70 52, 75 55" stroke="white" stroke-width="1.5" fill="none" filter="url(#glow)"/>
+                                <!-- Central sulcus -->
+                                <path d="M50 25 C50 35, 50 45, 50 55" stroke="white" stroke-width="2" fill="none" filter="url(#glow)"/>
+                            </svg>
+                        </div>
+                        <div class="text-left">
+                            <h1 class="text-3xl md:text-4xl font-bold mb-2">
+                                <span class="bg-gradient-to-r from-blue-300 to-blue-100 bg-clip-text text-transparent">Study</span><span class="text-white">fy</span>
+                            </h1>
+                            <div class="bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 border border-white/20">
+                                <p class="text-white font-semibold text-lg tracking-wide">Study Smart Not Hard</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h2 class="text-4xl md:text-6xl font-bold text-white mb-6">مرحباً بك في منصة التعلم الذكي</h2>
                     <p class="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">منصتك التعليمية المتخصصة في العلاج الطبيعي - تعلم مع أفضل الشروحات والمحاضرات التفاعلية</p>
                     <button onclick="showPage('start-journey')" class="bg-white text-blue-600 px-8 py-4 rounded-lg text-lg font-semibold hover-scale hover:shadow-xl transition-all">ابدأ رحلتك التعليمية الآن</button>
                 </div>
@@ -1091,100 +1213,274 @@
                 </div>
             </section>
 
-            <!-- Latest Updates Section -->
-            <section class="py-16 bg-white">
-                <div class="container mx-auto px-4">
-                    <h3 class="text-3xl font-bold text-center gradient-text mb-12">آخر التحديثات</h3>
-                    <div class="max-w-4xl mx-auto grid md:grid-cols-3 gap-6">
-                        <div class="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-6 hover-scale">
-                            <div class="flex items-center mb-4">
-                                <div class="w-3 h-3 bg-green-500 rounded-full ml-2"></div>
-                                <span class="text-sm text-gray-600">منذ يومين</span>
+
+
+
+
+
+            <!-- About Us Interactive Icon -->
+            <div class="mt-20 text-center">
+                <div class="max-w-md mx-auto">
+                    <button onclick="showPage('about')" class="group bg-gradient-to-br from-purple-600 via-purple-700 to-blue-800 hover:from-purple-700 hover:via-purple-800 hover:to-blue-900 text-white p-8 rounded-full shadow-2xl hover:shadow-3xl transition-all duration-500 transform hover:scale-110 hover:-translate-y-2 relative overflow-hidden">
+                        <!-- Background Animation -->
+                        <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+                        
+                        <!-- Icon Container -->
+                        <div class="relative z-10 flex flex-col items-center">
+                            <!-- Main Icon -->
+                            <div class="w-16 h-16 mb-4 relative">
+                                <svg class="w-full h-full text-white group-hover:text-blue-100 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                                </svg>
+                                
+                                <!-- Floating Hearts Animation -->
+                                <div class="absolute -top-2 -right-2 w-4 h-4 text-pink-300 opacity-0 group-hover:opacity-100 group-hover:animate-bounce transition-all duration-300 delay-100">
+                                    <svg fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                                    </svg>
+                                </div>
+                                
+                                <!-- Sparkle Effect -->
+                                <div class="absolute -top-1 -left-1 w-3 h-3 text-yellow-300 opacity-0 group-hover:opacity-100 group-hover:animate-ping transition-all duration-300 delay-200">
+                                    <svg fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                    </svg>
+                                </div>
                             </div>
-                            <h4 class="text-lg font-semibold gradient-text mb-2">محاضرة جديدة</h4>
-                            <p class="text-gray-600 text-sm">تم إضافة المحاضرة الأولى من Physiology 1</p>
+                            
+                            <!-- Text -->
+                            <h3 class="text-2xl font-bold mb-2 group-hover:text-blue-100 transition-colors duration-300">حولنا</h3>
+                            <p class="text-purple-100 text-sm group-hover:text-blue-100 transition-colors duration-300">تعرف على فريق العمل</p>
+                            
+                            <!-- Pulse Ring -->
+                            <div class="absolute inset-0 rounded-full border-4 border-white/20 group-hover:border-white/40 transition-all duration-300"></div>
+                            <div class="absolute inset-0 rounded-full border-4 border-white/10 animate-ping group-hover:border-white/30"></div>
                         </div>
                         
-                        <div class="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-6 hover-scale">
-                            <div class="flex items-center mb-4">
-                                <div class="w-3 h-3 bg-blue-500 rounded-full ml-2"></div>
-                                <span class="text-sm text-gray-600">منذ أسبوع</span>
-                            </div>
-                            <h4 class="text-lg font-semibold gradient-text mb-2">تحسينات المنصة</h4>
-                            <p class="text-gray-600 text-sm">تحسين سرعة التحميل وإضافة ميزات جديدة</p>
-                        </div>
-                        
-                        <div class="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-6 hover-scale">
-                            <div class="flex items-center mb-4">
-                                <div class="w-3 h-3 bg-purple-500 rounded-full ml-2"></div>
-                                <span class="text-sm text-gray-600">الآن</span>
-                            </div>
-                            <h4 class="text-lg font-semibold gradient-text mb-2">عدد الطلاب</h4>
-                            <p class="text-gray-600 text-sm">387 طالب منضم للمنصة</p>
-                        </div>
+                        <!-- Hover Glow Effect -->
+                        <div class="absolute inset-0 rounded-full bg-gradient-to-r from-purple-400/20 to-blue-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl"></div>
+                    </button>
+                    
+                    <!-- Description Text -->
+                    <div class="mt-6 text-center">
+                        <p class="text-gray-600 text-lg font-medium">اكتشف قصتنا ورؤيتنا</p>
+                        <p class="text-gray-500 text-sm mt-2">تعرف على الفريق الذي يقف وراء منصة Studyfy</p>
                     </div>
                 </div>
-            </section>
+            </div>
 
-
-
-            <!-- Call to Action Section -->
-            <section class="py-16 bg-gradient-to-br from-blue-600 to-blue-800">
-                <div class="container mx-auto px-4 text-center">
-                    <h3 class="text-3xl font-bold text-white mb-6">جاهز تبدأ رحلتك وحكايتك؟</h3>
-                    <p class="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">لكل واحد حكاية ورحلة لازم يحكيها لو حكيتها وانت منتصر وناجح فيها افتخر بنفسك ولو فشلت فيها احكي قد اي انتا سعيت واجتهدت فيها وافتخر بنفسك ❤️</p>
-                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                        <button onclick="showPage('start-journey')" class="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover-scale hover:shadow-xl transition-all">ابدأ الآن مجاناً</button>
-                        <a href="https://chat.whatsapp.com/HYF2QApNRNa3iqkAIkfT4H?mode=ac_t" target="_blank" class="bg-transparent border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-all">تواصل معنا</a>
-                    </div>
-                </div>
-            </section>
         </div>
 
         <!-- About Page -->
         <div id="about-page" class="page-content">
-            <section class="py-16 bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700">
+            <section class="min-h-screen bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700 py-16">
                 <div class="container mx-auto px-4">
-                    <div class="max-w-4xl mx-auto">
-                        <h2 class="text-3xl font-bold text-center text-white mb-12">حولنا</h2>
-                        
-                        <div class="bg-gradient-to-br from-blue-800 to-blue-600 rounded-lg p-8 mb-8">
-                            <h4 class="text-xl font-semibold text-white mb-4">احنا مين؟</h4>
-                            <p class="text-blue-100 leading-relaxed mb-6">
-                                🎯 إحنا زمايلك في الفرقة التالتة علاج طبيعي، جايين نكون فضهرك في مشوار! 💪📚<br>
-                                هنشرحلك المواد بأسلوب بسيط، ممتع، وواضح يخليك تستوعب أسرع وتتفوّق 💡✨<br>
-                                إحنا هنا عشان نسهل عليك الطريق ونخلي المذاكرة أخف وأمتع 🚀<br>
-                                🩺 رحلتك للنجاح تبدأ من هنا… ومعانا هتوصل أسرع!
-                            </p>
-                        </div>
-                        
-                        <div class="grid md:grid-cols-2 gap-6 mb-12">
-                            <div class="bg-gradient-to-br from-blue-700 to-blue-600 rounded-lg shadow-lg p-6 hover-scale">
-                                <h4 class="text-lg font-semibold text-white mb-3">التخصص</h4>
-                                <p class="text-blue-100">العلاج الطبيعي - الفرقة الثالثة</p>
-                            </div>
-                            
-                            <div class="bg-gradient-to-br from-blue-700 to-blue-600 rounded-lg shadow-lg p-6 hover-scale">
-                                <h4 class="text-lg font-semibold text-white mb-3">الفرق المتاحة</h4>
-                                <p class="text-blue-100">الفرقة الأولى والثانية</p>
-                            </div>
-                        </div>
-                        
-                        <!-- مؤسس المنصة -->
-                        <div class="text-center">
-                            <div class="w-48 h-48 mx-auto mb-6 rounded-full overflow-hidden shadow-lg bg-gradient-to-br from-blue-600 to-blue-500">
-                                <img src="https://i.postimg.cc/26M7GZSJ/IMG-20250221-WA0027-1.jpg" alt="د/ أحمد باسم" class="w-full h-full object-cover" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-white text-6xl font-bold\'>أ.ب</div>';">
-                            </div>
-                            <h3 class="text-2xl font-bold text-white mb-2">د/ أحمد باسم</h3>
-                            <p class="text-blue-200 text-lg mb-4">مؤسس المنصة</p>
-                            
-                            <!-- WhatsApp Contact Button -->
-                            <a href="https://wa.me/201018421673" target="_blank" class="inline-flex items-center bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
-                                <svg class="w-6 h-6 ml-2" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
+                    <!-- Header Section -->
+                    <div class="text-center mb-16">
+                        <div class="flex items-center justify-center mb-8">
+                            <div class="brain-logo w-20 h-20 mr-4">
+                                <svg viewBox="0 0 100 100" class="w-full h-full">
+                                    <defs>
+                                        <linearGradient id="aboutLogoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                            <stop offset="0%" style="stop-color:#60a5fa"/>
+                                            <stop offset="50%" style="stop-color:#3b82f6"/>
+                                            <stop offset="100%" style="stop-color:#1e3a8a"/>
+                                        </linearGradient>
+                                        <filter id="aboutGlow">
+                                            <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                                            <feMerge> 
+                                                <feMergeNode in="coloredBlur"/>
+                                                <feMergeNode in="SourceGraphic"/>
+                                            </feMerge>
+                                        </filter>
+                                    </defs>
+                                    <!-- Left hemisphere -->
+                                    <path d="M20 30 C15 25, 15 35, 18 40 C12 45, 15 55, 20 58 C18 65, 22 70, 28 68 C25 75, 30 80, 38 78 C35 85, 42 88, 48 85 C48 82, 48 78, 50 75" fill="url(#aboutLogoGradient)" stroke="white" stroke-width="2" filter="url(#aboutGlow)"/>
+                                    <!-- Right hemisphere -->
+                                    <path d="M80 30 C85 25, 85 35, 82 40 C88 45, 85 55, 80 58 C82 65, 78 70, 72 68 C75 75, 70 80, 62 78 C65 85, 58 88, 52 85 C52 82, 52 78, 50 75" fill="url(#aboutLogoGradient)" stroke="white" stroke-width="2" filter="url(#aboutGlow)"/>
+                                    <!-- Cerebellum -->
+                                    <path d="M35 75 C40 78, 45 78, 50 75 C55 78, 60 78, 65 75 C68 78, 65 82, 60 80 C55 83, 45 83, 40 80 C35 82, 32 78, 35 75" fill="url(#aboutLogoGradient)" stroke="white" stroke-width="2" filter="url(#aboutGlow)"/>
+                                    <!-- Brain stem -->
+                                    <path d="M48 85 C49 88, 51 88, 52 85 C52 90, 48 90, 48 85" fill="url(#aboutLogoGradient)" stroke="white" stroke-width="2" filter="url(#aboutGlow)"/>
+                                    <!-- Brain folds and details -->
+                                    <path d="M25 35 C30 32, 35 35, 40 32" stroke="white" stroke-width="1.5" fill="none" filter="url(#aboutGlow)"/>
+                                    <path d="M60 32 C65 35, 70 32, 75 35" stroke="white" stroke-width="1.5" fill="none" filter="url(#aboutGlow)"/>
+                                    <path d="M22 45 C28 42, 32 45, 38 43" stroke="white" stroke-width="1.5" fill="none" filter="url(#aboutGlow)"/>
+                                    <path d="M62 43 C68 45, 72 42, 78 45" stroke="white" stroke-width="1.5" fill="none" filter="url(#aboutGlow)"/>
+                                    <path d="M25 55 C30 52, 35 55, 42 53" stroke="white" stroke-width="1.5" fill="none" filter="url(#aboutGlow)"/>
+                                    <path d="M58 53 C65 55, 70 52, 75 55" stroke="white" stroke-width="1.5" fill="none" filter="url(#aboutGlow)"/>
+                                    <!-- Central sulcus -->
+                                    <path d="M50 25 C50 35, 50 45, 50 55" stroke="white" stroke-width="2" fill="none" filter="url(#aboutGlow)"/>
                                 </svg>
-                                تواصل معي
-                            </a>
+                            </div>
+                            <div class="text-left">
+                                <h1 class="text-4xl md:text-5xl font-bold mb-2">
+                                    <span class="bg-gradient-to-r from-blue-300 to-blue-100 bg-clip-text text-transparent">Study</span><span class="text-white">fy</span>
+                                </h1>
+                                <div class="bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 border border-white/20">
+                                    <p class="text-white font-semibold text-lg tracking-wide">Study Smart Not Hard</p>
+                                </div>
+                            </div>
+                        </div>
+                        <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">حولنا</h2>
+                        <p class="text-xl text-blue-100 max-w-2xl mx-auto">تعرف على فريق العمل ورؤيتنا في تطوير التعليم الطبي</p>
+                    </div>
+                    
+                    <!-- Main Content -->
+                    <div class="max-w-6xl mx-auto">
+                        <!-- Who We Are Section -->
+                        <div class="bg-gradient-to-br from-blue-800/80 to-blue-600/80 backdrop-blur-sm rounded-2xl p-8 mb-12 border border-blue-500/30 shadow-2xl">
+                            <div class="flex items-center mb-6">
+                                <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-400 rounded-full flex items-center justify-center mr-4 shadow-lg">
+                                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                                    </svg>
+                                </div>
+                                <h3 class="text-2xl font-bold text-white">احنا مين؟</h3>
+                            </div>
+                            <div class="text-blue-100 leading-relaxed text-lg space-y-4">
+                                <p class="flex items-start">
+                                    <span class="text-2xl mr-3">🎯</span>
+                                    <span>إحنا زمايلك في الفرقة التالتة علاج طبيعي، جايين نكون فضهرك في مشوار! 💪📚</span>
+                                </p>
+                                <p class="flex items-start">
+                                    <span class="text-2xl mr-3">💡</span>
+                                    <span>هنشرحلك المواد بأسلوب بسيط، ممتع، وواضح يخليك تستوعب أسرع وتتفوّق ✨</span>
+                                </p>
+                                <p class="flex items-start">
+                                    <span class="text-2xl mr-3">🚀</span>
+                                    <span>إحنا هنا عشان نسهل عليك الطريق ونخلي المذاكرة أخف وأمتع</span>
+                                </p>
+                                <p class="flex items-start">
+                                    <span class="text-2xl mr-3">🩺</span>
+                                    <span class="font-semibold text-blue-200">رحلتك للنجاح تبدأ من هنا… ومعانا هتوصل أسرع!</span>
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <!-- Info Cards -->
+                        <div class="grid md:grid-cols-2 gap-8 mb-16">
+                            <div class="bg-gradient-to-br from-blue-700/80 to-blue-600/80 backdrop-blur-sm rounded-2xl shadow-2xl p-8 hover-scale border border-blue-500/30">
+                                <div class="flex items-center mb-6">
+                                    <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-green-400 rounded-full flex items-center justify-center mr-4">
+                                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                                        </svg>
+                                    </div>
+                                    <h4 class="text-xl font-bold text-white">التخصص</h4>
+                                </div>
+                                <p class="text-blue-100 text-lg">العلاج الطبيعي - الفرقة الثالثة</p>
+                                <div class="mt-4 pt-4 border-t border-blue-500/30">
+                                    <p class="text-blue-200 text-sm">نشارك خبرتنا وتجربتنا في الدراسة معكم</p>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-gradient-to-br from-blue-700/80 to-blue-600/80 backdrop-blur-sm rounded-2xl shadow-2xl p-8 hover-scale border border-blue-500/30">
+                                <div class="flex items-center mb-6">
+                                    <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-400 rounded-full flex items-center justify-center mr-4">
+                                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                                        </svg>
+                                    </div>
+                                    <h4 class="text-xl font-bold text-white">الفرق المتاحة</h4>
+                                </div>
+                                <p class="text-blue-100 text-lg">الفرقة الأولى والثانية</p>
+                                <div class="mt-4 pt-4 border-t border-blue-500/30">
+                                    <p class="text-blue-200 text-sm">محتوى شامل لبداية رحلتك في العلاج الطبيعي</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Founder Section -->
+                        <div class="bg-gradient-to-br from-blue-800/80 to-blue-600/80 backdrop-blur-sm rounded-2xl p-8 border border-blue-500/30 shadow-2xl">
+                            <div class="text-center">
+                                <h3 class="text-2xl font-bold text-white mb-8">مؤسس المنصة</h3>
+                                
+                                <div class="flex flex-col lg:flex-row items-center justify-center gap-8">
+                                    <!-- Profile Image -->
+                                    <div class="relative">
+                                        <div class="w-48 h-48 mx-auto rounded-full overflow-hidden shadow-2xl bg-gradient-to-br from-blue-600 to-blue-500 border-4 border-white/20">
+                                            <img src="https://i.postimg.cc/26M7GZSJ/IMG-20250221-WA0027-1.jpg" alt="د/ أحمد باسم" class="w-full h-full object-cover" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-white text-6xl font-bold\'>أ.ب</div>';">
+                                        </div>
+                                        <!-- Decorative Ring -->
+                                        <div class="absolute -inset-4 rounded-full border-2 border-blue-400/30 animate-pulse"></div>
+                                    </div>
+                                    
+                                    <!-- Profile Info -->
+                                    <div class="text-center lg:text-right">
+                                        <h4 class="text-3xl font-bold text-white mb-2">د/ أحمد باسم</h4>
+                                        <p class="text-blue-200 text-xl mb-6">مؤسس المنصة</p>
+                                        
+                                        <!-- Bio -->
+                                        <div class="bg-blue-900/50 rounded-xl p-6 mb-6 max-w-md mx-auto lg:mx-0">
+                                            <p class="text-blue-100 leading-relaxed">
+                                                طالب في الفرقة الثالثة علاج طبيعي، مؤسس منصة Studyfy التعليمية. 
+                                                هدفي مساعدة زمايلي في الكلية على فهم المواد بطريقة أسهل وأكثر متعة.
+                                            </p>
+                                        </div>
+                                        
+                                        <!-- Contact Button -->
+                                        <a href="https://wa.me/201018421673" target="_blank" class="inline-flex items-center bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white px-8 py-4 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl font-semibold text-lg">
+                                            <svg class="w-6 h-6 ml-3" fill="currentColor" viewBox="0 0 24 24">
+                                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
+                                            </svg>
+                                            تواصل معي
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Mission & Vision -->
+                        <div class="mt-16 grid md:grid-cols-2 gap-8">
+                            <!-- Mission -->
+                            <div class="bg-gradient-to-br from-purple-700/80 to-purple-600/80 backdrop-blur-sm rounded-2xl p-8 border border-purple-500/30 shadow-2xl hover-scale">
+                                <div class="flex items-center mb-6">
+                                    <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-400 rounded-full flex items-center justify-center mr-4">
+                                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                                        </svg>
+                                    </div>
+                                    <h4 class="text-xl font-bold text-white">رسالتنا</h4>
+                                </div>
+                                <p class="text-purple-100 leading-relaxed">
+                                    تبسيط التعليم الطبي وجعله أكثر متعة وفهماً لطلاب العلاج الطبيعي، 
+                                    من خلال محتوى تفاعلي عالي الجودة يساعد على التفوق الأكاديمي.
+                                </p>
+                            </div>
+                            
+                            <!-- Vision -->
+                            <div class="bg-gradient-to-br from-green-700/80 to-green-600/80 backdrop-blur-sm rounded-2xl p-8 border border-green-500/30 shadow-2xl hover-scale">
+                                <div class="flex items-center mb-6">
+                                    <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-green-400 rounded-full flex items-center justify-center mr-4">
+                                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                                        </svg>
+                                    </div>
+                                    <h4 class="text-xl font-bold text-white">رؤيتنا</h4>
+                                </div>
+                                <p class="text-green-100 leading-relaxed">
+                                    أن نكون المنصة التعليمية الرائدة في مجال العلاج الطبيعي، 
+                                    ونساهم في إعداد جيل متميز من أطباء العلاج الطبيعي المؤهلين.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <!-- Call to Action -->
+                        <div class="mt-16 text-center">
+                            <div class="bg-gradient-to-r from-blue-600/30 to-purple-600/30 backdrop-blur-sm border border-blue-400/30 rounded-2xl p-8 max-w-3xl mx-auto">
+                                <h4 class="text-2xl font-bold text-white mb-4">جاهز تنضم لعائلة Studyfy؟</h4>
+                                <p class="text-blue-100 mb-6 text-lg">ابدأ رحلتك التعليمية معنا واكتشف طريقة جديدة للتعلم</p>
+                                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                                    <button onclick="showPage('start-journey')" class="bg-gradient-to-r from-white to-blue-50 text-blue-600 px-8 py-3 rounded-xl font-semibold hover:from-blue-50 hover:to-white transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+                                        ابدأ التعلم الآن
+                                    </button>
+                                    <a href="https://chat.whatsapp.com/HYF2QApNRNa3iqkAIkfT4H?mode=ac_t" target="_blank" class="bg-transparent border-2 border-white text-white px-8 py-3 rounded-xl font-semibold hover:bg-white hover:text-blue-600 transition-all">
+                                        انضم لمجتمعنا
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1326,7 +1622,7 @@
                     <div class="text-center mt-16">
                         <div class="bg-gradient-to-r from-blue-600/30 to-blue-500/30 backdrop-blur-sm border border-blue-400/30 rounded-2xl p-8 max-w-2xl mx-auto">
                             <h4 class="text-2xl font-bold text-white mb-4">مستعد للبداية؟</h4>
-                            <p class="text-blue-100 mb-6">انضم لآلاف الطلاب الذين يتعلمون العلاج الطبيعي معنا</p>
+                            <p class="text-blue-100 mb-6">اللهم لا سهل إلا ما جعلته سهلا، فاجعل بحولك وقوتك كل صعب علينا سهلا، فإنك إن شئت جعلت الحزن سهلا</p>
                             <div class="flex flex-col sm:flex-row gap-4 justify-center">
                                 <button onclick="showPage('first-year-first')" class="bg-gradient-to-r from-white to-blue-50 text-blue-600 px-8 py-3 rounded-xl font-semibold hover:from-blue-50 hover:to-white transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-1">
                                     ابدأ الآن مجاناً
@@ -1432,18 +1728,9 @@
                                         <div class="flex justify-between items-center">
                                             <span class="text-xs text-blue-200">المحاضرات المشاهدة</span>
                                             <div class="flex items-center">
-                                                <span class="text-xs text-white mr-2" id="lectures-watched">0/10</span>
+                                                <span class="text-xs text-white mr-2" id="lectures-watched">0/5</span>
                                                 <div class="w-16 bg-blue-900/50 rounded-full h-1">
                                                     <div class="bg-white h-1 rounded-full transition-all duration-300" id="lectures-progress" style="width: 0%"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="flex justify-between items-center">
-                                            <span class="text-xs text-blue-200">الأسئلة المحلولة</span>
-                                            <div class="flex items-center">
-                                                <span class="text-xs text-white mr-2" id="quizzes-completed">0/2</span>
-                                                <div class="w-16 bg-blue-900/50 rounded-full h-1">
-                                                    <div class="bg-white h-1 rounded-full transition-all duration-300" id="quizzes-progress" style="width: 0%"></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -1455,13 +1742,7 @@
                                         <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h1m4 0h1m6-10V7a3 3 0 11-6 0V4h6zM4 20h16"></path>
                                         </svg>
-                                        الشرح
-                                    </button>
-                                    <button onclick="showPage('physiology-questions')" class="w-full bg-blue-600 text-white py-3 px-6 rounded-xl hover:bg-blue-700 transition-all font-semibold text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1 flex items-center justify-center">
-                                        <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                        </svg>
-                                        الأسئلة
+                                        شاهد المحاضرات
                                     </button>
                                 </div>
                             </div>
@@ -1838,33 +2119,10 @@
                                             >
                                             <span class="mr-2 text-gray-700">📺 شاهدت المحاضرة</span>
                                         </label>
-                                        
-                                        <label class="flex items-center cursor-pointer text-sm">
-                                            <input 
-                                                type="checkbox" 
-                                                id="lecture-1-mcq"
-                                                class="w-4 h-4 text-green-600 bg-gray-100 border-gray-300 rounded focus:ring-green-500 focus:ring-1 transition-all"
-                                                onchange="progressTracker.toggleTask('physiology1', 1, 'mcqCompleted')"
-                                            >
-                                            <span class="mr-2 text-gray-700">🎯 حليت MCQ</span>
-                                        </label>
-                                        
-                                        <label class="flex items-center cursor-pointer text-sm">
-                                            <input 
-                                                type="checkbox" 
-                                                id="lecture-1-truefalse"
-                                                class="w-4 h-4 text-purple-600 bg-gray-100 border-gray-300 rounded focus:ring-purple-500 focus:ring-1 transition-all"
-                                                onchange="progressTracker.toggleTask('physiology1', 1, 'trueFalseCompleted')"
-                                            >
-                                            <span class="mr-2 text-gray-700">✔️ حليت صح وخطأ</span>
-                                        </label>
                                     </div>
                                 </div>
                                 
-                                <!-- Quick Action -->
-                                <button onclick="showPage('physiology-questions')" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-3 rounded-lg text-sm font-semibold transition-colors">
-                                    حل الأسئلة
-                                </button>
+
                         </div>
                         
                             <!-- Second Lecture -->
@@ -1969,33 +2227,10 @@
                                                 >
                                                 <span class="mr-2 text-gray-700">📺 شاهدت المحاضرة</span>
                                             </label>
-                                            
-                                            <label class="flex items-center cursor-pointer text-sm">
-                                                <input 
-                                                    type="checkbox" 
-                                                    id="lecture-2-mcq"
-                                                    class="w-4 h-4 text-green-600 bg-gray-100 border-gray-300 rounded focus:ring-green-500 focus:ring-1 transition-all"
-                                                    onchange="progressTracker.toggleTask('physiology1', 2, 'mcqCompleted')"
-                                                >
-                                                <span class="mr-2 text-gray-700">🎯 حليت MCQ</span>
-                                            </label>
-                                            
-                                            <label class="flex items-center cursor-pointer text-sm">
-                                                <input 
-                                                    type="checkbox" 
-                                                    id="lecture-2-truefalse"
-                                                    class="w-4 h-4 text-green-600 bg-gray-100 border-gray-300 rounded focus:ring-green-500 focus:ring-1 transition-all"
-                                                    onchange="progressTracker.toggleTask('physiology1', 2, 'trueFalseCompleted')"
-                                                >
-                                                <span class="mr-2 text-gray-700">✔️ حليت صح وخطأ</span>
-                                            </label>
                                         </div>
                                     </div>
                                     
-                                    <!-- Quick Action -->
-                                    <button onclick="showPage('physiology-questions')" class="w-full bg-green-600 hover:bg-green-700 text-white py-2 px-3 rounded-lg text-sm font-semibold transition-colors">
-                                        حل الأسئلة
-                                    </button>
+
                                 </div>
                             </div>
                         
@@ -2101,33 +2336,10 @@
                                                 >
                                                 <span class="mr-2 text-gray-700">📺 شاهدت المحاضرة</span>
                                             </label>
-                                            
-                                            <label class="flex items-center cursor-pointer text-sm">
-                                                <input 
-                                                    type="checkbox" 
-                                                    id="lecture-3-mcq"
-                                                    class="w-4 h-4 text-purple-600 bg-gray-100 border-gray-300 rounded focus:ring-purple-500 focus:ring-1 transition-all"
-                                                    onchange="progressTracker.toggleTask('physiology1', 3, 'mcqCompleted')"
-                                                >
-                                                <span class="mr-2 text-gray-700">🎯 حليت MCQ</span>
-                                            </label>
-                                            
-                                            <label class="flex items-center cursor-pointer text-sm">
-                                                <input 
-                                                    type="checkbox" 
-                                                    id="lecture-3-truefalse"
-                                                    class="w-4 h-4 text-purple-600 bg-gray-100 border-gray-300 rounded focus:ring-purple-500 focus:ring-1 transition-all"
-                                                    onchange="progressTracker.toggleTask('physiology1', 3, 'trueFalseCompleted')"
-                                                >
-                                                <span class="mr-2 text-gray-700">✔️ حليت صح وخطأ</span>
-                                            </label>
                                         </div>
                                     </div>
                                     
-                                    <!-- Quick Action -->
-                                    <button onclick="showPage('physiology-questions')" class="w-full bg-purple-600 hover:bg-purple-700 text-white py-2 px-3 rounded-lg text-sm font-semibold transition-colors">
-                                        حل الأسئلة
-                                    </button>
+
                                 </div>
                             </div>
                         
@@ -2233,33 +2445,10 @@
                                                 >
                                                 <span class="mr-2 text-gray-700">📺 شاهدت المحاضرة</span>
                                             </label>
-                                            
-                                            <label class="flex items-center cursor-pointer text-sm">
-                                                <input 
-                                                    type="checkbox" 
-                                                    id="lecture-4-mcq"
-                                                    class="w-4 h-4 text-orange-600 bg-gray-100 border-gray-300 rounded focus:ring-orange-500 focus:ring-1 transition-all"
-                                                    onchange="progressTracker.toggleTask('physiology1', 4, 'mcqCompleted')"
-                                                >
-                                                <span class="mr-2 text-gray-700">🎯 حليت MCQ</span>
-                                            </label>
-                                            
-                                            <label class="flex items-center cursor-pointer text-sm">
-                                                <input 
-                                                    type="checkbox" 
-                                                    id="lecture-4-truefalse"
-                                                    class="w-4 h-4 text-orange-600 bg-gray-100 border-gray-300 rounded focus:ring-orange-500 focus:ring-1 transition-all"
-                                                    onchange="progressTracker.toggleTask('physiology1', 4, 'trueFalseCompleted')"
-                                                >
-                                                <span class="mr-2 text-gray-700">✔️ حليت صح وخطأ</span>
-                                            </label>
                                         </div>
                                     </div>
                                     
-                                    <!-- Quick Action -->
-                                    <button onclick="showPage('physiology-questions')" class="w-full bg-orange-600 hover:bg-orange-700 text-white py-2 px-3 rounded-lg text-sm font-semibold transition-colors">
-                                        حل الأسئلة
-                                    </button>
+
                                 </div>
                             </div>
                         
@@ -2389,33 +2578,10 @@
                                                 >
                                                 <span class="mr-2 text-gray-700">📺 شاهدت المحاضرة</span>
                                             </label>
-                                            
-                                            <label class="flex items-center cursor-pointer text-sm">
-                                                <input 
-                                                    type="checkbox" 
-                                                    id="lecture-5-mcq"
-                                                    class="w-4 h-4 text-red-600 bg-gray-100 border-gray-300 rounded focus:ring-red-500 focus:ring-1 transition-all"
-                                                    onchange="progressTracker.toggleTask('physiology1', 5, 'mcqCompleted')"
-                                                >
-                                                <span class="mr-2 text-gray-700">🎯 حليت MCQ</span>
-                                            </label>
-                                            
-                                            <label class="flex items-center cursor-pointer text-sm">
-                                                <input 
-                                                    type="checkbox" 
-                                                    id="lecture-5-truefalse"
-                                                    class="w-4 h-4 text-red-600 bg-gray-100 border-gray-300 rounded focus:ring-red-500 focus:ring-1 transition-all"
-                                                    onchange="progressTracker.toggleTask('physiology1', 5, 'trueFalseCompleted')"
-                                                >
-                                                <span class="mr-2 text-gray-700">✔️ حليت صح وخطأ</span>
-                                            </label>
                                         </div>
                                     </div>
                                     
-                                    <!-- Quick Action -->
-                                    <button onclick="showPage('physiology-questions')" class="w-full bg-red-600 hover:bg-red-700 text-white py-2 px-3 rounded-lg text-sm font-semibold transition-colors">
-                                        حل الأسئلة
-                                    </button>
+
                                 </div>
                             </div>
                         </div>
@@ -2487,16 +2653,32 @@
                                     </div>
                                 </div>
                                 
-                                <!-- Lecture 2 - Coming Soon -->
-                                <div class="bg-gradient-to-br from-gray-100 to-gray-200 rounded-xl p-6 cursor-not-allowed opacity-75 border-2 border-gray-300">
+                                <!-- Lecture 2 - Available -->
+                                <div class="bg-gradient-to-br from-green-50 to-green-100 rounded-xl p-6 hover-scale cursor-pointer border-2 border-green-200" onclick="showLectureQuiz(2)" data-lecture="2">
                                     <div class="text-center">
-                                        <div class="w-16 h-16 bg-gray-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                                        <div class="w-16 h-16 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-4 relative">
                                             <span class="text-white font-bold text-xl">2</span>
+                                            <!-- Completion Badge -->
+                                            <div class="absolute -top-1 -right-1 w-6 h-6 bg-green-500 rounded-full items-center justify-center hidden" id="lecture-2-quiz-badge">
+                                                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                                </svg>
+                                            </div>
                                         </div>
-                                        <h4 class="text-lg font-bold text-gray-600 mb-2">المحاضرة الثانية</h4>
-                                        <p class="text-gray-500 text-sm mb-4">الجهاز العصبي</p>
-                                        <div class="bg-gray-500 text-white px-4 py-2 rounded-lg font-semibold text-sm">
-                                            قريباً
+                                        <h4 class="text-lg font-bold text-green-800 mb-2">المحاضرة الثانية</h4>
+                                        <p class="text-gray-600 text-sm mb-4">Transport Across Cell Membrane</p>
+                                        
+                                        <!-- Quiz Progress -->
+                                        <div class="mb-4">
+                                            <div class="text-xs text-gray-500 mb-2">تقدم الأسئلة</div>
+                                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                                <div class="bg-gradient-to-r from-green-500 to-green-600 h-2 rounded-full transition-all duration-300" id="lecture-2-quiz-progress" style="width: 0%"></div>
+                                            </div>
+                                            <div class="text-xs text-gray-600 mt-1" id="lecture-2-quiz-status">0/2 مكتمل</div>
+                                        </div>
+                                        
+                                        <div class="bg-green-600 text-white px-4 py-2 rounded-lg font-semibold text-sm">
+                                            متاح
                                         </div>
                                     </div>
                                 </div>
@@ -2559,8 +2741,169 @@
                             </div>
                         </div>
                         
-                        <!-- Lecture 1 Quiz Selection (Hidden initially) -->
+                        <!-- Lecture Quiz Selections (Hidden initially) -->
                         <div id="lecture-1-quiz" class="hidden">
+                            <div class="bg-white rounded-2xl shadow-xl p-8 mb-8">
+                                <div class="flex items-center mb-6">
+                                    <button onclick="backToLecturesList()" class="text-blue-600 hover:text-blue-800 flex items-center">
+                                        <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                                        </svg>
+                                        العودة
+                                    </button>
+                                </div>
+                                
+                                <div class="text-center mb-8">
+                                    <div class="w-20 h-20 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                                        <span class="text-white font-bold text-2xl">1</span>
+                                    </div>
+                                    <h3 class="text-2xl font-bold gradient-text mb-4">المحاضرة الأولى - The Cell</h3>
+                                    <p class="text-gray-600">اختر نوع الأسئلة التي تريد حلها</p>
+                                </div>
+                                
+                                <div class="grid md:grid-cols-2 gap-6">
+                                    <!-- MCQ Questions -->
+                                    <div class="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-6 hover-scale cursor-pointer relative" onclick="startQuiz('mcq')" id="mcq-quiz-card">
+                                        <div class="text-center">
+                                            <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 relative">
+                                                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                                </svg>
+                                                <!-- Completion Badge -->
+                                                <div class="absolute -top-1 -right-1 w-6 h-6 bg-green-500 rounded-full items-center justify-center hidden" id="mcq-completed-badge">
+                                                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                            <h4 class="text-xl font-bold gradient-text mb-2">أسئلة اختيار من متعدد</h4>
+                                            <p class="text-gray-600 text-sm mb-4">11 سؤال على The Cell</p>
+                                            
+                                            <!-- Best Score Display -->
+                                            <div class="mb-4 hidden" id="mcq-best-score">
+                                                <div class="text-xs text-gray-500 mb-1">أفضل نتيجة</div>
+                                                <div class="text-lg font-bold text-green-600" id="mcq-score-display">0/11</div>
+                                            </div>
+                                            
+                                            <div class="bg-blue-600 text-white px-4 py-2 rounded-lg font-semibold" id="mcq-button-text">
+                                                ابدأ الاختبار
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- True/False Questions -->
+                                    <div class="bg-gradient-to-br from-green-50 to-green-100 rounded-xl p-6 hover-scale cursor-pointer relative" onclick="startQuiz('truefalse')" id="truefalse-quiz-card">
+                                        <div class="text-center">
+                                            <div class="w-16 h-16 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-4 relative">
+                                                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                                </svg>
+                                                <!-- Completion Badge -->
+                                                <div class="absolute -top-1 -right-1 w-6 h-6 bg-green-500 rounded-full items-center justify-center hidden" id="truefalse-completed-badge">
+                                                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                            <h4 class="text-xl font-bold text-green-700 mb-2">أسئلة صح وخطأ</h4>
+                                            <p class="text-gray-600 text-sm mb-4">10 أسئلة صح وخطأ على The Cell</p>
+                                            
+                                            <!-- Best Score Display -->
+                                            <div class="mb-4 hidden" id="truefalse-best-score">
+                                                <div class="text-xs text-gray-500 mb-1">أفضل نتيجة</div>
+                                                <div class="text-lg font-bold text-green-600" id="truefalse-score-display">0/10</div>
+                                            </div>
+                                            
+                                            <div class="bg-green-600 text-white px-4 py-2 rounded-lg font-semibold" id="truefalse-button-text">
+                                                ابدأ الاختبار
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Lecture 2 Quiz Selection (Hidden initially) -->
+                        <div id="lecture-2-quiz" class="hidden">
+                            <div class="bg-white rounded-2xl shadow-xl p-8 mb-8">
+                                <div class="flex items-center mb-6">
+                                    <button onclick="backToLecturesList()" class="text-blue-600 hover:text-blue-800 flex items-center">
+                                        <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                                        </svg>
+                                        العودة
+                                    </button>
+                                </div>
+                                
+                                <div class="text-center mb-8">
+                                    <div class="w-20 h-20 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                                        <span class="text-white font-bold text-2xl">2</span>
+                                    </div>
+                                    <h3 class="text-2xl font-bold text-green-700 mb-4">المحاضرة الثانية - Transport Across Cell Membrane</h3>
+                                    <p class="text-gray-600">اختر نوع الأسئلة التي تريد حلها</p>
+                                </div>
+                                
+                                <div class="grid md:grid-cols-2 gap-6">
+                                    <!-- MCQ Questions -->
+                                    <div class="bg-gradient-to-br from-green-50 to-green-100 rounded-xl p-6 hover-scale cursor-pointer relative" onclick="startQuiz('mcq')" id="mcq-quiz-card-2">
+                                        <div class="text-center">
+                                            <div class="w-16 h-16 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-4 relative">
+                                                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                                </svg>
+                                                <!-- Completion Badge -->
+                                                <div class="absolute -top-1 -right-1 w-6 h-6 bg-green-500 rounded-full items-center justify-center hidden" id="mcq-completed-badge-2">
+                                                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                            <h4 class="text-xl font-bold text-green-700 mb-2">أسئلة اختيار من متعدد</h4>
+                                            <p class="text-gray-600 text-sm mb-4">أسئلة على Transport Across Cell Membrane</p>
+                                            
+                                            <!-- Best Score Display -->
+                                            <div class="mb-4 hidden" id="mcq-best-score-2">
+                                                <div class="text-xs text-gray-500 mb-1">أفضل نتيجة</div>
+                                                <div class="text-lg font-bold text-green-600" id="mcq-score-display-2">0/0</div>
+                                            </div>
+                                            
+                                            <div class="bg-green-600 text-white px-4 py-2 rounded-lg font-semibold" id="mcq-button-text-2">
+                                                ابدأ الاختبار
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- True/False Questions -->
+                                    <div class="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-6 hover-scale cursor-pointer relative" onclick="startQuiz('truefalse')" id="truefalse-quiz-card-2">
+                                        <div class="text-center">
+                                            <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 relative">
+                                                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                                </svg>
+                                                <!-- Completion Badge -->
+                                                <div class="absolute -top-1 -right-1 w-6 h-6 bg-green-500 rounded-full items-center justify-center hidden" id="truefalse-completed-badge-2">
+                                                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                            <h4 class="text-xl font-bold text-blue-700 mb-2">أسئلة صح وخطأ</h4>
+                                            <p class="text-gray-600 text-sm mb-4">أسئلة صح وخطأ على Transport Across Cell Membrane</p>
+                                            
+                                            <!-- Best Score Display -->
+                                            <div class="mb-4 hidden" id="truefalse-best-score-2">
+                                                <div class="text-xs text-gray-500 mb-1">أفضل نتيجة</div>
+                                                <div class="text-lg font-bold text-blue-600" id="truefalse-score-display-2">0/0</div>
+                                            </div>
+                                            
+                                            <div class="bg-blue-600 text-white px-4 py-2 rounded-lg font-semibold" id="truefalse-button-text-2">
+                                                ابدأ الاختبار
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                             <div class="bg-white rounded-2xl shadow-xl p-8 mb-8">
                                 <div class="flex items-center mb-6">
                                     <button onclick="backToLecturesList()" class="text-blue-600 hover:text-blue-800 flex items-center">
@@ -2775,58 +3118,81 @@
 
 
     <!-- Footer -->
-    <footer class="gradient-bg text-white py-8">
+    <footer class="gradient-bg text-white py-12">
         <div class="container mx-auto px-4">
-            <div class="flex flex-col md:flex-row items-center justify-between">
-                <div class="flex items-center space-x-3 space-x-reverse mb-4 md:mb-0">
-                    <div class="brain-logo">
-                        <svg viewBox="0 0 100 100" class="w-full h-full">
-                            <defs>
-                                <linearGradient id="footerBrainGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                    <stop offset="0%" style="stop-color:#60a5fa"/>
-                                    <stop offset="50%" style="stop-color:#3b82f6"/>
-                                    <stop offset="100%" style="stop-color:#1e3a8a"/>
-                                </linearGradient>
-                            </defs>
-                            <!-- Left hemisphere -->
-                            <path d="M20 30 C15 25, 15 35, 18 40 C12 45, 15 55, 20 58 C18 65, 22 70, 28 68 C25 75, 30 80, 38 78 C35 85, 42 88, 48 85 C48 82, 48 78, 50 75" fill="url(#footerBrainGradient)" stroke="white" stroke-width="1.5"/>
-                            <!-- Right hemisphere -->
-                            <path d="M80 30 C85 25, 85 35, 82 40 C88 45, 85 55, 80 58 C82 65, 78 70, 72 68 C75 75, 70 80, 62 78 C65 85, 58 88, 52 85 C52 82, 52 78, 50 75" fill="url(#footerBrainGradient)" stroke="white" stroke-width="1.5"/>
-                            <!-- Cerebellum -->
-                            <path d="M35 75 C40 78, 45 78, 50 75 C55 78, 60 78, 65 75 C68 78, 65 82, 60 80 C55 83, 45 83, 40 80 C35 82, 32 78, 35 75" fill="url(#footerBrainGradient)" stroke="white" stroke-width="1.5"/>
-                            <!-- Brain stem -->
-                            <path d="M48 85 C49 88, 51 88, 52 85 C52 90, 48 90, 48 85" fill="url(#footerBrainGradient)" stroke="white" stroke-width="1.5"/>
-                            <!-- Brain folds and details -->
-                            <path d="M25 35 C30 32, 35 35, 40 32" stroke="white" stroke-width="1" fill="none"/>
-                            <path d="M60 32 C65 35, 70 32, 75 35" stroke="white" stroke-width="1" fill="none"/>
-                            <path d="M22 45 C28 42, 32 45, 38 43" stroke="white" stroke-width="1" fill="none"/>
-                            <path d="M62 43 C68 45, 72 42, 78 45" stroke="white" stroke-width="1" fill="none"/>
-                            <path d="M25 55 C30 52, 35 55, 42 53" stroke="white" stroke-width="1" fill="none"/>
-                            <path d="M58 53 C65 55, 70 52, 75 55" stroke="white" stroke-width="1" fill="none"/>
-                            <!-- Central sulcus -->
-                            <path d="M50 25 C50 35, 50 45, 50 55" stroke="white" stroke-width="1.5" fill="none"/>
-                        </svg>
-                    </div>
-                    <div>
-                        <h3 class="text-xl font-bold">
-                            <span class="bg-gradient-to-r from-blue-300 to-blue-100 bg-clip-text text-transparent">Study</span><span class="text-white">fy</span>
-                        </h3>
-                        <p class="text-blue-200 text-sm">© 2025 جميع الحقوق محفوظة</p>
-                    </div>
+            <!-- Main Footer Content -->
+            <div class="text-center mb-8">
+                <!-- Logo and Description -->
+                <div class="max-w-md mx-auto">
+                    <a href="#" onclick="showPage('home')" class="flex items-center justify-center space-x-3 space-x-reverse hover:opacity-80 transition-opacity cursor-pointer mb-4">
+                        <div class="brain-logo">
+                            <svg viewBox="0 0 100 100" class="w-full h-full">
+                                <defs>
+                                    <linearGradient id="footerBrainGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" style="stop-color:#60a5fa"/>
+                                        <stop offset="50%" style="stop-color:#3b82f6"/>
+                                        <stop offset="100%" style="stop-color:#1e3a8a"/>
+                                    </linearGradient>
+                                </defs>
+                                <!-- Left hemisphere -->
+                                <path d="M20 30 C15 25, 15 35, 18 40 C12 45, 15 55, 20 58 C18 65, 22 70, 28 68 C25 75, 30 80, 38 78 C35 85, 42 88, 48 85 C48 82, 48 78, 50 75" fill="url(#footerBrainGradient)" stroke="white" stroke-width="1.5"/>
+                                <!-- Right hemisphere -->
+                                <path d="M80 30 C85 25, 85 35, 82 40 C88 45, 85 55, 80 58 C82 65, 78 70, 72 68 C75 75, 70 80, 62 78 C65 85, 58 88, 52 85 C52 82, 52 78, 50 75" fill="url(#footerBrainGradient)" stroke="white" stroke-width="1.5"/>
+                                <!-- Cerebellum -->
+                                <path d="M35 75 C40 78, 45 78, 50 75 C55 78, 60 78, 65 75 C68 78, 65 82, 60 80 C55 83, 45 83, 40 80 C35 82, 32 78, 35 75" fill="url(#footerBrainGradient)" stroke="white" stroke-width="1.5"/>
+                                <!-- Brain stem -->
+                                <path d="M48 85 C49 88, 51 88, 52 85 C52 90, 48 90, 48 85" fill="url(#footerBrainGradient)" stroke="white" stroke-width="1.5"/>
+                                <!-- Brain folds and details -->
+                                <path d="M25 35 C30 32, 35 35, 40 32" stroke="white" stroke-width="1" fill="none"/>
+                                <path d="M60 32 C65 35, 70 32, 75 35" stroke="white" stroke-width="1" fill="none"/>
+                                <path d="M22 45 C28 42, 32 45, 38 43" stroke="white" stroke-width="1" fill="none"/>
+                                <path d="M62 43 C68 45, 72 42, 78 45" stroke="white" stroke-width="1" fill="none"/>
+                                <path d="M25 55 C30 52, 35 55, 42 53" stroke="white" stroke-width="1" fill="none"/>
+                                <path d="M58 53 C65 55, 70 52, 75 55" stroke="white" stroke-width="1" fill="none"/>
+                                <!-- Central sulcus -->
+                                <path d="M50 25 C50 35, 50 45, 50 55" stroke="white" stroke-width="1.5" fill="none"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold">
+                                <span class="bg-gradient-to-r from-blue-300 to-blue-100 bg-clip-text text-transparent">Study</span><span class="text-white">fy</span>
+                            </h3>
+                            <p class="text-blue-200 text-sm">Study Smart Not Hard</p>
+                        </div>
+                    </a>
+                    <p class="text-blue-100 text-sm leading-relaxed">
+                        منصتك التعليمية المتخصصة في العلاج الطبيعي - تعلم مع أفضل الشروحات والمحاضرات التفاعلية
+                    </p>
                 </div>
-                
-                <div class="flex items-center space-x-4 space-x-reverse">
-                    <a href="https://chat.whatsapp.com/HYF2QApNRNa3iqkAIkfT4H?mode=ac_t" target="_blank" class="bg-green-500 hover:bg-green-600 p-3 rounded-full transition-colors">
-                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
-                        </svg>
-                    </a>
+            </div>
+
+            <!-- Bottom Footer -->
+            <div class="border-t border-blue-500/30 pt-6">
+                <div class="flex flex-col md:flex-row items-center justify-between">
+                    <div class="mb-4 md:mb-0">
+                        <p class="text-blue-200 text-sm">© 2025 Studyfy - جميع الحقوق محفوظة</p>
+                        <p class="text-blue-300 text-xs mt-1">العلاج الطبيعي - الفرقة الثالثة | الفرق المتاحة: الأولى والثانية</p>
+                    </div>
                     
-                    <a href="https://t.me/Studyfy1bot" target="_blank" class="bg-blue-500 hover:bg-blue-600 p-3 rounded-full transition-colors">
-                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
-                        </svg>
-                    </a>
+                    <div class="flex items-center space-x-4 space-x-reverse">
+                        <a href="https://wa.me/201018421673" target="_blank" class="bg-green-500 hover:bg-green-600 p-3 rounded-full transition-colors shadow-lg hover:shadow-xl transform hover:scale-105">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
+                            </svg>
+                        </a>
+                        
+                        <a href="https://chat.whatsapp.com/HYF2QApNRNa3iqkAIkfT4H?mode=ac_t" target="_blank" class="bg-green-600 hover:bg-green-700 p-3 rounded-full transition-colors shadow-lg hover:shadow-xl transform hover:scale-105">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
+                            </svg>
+                        </a>
+                        
+                        <a href="https://t.me/Studyfy1bot" target="_blank" class="bg-blue-500 hover:bg-blue-600 p-3 rounded-full transition-colors shadow-lg hover:shadow-xl transform hover:scale-105">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+                            </svg>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -2845,33 +3211,23 @@
                     this.progress.physiology1 = {
                         lectures: {
                             1: { 
-                                watched: false, 
-                                mcqCompleted: false, 
-                                trueFalseCompleted: false,
+                                watched: false,
                                 notes: []
                             },
                             2: { 
-                                watched: false, 
-                                mcqCompleted: false, 
-                                trueFalseCompleted: false,
+                                watched: false,
                                 notes: []
                             },
                             3: { 
-                                watched: false, 
-                                mcqCompleted: false, 
-                                trueFalseCompleted: false,
+                                watched: false,
                                 notes: []
                             },
                             4: { 
-                                watched: false, 
-                                mcqCompleted: false, 
-                                trueFalseCompleted: false,
+                                watched: false,
                                 notes: []
                             },
                             5: { 
-                                watched: false, 
-                                mcqCompleted: false, 
-                                trueFalseCompleted: false,
+                                watched: false,
                                 notes: []
                             }
                         },
@@ -2923,10 +3279,8 @@
                 let completedTasks = 0;
                 
                 lectures.forEach(lecture => {
-                    totalTasks += 3; // watched, mcqCompleted, trueFalseCompleted
+                    totalTasks += 1; // only watched
                     if (lecture.watched) completedTasks++;
-                    if (lecture.mcqCompleted) completedTasks++;
-                    if (lecture.trueFalseCompleted) completedTasks++;
                 });
                 
                 subjectData.overallProgress = totalTasks > 0 ? Math.round((completedTasks / totalTasks) * 100) : 0;
@@ -2969,13 +3323,9 @@
                 
                 // Count completed tasks
                 let watchedCount = 0;
-                let mcqCount = 0;
-                let trueFalseCount = 0;
                 
                 lectures.forEach(lecture => {
                     if (lecture.watched) watchedCount++;
-                    if (lecture.mcqCompleted) mcqCount++;
-                    if (lecture.trueFalseCompleted) trueFalseCount++;
                 });
                 
                 const totalLectures = lectures.length;
@@ -2987,16 +3337,6 @@
                     lecturesWatchedEl.textContent = `${watchedCount}/${totalLectures}`;
                     lecturesProgressEl.style.width = (watchedCount / totalLectures) * 100 + '%';
                 }
-                
-                // Update quizzes completed
-                const quizzesCompletedEl = document.getElementById('quizzes-completed');
-                const quizzesProgressEl = document.getElementById('quizzes-progress');
-                if (quizzesCompletedEl && quizzesProgressEl) {
-                    const totalQuizzes = totalLectures * 2; // mcq + true/false per lecture
-                    const completedQuizzes = mcqCount + trueFalseCount;
-                    quizzesCompletedEl.textContent = `${completedQuizzes}/${totalQuizzes}`;
-                    quizzesProgressEl.style.width = totalQuizzes > 0 ? (completedQuizzes / totalQuizzes) * 100 + '%' : '0%';
-                }
             }
             
             updateCheckboxes() {
@@ -3005,21 +3345,13 @@
                 if (lecture1Progress) {
                     // Update checkboxes
                     const watchedCheckbox = document.getElementById('lecture-1-watched');
-                    const mcqCheckbox = document.getElementById('lecture-1-mcq');
-                    const trueFalseCheckbox = document.getElementById('lecture-1-truefalse');
                     
                     if (watchedCheckbox) watchedCheckbox.checked = lecture1Progress.watched;
-                    if (mcqCheckbox) mcqCheckbox.checked = lecture1Progress.mcqCompleted;
-                    if (trueFalseCheckbox) trueFalseCheckbox.checked = lecture1Progress.trueFalseCompleted;
                     
                     // Update progress bar in lecture
-                    const completedTasks = [
-                        lecture1Progress.watched,
-                        lecture1Progress.mcqCompleted,
-                        lecture1Progress.trueFalseCompleted
-                    ].filter(Boolean).length;
+                    const completedTasks = lecture1Progress.watched ? 1 : 0;
                     
-                    const progressPercentage = (completedTasks / 3) * 100;
+                    const progressPercentage = (completedTasks / 1) * 100;
                     
                     const lectureProgressBars = document.querySelectorAll('[data-lecture="1"] .lecture-progress-bar');
                     lectureProgressBars.forEach(el => {
@@ -3037,21 +3369,13 @@
                 if (lecture2Progress) {
                     // Update checkboxes
                     const watchedCheckbox = document.getElementById('lecture-2-watched');
-                    const mcqCheckbox = document.getElementById('lecture-2-mcq');
-                    const trueFalseCheckbox = document.getElementById('lecture-2-truefalse');
                     
                     if (watchedCheckbox) watchedCheckbox.checked = lecture2Progress.watched;
-                    if (mcqCheckbox) mcqCheckbox.checked = lecture2Progress.mcqCompleted;
-                    if (trueFalseCheckbox) trueFalseCheckbox.checked = lecture2Progress.trueFalseCompleted;
                     
                     // Update progress bar in lecture
-                    const completedTasks = [
-                        lecture2Progress.watched,
-                        lecture2Progress.mcqCompleted,
-                        lecture2Progress.trueFalseCompleted
-                    ].filter(Boolean).length;
+                    const completedTasks = lecture2Progress.watched ? 1 : 0;
                     
-                    const progressPercentage = (completedTasks / 3) * 100;
+                    const progressPercentage = (completedTasks / 1) * 100;
                     
                     const lectureProgressBars = document.querySelectorAll('[data-lecture="2"] .lecture-progress-bar');
                     lectureProgressBars.forEach(el => {
@@ -3069,21 +3393,13 @@
                 if (lecture3Progress) {
                     // Update checkboxes
                     const watchedCheckbox = document.getElementById('lecture-3-watched');
-                    const mcqCheckbox = document.getElementById('lecture-3-mcq');
-                    const trueFalseCheckbox = document.getElementById('lecture-3-truefalse');
                     
                     if (watchedCheckbox) watchedCheckbox.checked = lecture3Progress.watched;
-                    if (mcqCheckbox) mcqCheckbox.checked = lecture3Progress.mcqCompleted;
-                    if (trueFalseCheckbox) trueFalseCheckbox.checked = lecture3Progress.trueFalseCompleted;
                     
                     // Update progress bar in lecture
-                    const completedTasks = [
-                        lecture3Progress.watched,
-                        lecture3Progress.mcqCompleted,
-                        lecture3Progress.trueFalseCompleted
-                    ].filter(Boolean).length;
+                    const completedTasks = lecture3Progress.watched ? 1 : 0;
                     
-                    const progressPercentage = (completedTasks / 3) * 100;
+                    const progressPercentage = (completedTasks / 1) * 100;
                     
                     const lectureProgressBars = document.querySelectorAll('[data-lecture="3"] .lecture-progress-bar');
                     lectureProgressBars.forEach(el => {
@@ -3101,21 +3417,13 @@
                 if (lecture4Progress) {
                     // Update checkboxes
                     const watchedCheckbox = document.getElementById('lecture-4-watched');
-                    const mcqCheckbox = document.getElementById('lecture-4-mcq');
-                    const trueFalseCheckbox = document.getElementById('lecture-4-truefalse');
                     
                     if (watchedCheckbox) watchedCheckbox.checked = lecture4Progress.watched;
-                    if (mcqCheckbox) mcqCheckbox.checked = lecture4Progress.mcqCompleted;
-                    if (trueFalseCheckbox) trueFalseCheckbox.checked = lecture4Progress.trueFalseCompleted;
                     
                     // Update progress bar in lecture
-                    const completedTasks = [
-                        lecture4Progress.watched,
-                        lecture4Progress.mcqCompleted,
-                        lecture4Progress.trueFalseCompleted
-                    ].filter(Boolean).length;
+                    const completedTasks = lecture4Progress.watched ? 1 : 0;
                     
-                    const progressPercentage = (completedTasks / 3) * 100;
+                    const progressPercentage = (completedTasks / 1) * 100;
                     
                     const lectureProgressBars = document.querySelectorAll('[data-lecture="4"] .lecture-progress-bar');
                     lectureProgressBars.forEach(el => {
@@ -3133,21 +3441,13 @@
                 if (lecture5Progress) {
                     // Update checkboxes
                     const watchedCheckbox = document.getElementById('lecture-5-watched');
-                    const mcqCheckbox = document.getElementById('lecture-5-mcq');
-                    const trueFalseCheckbox = document.getElementById('lecture-5-truefalse');
                     
                     if (watchedCheckbox) watchedCheckbox.checked = lecture5Progress.watched;
-                    if (mcqCheckbox) mcqCheckbox.checked = lecture5Progress.mcqCompleted;
-                    if (trueFalseCheckbox) trueFalseCheckbox.checked = lecture5Progress.trueFalseCompleted;
                     
                     // Update progress bar in lecture
-                    const completedTasks = [
-                        lecture5Progress.watched,
-                        lecture5Progress.mcqCompleted,
-                        lecture5Progress.trueFalseCompleted
-                    ].filter(Boolean).length;
+                    const completedTasks = lecture5Progress.watched ? 1 : 0;
                     
-                    const progressPercentage = (completedTasks / 3) * 100;
+                    const progressPercentage = (completedTasks / 1) * 100;
                     
                     const lectureProgressBars = document.querySelectorAll('[data-lecture="5"] .lecture-progress-bar');
                     lectureProgressBars.forEach(el => {
@@ -3209,7 +3509,19 @@
             
             // Close mobile menu if open
             const mobileMenu = document.getElementById('mobileMenu');
-            mobileMenu.classList.remove('show');
+            if (mobileMenu) {
+                mobileMenu.classList.remove('show');
+            }
+            
+            // Close mobile menu overlay
+            const overlay = document.getElementById('mobileMenuOverlay');
+            if (overlay) {
+                overlay.classList.remove('opacity-100', 'visible');
+                overlay.classList.add('opacity-0', 'invisible');
+            }
+            
+            // Remove body scroll lock
+            document.body.classList.remove('overflow-hidden');
             
             // Scroll to top
             window.scrollTo(0, 0);
@@ -3237,18 +3549,20 @@
             const mobileMenu = document.getElementById('mobileMenu');
             const overlay = document.getElementById('mobileMenuOverlay');
             
-            if (mobileMenu.classList.contains('show')) {
-                // Hide menu
-                mobileMenu.classList.remove('show');
-                overlay.classList.remove('opacity-100', 'visible');
-                overlay.classList.add('opacity-0', 'invisible');
-                document.body.classList.remove('overflow-hidden');
-            } else {
-                // Show menu
-                mobileMenu.classList.add('show');
-                overlay.classList.remove('opacity-0', 'invisible');
-                overlay.classList.add('opacity-100', 'visible');
-                document.body.classList.add('overflow-hidden');
+            if (mobileMenu && overlay) {
+                if (mobileMenu.classList.contains('show')) {
+                    // Hide menu
+                    mobileMenu.classList.remove('show');
+                    overlay.classList.remove('opacity-100', 'visible');
+                    overlay.classList.add('opacity-0', 'invisible');
+                    document.body.classList.remove('overflow-hidden');
+                } else {
+                    // Show menu
+                    mobileMenu.classList.add('show');
+                    overlay.classList.remove('opacity-0', 'invisible');
+                    overlay.classList.add('opacity-100', 'visible');
+                    document.body.classList.add('overflow-hidden');
+                }
             }
         }
 
@@ -3257,26 +3571,473 @@
             const dropdown = document.getElementById(dropdownId);
             const arrow = document.getElementById(dropdownId + '-arrow');
             
-            if (dropdown.style.maxHeight && dropdown.style.maxHeight !== '0px') {
-                // Hide dropdown
-                dropdown.style.maxHeight = '0px';
-                if (arrow) arrow.style.transform = 'rotate(0deg)';
-            } else {
-                // Show dropdown
-                dropdown.style.maxHeight = dropdown.scrollHeight + 'px';
-                if (arrow) arrow.style.transform = 'rotate(180deg)';
+            if (dropdown) {
+                if (dropdown.style.maxHeight && dropdown.style.maxHeight !== '0px') {
+                    // Hide dropdown
+                    dropdown.style.maxHeight = '0px';
+                    if (arrow) arrow.style.transform = 'rotate(0deg)';
+                } else {
+                    // Show dropdown
+                    dropdown.style.maxHeight = dropdown.scrollHeight + 'px';
+                    if (arrow) arrow.style.transform = 'rotate(180deg)';
+                }
             }
         }
 
         // Search functionality
-        const searchInput = document.getElementById('searchInput');
-        if (searchInput) {
-            searchInput.addEventListener('input', function(e) {
-                const searchTerm = e.target.value.toLowerCase();
-                // Simple search implementation - you can expand this
-                console.log('Searching for:', searchTerm);
-            });
+        class SearchSystem {
+            constructor() {
+                this.searchData = this.initializeSearchData();
+                this.initializeSearchEvents();
+                this.searchTimeout = null;
+            }
+            
+            initializeSearchData() {
+                return {
+                    lectures: [
+                        {
+                            id: 'physiology-1-1',
+                            title: 'The Cell - المحاضرة الأولى',
+                            subject: 'Physiology 1',
+                            year: 'الفرقة الأولى',
+                            term: 'الترم الأول',
+                            keywords: ['cell', 'خلية', 'membrane', 'غشاء', 'physiology', 'فسيولوجي', 'organelles', 'عضيات'],
+                            page: 'physiology-lectures',
+                            description: 'دراسة تركيب الخلية ووظائفها الأساسية'
+                        },
+                        {
+                            id: 'physiology-1-2',
+                            title: 'Transport Across Cell Membrane - المحاضرة الثانية',
+                            subject: 'Physiology 1',
+                            year: 'الفرقة الأولى',
+                            term: 'الترم الأول',
+                            keywords: ['transport', 'نقل', 'membrane', 'غشاء', 'diffusion', 'انتشار', 'osmosis', 'خاصية اسموزية'],
+                            page: 'physiology-lectures',
+                            description: 'آليات نقل المواد عبر غشاء الخلية'
+                        },
+                        {
+                            id: 'physiology-1-3',
+                            title: 'Body Fluids - المحاضرة الثالثة',
+                            subject: 'Physiology 1',
+                            year: 'الفرقة الأولى',
+                            term: 'الترم الأول',
+                            keywords: ['body fluids', 'سوائل الجسم', 'blood', 'دم', 'plasma', 'بلازما'],
+                            page: 'physiology-lectures',
+                            description: 'دراسة سوائل الجسم وتوزيعها'
+                        },
+                        {
+                            id: 'physiology-1-4',
+                            title: 'Homeostasis - المحاضرة الرابعة',
+                            subject: 'Physiology 1',
+                            year: 'الفرقة الأولى',
+                            term: 'الترم الأول',
+                            keywords: ['homeostasis', 'اتزان داخلي', 'regulation', 'تنظيم', 'feedback', 'تغذية راجعة'],
+                            page: 'physiology-lectures',
+                            description: 'آليات الحفاظ على الاتزان الداخلي للجسم'
+                        },
+                        {
+                            id: 'physiology-1-5',
+                            title: 'Autonomic Nervous System - المحاضرة الخامسة',
+                            subject: 'Physiology 1',
+                            year: 'الفرقة الأولى',
+                            term: 'الترم الأول',
+                            keywords: ['autonomic', 'عصبي ذاتي', 'nervous system', 'جهاز عصبي', 'sympathetic', 'ودي', 'parasympathetic', 'نظير ودي'],
+                            page: 'physiology-lectures',
+                            description: 'دراسة الجهاز العصبي الذاتي ووظائفه'
+                        }
+                    ],
+                    subjects: [
+                        {
+                            id: 'physiology1',
+                            title: 'Physiology 1',
+                            arabicTitle: 'علم وظائف الأعضاء 1',
+                            year: 'الفرقة الأولى',
+                            term: 'الترم الأول',
+                            page: 'first-year-first',
+                            description: 'دراسة وظائف أعضاء الجسم الأساسية'
+                        },
+                        {
+                            id: 'anatomy1',
+                            title: 'Anatomy 1',
+                            arabicTitle: 'علم التشريح 1',
+                            year: 'الفرقة الأولى',
+                            term: 'الترم الأول',
+                            page: 'first-year-first',
+                            description: 'دراسة تركيب أجهزة الجسم البشري'
+                        }
+                    ],
+                    pages: [
+                        {
+                            id: 'home',
+                            title: 'الصفحة الرئيسية',
+                            keywords: ['home', 'رئيسية', 'studyfy', 'منصة'],
+                            description: 'الصفحة الرئيسية لمنصة Studyfy'
+                        },
+                        {
+                            id: 'start-journey',
+                            title: 'ابدأ رحلتك التعليمية',
+                            keywords: ['start', 'ابدأ', 'journey', 'رحلة', 'تعليمية'],
+                            description: 'اختر الفرقة والترم المناسب لك'
+                        },
+                        {
+                            id: 'first-year-first',
+                            title: 'الفرقة الأولى - الترم الأول',
+                            keywords: ['first year', 'فرقة أولى', 'first term', 'ترم أول'],
+                            description: 'مواد الفرقة الأولى الترم الأول'
+                        }
+                    ]
+                };
+            }
+            
+            initializeSearchEvents() {
+                // Desktop search
+                const searchInput = document.getElementById('searchInput');
+                const searchButton = document.getElementById('searchButton');
+                
+                if (searchInput) {
+                    searchInput.addEventListener('input', (e) => this.handleSearch(e, false));
+                    searchInput.addEventListener('keydown', (e) => {
+                        if (e.key === 'Enter') {
+                            e.preventDefault();
+                            this.performSearch(e.target.value, false);
+                        }
+                        if (e.key === 'Escape') {
+                            this.hideSearchResults(false);
+                        }
+                    });
+                    searchInput.addEventListener('focus', () => {
+                        if (searchInput.value.trim()) {
+                            this.showSearchResults(false);
+                        }
+                    });
+                }
+                
+                if (searchButton) {
+                    searchButton.addEventListener('click', () => {
+                        this.performSearch(searchInput.value, false);
+                    });
+                }
+                
+                // Mobile search
+                const mobileSearchInput = document.getElementById('mobileSearchInput');
+                const mobileSearchButton = document.getElementById('mobileSearchButton');
+                
+                if (mobileSearchInput) {
+                    mobileSearchInput.addEventListener('input', (e) => this.handleSearch(e, true));
+                    mobileSearchInput.addEventListener('keydown', (e) => {
+                        if (e.key === 'Enter') {
+                            e.preventDefault();
+                            this.performSearch(e.target.value, true);
+                        }
+                    });
+                }
+                
+                if (mobileSearchButton) {
+                    mobileSearchButton.addEventListener('click', () => {
+                        this.performSearch(mobileSearchInput.value, true);
+                    });
+                }
+                
+                // Close search results when clicking outside
+                document.addEventListener('click', (e) => {
+                    const searchContainer = e.target.closest('.relative');
+                    if (!searchContainer || (!searchContainer.contains(document.getElementById('searchInput')) && 
+                        !searchContainer.contains(document.getElementById('mobileSearchInput')))) {
+                        this.hideSearchResults(false);
+                        this.hideSearchResults(true);
+                    }
+                });
+            }
+            
+            handleSearch(event, isMobile) {
+                const searchTerm = event.target.value.trim();
+                
+                // Clear previous timeout
+                if (this.searchTimeout) {
+                    clearTimeout(this.searchTimeout);
+                }
+                
+                if (searchTerm.length === 0) {
+                    this.hideSearchResults(isMobile);
+                    return;
+                }
+                
+                if (searchTerm.length < 2) {
+                    return; // Don't search for single characters
+                }
+                
+                // Show loading
+                this.showSearchLoading(isMobile);
+                
+                // Debounce search
+                this.searchTimeout = setTimeout(() => {
+                    this.performSearch(searchTerm, isMobile);
+                }, 300);
+            }
+            
+            performSearch(searchTerm, isMobile) {
+                if (!searchTerm.trim()) return;
+                
+                this.hideSearchLoading(isMobile);
+                
+                const results = this.searchContent(searchTerm.toLowerCase());
+                this.displaySearchResults(results, searchTerm, isMobile);
+            }
+            
+            searchContent(searchTerm) {
+                const results = [];
+                
+                // Search lectures
+                this.searchData.lectures.forEach(lecture => {
+                    const score = this.calculateRelevanceScore(lecture, searchTerm);
+                    if (score > 0) {
+                        results.push({
+                            ...lecture,
+                            type: 'lecture',
+                            score: score
+                        });
+                    }
+                });
+                
+                // Search subjects
+                this.searchData.subjects.forEach(subject => {
+                    const score = this.calculateRelevanceScore(subject, searchTerm);
+                    if (score > 0) {
+                        results.push({
+                            ...subject,
+                            type: 'subject',
+                            score: score
+                        });
+                    }
+                });
+                
+                // Search pages
+                this.searchData.pages.forEach(page => {
+                    const score = this.calculateRelevanceScore(page, searchTerm);
+                    if (score > 0) {
+                        results.push({
+                            ...page,
+                            type: 'page',
+                            score: score
+                        });
+                    }
+                });
+                
+                // Sort by relevance score
+                return results.sort((a, b) => b.score - a.score).slice(0, 8);
+            }
+            
+            calculateRelevanceScore(item, searchTerm) {
+                let score = 0;
+                const term = searchTerm.toLowerCase();
+                
+                // Check title (highest weight)
+                if (item.title && item.title.toLowerCase().includes(term)) {
+                    score += 10;
+                }
+                
+                // Check Arabic title
+                if (item.arabicTitle && item.arabicTitle.toLowerCase().includes(term)) {
+                    score += 10;
+                }
+                
+                // Check subject
+                if (item.subject && item.subject.toLowerCase().includes(term)) {
+                    score += 8;
+                }
+                
+                // Check description
+                if (item.description && item.description.toLowerCase().includes(term)) {
+                    score += 5;
+                }
+                
+                // Check keywords
+                if (item.keywords) {
+                    item.keywords.forEach(keyword => {
+                        if (keyword.toLowerCase().includes(term)) {
+                            score += 7;
+                        }
+                    });
+                }
+                
+                // Check year and term
+                if (item.year && item.year.toLowerCase().includes(term)) {
+                    score += 3;
+                }
+                if (item.term && item.term.toLowerCase().includes(term)) {
+                    score += 3;
+                }
+                
+                return score;
+            }
+            
+            displaySearchResults(results, searchTerm, isMobile) {
+                const containerId = isMobile ? 'mobileSearchResultsContent' : 'searchResultsContent';
+                const container = document.getElementById(containerId);
+                
+                if (!container) return;
+                
+                if (results.length === 0) {
+                    container.innerHTML = `
+                        <div class="p-4 text-center text-gray-500">
+                            <svg class="w-12 h-12 mx-auto mb-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                            </svg>
+                            <p class="font-medium">لا توجد نتائج</p>
+                            <p class="text-sm">جرب البحث بكلمات أخرى</p>
+                        </div>
+                    `;
+                } else {
+                    container.innerHTML = results.map(result => this.createSearchResultItem(result, searchTerm, isMobile)).join('');
+                }
+                
+                this.showSearchResults(isMobile);
+            }
+            
+            createSearchResultItem(result, searchTerm, isMobile) {
+                const typeIcons = {
+                    lecture: `<svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                    </svg>`,
+                    subject: `<svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                    </svg>`,
+                    page: `<svg class="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                    </svg>`
+                };
+                
+                const typeLabels = {
+                    lecture: 'محاضرة',
+                    subject: 'مادة',
+                    page: 'صفحة'
+                };
+                
+                const highlightedTitle = this.highlightSearchTerm(result.title, searchTerm);
+                const highlightedDescription = this.highlightSearchTerm(result.description, searchTerm);
+                
+                return `
+                    <div class="search-result-item p-4 hover:bg-gray-50 cursor-pointer border-b border-gray-100 last:border-b-0 transition-colors" 
+                         onclick="searchSystem.selectSearchResult('${result.page || result.id}', ${isMobile})">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 mt-1 ml-3">
+                                ${typeIcons[result.type]}
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <div class="flex items-center mb-1">
+                                    <span class="text-xs px-2 py-1 rounded-full bg-gray-100 text-gray-600 ml-2">
+                                        ${typeLabels[result.type]}
+                                    </span>
+                                    ${result.year ? `<span class="text-xs text-gray-500">${result.year}</span>` : ''}
+                                </div>
+                                <h4 class="text-sm font-semibold text-gray-900 mb-1 line-clamp-1">
+                                    ${highlightedTitle}
+                                </h4>
+                                <p class="text-xs text-gray-600 line-clamp-2">
+                                    ${highlightedDescription}
+                                </p>
+                                ${result.subject ? `<p class="text-xs text-blue-600 mt-1">${result.subject}</p>` : ''}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            highlightSearchTerm(text, searchTerm) {
+                if (!text || !searchTerm) return text;
+                
+                const regex = new RegExp(`(${searchTerm})`, 'gi');
+                return text.replace(regex, '<mark class="bg-yellow-200 px-1 rounded">$1</mark>');
+            }
+            
+            selectSearchResult(pageId, isMobile) {
+                // Hide search results
+                this.hideSearchResults(isMobile);
+                
+                // Clear search input
+                const searchInput = document.getElementById(isMobile ? 'mobileSearchInput' : 'searchInput');
+                if (searchInput) {
+                    searchInput.value = '';
+                }
+                
+                // Close mobile menu if open
+                if (isMobile) {
+                    toggleMobileMenu();
+                }
+                
+                // Navigate to page
+                showPage(pageId);
+                
+                // Show success notification
+                this.showNotification('تم الانتقال إلى النتيجة المحددة', 'success');
+            }
+            
+            showSearchResults(isMobile) {
+                const resultsId = isMobile ? 'mobileSearchResults' : 'searchResults';
+                const results = document.getElementById(resultsId);
+                if (results) {
+                    results.classList.remove('hidden');
+                }
+            }
+            
+            hideSearchResults(isMobile) {
+                const resultsId = isMobile ? 'mobileSearchResults' : 'searchResults';
+                const results = document.getElementById(resultsId);
+                if (results) {
+                    results.classList.add('hidden');
+                }
+            }
+            
+            showSearchLoading(isMobile) {
+                if (!isMobile) {
+                    const loading = document.getElementById('searchLoading');
+                    if (loading) {
+                        loading.classList.remove('hidden');
+                    }
+                }
+                this.hideSearchResults(isMobile);
+            }
+            
+            hideSearchLoading(isMobile) {
+                if (!isMobile) {
+                    const loading = document.getElementById('searchLoading');
+                    if (loading) {
+                        loading.classList.add('hidden');
+                    }
+                }
+            }
+            
+            showNotification(message, type = 'info') {
+                // Create notification element
+                const notification = document.createElement('div');
+                notification.className = `fixed top-4 right-4 z-50 px-6 py-3 rounded-lg shadow-lg text-white font-semibold transform translate-x-full transition-transform duration-300 ${
+                    type === 'success' ? 'bg-green-500' : 
+                    type === 'error' ? 'bg-red-500' : 
+                    'bg-blue-500'
+                }`;
+                notification.textContent = message;
+                
+                document.body.appendChild(notification);
+                
+                // Show notification
+                setTimeout(() => {
+                    notification.classList.remove('translate-x-full');
+                }, 100);
+                
+                // Hide notification after 3 seconds
+                setTimeout(() => {
+                    notification.classList.add('translate-x-full');
+                    setTimeout(() => {
+                        if (notification.parentNode) {
+                            notification.parentNode.removeChild(notification);
+                        }
+                    }, 300);
+                }, 3000);
+            }
         }
+        
+        // Initialize search system
+        const searchSystem = new SearchSystem();
 
         // Close dropdowns when clicking outside
         document.addEventListener('click', function(e) {
@@ -3331,8 +4092,19 @@
             // Hide lectures list
             document.querySelector('.bg-white.rounded-2xl.shadow-xl.p-8.mb-8').style.display = 'none';
             
-            // Show lecture quiz selection
-            document.getElementById('lecture-1-quiz').classList.remove('hidden');
+            // Hide all lecture quiz selections first
+            for (let i = 1; i <= 5; i++) {
+                const lectureQuiz = document.getElementById(`lecture-${i}-quiz`);
+                if (lectureQuiz) {
+                    lectureQuiz.classList.add('hidden');
+                }
+            }
+            
+            // Show selected lecture quiz selection
+            const selectedLectureQuiz = document.getElementById(`lecture-${lectureNumber}-quiz`);
+            if (selectedLectureQuiz) {
+                selectedLectureQuiz.classList.remove('hidden');
+            }
         }
         
         // Back to lectures list
@@ -3340,111 +4112,214 @@
             // Show lectures list
             document.querySelector('.bg-white.rounded-2xl.shadow-xl.p-8.mb-8').style.display = 'block';
             
-            // Hide lecture quiz selection
-            document.getElementById('lecture-1-quiz').classList.add('hidden');
+            // Hide all lecture quiz selections
+            for (let i = 1; i <= 5; i++) {
+                const lectureQuiz = document.getElementById(`lecture-${i}-quiz`);
+                if (lectureQuiz) {
+                    lectureQuiz.classList.add('hidden');
+                }
+            }
         }
 
         // Sample Questions Data
         const quizData = {
-            mcq: [
-                {
-                    question: "According to the provided sources, what are the smallest structural units in the human body?",
-                    options: ["Systems", "Organs", "Tissues", "Cells"],
-                    correct: 3
-                },
-                {
-                    question: "The cell membrane is described as a double layer primarily composed of which two types of organic molecules?",
-                    options: ["Carbohydrates and Proteins", "Lipids and Carbohydrates", "Lipids and Proteins", "Cholesterol and Glycolipids"],
-                    correct: 2
-                },
-                {
-                    question: "In the cell membrane's lipid bilayer, how are phospholipid molecules arranged?",
-                    options: ["Hydrophobic tails on the inner and outer surfaces, hydrophilic heads inside", "Hydrophilic heads on the inner and outer surfaces, hydrophobic tails inside", "Hydrophobic heads on the outer surface, hydrophilic tails on the inner surface", "Randomly throughout the membrane without a specific orientation"],
-                    correct: 1
-                },
-                {
-                    question: "Which component is responsible for the toughness and solidity of the cell membrane, with its ratio to phospholipids directly affecting solidity?",
-                    options: ["Glycoproteins", "Phospholipids", "Peripheral proteins", "Cholesterol"],
-                    correct: 3
-                },
-                {
-                    question: "One of the primary functions of the cell membrane is to control the movement of substances in and out of cells and organelles. This function highlights that the membrane is:",
-                    options: ["Fully permeable to all substances", "Impermeable to all organic molecules", "Selectively permeable to ions and organic molecules", "Permeable only to water"],
-                    correct: 2
-                },
-                {
-                    question: "Proteins that occupy the whole thickness of the membrane and appear on both the outer and inner surfaces are classified as:",
-                    options: ["Peripheral proteins", "Internal proteins", "Structural proteins", "Transmembrane or integral proteins"],
-                    correct: 3
-                },
-                {
-                    question: "Glycolipids and glycoproteins, found in the cell membrane, are specifically present on which surface?",
-                    options: ["Only the inner surface of the cell membrane", "Equally on both inner and outer surfaces", "Predominantly embedded within the lipid bilayer", "The outer surface of the cell membrane"],
-                    correct: 3
-                },
-                {
-                    question: "Which type of membrane protein is responsible for giving the cell its 'label of identity,' enabling cells to identify and interact with each other, such as in immune responses?",
-                    options: ["Membrane receptors", "Transport proteins", "Membrane enzymes", "Structural proteins", "Adhesion molecules"],
-                    correct: 4
-                },
-                {
-                    question: "The mass of protoplasm within a cell is stated to consist of which three main components?",
-                    options: ["Cell membrane, Nucleolus, Mitochondrion", "Golgi apparatus, Lysosome, Vacuole", "Cytoplasm, Cell organelles, Nucleus", "Lipids, Proteins, Carbohydrates"],
-                    correct: 2
-                },
-                {
-                    question: "What is a key function of membrane enzymes embedded in the cell membrane?",
-                    options: ["Relaying signals between the cell and the external environment", "Transporting water and ions across the membrane", "Giving the cell its label of identity for interaction", "Catalyzing reactions on inner and outer surfaces of the membrane"],
-                    correct: 3
-                },
-                {
-                    question: "Besides phospholipids, what other major lipid component is mentioned as being part of the cell membrane structure?",
-                    options: ["Glycolipids", "Lipoproteins", "Cholesterol", "Fatty acids"],
-                    correct: 2
-                }
-            ],
-            truefalse: [
-                {
-                    question: "The smallest structural units of the body are tissues.",
-                    correct: false
-                },
-                {
-                    question: "Organs are made up of complementary tissues.",
-                    correct: true
-                },
-                {
-                    question: "Protoplasm includes cytoplasm, organelles, and the nucleus.",
-                    correct: true
-                },
-                {
-                    question: "The cell membrane is composed of a single layer of lipids and proteins.",
-                    correct: false
-                },
-                {
-                    question: "Phospholipid hydrophilic heads are polar, while their tails are non-polar.",
-                    correct: true
-                },
-                {
-                    question: "Increasing cholesterol content in the membrane increases its fluidity.",
-                    correct: false
-                },
-                {
-                    question: "Transmembrane proteins span the entire cell membrane.",
-                    correct: true
-                },
-                {
-                    question: "Glycolipids and glycoproteins are mostly found on the inner surface of the cell membrane.",
-                    correct: false
-                },
-                {
-                    question: "The cell membrane is selectively permeable, controlling the transport of substances.",
-                    correct: true
-                },
-                {
-                    question: "Glycolipids and glycoproteins contribute to a negative surface charge on the cell.",
-                    correct: true
-                }
-            ]
+            1: { // Lecture 1 - The Cell
+                mcq: [
+                    {
+                        question: "According to the provided sources, what are the smallest structural units in the human body?",
+                        options: ["Systems", "Organs", "Tissues", "Cells"],
+                        correct: 3
+                    },
+                    {
+                        question: "The cell membrane is described as a double layer primarily composed of which two types of organic molecules?",
+                        options: ["Carbohydrates and Proteins", "Lipids and Carbohydrates", "Lipids and Proteins", "Cholesterol and Glycolipids"],
+                        correct: 2
+                    },
+                    {
+                        question: "In the cell membrane's lipid bilayer, how are phospholipid molecules arranged?",
+                        options: ["Hydrophobic tails on the inner and outer surfaces, hydrophilic heads inside", "Hydrophilic heads on the inner and outer surfaces, hydrophobic tails inside", "Hydrophobic heads on the outer surface, hydrophilic tails on the inner surface", "Randomly throughout the membrane without a specific orientation"],
+                        correct: 1
+                    },
+                    {
+                        question: "Which component is responsible for the toughness and solidity of the cell membrane, with its ratio to phospholipids directly affecting solidity?",
+                        options: ["Glycoproteins", "Phospholipids", "Peripheral proteins", "Cholesterol"],
+                        correct: 3
+                    },
+                    {
+                        question: "One of the primary functions of the cell membrane is to control the movement of substances in and out of cells and organelles. This function highlights that the membrane is:",
+                        options: ["Fully permeable to all substances", "Impermeable to all organic molecules", "Selectively permeable to ions and organic molecules", "Permeable only to water"],
+                        correct: 2
+                    },
+                    {
+                        question: "Proteins that occupy the whole thickness of the membrane and appear on both the outer and inner surfaces are classified as:",
+                        options: ["Peripheral proteins", "Internal proteins", "Structural proteins", "Transmembrane or integral proteins"],
+                        correct: 3
+                    },
+                    {
+                        question: "Glycolipids and glycoproteins, found in the cell membrane, are specifically present on which surface?",
+                        options: ["Only the inner surface of the cell membrane", "Equally on both inner and outer surfaces", "Predominantly embedded within the lipid bilayer", "The outer surface of the cell membrane"],
+                        correct: 3
+                    },
+                    {
+                        question: "Which type of membrane protein is responsible for giving the cell its 'label of identity,' enabling cells to identify and interact with each other, such as in immune responses?",
+                        options: ["Membrane receptors", "Transport proteins", "Membrane enzymes", "Structural proteins", "Adhesion molecules"],
+                        correct: 4
+                    },
+                    {
+                        question: "The mass of protoplasm within a cell is stated to consist of which three main components?",
+                        options: ["Cell membrane, Nucleolus, Mitochondrion", "Golgi apparatus, Lysosome, Vacuole", "Cytoplasm, Cell organelles, Nucleus", "Lipids, Proteins, Carbohydrates"],
+                        correct: 2
+                    },
+                    {
+                        question: "What is a key function of membrane enzymes embedded in the cell membrane?",
+                        options: ["Relaying signals between the cell and the external environment", "Transporting water and ions across the membrane", "Giving the cell its label of identity for interaction", "Catalyzing reactions on inner and outer surfaces of the membrane"],
+                        correct: 3
+                    },
+                    {
+                        question: "Besides phospholipids, what other major lipid component is mentioned as being part of the cell membrane structure?",
+                        options: ["Glycolipids", "Lipoproteins", "Cholesterol", "Fatty acids"],
+                        correct: 2
+                    }
+                ],
+                truefalse: [
+                    {
+                        question: "The smallest structural units of the body are tissues.",
+                        correct: false
+                    },
+                    {
+                        question: "Organs are made up of complementary tissues.",
+                        correct: true
+                    },
+                    {
+                        question: "Protoplasm includes cytoplasm, organelles, and the nucleus.",
+                        correct: true
+                    },
+                    {
+                        question: "The cell membrane is composed of a single layer of lipids and proteins.",
+                        correct: false
+                    },
+                    {
+                        question: "Phospholipid hydrophilic heads are polar, while their tails are non-polar.",
+                        correct: true
+                    },
+                    {
+                        question: "Increasing cholesterol content in the membrane increases its fluidity.",
+                        correct: false
+                    },
+                    {
+                        question: "Transmembrane proteins span the entire cell membrane.",
+                        correct: true
+                    },
+                    {
+                        question: "Glycolipids and glycoproteins are mostly found on the inner surface of the cell membrane.",
+                        correct: false
+                    },
+                    {
+                        question: "The cell membrane is selectively permeable, controlling the transport of substances.",
+                        correct: true
+                    },
+                    {
+                        question: "Glycolipids and glycoproteins contribute to a negative surface charge on the cell.",
+                        correct: true
+                    }
+                ]
+            },
+            2: { // Lecture 2 - Transport Across Cell Membrane
+                mcq: [
+                    {
+                        question: "What is the primary function of the cell membrane?",
+                        options: ["Energy production", "Protein synthesis", "DNA replication", "Selective permeability", "Waste storage"],
+                        correct: 3
+                    },
+                    {
+                        question: "Which transport mechanism does NOT require energy?",
+                        options: ["Active transport", "Passive transport", "Endocytosis", "Exocytosis", "Sodium-potassium pump"],
+                        correct: 1
+                    },
+                    {
+                        question: "Simple diffusion is characterized by:",
+                        options: ["Requirement for carrier proteins", "Movement against concentration gradient", "Need for ATP", "Movement with concentration gradient", "Selective transport only"],
+                        correct: 4
+                    },
+                    {
+                        question: "Facilitated diffusion differs from simple diffusion in that it:",
+                        options: ["Requires energy", "Moves against gradients", "Uses transport proteins", "Only transports water", "Creates gradients"],
+                        correct: 3
+                    },
+                    {
+                        question: "Osmosis is specifically the movement of:",
+                        options: ["All solutes", "Water molecules", "Proteins", "Ions only", "Gases"],
+                        correct: 1
+                    },
+                    {
+                        question: "Active transport is characterized by:",
+                        options: ["No energy requirement", "Movement with concentration gradient", "Use of ATP energy", "Only passive movement", "Simple diffusion"],
+                        correct: 1
+                    },
+                    {
+                        question: "The sodium-potassium pump is an example of:",
+                        options: ["Simple diffusion", "Facilitated diffusion", "Osmosis", "Active transport", "Bulk transport"],
+                        correct: 3
+                    },
+                    {
+                        question: "Endocytosis is a process where:",
+                        options: ["Materials exit the cell", "Water enters the cell", "Proteins are synthesized", "Materials enter the cell", "Energy is produced"],
+                        correct: 3
+                    },
+                    {
+                        question: "Exocytosis involves:",
+                        options: ["Material entering the cell", "Water movement", "Protein synthesis", "Material leaving the cell", "Energy consumption only"],
+                        correct: 3
+                    },
+                    {
+                        question: "Which factor affects the rate of diffusion?",
+                        options: ["Cell size only", "Membrane thickness only", "Concentration gradient only", "Temperature only", "All of the above"],
+                        correct: 4
+                    },
+                    {
+                        question: "Carrier proteins are involved in:",
+                        options: ["Simple diffusion only", "Facilitated diffusion and active transport", "Osmosis only", "Endocytosis only", "DNA replication"],
+                        correct: 1
+                    },
+                    {
+                        question: "The concentration gradient refers to:",
+                        options: ["Equal distribution of molecules", "Random molecular movement", "Energy requirement", "Difference in concentration across membrane", "Protein synthesis rate"],
+                        correct: 3
+                    },
+                    {
+                        question: "Channel proteins primarily facilitate:",
+                        options: ["Active transport", "Endocytosis", "Ion and water movement", "Protein synthesis", "Energy production"],
+                        correct: 2
+                    }
+                ],
+                truefalse: [
+                    // True/False questions will be added when you provide them
+                ]
+            },
+            3: { // Lecture 3 - Body Fluids
+                mcq: [
+                    // MCQ questions for lecture 3 will be added here
+                ],
+                truefalse: [
+                    // True/False questions for lecture 3 will be added here
+                ]
+            },
+            4: { // Lecture 4 - Homeostasis
+                mcq: [
+                    // MCQ questions for lecture 4 will be added here
+                ],
+                truefalse: [
+                    // True/False questions for lecture 4 will be added here
+                ]
+            },
+            5: { // Lecture 5 - Autonomic Nervous System
+                mcq: [
+                    // MCQ questions for lecture 5 will be added here
+                ],
+                truefalse: [
+                    // True/False questions for lecture 5 will be added here
+                ]
+            }
         };
 
         function startQuiz(type) {
@@ -3455,12 +4330,19 @@
             startTime = new Date();
             
             // Hide lecture quiz selection and show quiz container
-            document.getElementById('lecture-1-quiz').classList.add('hidden');
+            document.getElementById(`lecture-${currentLecture}-quiz`).classList.add('hidden');
             document.getElementById('quiz-container').classList.remove('hidden');
             
             // Set quiz title and total questions
-            const questions = quizData[type];
-            const lectureTitle = currentLecture === 1 ? 'The Cell' : `المحاضرة ${currentLecture}`;
+            const questions = quizData[currentLecture][type];
+            const lectureTitles = {
+                1: 'The Cell',
+                2: 'Transport Across Cell Membrane',
+                3: 'Body Fluids',
+                4: 'Homeostasis',
+                5: 'Autonomic Nervous System'
+            };
+            const lectureTitle = lectureTitles[currentLecture] || `المحاضرة ${currentLecture}`;
             document.getElementById('quiz-title').textContent = 
                 `${type === 'mcq' ? 'اختبار اختيار من متعدد' : 'اختبار صح وخطأ'} - ${lectureTitle}`;
             document.getElementById('total-questions').textContent = questions.length;
@@ -3493,7 +4375,7 @@
         }
 
         function loadQuestion() {
-            const questions = quizData[currentQuizType];
+            const questions = quizData[currentLecture][currentQuizType];
             const question = questions[currentQuestionIndex];
             
             // Update question counter and progress
@@ -3610,7 +4492,7 @@
             clearInterval(quizTimer);
             
             // Calculate results
-            const questions = quizData[currentQuizType];
+            const questions = quizData[currentLecture][currentQuizType];
             let correctCount = 0;
             
             for (let i = 0; i < questions.length; i++) {
@@ -3695,7 +4577,7 @@
             // Show lecture quiz selection and hide results/solutions
             document.getElementById('results-container').classList.add('hidden');
             document.getElementById('solutions-container').classList.add('hidden');
-            document.getElementById('lecture-1-quiz').classList.remove('hidden');
+            document.getElementById(`lecture-${currentLecture}-quiz`).classList.remove('hidden');
         }
         
         // Show Solutions Review
@@ -3716,7 +4598,7 @@
         
         function generateSolutionsList() {
             const solutionsList = document.getElementById('solutions-list');
-            const questions = quizData[currentQuizType];
+            const questions = quizData[currentLecture][currentQuizType];
             
             solutionsList.innerHTML = '';
             
@@ -3928,45 +4810,24 @@
         let navigationHistory = ['home'];
         let currentPageId = 'home';
         
-        // Override showPage to support history
-        const originalShowPage = showPage;
-        showPage = function(pageId) {
-            // Don't add to history if it's the same page
-            if (pageId !== currentPageId) {
-                // Add current page to history if not already there
-                if (navigationHistory[navigationHistory.length - 1] !== currentPageId) {
-                    navigationHistory.push(currentPageId);
-                }
-                currentPageId = pageId;
-                
-                // Update browser history
-                if (history.pushState) {
-                    history.pushState({ page: pageId }, '', `#${pageId}`);
-                }
-            }
-            
-            // Call original function
-            originalShowPage(pageId);
-        };
-        
         // Handle browser back button
         window.addEventListener('popstate', function(event) {
             if (event.state && event.state.page) {
                 // Get the page from browser history
                 const pageId = event.state.page;
                 currentPageId = pageId;
-                originalShowPage(pageId);
+                showPage(pageId);
             } else {
                 // Handle back navigation through our history
                 if (navigationHistory.length > 1) {
                     navigationHistory.pop(); // Remove current page
                     const previousPage = navigationHistory[navigationHistory.length - 1];
                     currentPageId = previousPage;
-                    originalShowPage(previousPage);
+                    showPage(previousPage);
                 } else {
                     // If no history, go to home
                     currentPageId = 'home';
-                    originalShowPage('home');
+                    showPage('home');
                 }
             }
         });
@@ -3989,42 +4850,15 @@
             startQuiz(type);
         }
         
-        // Override quiz functions to support history
-        const originalShowLectureQuiz = showLectureQuiz;
-        showLectureQuiz = function(lectureNumber) {
-            navigationHistory.push('physiology-questions-list');
-            originalShowLectureQuiz(lectureNumber);
-        };
-        
-        const originalBackToLecturesList = backToLecturesList;
-        backToLecturesList = function() {
-            if (navigationHistory.length > 1) {
-                navigationHistory.pop();
-            }
-            originalBackToLecturesList();
-        };
-        
-        const originalStartQuiz = startQuiz;
-        startQuiz = function(type) {
-            navigationHistory.push('lecture-quiz-selection');
-            originalStartQuiz(type);
-        };
-        
-        const originalRestartQuiz = restartQuiz;
-        restartQuiz = function() {
-            // Remove quiz from history
-            if (navigationHistory.length > 1) {
-                navigationHistory.pop();
-            }
-            originalRestartQuiz();
-        };
-        
         // Initialize page history on load
         document.addEventListener('DOMContentLoaded', function() {
             // Set initial browser history state
             if (history.replaceState) {
                 history.replaceState({ page: 'home' }, '', '#home');
             }
+            
+            // Ensure home page is shown initially
+            showPage('home');
             
             // Update progress UI after a short delay to ensure DOM is ready
             setTimeout(() => {
@@ -4082,5 +4916,5 @@
             }, 1200);
         });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96d64f7d74b7e19a',t:'MTc1NDkwMDM5Mi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96dcd77c61b9e18b',t:'MTc1NDk2ODg3OC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
