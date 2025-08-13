@@ -4038,6 +4038,9 @@
         function showLectureQuiz(lectureNumber) {
             currentLecture = lectureNumber;
             
+            // Update navigation manager
+            navigationManager.showLectureQuizSelection(lectureNumber);
+            
             // Hide lectures list
             document.querySelector('.bg-white.rounded-2xl.shadow-xl.p-8.mb-8').style.display = 'none';
             
@@ -4278,6 +4281,9 @@
             timeRemaining = 300; // Reset timer
             startTime = new Date();
             
+            // Update navigation manager
+            navigationManager.startQuizNavigation(currentLecture, type);
+            
             // Hide lecture quiz selection and show quiz container
             document.getElementById(`lecture-${currentLecture}-quiz`).classList.add('hidden');
             document.getElementById('quiz-container').classList.remove('hidden');
@@ -4440,6 +4446,9 @@
         function finishQuiz() {
             clearInterval(quizTimer);
             
+            // Update navigation manager
+            navigationManager.showQuizResults();
+            
             // Calculate results
             const questions = quizData[currentLecture][currentQuizType];
             let correctCount = 0;
@@ -4531,6 +4540,9 @@
         
         // Show Solutions Review
         function showSolutionsReview() {
+            // Update navigation manager
+            navigationManager.showQuizSolutions();
+            
             // Hide results container and show solutions
             document.getElementById('results-container').classList.add('hidden');
             document.getElementById('solutions-container').classList.remove('hidden');
@@ -4755,64 +4767,286 @@
             }, 500);
         }
 
-        // Mobile Back Button Support
-        let navigationHistory = ['home'];
-        let currentPageId = 'home';
-        
-        // Handle browser back button
-        window.addEventListener('popstate', function(event) {
-            if (event.state && event.state.page) {
-                // Get the page from browser history
-                const pageId = event.state.page;
-                currentPageId = pageId;
-                showPage(pageId);
-            } else {
-                // Handle back navigation through our history
-                if (navigationHistory.length > 1) {
-                    navigationHistory.pop(); // Remove current page
-                    const previousPage = navigationHistory[navigationHistory.length - 1];
-                    currentPageId = previousPage;
-                    showPage(previousPage);
-                } else {
-                    // If no history, go to home
-                    currentPageId = 'home';
-                    showPage('home');
-                }
-            }
-        });
-        
-        // Handle quiz navigation history
-        function showLectureQuizWithHistory(lectureNumber) {
-            navigationHistory.push('physiology-questions-list');
-            showLectureQuiz(lectureNumber);
-        }
-        
-        function backToLecturesListWithHistory() {
-            if (navigationHistory.length > 1) {
-                navigationHistory.pop();
-            }
-            backToLecturesList();
-        }
-        
-        function startQuizWithHistory(type) {
-            navigationHistory.push('lecture-quiz-selection');
-            startQuiz(type);
-        }
-        
-        // Initialize page history on load
-        document.addEventListener('DOMContentLoaded', function() {
-            // Set initial browser history state
-            if (history.replaceState) {
-                history.replaceState({ page: 'home' }, '', '#home');
+        // Enhanced Mobile Navigation System
+        class NavigationManager {
+            constructor() {
+                this.currentPage = 'home';
+                this.navigationStack = [];
+                this.quizState = {
+                    inQuiz: false,
+                    currentLecture: null,
+                    quizType: null,
+                    showingResults: false,
+                    showingSolutions: false
+                };
+                this.initializeNavigation();
             }
             
+            initializeNavigation() {
+                // Handle browser back button
+                window.addEventListener('popstate', (event) => {
+                    this.handleBackNavigation(event);
+                });
+                
+                // Set initial state
+                this.pushState('home', 'الصفحة الرئيسية');
+            }
+            
+            pushState(pageId, title, data = {}) {
+                const state = {
+                    page: pageId,
+                    title: title,
+                    timestamp: Date.now(),
+                    ...data
+                };
+                
+                // Add to browser history
+                history.pushState(state, title, `#${pageId}`);
+                this.currentPage = pageId;
+            }
+            
+            replaceState(pageId, title, data = {}) {
+                const state = {
+                    page: pageId,
+                    title: title,
+                    timestamp: Date.now(),
+                    ...data
+                };
+                
+                history.replaceState(state, title, `#${pageId}`);
+                this.currentPage = pageId;
+            }
+            
+            handleBackNavigation(event) {
+                const state = event.state;
+                
+                if (!state) {
+                    // No state, go to home
+                    this.navigateToPage('home');
+                    return;
+                }
+                
+                const pageId = state.page;
+                
+                // Handle special quiz navigation
+                if (this.quizState.inQuiz) {
+                    this.handleQuizBackNavigation(pageId, state);
+                } else {
+                    // Normal page navigation
+                    this.navigateToPage(pageId, false); // false = don't push to history
+                }
+            }
+            
+            handleQuizBackNavigation(pageId, state) {
+                if (this.quizState.showingSolutions) {
+                    // From solutions back to results
+                    this.quizState.showingSolutions = false;
+                    backToResults();
+                } else if (this.quizState.showingResults) {
+                    // From results back to quiz selection
+                    this.quizState.showingResults = false;
+                    this.quizState.inQuiz = false;
+                    document.getElementById('results-container').classList.add('hidden');
+                    document.getElementById(`lecture-${this.quizState.currentLecture}-quiz`).classList.remove('hidden');
+                } else if (document.getElementById('quiz-container').classList.contains('hidden') === false) {
+                    // From active quiz back to quiz selection
+                    this.exitQuiz();
+                } else if (document.getElementById(`lecture-${this.quizState.currentLecture}-quiz`).classList.contains('hidden') === false) {
+                    // From quiz selection back to lectures list
+                    this.quizState.currentLecture = null;
+                    backToLecturesList();
+                } else {
+                    // Default navigation
+                    this.navigateToPage(pageId, false);
+                }
+            }
+            
+            navigateToPage(pageId, pushToHistory = true) {
+                // Update current page
+                this.currentPage = pageId;
+                
+                // Show the page
+                showPage(pageId);
+                
+                // Push to history if needed
+                if (pushToHistory) {
+                    const titles = {
+                        'home': 'الصفحة الرئيسية',
+                        'about': 'حولنا',
+                        'start-journey': 'ابدأ رحلتك التعليمية',
+                        'first-year-first': 'الفرقة الأولى - الترم الأول',
+                        'second-year-first': 'الفرقة الثانية - الترم الأول',
+                        'physiology-lectures': 'محاضرات Physiology 1',
+                        'physiology-questions': 'أسئلة Physiology 1'
+                    };
+                    
+                    this.pushState(pageId, titles[pageId] || pageId);
+                }
+                
+                // Reset quiz state if not in quiz pages
+                if (!['physiology-questions', 'physiology-lectures'].includes(pageId)) {
+                    this.resetQuizState();
+                }
+            }
+            
+            startQuizNavigation(lectureNumber, quizType) {
+                this.quizState.inQuiz = true;
+                this.quizState.currentLecture = lectureNumber;
+                this.quizState.quizType = quizType;
+                this.quizState.showingResults = false;
+                this.quizState.showingSolutions = false;
+                
+                const lectureNames = {
+                    1: 'The Cell',
+                    2: 'Transport Across Cell Membrane',
+                    3: 'Body Fluids',
+                    4: 'Homeostasis',
+                    5: 'Autonomic Nervous System'
+                };
+                
+                const quizTypeNames = {
+                    'mcq': 'اختيار من متعدد',
+                    'truefalse': 'صح وخطأ'
+                };
+                
+                const title = `اختبار ${quizTypeNames[quizType]} - ${lectureNames[lectureNumber]}`;
+                this.pushState(`quiz-${lectureNumber}-${quizType}`, title, {
+                    lecture: lectureNumber,
+                    quizType: quizType,
+                    inQuiz: true
+                });
+            }
+            
+            showQuizResults() {
+                this.quizState.showingResults = true;
+                this.quizState.showingSolutions = false;
+                
+                const title = `نتائج الاختبار - المحاضرة ${this.quizState.currentLecture}`;
+                this.pushState(`quiz-results-${this.quizState.currentLecture}`, title, {
+                    lecture: this.quizState.currentLecture,
+                    showingResults: true
+                });
+            }
+            
+            showQuizSolutions() {
+                this.quizState.showingSolutions = true;
+                
+                const title = `حلول الاختبار - المحاضرة ${this.quizState.currentLecture}`;
+                this.pushState(`quiz-solutions-${this.quizState.currentLecture}`, title, {
+                    lecture: this.quizState.currentLecture,
+                    showingSolutions: true
+                });
+            }
+            
+            showLectureQuizSelection(lectureNumber) {
+                this.quizState.currentLecture = lectureNumber;
+                
+                const lectureNames = {
+                    1: 'The Cell',
+                    2: 'Transport Across Cell Membrane',
+                    3: 'Body Fluids',
+                    4: 'Homeostasis',
+                    5: 'Autonomic Nervous System'
+                };
+                
+                const title = `اختبارات ${lectureNames[lectureNumber]}`;
+                this.pushState(`lecture-quiz-${lectureNumber}`, title, {
+                    lecture: lectureNumber,
+                    showingQuizSelection: true
+                });
+            }
+            
+            exitQuiz() {
+                // Clear quiz timer
+                if (quizTimer) {
+                    clearInterval(quizTimer);
+                    quizTimer = null;
+                }
+                
+                // Hide quiz container
+                document.getElementById('quiz-container').classList.add('hidden');
+                
+                // Show quiz selection
+                document.getElementById(`lecture-${this.quizState.currentLecture}-quiz`).classList.remove('hidden');
+                
+                // Reset quiz state
+                this.quizState.inQuiz = false;
+                this.quizState.showingResults = false;
+                this.quizState.showingSolutions = false;
+            }
+            
+            resetQuizState() {
+                this.quizState = {
+                    inQuiz: false,
+                    currentLecture: null,
+                    quizType: null,
+                    showingResults: false,
+                    showingSolutions: false
+                };
+            }
+            
+            // Method to handle mobile back button in quiz
+            handleQuizBackButton() {
+                if (this.quizState.showingSolutions) {
+                    // From solutions to results
+                    history.back();
+                } else if (this.quizState.showingResults) {
+                    // From results to quiz selection
+                    history.back();
+                } else if (this.quizState.inQuiz) {
+                    // From active quiz - show confirmation
+                    this.showExitQuizConfirmation();
+                } else {
+                    // Normal back navigation
+                    history.back();
+                }
+            }
+            
+            showExitQuizConfirmation() {
+                const confirmExit = confirm('هل تريد الخروج من الاختبار؟ سيتم فقدان التقدم الحالي.');
+                if (confirmExit) {
+                    this.exitQuiz();
+                    history.back();
+                }
+            }
+        }
+        
+        // Initialize navigation manager
+        const navigationManager = new NavigationManager();
+        
+        // Override the original showPage function to work with navigation manager
+        const originalShowPage = showPage;
+        showPage = function(pageId) {
+            // Call original function
+            originalShowPage(pageId);
+            
+            // Update navigation manager if this wasn't called from back navigation
+            if (navigationManager.currentPage !== pageId) {
+                navigationManager.navigateToPage(pageId, true);
+            }
+        };
+        
+        // Initialize page on load
+        document.addEventListener('DOMContentLoaded', function() {
             // Ensure home page is shown initially
-            showPage('home');
+            originalShowPage('home');
             
             // Update progress UI after a short delay to ensure DOM is ready
             setTimeout(() => {
                 progressTracker.updateUI();
             }, 500);
+            
+            // Add mobile-specific back button handling
+            if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
+                // Mobile device detected
+                document.addEventListener('keydown', function(e) {
+                    // Handle hardware back button on Android
+                    if (e.keyCode === 4) { // Android back button
+                        e.preventDefault();
+                        navigationManager.handleQuizBackButton();
+                    }
+                });
+            }
         });
 
         // Loading Screen Management
@@ -4865,5 +5099,5 @@
             }, 1200);
         });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96e7466da57ae9ab',t:'MTc1NTA3ODI3OS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96e7fbb1d1b9ae2d',t:'MTc1NTA4NTcwNC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
