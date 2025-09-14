@@ -335,98 +335,38 @@
 
     <!-- Main Content Wrapper -->
     <div class="main-content">
+
     <!-- Header -->
-    <header class="gradient-bg-dark shadow-lg sticky top-0 z-50">
+    <header class="gradient-bg-dark backdrop-blur-md border-b border-blue-600/30 sticky top-0 z-50 shadow-lg">
         <div class="container mx-auto px-4">
-            <div class="flex items-center justify-between h-16">
-                <!-- Logo -->
-                <div class="flex items-center space-x-3 space-x-reverse">
-                    <img src="https://i.postimg.cc/fT72jWBy/2222222222.png" alt="Studyfy Logo" class="w-12 h-12 object-contain" style="filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));" onerror="this.src=''; this.alt='Logo failed to load'; this.style.display='none';">
-                    <h1 class="text-2xl font-bold">Studyfy</h1>
-                </div>
-
-                <!-- Search Bar -->
-                <div class="hidden md:flex flex-1 max-w-md mx-8">
-                    <div class="relative w-full">
-                        <input type="text" id="searchInput" placeholder="ابحث في المحتوى..." 
-                               class="w-full px-4 py-2 pr-10 rounded-lg bg-blue-800 text-white placeholder-blue-200 border border-blue-600 focus:outline-none focus:border-blue-400">
-                        <svg class="absolute right-3 top-2.5 w-5 h-5 text-blue-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                        </svg>
+            <div class="flex items-center justify-center py-4">
+                <div class="flex items-center space-x-3 space-x-reverse group cursor-pointer" onclick="showPage('home')">
+                    <div class="relative">
+                        <img src="https://i.postimg.cc/fT72jWBy/2222222222.png" 
+                             alt="Studyfy Logo" 
+                             class="w-12 h-12 object-contain transition-transform duration-300 group-hover:scale-110 brain-icon"
+                             onerror="this.src=''; this.alt='Logo failed to load'; this.style.display='none';">
+                        <div class="absolute inset-0 bg-blue-400/20 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     </div>
-                </div>
-
-                <!-- Desktop Navigation -->
-                <nav class="hidden md:flex items-center space-x-8 space-x-reverse">
-                    <a href="#" onclick="showPage('home')" class="hover:text-blue-200 transition-colors">الرئيسية</a>
-                    
-                    <div class="relative group">
-                        <button class="hover:text-blue-200 transition-colors flex items-center" onclick="toggleDropdown('explanationsDropdown')">
-                            الشروحات
-                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                            </svg>
-                        </button>
-                        <div id="explanationsDropdown" class="dropdown absolute right-0 mt-2 w-64 gradient-bg-dark rounded-lg shadow-xl border border-blue-600">
-                            <a href="#" onclick="showPage('first-year-first')" class="block px-4 py-3 hover:bg-blue-700 rounded-t-lg transition-colors">فرقة أولى ترم أول</a>
-                            <a href="#" onclick="showPage('first-year-second')" class="block px-4 py-3 hover:bg-blue-700 transition-colors">فرقة أولى ترم تاني</a>
-                            <a href="#" onclick="showPage('second-year-first')" class="block px-4 py-3 hover:bg-blue-700 transition-colors">فرقة تانية ترم أول</a>
-                            <a href="#" onclick="showPage('second-year-second')" class="block px-4 py-3 hover:bg-blue-700 rounded-b-lg transition-colors">فرقة تانية ترم تاني</a>
-                        </div>
+                    <div class="text-center">
+                        <h1 class="text-3xl font-bold text-white group-hover:text-blue-300 transition-colors duration-300">
+                            Studyfy
+                        </h1>
+                        <div class="w-0 group-hover:w-full h-0.5 bg-gradient-to-r from-blue-400 to-purple-400 transition-all duration-500 mx-auto"></div>
                     </div>
-                    
-                    <a href="#" onclick="showPage('about')" class="hover:text-blue-200 transition-colors">حولنا</a>
-                    <a href="#" onclick="showPage('explanations')" class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg transition-colors">ابدأ رحلتك التعليمية</a>
-                </nav>
-
-                <!-- Mobile Menu Button -->
-                <button class="md:hidden" onclick="toggleMobileMenu()">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                    </svg>
-                </button>
-            </div>
-        </div>
-
-        <!-- Mobile Menu -->
-        <div id="mobileMenu" class="mobile-menu fixed top-0 right-0 h-full w-80 gradient-bg-dark shadow-xl z-50 md:hidden">
-            <div class="p-4">
-                <div class="flex justify-between items-center mb-8">
-                    <h2 class="text-xl font-bold">القائمة</h2>
-                    <button onclick="toggleMobileMenu()">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                        </svg>
-                    </button>
-                </div>
-                
-                <div class="space-y-4">
-                    <input type="text" placeholder="ابحث في المحتوى..." 
-                           class="w-full px-4 py-2 rounded-lg bg-blue-800 text-white placeholder-blue-200 border border-blue-600 mb-6">
-                    
-                    <a href="#" onclick="showPage('home'); toggleMobileMenu()" class="block py-3 hover:text-blue-200">الرئيسية</a>
-                    
-                    <div>
-                        <button onclick="toggleMobileDropdown()" class="w-full text-right py-3 hover:text-blue-200 flex justify-between items-center">
-                            الشروحات
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                            </svg>
-                        </button>
-                        <div id="mobileDropdown" class="hidden pr-4 space-y-2">
-                            <a href="#" onclick="showPage('first-year-first'); toggleMobileMenu()" class="block py-2 text-blue-200 hover:text-white">فرقة أولى ترم أول</a>
-                            <a href="#" onclick="showPage('first-year-second'); toggleMobileMenu()" class="block py-2 text-blue-200 hover:text-white">فرقة أولى ترم تاني</a>
-                            <a href="#" onclick="showPage('second-year-first'); toggleMobileMenu()" class="block py-2 text-blue-200 hover:text-white">فرقة تانية ترم أول</a>
-                            <a href="#" onclick="showPage('second-year-second'); toggleMobileMenu()" class="block py-2 text-blue-200 hover:text-white">فرقة تانية ترم تاني</a>
-                        </div>
-                    </div>
-                    
-                    <a href="#" onclick="showPage('about'); toggleMobileMenu()" class="block py-3 hover:text-blue-200">حولنا</a>
-                    <a href="#" onclick="showPage('explanations'); toggleMobileMenu()" class="block py-3 bg-blue-600 hover:bg-blue-700 rounded-lg px-4 transition-colors">ابدأ رحلتك التعليمية</a>
                 </div>
             </div>
         </div>
     </header>
+
+    <!-- Mobile Back Button -->
+    <div id="mobileBackButton" class="fixed top-20 left-4 z-40 md:hidden hidden">
+        <button onclick="goBack()" class="bg-blue-600/90 backdrop-blur-sm hover:bg-blue-700 text-white p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-110">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+            </svg>
+        </button>
+    </div>
 
     <!-- Main Content -->
     <main class="flex-1">
@@ -438,9 +378,14 @@
                     <div class="fade-in">
                         <h2 class="text-5xl font-bold mb-6">مرحباً بك في Studyfy</h2>
                         <p class="text-xl mb-8 max-w-2xl mx-auto">منصتك التعليمية المتخصصة في العلاج الطبيعي - تعلم مع أفضل الشروحات والمحاضرات التفاعلية</p>
-                        <button onclick="showPage('explanations')" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg text-lg font-semibold hover-scale transition-all">
-                            ابدأ رحلتك التعليمية الآن
-                        </button>
+                        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                            <button onclick="showPage('explanations')" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg text-lg font-semibold hover-scale transition-all">
+                                ابدأ رحلتك التعليمية الآن
+                            </button>
+                            <button onclick="showPage('about')" class="bg-transparent border-2 border-white hover:bg-white hover:text-blue-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover-scale transition-all">
+                                حولنا
+                            </button>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -448,7 +393,7 @@
             <!-- Features Section -->
             <section class="gradient-bg py-16">
                 <div class="container mx-auto px-4">
-                    <h3 class="text-3xl font-bold text-center mb-12">لماذا تختار Studyfy؟</h3>
+                    <h3 class="text-3xl font-bold text-center mb-12">ليه تختار Studyfy؟</h3>
                     <div class="grid md:grid-cols-3 gap-8">
                         <div class="card-gradient p-6 rounded-lg hover-scale">
                             <div class="text-4xl mb-4">🎓</div>
@@ -461,9 +406,9 @@
                             <p>تعلم من أي مكان وعلى أي جهاز بسهولة تامة</p>
                         </div>
                         <div class="card-gradient p-6 rounded-lg hover-scale">
-                            <div class="text-4xl mb-4">👨‍⚕️</div>
-                            <h4 class="text-xl font-semibold mb-3">خبراء متخصصون</h4>
-                            <p>تعلم من أفضل الأطباء والمتخصصين في المجال</p>
+                            <div class="text-4xl mb-4">🤝</div>
+                            <h4 class="text-xl font-semibold mb-3">شرح سلس</h4>
+                            <p>شرح من زمايلك الأكبر بيكون أبسط وقريب منك وعارفين المهم</p>
                         </div>
                     </div>
                 </div>
@@ -477,21 +422,31 @@
                     <div class="max-w-4xl mx-auto">
                         <div class="text-center mb-12">
                             <div class="w-48 h-48 mx-auto mb-6 rounded-full overflow-hidden border-4 border-blue-400 shadow-lg">
-                                <img src="https://i.postimg.cc/KzqZDt6w/IMG-20250323-WA0160.jpg" alt="د/ أحمد باسم" class="w-full h-full object-cover">
+                                <img src="https://i.postimg.cc/WzzCS5fw/image.png" alt="د/ أحمد باسم" class="w-full h-full object-cover">
                             </div>
                             <h2 class="text-3xl font-bold mb-4">د/ أحمد باسم</h2>
+                            <p class="text-xl text-blue-300 mb-4">مؤسس المنصة</p>
+                            <a href="https://wa.me/201018421673" target="_blank" class="inline-flex items-center bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-full transition-all duration-300 hover:scale-105 shadow-lg">
+                                <svg class="w-6 h-6 ml-2" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
+                                </svg>
+                                تواصل معي على واتساب
+                            </a>
                         </div>
                         
                         <div class="card-gradient p-8 rounded-lg mb-8">
                             <h3 class="text-2xl font-bold mb-6">احنا مين؟</h3>
                             <p class="text-lg leading-relaxed mb-6">
-                                احنا تيم زمايلك في الفرقة التالتة علاج طبيعي، بنحب نساعد الطلاب الجدد يفهموا المواد بطريقة سهلة ومبسطة. 
-                                هدفنا إننا نخلي التعليم ممتع ومفيد، ونوفر شروحات واضحة ومحاضرات تفاعلية تساعد كل طالب يحقق أحلامه في المجال الطبي.
+                                احنا تيم زمايلك في الفرقة التالتة علاج طبيعي، بنحب نساعد ونبسط رحلة كليتنا الجميلة نساعد بعض في المواد بتاعتنا عشان تتفهم بطريقة سهلة وبسيطة من زمايلك الاكبر منك فالكلية.
                             </p>
-                            <p class="text-lg leading-relaxed">
-                                معانا هتلاقي كل اللي محتاجه عشان تنجح وتتفوق في دراستك، من شروحات مفصلة لمحاضرات تفاعلية، 
-                                كله بحب وشغف عشان نساعدك تكون أفضل نسخة من نفسك في مجال العلاج الطبيعي.
+                            <p class="text-lg leading-relaxed mb-6">
+                                هدفنا إننا نخلي الشرح بسيط ويركز عالمهم، ونوفر شروحات واضحة تساعد كل طالب وتسهل عليه المذاكرة. معانا هتلاقي كل اللي محتاجه عشان تنجح وتتفوق في دراستك، كله بحب وشغف عشان نساعدك تكون أفضل نسخة من نفسك في رحلتك في العلاج الطبيعي.
                             </p>
+                            <div class="text-center bg-blue-800/30 p-4 rounded-lg">
+                                <p class="text-xl font-semibold text-blue-300 italic">
+                                    "خير الناس أنفعهم للناس"
+                                </p>
+                            </div>
                         </div>
                         
                         <div class="grid md:grid-cols-2 gap-6">
@@ -735,39 +690,8 @@
                                 </div>
                                 
                                 <!-- Lecture Details Below -->
-                                <div class="mt-6 bg-blue-800/30 p-6 rounded-lg">
-                                    <h4 class="text-2xl font-semibold mb-4 text-center">تفاصيل المحاضرة</h4>
-                                    <div class="grid md:grid-cols-3 gap-6 text-center">
-                                        <div class="flex flex-col items-center">
-                                            <div class="bg-green-500/20 p-3 rounded-full mb-3">
-                                                <svg class="w-6 h-6 text-green-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                                </svg>
-                                            </div>
-                                            <span class="text-green-300 font-semibold">متاحة الآن</span>
-                                            <span class="text-blue-200 text-sm">جاهزة للمشاهدة</span>
-                                        </div>
-                                        
-                                        <div class="flex flex-col items-center">
-                                            <div class="bg-blue-500/20 p-3 rounded-full mb-3">
-                                                <svg class="w-6 h-6 text-blue-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
-                                                </svg>
-                                            </div>
-                                            <span class="text-blue-300 font-semibold">جودة عالية HD</span>
-                                            <span class="text-blue-200 text-sm">صورة واضحة</span>
-                                        </div>
-                                        
-                                        <div class="flex flex-col items-center">
-                                            <div class="bg-purple-500/20 p-3 rounded-full mb-3">
-                                                <svg class="w-6 h-6 text-purple-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
-                                                </svg>
-                                            </div>
-                                            <span class="text-purple-300 font-semibold">the cell and</span>
-                                            <span class="text-blue-200 text-sm">cell membrane</span>
-                                        </div>
-                                    </div>
+                                <div class="mt-6 bg-blue-800/30 p-6 rounded-lg text-center">
+                                    <h4 class="text-2xl font-semibold text-purple-300">The Cell and Cell Membrane</h4>
                                 </div>
                             </div>
                         </div>
@@ -918,8 +842,12 @@
     </div> <!-- End Main Content Wrapper -->
 
     <script>
+        // Navigation History Stack
+        let navigationHistory = ['home'];
+        let currentPageIndex = 0;
+
         // Page Navigation
-        function showPage(pageId) {
+        function showPage(pageId, addToHistory = true) {
             // Hide all pages
             const pages = document.querySelectorAll('.page');
             pages.forEach(page => page.classList.add('hidden'));
@@ -944,9 +872,48 @@
                 targetPage.classList.add('fade-in');
             }
             
+            // Update navigation history
+            if (addToHistory) {
+                // Remove any pages after current index (for forward navigation)
+                navigationHistory = navigationHistory.slice(0, currentPageIndex + 1);
+                // Add new page if it's different from current
+                if (navigationHistory[currentPageIndex] !== pageId) {
+                    navigationHistory.push(pageId);
+                    currentPageIndex++;
+                    // Update browser history
+                    updateBrowserHistory(pageId);
+                    // Update page title
+                    document.title = getPageTitle(pageId);
+                }
+            }
+            
+            // Update mobile back button visibility
+            updateMobileBackButton();
+            
             // Close dropdowns and mobile menu
             closeAllDropdowns();
             closeMobileMenu();
+        }
+
+        // Go back function
+        function goBack() {
+            if (currentPageIndex > 0) {
+                currentPageIndex--;
+                const previousPage = navigationHistory[currentPageIndex];
+                showPage(previousPage, false);
+            }
+        }
+
+        // Update mobile back button visibility
+        function updateMobileBackButton() {
+            const backButton = document.getElementById('mobileBackButton');
+            const currentPage = navigationHistory[currentPageIndex];
+            
+            if (currentPage === 'home' || currentPageIndex === 0) {
+                backButton.classList.add('hidden');
+            } else {
+                backButton.classList.remove('hidden');
+            }
         }
 
         // Dropdown functionality
@@ -977,10 +944,192 @@
         }
 
         // Search functionality
-        document.getElementById('searchInput').addEventListener('input', function(e) {
-            const searchTerm = e.target.value.toLowerCase();
-            // Simple search implementation - can be expanded
-            console.log('Searching for:', searchTerm);
+        function performSearch() {
+            const searchInput = document.getElementById('searchInput');
+            const searchTerm = searchInput.value.toLowerCase().trim();
+            
+            if (!searchTerm) return;
+            
+            // Define searchable content with keywords
+            const searchableContent = {
+                'physiology': {
+                    page: 'physiology-lectures',
+                    title: 'محاضرات Physiology 1',
+                    keywords: ['physiology', 'فسيولوجي', 'وظائف الاعضاء', 'وظائف', 'اعضاء', 'فيزيولوجي', 'فسيولوجيا']
+                },
+                'anatomy': {
+                    page: 'first-year-first',
+                    title: 'Anatomy 1',
+                    keywords: ['anatomy', 'تشريح', 'انتومي', 'تشريحي']
+                },
+                'histology': {
+                    page: 'first-year-first', 
+                    title: 'Histology 1',
+                    keywords: ['histology', 'انسجة', 'هستولوجي', 'انسجه', 'هيستولوجي']
+                },
+                'first-year': {
+                    page: 'first-year-first',
+                    title: 'الفرقة الأولى',
+                    keywords: ['فرقة اولى', 'اولى', 'first year', 'سنة اولى', 'فرقه اولى']
+                },
+                'second-year': {
+                    page: 'second-year-first',
+                    title: 'الفرقة الثانية', 
+                    keywords: ['فرقة تانية', 'تانية', 'second year', 'سنة تانية', 'فرقه تانيه', 'ثانية']
+                }
+            };
+            
+            // Search through content
+            let foundResults = [];
+            
+            for (let key in searchableContent) {
+                const content = searchableContent[key];
+                const matchFound = content.keywords.some(keyword => 
+                    keyword.includes(searchTerm) || searchTerm.includes(keyword)
+                );
+                
+                if (matchFound) {
+                    foundResults.push(content);
+                }
+            }
+            
+            // Display search results
+            if (foundResults.length > 0) {
+                showSearchResults(foundResults, searchTerm);
+            } else {
+                showNoResults(searchTerm);
+            }
+        }
+        
+        function showSearchResults(results, searchTerm) {
+            // Create search results page content
+            let resultsHTML = `
+                <section class="gradient-bg py-16">
+                    <div class="container mx-auto px-4">
+                        <div class="text-center mb-12">
+                            <h2 class="text-4xl font-bold mb-4">نتائج البحث</h2>
+                            <p class="text-xl text-blue-200">نتائج البحث عن: "${searchTerm}"</p>
+                            <div class="w-24 h-1 bg-blue-400 mx-auto mt-4 rounded"></div>
+                        </div>
+                        
+                        <div class="max-w-4xl mx-auto">
+                            <div class="grid gap-6">
+            `;
+            
+            results.forEach(result => {
+                resultsHTML += `
+                    <div class="card-gradient p-6 rounded-lg hover-scale cursor-pointer transition-all duration-300" onclick="showPage('${result.page}')">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <h3 class="text-2xl font-bold mb-2">${result.title}</h3>
+                                <p class="text-blue-200">اضغط للانتقال إلى المحتوى</p>
+                            </div>
+                            <div class="text-blue-300">
+                                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            resultsHTML += `
+                            </div>
+                            <div class="text-center mt-8">
+                                <button onclick="showPage('home')" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg transition-colors">
+                                    العودة للرئيسية
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            `;
+            
+            // Create or update search results page
+            let searchResultsPage = document.getElementById('searchResultsPage');
+            if (!searchResultsPage) {
+                searchResultsPage = document.createElement('div');
+                searchResultsPage.id = 'searchResultsPage';
+                searchResultsPage.className = 'page hidden';
+                document.querySelector('main').appendChild(searchResultsPage);
+            }
+            
+            searchResultsPage.innerHTML = resultsHTML;
+            
+            // Show search results page
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.add('hidden'));
+            searchResultsPage.classList.remove('hidden');
+            searchResultsPage.classList.add('fade-in');
+        }
+        
+        function showNoResults(searchTerm) {
+            let noResultsHTML = `
+                <section class="gradient-bg py-16">
+                    <div class="container mx-auto px-4 text-center">
+                        <div class="max-w-2xl mx-auto">
+                            <div class="text-6xl mb-6">🔍</div>
+                            <h2 class="text-4xl font-bold mb-4">لم نجد نتائج</h2>
+                            <p class="text-xl text-blue-200 mb-8">لم نجد أي محتوى يطابق بحثك عن: "${searchTerm}"</p>
+                            
+                            <div class="card-gradient p-6 rounded-lg mb-8">
+                                <h3 class="text-2xl font-bold mb-4">جرب البحث عن:</h3>
+                                <div class="grid md:grid-cols-2 gap-4 text-right">
+                                    <div class="space-y-2">
+                                        <p class="text-blue-200">• Physiology أو فسيولوجي</p>
+                                        <p class="text-blue-200">• Anatomy أو تشريح</p>
+                                        <p class="text-blue-200">• Histology أو أنسجة</p>
+                                    </div>
+                                    <div class="space-y-2">
+                                        <p class="text-blue-200">• فرقة أولى</p>
+                                        <p class="text-blue-200">• فرقة تانية</p>
+                                        <p class="text-blue-200">• محاضرات</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="space-x-4 space-x-reverse">
+                                <button onclick="showPage('home')" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg transition-colors">
+                                    العودة للرئيسية
+                                </button>
+                                <button onclick="showPage('explanations')" class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg transition-colors">
+                                    تصفح المحتوى
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            `;
+            
+            // Create or update no results page
+            let noResultsPage = document.getElementById('noResultsPage');
+            if (!noResultsPage) {
+                noResultsPage = document.createElement('div');
+                noResultsPage.id = 'noResultsPage';
+                noResultsPage.className = 'page hidden';
+                document.querySelector('main').appendChild(noResultsPage);
+            }
+            
+            noResultsPage.innerHTML = noResultsHTML;
+            
+            // Show no results page
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.add('hidden'));
+            noResultsPage.classList.remove('hidden');
+            noResultsPage.classList.add('fade-in');
+        }
+        
+        // Add search event listeners
+        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                performSearch();
+            }
+        });
+        
+        // Add click event to search icon
+        document.querySelector('.absolute.right-3').addEventListener('click', function() {
+            performSearch();
         });
 
         // Close dropdowns when clicking outside
@@ -990,10 +1139,46 @@
             }
         });
 
+        // Handle browser back button
+        window.addEventListener('popstate', function(event) {
+            if (event.state && event.state.page) {
+                showPage(event.state.page, false);
+            } else {
+                goBack();
+            }
+        });
+
+        // Update browser history when navigating
+        function updateBrowserHistory(pageId) {
+            const pageTitle = getPageTitle(pageId);
+            history.pushState({page: pageId}, pageTitle, `#${pageId}`);
+        }
+
+        // Get page title for browser history
+        function getPageTitle(pageId) {
+            const titles = {
+                'home': 'Studyfy - الرئيسية',
+                'about': 'Studyfy - حولنا',
+                'explanations': 'Studyfy - الشروحات',
+                'first-year-first': 'Studyfy - فرقة أولى ترم أول',
+                'first-year-second': 'Studyfy - فرقة أولى ترم ثاني',
+                'second-year-first': 'Studyfy - فرقة تانية ترم أول',
+                'second-year-second': 'Studyfy - فرقة تانية ترم ثاني',
+                'physiology-lectures': 'Studyfy - محاضرات Physiology 1'
+            };
+            return titles[pageId] || 'Studyfy';
+        }
+
         // Initialize page
         document.addEventListener('DOMContentLoaded', function() {
-            showPage('home');
+            // Check if there's a hash in URL
+            const hash = window.location.hash.substring(1);
+            if (hash && hash !== 'home') {
+                showPage(hash);
+            } else {
+                showPage('home');
+            }
         });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97ed9dca605e5dd1',t:'MTc1NzgyOTEyNy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97edc37e14a5aa2c',t:'MTc1NzgzMDY3MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
