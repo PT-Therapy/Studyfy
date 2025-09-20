@@ -337,23 +337,159 @@
     <div class="main-content">
 
     <!-- Header -->
-    <header class="gradient-bg-dark backdrop-blur-md border-b border-blue-600/30 sticky top-0 z-50 shadow-lg">
+    <header class="gradient-bg-dark backdrop-blur-md border-b border-blue-600/30 sticky top-0 z-50 shadow-2xl">
         <div class="container mx-auto px-4">
-            <div class="flex items-center justify-center py-4">
+            <div class="flex items-center justify-between py-4">
+                <!-- Logo Section -->
                 <div class="flex items-center space-x-3 space-x-reverse group cursor-pointer" onclick="showPage('home')">
                     <div class="relative">
-                        <img src="https://i.postimg.cc/fT72jWBy/2222222222.png" 
-                             alt="Studyfy Logo" 
-                             class="w-12 h-12 object-contain transition-transform duration-300 group-hover:scale-110 brain-icon"
-                             onerror="this.src=''; this.alt='Logo failed to load'; this.style.display='none';">
+                        <div class="w-14 h-14 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-full flex items-center justify-center backdrop-blur-sm border border-blue-400/30 group-hover:border-blue-300/50 transition-all duration-300">
+                            <img src="https://i.postimg.cc/fT72jWBy/2222222222.png" 
+                                 alt="Studyfy Logo" 
+                                 class="w-10 h-10 object-contain transition-transform duration-300 group-hover:scale-110 brain-icon"
+                                 onerror="this.src=''; this.alt='Logo failed to load'; this.style.display='none';">
+                        </div>
                         <div class="absolute inset-0 bg-blue-400/20 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     </div>
-                    <div class="text-center">
-                        <h1 class="text-3xl font-bold text-white group-hover:text-blue-300 transition-colors duration-300">
+                    <div>
+                        <h1 class="text-2xl md:text-3xl font-bold text-white group-hover:text-blue-300 transition-colors duration-300">
                             Studyfy
                         </h1>
-                        <div class="w-0 group-hover:w-full h-0.5 bg-gradient-to-r from-blue-400 to-purple-400 transition-all duration-500 mx-auto"></div>
+                        <p class="text-xs md:text-sm text-blue-300/80 group-hover:text-blue-200 transition-colors duration-300">منصة التعلم الطبي</p>
+                        <div class="w-0 group-hover:w-full h-0.5 bg-gradient-to-r from-blue-400 to-purple-400 transition-all duration-500"></div>
                     </div>
+                </div>
+
+                <!-- Navigation Menu -->
+                <nav class="hidden md:flex items-center space-x-8 space-x-reverse">
+                    <button onclick="showPage('home')" class="relative group px-4 py-2 text-white hover:text-blue-300 transition-colors duration-300 font-medium">
+                        <span class="relative z-10">الرئيسية</span>
+                        <div class="absolute inset-0 bg-blue-600/20 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <div class="absolute bottom-0 left-0 w-0 group-hover:w-full h-0.5 bg-gradient-to-r from-blue-400 to-purple-400 transition-all duration-300"></div>
+                    </button>
+                    
+                    <button onclick="showPage('explanations')" class="relative group px-4 py-2 text-white hover:text-blue-300 transition-colors duration-300 font-medium">
+                        <span class="relative z-10">الشروحات</span>
+                        <div class="absolute inset-0 bg-blue-600/20 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <div class="absolute bottom-0 left-0 w-0 group-hover:w-full h-0.5 bg-gradient-to-r from-blue-400 to-purple-400 transition-all duration-300"></div>
+                    </button>
+                    
+                    <button onclick="showPage('about')" class="relative group px-4 py-2 text-white hover:text-blue-300 transition-colors duration-300 font-medium">
+                        <span class="relative z-10">حولنا</span>
+                        <div class="absolute inset-0 bg-blue-600/20 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <div class="absolute bottom-0 left-0 w-0 group-hover:w-full h-0.5 bg-gradient-to-r from-blue-400 to-purple-400 transition-all duration-300"></div>
+                    </button>
+                </nav>
+
+                <!-- Search Bar -->
+                <div class="hidden lg:flex items-center">
+                    <div class="relative">
+                        <input type="text" 
+                               id="searchInput" 
+                               placeholder="ابحث عن المحاضرات..." 
+                               class="bg-blue-800/30 backdrop-blur-sm border border-blue-600/50 rounded-full px-4 py-2 pr-10 text-white placeholder-blue-300 focus:outline-none focus:border-blue-400 focus:bg-blue-800/50 transition-all duration-300 w-64">
+                        <button onclick="performSearch()" class="absolute right-3 top-1/2 transform -translate-y-1/2 text-blue-300 hover:text-blue-200 transition-colors duration-300">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Contact Button -->
+                <div class="hidden md:flex items-center">
+                    <a href="https://wa.me/201018421673" target="_blank" class="group relative bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white px-6 py-2.5 rounded-full font-semibold transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl">
+                        <div class="flex items-center space-x-2 space-x-reverse">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
+                            </svg>
+                            <span>تواصل معنا</span>
+                        </div>
+                        <div class="absolute inset-0 bg-white/10 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button onclick="toggleMobileMenu()" class="md:hidden relative group p-2 text-white hover:text-blue-300 transition-colors duration-300">
+                    <div class="absolute inset-0 bg-blue-600/20 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <svg class="w-6 h-6 relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Mobile Search Bar -->
+            <div class="lg:hidden pb-4">
+                <div class="relative">
+                    <input type="text" 
+                           id="mobileSearchInput" 
+                           placeholder="ابحث عن المحاضرات..." 
+                           class="w-full bg-blue-800/30 backdrop-blur-sm border border-blue-600/50 rounded-full px-4 py-2 pr-10 text-white placeholder-blue-300 focus:outline-none focus:border-blue-400 focus:bg-blue-800/50 transition-all duration-300">
+                    <button onclick="performMobileSearch()" class="absolute right-3 top-1/2 transform -translate-y-1/2 text-blue-300 hover:text-blue-200 transition-colors duration-300">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="mobile-menu md:hidden fixed top-0 right-0 h-full w-80 bg-gradient-to-b from-blue-900 to-blue-800 backdrop-blur-md border-l border-blue-600/30 shadow-2xl z-50">
+            <div class="p-6">
+                <!-- Mobile Menu Header -->
+                <div class="flex items-center justify-between mb-8">
+                    <div class="flex items-center space-x-3 space-x-reverse">
+                        <div class="w-10 h-10 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-full flex items-center justify-center backdrop-blur-sm border border-blue-400/30">
+                            <img src="https://i.postimg.cc/fT72jWBy/2222222222.png" 
+                                 alt="Studyfy Logo" 
+                                 class="w-6 h-6 object-contain"
+                                 onerror="this.src=''; this.alt='Logo failed to load'; this.style.display='none';">
+                        </div>
+                        <div>
+                            <h2 class="text-xl font-bold text-white">Studyfy</h2>
+                            <p class="text-xs text-blue-300">منصة التعلم الطبي</p>
+                        </div>
+                    </div>
+                    <button onclick="closeMobileMenu()" class="p-2 text-white hover:text-blue-300 transition-colors duration-300">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Mobile Menu Items -->
+                <nav class="space-y-4">
+                    <button onclick="showPage('home'); closeMobileMenu();" class="w-full text-right p-4 text-white hover:text-blue-300 hover:bg-blue-800/30 rounded-lg transition-all duration-300 flex items-center justify-between">
+                        <span class="font-medium">الرئيسية</span>
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+                        </svg>
+                    </button>
+                    
+                    <button onclick="showPage('explanations'); closeMobileMenu();" class="w-full text-right p-4 text-white hover:text-blue-300 hover:bg-blue-800/30 rounded-lg transition-all duration-300 flex items-center justify-between">
+                        <span class="font-medium">الشروحات</span>
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                        </svg>
+                    </button>
+                    
+                    <button onclick="showPage('about'); closeMobileMenu();" class="w-full text-right p-4 text-white hover:text-blue-300 hover:bg-blue-800/30 rounded-lg transition-all duration-300 flex items-center justify-between">
+                        <span class="font-medium">حولنا</span>
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </button>
+                </nav>
+
+                <!-- Mobile Contact Button -->
+                <div class="mt-8 pt-6 border-t border-blue-600/30">
+                    <a href="https://wa.me/201018421673" target="_blank" class="w-full bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white p-4 rounded-lg font-semibold transition-all duration-300 hover:scale-105 shadow-lg flex items-center justify-center space-x-2 space-x-reverse">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
+                        </svg>
+                        <span>تواصل معنا على واتساب</span>
+                    </a>
                 </div>
             </div>
         </div>
@@ -373,42 +509,133 @@
         <!-- Home Page -->
         <div id="homePage" class="page">
             <!-- Hero Section -->
-            <section class="gradient-bg-light py-20">
-                <div class="container mx-auto px-4 text-center">
-                    <div class="fade-in">
-                        <h2 class="text-5xl font-bold mb-6">مرحباً بك في Studyfy</h2>
-                        <p class="text-xl mb-8 max-w-2xl mx-auto">منصتك التعليمية المتخصصة في العلاج الطبيعي - تعلم مع أفضل الشروحات والمحاضرات التفاعلية</p>
-                        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                            <button onclick="showPage('explanations')" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg text-lg font-semibold hover-scale transition-all">
-                                ابدأ رحلتك التعليمية الآن
+            <section class="relative gradient-bg-light py-24 overflow-hidden">
+                <!-- Background Decorative Elements -->
+                <div class="absolute inset-0 opacity-10">
+                    <div class="absolute top-20 left-10 w-72 h-72 bg-white rounded-full blur-3xl animate-pulse"></div>
+                    <div class="absolute bottom-20 right-10 w-96 h-96 bg-blue-300 rounded-full blur-3xl animate-pulse" style="animation-delay: 2s;"></div>
+                </div>
+                
+                <div class="container mx-auto px-4 text-center relative z-10">
+                    <div class="fade-in max-w-5xl mx-auto">
+                        <!-- Logo Section -->
+                        <div class="mb-8">
+                            <div class="inline-flex items-center justify-center w-24 h-24 bg-white/20 backdrop-blur-sm rounded-full mb-6 shadow-2xl">
+                                <img src="https://i.postimg.cc/fT72jWBy/2222222222.png" 
+                                     alt="Studyfy Logo" 
+                                     class="w-16 h-16 object-contain"
+                                     onerror="this.src=''; this.alt='Logo failed to load'; this.style.display='none';">
+                            </div>
+                        </div>
+                        
+                        <!-- Main Title -->
+                        <h2 class="text-6xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-white via-blue-100 to-white bg-clip-text text-transparent">
+                            مرحباً بك في Studyfy
+                        </h2>
+                        
+                        <!-- Subtitle -->
+                        <p class="text-xl md:text-2xl mb-10 max-w-3xl mx-auto text-blue-100 leading-relaxed">
+                            منصتك التعليمية المتخصصة في العلاج الطبيعي
+                            <br>
+                            <span class="text-lg text-blue-200">تعلم مع أفضل الشروحات والمحاضرات التفاعلية من زمايلك</span>
+                        </p>
+                        
+                        <!-- CTA Buttons -->
+                        <div class="flex flex-col sm:flex-row gap-6 justify-center items-center">
+                            <button onclick="showPage('explanations')" class="group relative bg-white text-blue-600 px-10 py-4 rounded-full text-lg font-bold hover-scale transition-all duration-300 shadow-2xl hover:shadow-white/25">
+                                <span class="relative z-10">ابدأ رحلتك التعليمية الآن</span>
+                                <div class="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                <span class="absolute inset-0 flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 font-bold">
+                                    ابدأ رحلتك التعليمية الآن
+                                </span>
                             </button>
-                            <button onclick="showPage('about')" class="bg-transparent border-2 border-white hover:bg-white hover:text-blue-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover-scale transition-all">
-                                حولنا
+                            <button onclick="showPage('about')" class="bg-transparent border-2 border-white/50 backdrop-blur-sm hover:bg-white/10 hover:border-white text-white px-10 py-4 rounded-full text-lg font-semibold hover-scale transition-all duration-300">
+                                تعرف علينا أكثر
                             </button>
+                        </div>
+                        
+                        <!-- Stats Section -->
+                        <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+                            <div class="bg-white/10 backdrop-blur-sm p-6 rounded-2xl border border-white/20">
+                                <div class="text-3xl font-bold text-white mb-2">3</div>
+                                <p class="text-blue-200">مواد دراسية</p>
+                            </div>
+                            <div class="bg-white/10 backdrop-blur-sm p-6 rounded-2xl border border-white/20">
+                                <div class="text-3xl font-bold text-white mb-2">2</div>
+                                <p class="text-blue-200">فرق دراسية</p>
+                            </div>
+                            <div class="bg-white/10 backdrop-blur-sm p-6 rounded-2xl border border-white/20">
+                                <div class="text-3xl font-bold text-white mb-2">∞</div>
+                                <p class="text-blue-200">فرص التعلم</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </section>
 
             <!-- Features Section -->
-            <section class="gradient-bg py-16">
+            <section class="gradient-bg py-20">
                 <div class="container mx-auto px-4">
-                    <h3 class="text-3xl font-bold text-center mb-12">ليه تختار Studyfy؟</h3>
-                    <div class="grid md:grid-cols-3 gap-8">
-                        <div class="card-gradient p-6 rounded-lg hover-scale">
-                            <div class="text-4xl mb-4">🎓</div>
-                            <h4 class="text-xl font-semibold mb-3">محتوى متخصص</h4>
-                            <p>شروحات مفصلة ومحاضرات تفاعلية في العلاج الطبيعي</p>
+                    <!-- Section Header -->
+                    <div class="text-center mb-16">
+                        <h3 class="text-4xl md:text-5xl font-bold mb-4">ليه تختار Studyfy؟</h3>
+                        <p class="text-xl text-blue-200 max-w-2xl mx-auto">اكتشف المميزات التي تجعل تجربتك التعليمية استثنائية</p>
+                        <div class="w-24 h-1 bg-gradient-to-r from-blue-400 to-purple-400 mx-auto mt-6 rounded-full"></div>
+                    </div>
+                    
+                    <!-- Features Grid -->
+                    <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                        <!-- Feature 1 -->
+                        <div class="group relative">
+                            <div class="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl blur opacity-25 group-hover:opacity-40 transition-opacity duration-300"></div>
+                            <div class="relative card-gradient p-8 rounded-2xl hover-scale border border-blue-500/30 h-full">
+                                <div class="text-center">
+                                    <div class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full mb-6 shadow-lg">
+                                        <div class="text-3xl">🎓</div>
+                                    </div>
+                                    <h4 class="text-2xl font-bold mb-4 text-white">محتوى متخصص</h4>
+                                    <p class="text-blue-200 leading-relaxed">شروحات مفصلة ومحاضرات تفاعلية في العلاج الطبيعي من أفضل المصادر</p>
+                                </div>
+                            </div>
                         </div>
-                        <div class="card-gradient p-6 rounded-lg hover-scale">
-                            <div class="text-4xl mb-4">📱</div>
-                            <h4 class="text-xl font-semibold mb-3">تصميم متجاوب</h4>
-                            <p>تعلم من أي مكان وعلى أي جهاز بسهولة تامة</p>
+                        
+                        <!-- Feature 2 -->
+                        <div class="group relative">
+                            <div class="absolute inset-0 bg-gradient-to-r from-green-600 to-blue-600 rounded-2xl blur opacity-25 group-hover:opacity-40 transition-opacity duration-300"></div>
+                            <div class="relative card-gradient p-8 rounded-2xl hover-scale border border-green-500/30 h-full">
+                                <div class="text-center">
+                                    <div class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-green-500 to-blue-500 rounded-full mb-6 shadow-lg">
+                                        <div class="text-3xl">📱</div>
+                                    </div>
+                                    <h4 class="text-2xl font-bold mb-4 text-white">تصميم متجاوب</h4>
+                                    <p class="text-blue-200 leading-relaxed">تعلم من أي مكان وعلى أي جهاز بسهولة تامة مع تجربة مستخدم مميزة</p>
+                                </div>
+                            </div>
                         </div>
-                        <div class="card-gradient p-6 rounded-lg hover-scale">
-                            <div class="text-4xl mb-4">🤝</div>
-                            <h4 class="text-xl font-semibold mb-3">شرح سلس</h4>
-                            <p>شرح من زمايلك الأكبر بيكون أبسط وقريب منك وعارفين المهم</p>
+                        
+                        <!-- Feature 3 -->
+                        <div class="group relative">
+                            <div class="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600 rounded-2xl blur opacity-25 group-hover:opacity-40 transition-opacity duration-300"></div>
+                            <div class="relative card-gradient p-8 rounded-2xl hover-scale border border-purple-500/30 h-full">
+                                <div class="text-center">
+                                    <div class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full mb-6 shadow-lg">
+                                        <div class="text-3xl">🤝</div>
+                                    </div>
+                                    <h4 class="text-2xl font-bold mb-4 text-white">شرح من الزمايل</h4>
+                                    <p class="text-blue-200 leading-relaxed">شرح من زمايلك الأكبر يكون أبسط وأقرب منك وعارفين المهم والمفيد</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Call to Action -->
+                    <div class="text-center mt-16">
+                        <div class="bg-gradient-to-r from-blue-800/40 to-purple-800/40 backdrop-blur-sm p-8 rounded-2xl border border-blue-500/30 max-w-4xl mx-auto">
+                            <h4 class="text-3xl font-bold mb-4 text-white">جاهز تبدأ رحلتك التعليمية؟</h4>
+                            <p class="text-xl text-blue-200 mb-6">انضم لآلاف الطلاب واكتشف طريقة جديدة للتعلم</p>
+                            <button onclick="showPage('explanations')" class="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-4 rounded-full text-lg font-bold hover-scale transition-all duration-300 shadow-xl">
+                                ابدأ الآن مجاناً
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -537,10 +764,10 @@
                                     </div>
                                 </div>
                                 
-                                <button class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg text-lg font-semibold transition-colors">
-                                    قريباً
+                                <button onclick="showPage('histology-lectures')" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg text-lg font-semibold transition-colors">
+                                    ابدأ الدراسة
                                 </button>
-                                <span class="inline-block mt-2 bg-yellow-500/20 text-yellow-300 px-3 py-1 rounded-full text-sm">تحت الإعداد</span>
+                                <span class="inline-block mt-2 bg-green-500/20 text-green-300 px-3 py-1 rounded-full text-sm">متاح</span>
                             </div>
 
                             <!-- Physiology 1 -->
@@ -605,28 +832,577 @@
                                     </div>
                                 </div>
                                 
-                                <button class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg text-lg font-semibold transition-colors">
-                                    قريباً
+                                <button onclick="showPage('histology-lectures')" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg text-lg font-semibold transition-colors">
+                                    ابدأ الدراسة
                                 </button>
-                                <span class="inline-block mt-2 bg-yellow-500/20 text-yellow-300 px-3 py-1 rounded-full text-sm">تحت الإعداد</span>
+                                <span class="inline-block mt-2 bg-green-500/20 text-green-300 px-3 py-1 rounded-full text-sm">متاح</span>
                             </div>
                         </div>
 
-                        <!-- Progress Overview -->
-                        <div class="mt-12 card-gradient p-6 rounded-xl">
-                            <h3 class="text-2xl font-bold text-center mb-6">نظرة عامة على التقدم</h3>
-                            <div class="grid md:grid-cols-3 gap-6">
-                                <div class="text-center">
-                                    <div class="text-3xl font-bold text-blue-300 mb-2">3</div>
-                                    <p class="text-blue-200">إجمالي المواد</p>
+                        <!-- Inspirational Quranic Verse -->
+                        <div class="mt-12 relative overflow-hidden">
+                            <!-- Background with Islamic pattern -->
+                            <div class="absolute inset-0 opacity-10">
+                                <svg class="w-full h-full" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                                    <defs>
+                                        <pattern id="islamic-pattern" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+                                            <circle cx="10" cy="10" r="2" fill="currentColor"/>
+                                            <path d="M10 5 L15 10 L10 15 L5 10 Z" fill="none" stroke="currentColor" stroke-width="0.5"/>
+                                        </pattern>
+                                    </defs>
+                                    <rect width="100" height="100" fill="url(#islamic-pattern)"/>
+                                </svg>
+                            </div>
+                            
+                            <div class="relative card-gradient p-8 rounded-xl border-2 border-gold-400/30 shadow-2xl">
+                                <!-- Decorative Islamic ornament -->
+                                <div class="text-center mb-6">
+                                    <div class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-full mb-4 shadow-lg">
+                                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M12 2L13.09 8.26L20 9L13.09 9.74L12 16L10.91 9.74L4 9L10.91 8.26L12 2Z"/>
+                                        </svg>
+                                    </div>
                                 </div>
-                                <div class="text-center">
-                                    <div class="text-3xl font-bold text-green-300 mb-2">1</div>
-                                    <p class="text-blue-200">المواد المتاحة</p>
+                                
+                                <!-- Quranic Verse -->
+                                <div class="text-center space-y-6">
+                                    <div class="relative">
+                                        <!-- Opening ornament -->
+                                        <div class="flex justify-center mb-4">
+                                            <svg class="w-12 h-6 text-yellow-400" fill="currentColor" viewBox="0 0 100 30">
+                                                <path d="M10 15 Q25 5 40 15 Q55 25 70 15 Q85 5 100 15 L95 20 Q80 10 65 20 Q50 30 35 20 Q20 10 5 20 Z"/>
+                                            </svg>
+                                        </div>
+                                        
+                                        <!-- Arabic text -->
+                                        <h3 class="text-3xl md:text-4xl font-bold text-white mb-4 leading-relaxed" style="font-family: 'Amiri', 'Cairo', serif;">
+                                            وَقُل رَّبِّ زِدْنِي عِلْمًا
+                                        </h3>
+                                        
+                                        <!-- Translation -->
+                                        <p class="text-xl text-blue-200 mb-4 italic">
+                                            "وقل ربي زدني علماً"
+                                        </p>
+                                        
+                                        <!-- Surah reference -->
+                                        <div class="inline-flex items-center bg-blue-800/40 px-4 py-2 rounded-full">
+                                            <svg class="w-5 h-5 text-yellow-400 ml-2" fill="currentColor" viewBox="0 0 24 24">
+                                                <path d="M19 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3M19 19H5V5H19V19Z"/>
+                                            </svg>
+                                            <span class="text-blue-200 font-semibold">سورة طه - آية 114</span>
+                                        </div>
+                                        
+                                        <!-- Closing ornament -->
+                                        <div class="flex justify-center mt-4">
+                                            <svg class="w-12 h-6 text-yellow-400" fill="currentColor" viewBox="0 0 100 30">
+                                                <path d="M10 15 Q25 5 40 15 Q55 25 70 15 Q85 5 100 15 L95 20 Q80 10 65 20 Q50 30 35 20 Q20 10 5 20 Z"/>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Motivational message -->
+                                    <div class="bg-gradient-to-r from-blue-800/30 to-purple-800/30 p-6 rounded-lg border border-blue-600/30">
+                                        <p class="text-lg text-blue-100 leading-relaxed">
+                                            في رحلتك التعليمية، تذكر دائماً أن طلب العلم عبادة، وأن كل خطوة تخطوها في التعلم تقربك إلى الله وتنفع الناس. 
+                                            ادع الله أن يزيدك علماً وأن يبارك في مسيرتك الأكاديمية.
+                                        </p>
+                                    </div>
+                                    
+                                    <!-- Progress stats in beautiful format -->
+                                    <div class="grid grid-cols-3 gap-4 mt-8">
+                                        <div class="bg-blue-800/20 p-4 rounded-lg border border-blue-600/30">
+                                            <div class="text-2xl font-bold text-blue-300 mb-1">3</div>
+                                            <p class="text-blue-200 text-sm">إجمالي المواد</p>
+                                        </div>
+                                        <div class="bg-green-800/20 p-4 rounded-lg border border-green-600/30">
+                                            <div class="text-2xl font-bold text-green-300 mb-1">1</div>
+                                            <p class="text-green-200 text-sm">المواد المتاحة</p>
+                                        </div>
+                                        <div class="bg-yellow-800/20 p-4 rounded-lg border border-yellow-600/30">
+                                            <div class="text-2xl font-bold text-yellow-300 mb-1">2</div>
+                                            <p class="text-yellow-200 text-sm">قيد الإعداد</p>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="text-center">
-                                    <div class="text-3xl font-bold text-yellow-300 mb-2">2</div>
-                                    <p class="text-blue-200">قيد الإعداد</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Anatomy Lectures -->
+        <div id="anatomyLecturesPage" class="page hidden">
+            <section class="gradient-bg py-16">
+                <div class="container mx-auto px-4">
+                    <!-- Header Section -->
+                    <div class="text-center mb-12">
+                        <h2 class="text-4xl font-bold mb-4">محاضرات Anatomy 1</h2>
+                        <p class="text-xl text-blue-200">علم التشريح</p>
+                        <div class="w-24 h-1 bg-blue-400 mx-auto mt-4 rounded"></div>
+                    </div>
+
+                    <div class="max-w-6xl mx-auto">
+                        <!-- First Lecture with Interactive Cover -->
+                        <div class="card-gradient p-8 rounded-xl mb-8 hover-scale shadow-2xl">
+                            <div class="max-w-4xl mx-auto">
+                                <!-- Interactive Lecture Cover -->
+                                <div class="relative cursor-pointer group" onclick="window.open('https://drive.google.com/file/d/1yfhuW3YIXkS98fWJXhqFy_HzxaHe24JK/view?usp=sharing', '_blank')">
+                                    <img src="https://i.postimg.cc/j2x2GYPt/image.jpg" 
+                                         alt="غلاف المحاضرة الأولى" 
+                                         class="w-full h-48 sm:h-64 md:h-80 object-contain sm:object-cover rounded-lg shadow-lg transition-transform duration-300 group-hover:scale-105 bg-gray-900"
+                                         onerror="this.src=''; this.alt='فشل تحميل الغلاف'; this.style.display='none';">
+                                    
+                                    <!-- Gradient Overlay -->
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent rounded-lg transition-opacity duration-300 group-hover:from-black/80"></div>
+                                    
+                                    <!-- Play Button -->
+                                    <div class="absolute inset-0 flex items-center justify-center">
+                                        <div class="bg-white/20 backdrop-blur-sm rounded-full p-4 sm:p-6 transition-all duration-300 group-hover:bg-white/30 group-hover:scale-110">
+                                            <svg class="w-12 h-12 sm:w-16 sm:h-16 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                                <path d="M8 5v14l11-7z"/>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Lecture Info Overlay -->
+                                    <div class="absolute bottom-0 left-0 right-0 p-3 sm:p-6">
+                                        <h3 class="text-xl sm:text-2xl md:text-3xl font-bold text-white mb-2 sm:mb-3">المحاضرة الأولى</h3>
+                                        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between text-white/90 space-y-2 sm:space-y-0">
+                                            <div class="flex items-center">
+                                                <svg class="w-4 h-4 sm:w-5 sm:h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                                </svg>
+                                                <span class="text-sm sm:text-base">مدة المحاضرة: 15 دقيقة</span>
+                                            </div>
+                                            <span class="bg-green-500/80 px-2 py-1 sm:px-3 sm:py-1 rounded-full text-xs sm:text-sm font-semibold self-start sm:self-auto">متاحة الآن</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Hover Effect Text -->
+                                    <div class="absolute top-2 right-2 sm:top-4 sm:right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                        <span class="bg-blue-600/80 backdrop-blur-sm px-2 py-1 sm:px-3 sm:py-1 rounded-full text-white text-xs sm:text-sm">اضغط للمشاهدة</span>
+                                    </div>
+                                </div>
+                                
+                                <!-- Lecture Details Below -->
+                                <div class="mt-6 bg-blue-800/30 p-6 rounded-lg text-center">
+                                    <h4 class="text-2xl font-semibold text-purple-300">Introduction of Anatomy</h4>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Upcoming Lectures Grid -->
+                        <div class="mb-8">
+                            <h3 class="text-2xl font-bold mb-6 text-center">المحاضرات القادمة</h3>
+                            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                <div class="card-gradient p-6 rounded-lg hover-scale transition-all duration-300 border border-blue-600/30">
+                                    <div class="flex items-center justify-between mb-4">
+                                        <h4 class="text-lg font-semibold">المحاضرة الثانية</h4>
+                                        <span class="bg-yellow-500/20 text-yellow-300 px-3 py-1 rounded-full text-sm">قريباً</span>
+                                    </div>
+                                    <p class="text-blue-200 text-sm mb-3">سيتم إضافتها قريباً</p>
+                                    <div class="w-full bg-blue-800 h-2 rounded-full">
+                                        <div class="bg-blue-400 h-2 rounded-full w-0"></div>
+                                    </div>
+                                </div>
+
+                                <div class="card-gradient p-6 rounded-lg hover-scale transition-all duration-300 border border-blue-600/30">
+                                    <div class="flex items-center justify-between mb-4">
+                                        <h4 class="text-lg font-semibold">المحاضرة الثالثة</h4>
+                                        <span class="bg-yellow-500/20 text-yellow-300 px-3 py-1 rounded-full text-sm">قريباً</span>
+                                    </div>
+                                    <p class="text-blue-200 text-sm mb-3">سيتم إضافتها قريباً</p>
+                                    <div class="w-full bg-blue-800 h-2 rounded-full">
+                                        <div class="bg-blue-400 h-2 rounded-full w-0"></div>
+                                    </div>
+                                </div>
+
+                                <div class="card-gradient p-6 rounded-lg hover-scale transition-all duration-300 border border-blue-600/30">
+                                    <div class="flex items-center justify-between mb-4">
+                                        <h4 class="text-lg font-semibold">المحاضرة الرابعة</h4>
+                                        <span class="bg-yellow-500/20 text-yellow-300 px-3 py-1 rounded-full text-sm">قريباً</span>
+                                    </div>
+                                    <p class="text-blue-200 text-sm mb-3">سيتم إضافتها قريباً</p>
+                                    <div class="w-full bg-blue-800 h-2 rounded-full">
+                                        <div class="bg-blue-400 h-2 rounded-full w-0"></div>
+                                    </div>
+                                </div>
+
+                                <div class="card-gradient p-6 rounded-lg hover-scale transition-all duration-300 border border-blue-600/30">
+                                    <div class="flex items-center justify-between mb-4">
+                                        <h4 class="text-lg font-semibold">المحاضرة الخامسة</h4>
+                                        <span class="bg-yellow-500/20 text-yellow-300 px-3 py-1 rounded-full text-sm">قريباً</span>
+                                    </div>
+                                    <p class="text-blue-200 text-sm mb-3">سيتم إضافتها قريباً</p>
+                                    <div class="w-full bg-blue-800 h-2 rounded-full">
+                                        <div class="bg-blue-400 h-2 rounded-full w-0"></div>
+                                    </div>
+                                </div>
+
+                                <div class="card-gradient p-6 rounded-lg hover-scale transition-all duration-300 border border-blue-600/30">
+                                    <div class="flex items-center justify-between mb-4">
+                                        <h4 class="text-lg font-semibold">المحاضرة السادسة</h4>
+                                        <span class="bg-yellow-500/20 text-yellow-300 px-3 py-1 rounded-full text-sm">قريباً</span>
+                                    </div>
+                                    <p class="text-blue-200 text-sm mb-3">سيتم إضافتها قريباً</p>
+                                    <div class="w-full bg-blue-800 h-2 rounded-full">
+                                        <div class="bg-blue-400 h-2 rounded-full w-0"></div>
+                                    </div>
+                                </div>
+
+                                <div class="card-gradient p-6 rounded-lg hover-scale transition-all duration-300 border border-blue-600/30">
+                                    <div class="flex items-center justify-between mb-4">
+                                        <h4 class="text-lg font-semibold">المحاضرة السابعة</h4>
+                                        <span class="bg-yellow-500/20 text-yellow-300 px-3 py-1 rounded-full text-sm">قريباً</span>
+                                    </div>
+                                    <p class="text-blue-200 text-sm mb-3">سيتم إضافتها قريباً</p>
+                                    <div class="w-full bg-blue-800 h-2 rounded-full">
+                                        <div class="bg-blue-400 h-2 rounded-full w-0"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Anatomy Science Showcase -->
+                        <div class="mt-12 relative overflow-hidden">
+                            <!-- Background Animation -->
+                            <div class="absolute inset-0 opacity-20">
+                                <div class="absolute top-10 left-10 w-32 h-32 bg-red-500/30 rounded-full blur-xl animate-pulse"></div>
+                                <div class="absolute bottom-20 right-20 w-24 h-24 bg-orange-500/30 rounded-full blur-xl animate-pulse" style="animation-delay: 1s;"></div>
+                                <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-40 h-40 bg-pink-500/20 rounded-full blur-2xl animate-pulse" style="animation-delay: 2s;"></div>
+                            </div>
+                            
+                            <div class="relative card-gradient p-8 rounded-xl border-2 border-red-500/40 shadow-2xl">
+                                <!-- Header Section -->
+                                <div class="text-center mb-8">
+                                    <div class="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-red-400 to-pink-600 rounded-full mb-4 shadow-lg">
+                                        <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                                        </svg>
+                                    </div>
+                                    <h3 class="text-3xl font-bold text-white mb-2">عالم التشريح المذهل</h3>
+                                    <p class="text-blue-200 text-lg">اكتشف أسرار تركيب جسم الإنسان وتعقيداته الرائعة</p>
+                                </div>
+
+                                <!-- Amazing Facts Grid -->
+                                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+                                    <!-- Skeleton Fact -->
+                                    <div class="bg-gradient-to-br from-gray-600/20 to-slate-600/20 p-6 rounded-lg border border-gray-500/30 hover:scale-105 transition-transform duration-300">
+                                        <div class="text-center">
+                                            <div class="text-4xl mb-3">🦴</div>
+                                            <h4 class="text-lg font-bold text-gray-300 mb-2">الهيكل العظمي</h4>
+                                            <p class="text-sm text-gray-100">يحتوي جسمك على 206 عظمة تشكل إطار قوي ومرن!</p>
+                                        </div>
+                                    </div>
+
+                                    <!-- Muscles Fact -->
+                                    <div class="bg-gradient-to-br from-red-600/20 to-rose-600/20 p-6 rounded-lg border border-red-500/30 hover:scale-105 transition-transform duration-300">
+                                        <div class="text-center">
+                                            <div class="text-4xl mb-3">💪</div>
+                                            <h4 class="text-lg font-bold text-red-300 mb-2">العضلات</h4>
+                                            <p class="text-sm text-red-100">أكثر من 600 عضلة تعمل معاً لتحريك جسمك بدقة مذهلة!</p>
+                                        </div>
+                                    </div>
+
+                                    <!-- Organs Fact -->
+                                    <div class="bg-gradient-to-br from-orange-600/20 to-amber-600/20 p-6 rounded-lg border border-orange-500/30 hover:scale-105 transition-transform duration-300">
+                                        <div class="text-center">
+                                            <div class="text-4xl mb-3">🫀</div>
+                                            <h4 class="text-lg font-bold text-orange-300 mb-2">الأعضاء الحيوية</h4>
+                                            <p class="text-sm text-orange-100">كل عضو له تركيب فريد يناسب وظيفته المحددة!</p>
+                                        </div>
+                                    </div>
+
+                                    <!-- Nervous System Fact -->
+                                    <div class="bg-gradient-to-br from-yellow-600/20 to-amber-600/20 p-6 rounded-lg border border-yellow-500/30 hover:scale-105 transition-transform duration-300">
+                                        <div class="text-center">
+                                            <div class="text-4xl mb-3">🧠</div>
+                                            <h4 class="text-lg font-bold text-yellow-300 mb-2">الجهاز العصبي</h4>
+                                            <p class="text-sm text-yellow-100">شبكة معقدة من الأعصاب تربط كل أجزاء الجسم!</p>
+                                        </div>
+                                    </div>
+
+                                    <!-- Blood Vessels Fact -->
+                                    <div class="bg-gradient-to-br from-red-600/20 to-pink-600/20 p-6 rounded-lg border border-red-500/30 hover:scale-105 transition-transform duration-300">
+                                        <div class="text-center">
+                                            <div class="text-4xl mb-3">🩸</div>
+                                            <h4 class="text-lg font-bold text-red-300 mb-2">الأوعية الدموية</h4>
+                                            <p class="text-sm text-red-100">شبكة من الأوعية يبلغ طولها 100,000 كيلومتر!</p>
+                                        </div>
+                                    </div>
+
+                                    <!-- Skin Fact -->
+                                    <div class="bg-gradient-to-br from-pink-600/20 to-rose-600/20 p-6 rounded-lg border border-pink-500/30 hover:scale-105 transition-transform duration-300">
+                                        <div class="text-center">
+                                            <div class="text-4xl mb-3">🤲</div>
+                                            <h4 class="text-lg font-bold text-pink-300 mb-2">الجلد</h4>
+                                            <p class="text-sm text-pink-100">أكبر عضو في الجسم ويحميك من العالم الخارجي!</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Inspirational Quote -->
+                                <div class="bg-gradient-to-r from-red-800/40 to-pink-800/40 p-6 rounded-lg border border-red-500/30 text-center">
+                                    <div class="mb-4">
+                                        <svg class="w-12 h-12 text-red-300 mx-auto" fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M14,17H17L19,13V7H13V13H16M6,17H9L11,13V7H5V13H8L6,17Z" />
+                                        </svg>
+                                    </div>
+                                    <blockquote class="text-xl font-semibold text-white mb-3 italic">
+                                        "في كل جزء من جسم الإنسان معجزة تستحق الدراسة والتأمل"
+                                    </blockquote>
+                                    <p class="text-red-200">- رحلتك في اكتشاف عجائب التشريح تبدأ هنا -</p>
+                                </div>
+
+                                <!-- Call to Action -->
+                                <div class="text-center mt-8">
+                                    <div class="inline-flex items-center bg-gradient-to-r from-red-600 to-pink-600 px-6 py-3 rounded-full text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+                                        <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                                        </svg>
+                                        <span>استعد لاكتشاف المزيد من أسرار التشريح!</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Histology Lectures -->
+        <div id="histologyLecturesPage" class="page hidden">
+            <section class="gradient-bg py-16">
+                <div class="container mx-auto px-4">
+                    <!-- Header Section -->
+                    <div class="text-center mb-12">
+                        <h2 class="text-4xl font-bold mb-4">محاضرات Histology 1</h2>
+                        <p class="text-xl text-blue-200">علم الأنسجة</p>
+                        <div class="w-24 h-1 bg-blue-400 mx-auto mt-4 rounded"></div>
+                    </div>
+
+                    <div class="max-w-6xl mx-auto">
+                        <!-- First Lecture with Interactive Cover -->
+                        <div class="card-gradient p-8 rounded-xl mb-8 hover-scale shadow-2xl">
+                            <div class="max-w-4xl mx-auto">
+                                <!-- Interactive Lecture Cover -->
+                                <div class="relative cursor-pointer group" onclick="window.open('https://drive.google.com/file/d/1u72-_5R0vdKYsPsyssb0DmVv6SQNF1FG/view?usp=drive_link', '_blank')">
+                                    <img src="https://i.postimg.cc/zDh11c01/image.jpg" 
+                                         alt="غلاف المحاضرة الأولى" 
+                                         class="w-full h-48 sm:h-64 md:h-80 object-contain sm:object-cover rounded-lg shadow-lg transition-transform duration-300 group-hover:scale-105 bg-gray-900"
+                                         onerror="this.src=''; this.alt='فشل تحميل الغلاف'; this.style.display='none';">
+                                    
+                                    <!-- Gradient Overlay -->
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent rounded-lg transition-opacity duration-300 group-hover:from-black/80"></div>
+                                    
+                                    <!-- Play Button -->
+                                    <div class="absolute inset-0 flex items-center justify-center">
+                                        <div class="bg-white/20 backdrop-blur-sm rounded-full p-4 sm:p-6 transition-all duration-300 group-hover:bg-white/30 group-hover:scale-110">
+                                            <svg class="w-12 h-12 sm:w-16 sm:h-16 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                                <path d="M8 5v14l11-7z"/>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Lecture Info Overlay -->
+                                    <div class="absolute bottom-0 left-0 right-0 p-3 sm:p-6">
+                                        <h3 class="text-xl sm:text-2xl md:text-3xl font-bold text-white mb-2 sm:mb-3">المحاضرة الأولى</h3>
+                                        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between text-white/90 space-y-2 sm:space-y-0">
+                                            <div class="flex items-center">
+                                                <svg class="w-4 h-4 sm:w-5 sm:h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                                </svg>
+                                                <span class="text-sm sm:text-base">مدة المحاضرة: 12 دقيقة</span>
+                                            </div>
+                                            <span class="bg-green-500/80 px-2 py-1 sm:px-3 sm:py-1 rounded-full text-xs sm:text-sm font-semibold self-start sm:self-auto">متاحة الآن</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Hover Effect Text -->
+                                    <div class="absolute top-2 right-2 sm:top-4 sm:right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                        <span class="bg-blue-600/80 backdrop-blur-sm px-2 py-1 sm:px-3 sm:py-1 rounded-full text-white text-xs sm:text-sm">اضغط للمشاهدة</span>
+                                    </div>
+                                </div>
+                                
+                                <!-- Lecture Details Below -->
+                                <div class="mt-6 bg-blue-800/30 p-6 rounded-lg text-center">
+                                    <h4 class="text-2xl font-semibold text-purple-300">Cell and Cell Membrane</h4>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Upcoming Lectures Grid -->
+                        <div class="mb-8">
+                            <h3 class="text-2xl font-bold mb-6 text-center">المحاضرات القادمة</h3>
+                            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                <div class="card-gradient p-6 rounded-lg hover-scale transition-all duration-300 border border-blue-600/30">
+                                    <div class="flex items-center justify-between mb-4">
+                                        <h4 class="text-lg font-semibold">المحاضرة الثانية</h4>
+                                        <span class="bg-yellow-500/20 text-yellow-300 px-3 py-1 rounded-full text-sm">قريباً</span>
+                                    </div>
+                                    <p class="text-blue-200 text-sm mb-3">سيتم إضافتها قريباً</p>
+                                    <div class="w-full bg-blue-800 h-2 rounded-full">
+                                        <div class="bg-blue-400 h-2 rounded-full w-0"></div>
+                                    </div>
+                                </div>
+
+                                <div class="card-gradient p-6 rounded-lg hover-scale transition-all duration-300 border border-blue-600/30">
+                                    <div class="flex items-center justify-between mb-4">
+                                        <h4 class="text-lg font-semibold">المحاضرة الثالثة</h4>
+                                        <span class="bg-yellow-500/20 text-yellow-300 px-3 py-1 rounded-full text-sm">قريباً</span>
+                                    </div>
+                                    <p class="text-blue-200 text-sm mb-3">سيتم إضافتها قريباً</p>
+                                    <div class="w-full bg-blue-800 h-2 rounded-full">
+                                        <div class="bg-blue-400 h-2 rounded-full w-0"></div>
+                                    </div>
+                                </div>
+
+                                <div class="card-gradient p-6 rounded-lg hover-scale transition-all duration-300 border border-blue-600/30">
+                                    <div class="flex items-center justify-between mb-4">
+                                        <h4 class="text-lg font-semibold">المحاضرة الرابعة</h4>
+                                        <span class="bg-yellow-500/20 text-yellow-300 px-3 py-1 rounded-full text-sm">قريباً</span>
+                                    </div>
+                                    <p class="text-blue-200 text-sm mb-3">سيتم إضافتها قريباً</p>
+                                    <div class="w-full bg-blue-800 h-2 rounded-full">
+                                        <div class="bg-blue-400 h-2 rounded-full w-0"></div>
+                                    </div>
+                                </div>
+
+                                <div class="card-gradient p-6 rounded-lg hover-scale transition-all duration-300 border border-blue-600/30">
+                                    <div class="flex items-center justify-between mb-4">
+                                        <h4 class="text-lg font-semibold">المحاضرة الخامسة</h4>
+                                        <span class="bg-yellow-500/20 text-yellow-300 px-3 py-1 rounded-full text-sm">قريباً</span>
+                                    </div>
+                                    <p class="text-blue-200 text-sm mb-3">سيتم إضافتها قريباً</p>
+                                    <div class="w-full bg-blue-800 h-2 rounded-full">
+                                        <div class="bg-blue-400 h-2 rounded-full w-0"></div>
+                                    </div>
+                                </div>
+
+                                <div class="card-gradient p-6 rounded-lg hover-scale transition-all duration-300 border border-blue-600/30">
+                                    <div class="flex items-center justify-between mb-4">
+                                        <h4 class="text-lg font-semibold">المحاضرة السادسة</h4>
+                                        <span class="bg-yellow-500/20 text-yellow-300 px-3 py-1 rounded-full text-sm">قريباً</span>
+                                    </div>
+                                    <p class="text-blue-200 text-sm mb-3">سيتم إضافتها قريباً</p>
+                                    <div class="w-full bg-blue-800 h-2 rounded-full">
+                                        <div class="bg-blue-400 h-2 rounded-full w-0"></div>
+                                    </div>
+                                </div>
+
+                                <div class="card-gradient p-6 rounded-lg hover-scale transition-all duration-300 border border-blue-600/30">
+                                    <div class="flex items-center justify-between mb-4">
+                                        <h4 class="text-lg font-semibold">المحاضرة السابعة</h4>
+                                        <span class="bg-yellow-500/20 text-yellow-300 px-3 py-1 rounded-full text-sm">قريباً</span>
+                                    </div>
+                                    <p class="text-blue-200 text-sm mb-3">سيتم إضافتها قريباً</p>
+                                    <div class="w-full bg-blue-800 h-2 rounded-full">
+                                        <div class="bg-blue-400 h-2 rounded-full w-0"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Histology Science Showcase -->
+                        <div class="mt-12 relative overflow-hidden">
+                            <!-- Background Animation -->
+                            <div class="absolute inset-0 opacity-20">
+                                <div class="absolute top-10 left-10 w-32 h-32 bg-purple-500/30 rounded-full blur-xl animate-pulse"></div>
+                                <div class="absolute bottom-20 right-20 w-24 h-24 bg-pink-500/30 rounded-full blur-xl animate-pulse" style="animation-delay: 1s;"></div>
+                                <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-40 h-40 bg-indigo-500/20 rounded-full blur-2xl animate-pulse" style="animation-delay: 2s;"></div>
+                            </div>
+                            
+                            <div class="relative card-gradient p-8 rounded-xl border-2 border-purple-500/40 shadow-2xl">
+                                <!-- Header Section -->
+                                <div class="text-center mb-8">
+                                    <div class="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-purple-400 to-pink-600 rounded-full mb-4 shadow-lg">
+                                        <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path>
+                                        </svg>
+                                    </div>
+                                    <h3 class="text-3xl font-bold text-white mb-2">عالم الأنسجة المجهري</h3>
+                                    <p class="text-blue-200 text-lg">اكتشف أسرار الخلايا والأنسجة تحت المجهر</p>
+                                </div>
+
+                                <!-- Amazing Facts Grid -->
+                                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+                                    <!-- Cell Fact -->
+                                    <div class="bg-gradient-to-br from-purple-600/20 to-pink-600/20 p-6 rounded-lg border border-purple-500/30 hover:scale-105 transition-transform duration-300">
+                                        <div class="text-center">
+                                            <div class="text-4xl mb-3">🔬</div>
+                                            <h4 class="text-lg font-bold text-purple-300 mb-2">الخلايا المذهلة</h4>
+                                            <p class="text-sm text-purple-100">جسمك يحتوي على 37 تريليون خلية تعمل معاً بتناغم مثالي!</p>
+                                        </div>
+                                    </div>
+
+                                    <!-- Tissue Types Fact -->
+                                    <div class="bg-gradient-to-br from-pink-600/20 to-rose-600/20 p-6 rounded-lg border border-pink-500/30 hover:scale-105 transition-transform duration-300">
+                                        <div class="text-center">
+                                            <div class="text-4xl mb-3">🧬</div>
+                                            <h4 class="text-lg font-bold text-pink-300 mb-2">أنواع الأنسجة</h4>
+                                            <p class="text-sm text-pink-100">4 أنواع رئيسية من الأنسجة: الطلائية والضامة والعضلية والعصبية!</p>
+                                        </div>
+                                    </div>
+
+                                    <!-- Microscopy Fact -->
+                                    <div class="bg-gradient-to-br from-indigo-600/20 to-purple-600/20 p-6 rounded-lg border border-indigo-500/30 hover:scale-105 transition-transform duration-300">
+                                        <div class="text-center">
+                                            <div class="text-4xl mb-3">🔍</div>
+                                            <h4 class="text-lg font-bold text-indigo-300 mb-2">المجهر السحري</h4>
+                                            <p class="text-sm text-indigo-100">المجهر يكشف لنا عالماً خفياً من التفاصيل المذهلة!</p>
+                                        </div>
+                                    </div>
+
+                                    <!-- Cell Membrane Fact -->
+                                    <div class="bg-gradient-to-br from-cyan-600/20 to-blue-600/20 p-6 rounded-lg border border-cyan-500/30 hover:scale-105 transition-transform duration-300">
+                                        <div class="text-center">
+                                            <div class="text-4xl mb-3">🫧</div>
+                                            <h4 class="text-lg font-bold text-cyan-300 mb-2">غشاء الخلية</h4>
+                                            <p class="text-sm text-cyan-100">حارس ذكي يتحكم في دخول وخروج المواد من الخلية!</p>
+                                        </div>
+                                    </div>
+
+                                    <!-- DNA Fact -->
+                                    <div class="bg-gradient-to-br from-green-600/20 to-emerald-600/20 p-6 rounded-lg border border-green-500/30 hover:scale-105 transition-transform duration-300">
+                                        <div class="text-center">
+                                            <div class="text-4xl mb-3">🧪</div>
+                                            <h4 class="text-lg font-bold text-green-300 mb-2">الحمض النووي</h4>
+                                            <p class="text-sm text-green-100">كتاب التعليمات الكامل لبناء وتشغيل كل خلية في جسمك!</p>
+                                        </div>
+                                    </div>
+
+                                    <!-- Organelles Fact -->
+                                    <div class="bg-gradient-to-br from-yellow-600/20 to-orange-600/20 p-6 rounded-lg border border-yellow-500/30 hover:scale-105 transition-transform duration-300">
+                                        <div class="text-center">
+                                            <div class="text-4xl mb-3">⚙️</div>
+                                            <h4 class="text-lg font-bold text-yellow-300 mb-2">عضيات الخلية</h4>
+                                            <p class="text-sm text-yellow-100">مصانع صغيرة داخل كل خلية تنتج الطاقة والبروتينات!</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Inspirational Quote -->
+                                <div class="bg-gradient-to-r from-purple-800/40 to-pink-800/40 p-6 rounded-lg border border-purple-500/30 text-center">
+                                    <div class="mb-4">
+                                        <svg class="w-12 h-12 text-purple-300 mx-auto" fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M14,17H17L19,13V7H13V13H16M6,17H9L11,13V7H5V13H8L6,17Z" />
+                                        </svg>
+                                    </div>
+                                    <blockquote class="text-xl font-semibold text-white mb-3 italic">
+                                        "في كل خلية معجزة، وفي كل نسيج حكمة، وعلم الأنسجة يكشف لنا عظمة الخالق"
+                                    </blockquote>
+                                    <p class="text-purple-200">- رحلتك في اكتشاف عالم الخلايا والأنسجة تبدأ هنا -</p>
+                                </div>
+
+                                <!-- Call to Action -->
+                                <div class="text-center mt-8">
+                                    <div class="inline-flex items-center bg-gradient-to-r from-purple-600 to-pink-600 px-6 py-3 rounded-full text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+                                        <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                                        </svg>
+                                        <span>استعد لاستكشاف عالم الأنسجة المجهري!</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -768,18 +1544,106 @@
                             </div>
                         </div>
 
-                        <!-- Progress Section -->
-                        <div class="card-gradient p-6 rounded-lg text-center">
-                            <h3 class="text-xl font-bold mb-4">تقدمك في المادة</h3>
-                            <div class="max-w-md mx-auto">
-                                <div class="flex justify-between text-sm mb-2">
-                                    <span>المحاضرات المكتملة</span>
-                                    <span>1 من 10</span>
+                        <!-- Physiology Science Showcase -->
+                        <div class="mt-12 relative overflow-hidden">
+                            <!-- Background Animation -->
+                            <div class="absolute inset-0 opacity-20">
+                                <div class="absolute top-10 left-10 w-32 h-32 bg-blue-500/30 rounded-full blur-xl animate-pulse"></div>
+                                <div class="absolute bottom-20 right-20 w-24 h-24 bg-green-500/30 rounded-full blur-xl animate-pulse" style="animation-delay: 1s;"></div>
+                                <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-40 h-40 bg-purple-500/20 rounded-full blur-2xl animate-pulse" style="animation-delay: 2s;"></div>
+                            </div>
+                            
+                            <div class="relative card-gradient p-8 rounded-xl border-2 border-blue-500/40 shadow-2xl">
+                                <!-- Header Section -->
+                                <div class="text-center mb-8">
+                                    <div class="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-blue-400 to-purple-600 rounded-full mb-4 shadow-lg">
+                                        <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                                        </svg>
+                                    </div>
+                                    <h3 class="text-3xl font-bold text-white mb-2">عالم الفسيولوجي المذهل</h3>
+                                    <p class="text-blue-200 text-lg">اكتشف أسرار جسم الإنسان وكيف يعمل بإعجاز</p>
                                 </div>
-                                <div class="w-full bg-blue-800 h-3 rounded-full">
-                                    <div class="bg-green-400 h-3 rounded-full w-1/10"></div>
+
+                                <!-- Amazing Facts Grid -->
+                                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+                                    <!-- Heart Fact -->
+                                    <div class="bg-gradient-to-br from-red-600/20 to-pink-600/20 p-6 rounded-lg border border-red-500/30 hover:scale-105 transition-transform duration-300">
+                                        <div class="text-center">
+                                            <div class="text-4xl mb-3">❤️</div>
+                                            <h4 class="text-lg font-bold text-red-300 mb-2">القلب العجيب</h4>
+                                            <p class="text-sm text-red-100">ينبض قلبك حوالي 100,000 مرة يومياً ويضخ 7,500 لتر من الدم!</p>
+                                        </div>
+                                    </div>
+
+                                    <!-- Brain Fact -->
+                                    <div class="bg-gradient-to-br from-purple-600/20 to-indigo-600/20 p-6 rounded-lg border border-purple-500/30 hover:scale-105 transition-transform duration-300">
+                                        <div class="text-center">
+                                            <div class="text-4xl mb-3">🧠</div>
+                                            <h4 class="text-lg font-bold text-purple-300 mb-2">المخ الخارق</h4>
+                                            <p class="text-sm text-purple-100">يحتوي مخك على 86 مليار خلية عصبية تتواصل بسرعة البرق!</p>
+                                        </div>
+                                    </div>
+
+                                    <!-- Lungs Fact -->
+                                    <div class="bg-gradient-to-br from-cyan-600/20 to-blue-600/20 p-6 rounded-lg border border-cyan-500/30 hover:scale-105 transition-transform duration-300">
+                                        <div class="text-center">
+                                            <div class="text-4xl mb-3">🫁</div>
+                                            <h4 class="text-lg font-bold text-cyan-300 mb-2">الرئتان المعجزة</h4>
+                                            <p class="text-sm text-cyan-100">تتنفس حوالي 20,000 مرة يومياً وتبادل 11,000 لتر من الهواء!</p>
+                                        </div>
+                                    </div>
+
+                                    <!-- Kidneys Fact -->
+                                    <div class="bg-gradient-to-br from-yellow-600/20 to-orange-600/20 p-6 rounded-lg border border-yellow-500/30 hover:scale-105 transition-transform duration-300">
+                                        <div class="text-center">
+                                            <div class="text-4xl mb-3">🫘</div>
+                                            <h4 class="text-lg font-bold text-yellow-300 mb-2">الكليتان المنقيتان</h4>
+                                            <p class="text-sm text-yellow-100">تنقي كليتاك 180 لتر من الدم يومياً وتحافظ على توازن الجسم!</p>
+                                        </div>
+                                    </div>
+
+                                    <!-- Muscles Fact -->
+                                    <div class="bg-gradient-to-br from-green-600/20 to-emerald-600/20 p-6 rounded-lg border border-green-500/30 hover:scale-105 transition-transform duration-300">
+                                        <div class="text-center">
+                                            <div class="text-4xl mb-3">💪</div>
+                                            <h4 class="text-lg font-bold text-green-300 mb-2">العضلات القوية</h4>
+                                            <p class="text-sm text-green-100">لديك أكثر من 600 عضلة تعمل معاً لتحريك جسمك بدقة مذهلة!</p>
+                                        </div>
+                                    </div>
+
+                                    <!-- Digestive System Fact -->
+                                    <div class="bg-gradient-to-br from-amber-600/20 to-yellow-600/20 p-6 rounded-lg border border-amber-500/30 hover:scale-105 transition-transform duration-300">
+                                        <div class="text-center">
+                                            <div class="text-4xl mb-3">🍎</div>
+                                            <h4 class="text-lg font-bold text-amber-300 mb-2">الهضم المعجز</h4>
+                                            <p class="text-sm text-amber-100">جهازك الهضمي يحول الطعام لطاقة في رحلة 9 أمتار داخل جسمك!</p>
+                                        </div>
+                                    </div>
                                 </div>
-                                <p class="text-blue-200 text-sm mt-2">10% مكتمل</p>
+
+                                <!-- Inspirational Quote -->
+                                <div class="bg-gradient-to-r from-blue-800/40 to-purple-800/40 p-6 rounded-lg border border-blue-500/30 text-center">
+                                    <div class="mb-4">
+                                        <svg class="w-12 h-12 text-blue-300 mx-auto" fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M14,17H17L19,13V7H13V13H16M6,17H9L11,13V7H5V13H8L6,17Z" />
+                                        </svg>
+                                    </div>
+                                    <blockquote class="text-xl font-semibold text-white mb-3 italic">
+                                        "جسم الإنسان هو أعظم معجزة في الكون، وعلم الفسيولوجي يكشف لنا أسرار هذه المعجزة"
+                                    </blockquote>
+                                    <p class="text-blue-200">- رحلتك في اكتشاف عجائب الجسم البشري تبدأ هنا -</p>
+                                </div>
+
+                                <!-- Call to Action -->
+                                <div class="text-center mt-8">
+                                    <div class="inline-flex items-center bg-gradient-to-r from-blue-600 to-purple-600 px-6 py-3 rounded-full text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+                                        <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                                        </svg>
+                                        <span>استعد لاكتشاف المزيد من العجائب!</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -861,7 +1725,9 @@
                 'first-year-second': 'firstYearSecondPage',
                 'second-year-first': 'secondYearFirstPage',
                 'second-year-second': 'secondYearSecondPage',
-                'physiology-lectures': 'physiologyLecturesPage'
+                'physiology-lectures': 'physiologyLecturesPage',
+                'anatomy-lectures': 'anatomyLecturesPage',
+                'histology-lectures': 'histologyLecturesPage'
             };
             
             // Show selected page
@@ -950,55 +1816,8 @@
             
             if (!searchTerm) return;
             
-            // Define searchable content with keywords
-            const searchableContent = {
-                'physiology': {
-                    page: 'physiology-lectures',
-                    title: 'محاضرات Physiology 1',
-                    keywords: ['physiology', 'فسيولوجي', 'وظائف الاعضاء', 'وظائف', 'اعضاء', 'فيزيولوجي', 'فسيولوجيا']
-                },
-                'anatomy': {
-                    page: 'first-year-first',
-                    title: 'Anatomy 1',
-                    keywords: ['anatomy', 'تشريح', 'انتومي', 'تشريحي']
-                },
-                'histology': {
-                    page: 'first-year-first', 
-                    title: 'Histology 1',
-                    keywords: ['histology', 'انسجة', 'هستولوجي', 'انسجه', 'هيستولوجي']
-                },
-                'first-year': {
-                    page: 'first-year-first',
-                    title: 'الفرقة الأولى',
-                    keywords: ['فرقة اولى', 'اولى', 'first year', 'سنة اولى', 'فرقه اولى']
-                },
-                'second-year': {
-                    page: 'second-year-first',
-                    title: 'الفرقة الثانية', 
-                    keywords: ['فرقة تانية', 'تانية', 'second year', 'سنة تانية', 'فرقه تانيه', 'ثانية']
-                }
-            };
-            
-            // Search through content
-            let foundResults = [];
-            
-            for (let key in searchableContent) {
-                const content = searchableContent[key];
-                const matchFound = content.keywords.some(keyword => 
-                    keyword.includes(searchTerm) || searchTerm.includes(keyword)
-                );
-                
-                if (matchFound) {
-                    foundResults.push(content);
-                }
-            }
-            
-            // Display search results
-            if (foundResults.length > 0) {
-                showSearchResults(foundResults, searchTerm);
-            } else {
-                showNoResults(searchTerm);
-            }
+            // Use the unified search function
+            performSearchWithTerm(searchTerm);
         }
         
         function showSearchResults(results, searchTerm) {
@@ -1120,6 +1939,69 @@
             noResultsPage.classList.add('fade-in');
         }
         
+        // Mobile search functionality
+        function performMobileSearch() {
+            const searchInput = document.getElementById('mobileSearchInput');
+            const searchTerm = searchInput.value.toLowerCase().trim();
+            
+            if (!searchTerm) return;
+            
+            // Use the same search logic as desktop
+            performSearchWithTerm(searchTerm);
+        }
+        
+        function performSearchWithTerm(searchTerm) {
+            // Define searchable content with keywords
+            const searchableContent = {
+                'physiology': {
+                    page: 'physiology-lectures',
+                    title: 'محاضرات Physiology 1',
+                    keywords: ['physiology', 'فسيولوجي', 'وظائف الاعضاء', 'وظائف', 'اعضاء', 'فيزيولوجي', 'فسيولوجيا']
+                },
+                'anatomy': {
+                    page: 'anatomy-lectures',
+                    title: 'محاضرات Anatomy 1',
+                    keywords: ['anatomy', 'تشريح', 'انتومي', 'تشريحي']
+                },
+                'histology': {
+                    page: 'histology-lectures', 
+                    title: 'محاضرات Histology 1',
+                    keywords: ['histology', 'انسجة', 'هستولوجي', 'انسجه', 'هيستولوجي']
+                },
+                'first-year': {
+                    page: 'first-year-first',
+                    title: 'الفرقة الأولى',
+                    keywords: ['فرقة اولى', 'اولى', 'first year', 'سنة اولى', 'فرقه اولى']
+                },
+                'second-year': {
+                    page: 'second-year-first',
+                    title: 'الفرقة الثانية', 
+                    keywords: ['فرقة تانية', 'تانية', 'second year', 'سنة تانية', 'فرقه تانيه', 'ثانية']
+                }
+            };
+            
+            // Search through content
+            let foundResults = [];
+            
+            for (let key in searchableContent) {
+                const content = searchableContent[key];
+                const matchFound = content.keywords.some(keyword => 
+                    keyword.includes(searchTerm) || searchTerm.includes(keyword)
+                );
+                
+                if (matchFound) {
+                    foundResults.push(content);
+                }
+            }
+            
+            // Display search results
+            if (foundResults.length > 0) {
+                showSearchResults(foundResults, searchTerm);
+            } else {
+                showNoResults(searchTerm);
+            }
+        }
+
         // Add search event listeners
         document.getElementById('searchInput').addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
@@ -1127,9 +2009,19 @@
             }
         });
         
-        // Add click event to search icon
-        document.querySelector('.absolute.right-3').addEventListener('click', function() {
+        document.getElementById('mobileSearchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                performMobileSearch();
+            }
+        });
+        
+        // Add click event to search icons
+        document.querySelector('#searchInput + button').addEventListener('click', function() {
             performSearch();
+        });
+        
+        document.querySelector('#mobileSearchInput + button').addEventListener('click', function() {
+            performMobileSearch();
         });
 
         // Close dropdowns when clicking outside
@@ -1164,7 +2056,9 @@
                 'first-year-second': 'Studyfy - فرقة أولى ترم ثاني',
                 'second-year-first': 'Studyfy - فرقة تانية ترم أول',
                 'second-year-second': 'Studyfy - فرقة تانية ترم ثاني',
-                'physiology-lectures': 'Studyfy - محاضرات Physiology 1'
+                'physiology-lectures': 'Studyfy - محاضرات Physiology 1',
+                'anatomy-lectures': 'Studyfy - محاضرات Anatomy 1',
+                'histology-lectures': 'Studyfy - محاضرات Histology 1'
             };
             return titles[pageId] || 'Studyfy';
         }
@@ -1180,5 +2074,5 @@
             }
         });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97edc37e14a5aa2c',t:'MTc1NzgzMDY3MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98240fc26637e221',t:'MTc1ODQwMDAyNi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
