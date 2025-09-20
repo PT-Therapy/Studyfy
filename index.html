@@ -554,21 +554,7 @@
                             </button>
                         </div>
                         
-                        <!-- Stats Section -->
-                        <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-                            <div class="bg-white/10 backdrop-blur-sm p-6 rounded-2xl border border-white/20">
-                                <div class="text-3xl font-bold text-white mb-2">3</div>
-                                <p class="text-blue-200">مواد دراسية</p>
-                            </div>
-                            <div class="bg-white/10 backdrop-blur-sm p-6 rounded-2xl border border-white/20">
-                                <div class="text-3xl font-bold text-white mb-2">2</div>
-                                <p class="text-blue-200">فرق دراسية</p>
-                            </div>
-                            <div class="bg-white/10 backdrop-blur-sm p-6 rounded-2xl border border-white/20">
-                                <div class="text-3xl font-bold text-white mb-2">∞</div>
-                                <p class="text-blue-200">فرص التعلم</p>
-                            </div>
-                        </div>
+
                     </div>
                 </div>
             </section>
@@ -764,7 +750,7 @@
                                     </div>
                                 </div>
                                 
-                                <button onclick="showPage('histology-lectures')" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg text-lg font-semibold transition-colors">
+                                <button onclick="showPage('anatomy-lectures')" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg text-lg font-semibold transition-colors">
                                     ابدأ الدراسة
                                 </button>
                                 <span class="inline-block mt-2 bg-green-500/20 text-green-300 px-3 py-1 rounded-full text-sm">متاح</span>
@@ -832,7 +818,7 @@
                                     </div>
                                 </div>
                                 
-                                <button onclick="showPage('histology-lectures')" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg text-lg font-semibold transition-colors">
+                                <button onclick="showPage('anatomy-lectures')" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg text-lg font-semibold transition-colors">
                                     ابدأ الدراسة
                                 </button>
                                 <span class="inline-block mt-2 bg-green-500/20 text-green-300 px-3 py-1 rounded-full text-sm">متاح</span>
@@ -908,21 +894,7 @@
                                         </p>
                                     </div>
                                     
-                                    <!-- Progress stats in beautiful format -->
-                                    <div class="grid grid-cols-3 gap-4 mt-8">
-                                        <div class="bg-blue-800/20 p-4 rounded-lg border border-blue-600/30">
-                                            <div class="text-2xl font-bold text-blue-300 mb-1">3</div>
-                                            <p class="text-blue-200 text-sm">إجمالي المواد</p>
-                                        </div>
-                                        <div class="bg-green-800/20 p-4 rounded-lg border border-green-600/30">
-                                            <div class="text-2xl font-bold text-green-300 mb-1">1</div>
-                                            <p class="text-green-200 text-sm">المواد المتاحة</p>
-                                        </div>
-                                        <div class="bg-yellow-800/20 p-4 rounded-lg border border-yellow-600/30">
-                                            <div class="text-2xl font-bold text-yellow-300 mb-1">2</div>
-                                            <p class="text-yellow-200 text-sm">قيد الإعداد</p>
-                                        </div>
-                                    </div>
+
                                 </div>
                             </div>
                         </div>
@@ -947,7 +919,7 @@
                         <div class="card-gradient p-8 rounded-xl mb-8 hover-scale shadow-2xl">
                             <div class="max-w-4xl mx-auto">
                                 <!-- Interactive Lecture Cover -->
-                                <div class="relative cursor-pointer group" onclick="window.open('https://drive.google.com/file/d/1yfhuW3YIXkS98fWJXhqFy_HzxaHe24JK/view?usp=sharing', '_blank')">
+                                <div class="relative cursor-pointer group" onclick="window.open('https://drive.google.com/file/d/1yfhuW3YIXkS98fWJXhqFy_HzxaHe24JK/view?usp=drive_link', '_blank')">
                                     <img src="https://i.postimg.cc/j2x2GYPt/image.jpg" 
                                          alt="غلاف المحاضرة الأولى" 
                                          class="w-full h-48 sm:h-64 md:h-80 object-contain sm:object-cover rounded-lg shadow-lg transition-transform duration-300 group-hover:scale-105 bg-gray-900"
@@ -1829,20 +1801,7 @@
                                         </p>
                                     </div>
                                     
-                                    <div class="grid grid-cols-3 gap-4 mt-8">
-                                        <div class="bg-yellow-800/20 p-4 rounded-lg border border-yellow-600/30">
-                                            <div class="text-2xl font-bold text-yellow-300 mb-1">2</div>
-                                            <p class="text-yellow-200 text-sm">مادة متاحة</p>
-                                        </div>
-                                        <div class="bg-orange-800/20 p-4 rounded-lg border border-orange-600/30">
-                                            <div class="text-2xl font-bold text-orange-300 mb-1">1</div>
-                                            <p class="text-orange-200 text-sm">قيد التحضير</p>
-                                        </div>
-                                        <div class="bg-blue-800/20 p-4 rounded-lg border border-blue-600/30">
-                                            <div class="text-2xl font-bold text-blue-300 mb-1">∞</div>
-                                            <p class="text-blue-200 text-sm">فرص النجاح</p>
-                                        </div>
-                                    </div>
+
                                 </div>
                             </div>
                         </div>
@@ -2498,15 +2457,51 @@
                             <div class="grid gap-6">
             `;
             
-            results.forEach(result => {
+            results.forEach((result, index) => {
+                // Determine icon based on content type
+                let icon = '📚';
+                let bgColor = 'from-blue-600/20 to-purple-600/20';
+                let borderColor = 'border-blue-500/30';
+                
+                if (result.page.includes('physiology')) {
+                    icon = '❤️';
+                    bgColor = 'from-green-600/20 to-blue-600/20';
+                    borderColor = 'border-green-500/30';
+                } else if (result.page.includes('anatomy')) {
+                    icon = '🦴';
+                    bgColor = 'from-red-600/20 to-pink-600/20';
+                    borderColor = 'border-red-500/30';
+                } else if (result.page.includes('histology')) {
+                    icon = '🔬';
+                    bgColor = 'from-purple-600/20 to-pink-600/20';
+                    borderColor = 'border-purple-500/30';
+                } else if (result.page.includes('electro')) {
+                    icon = '⚡';
+                    bgColor = 'from-yellow-600/20 to-orange-600/20';
+                    borderColor = 'border-yellow-500/30';
+                } else if (result.page.includes('neuro')) {
+                    icon = '🧠';
+                    bgColor = 'from-purple-600/20 to-indigo-600/20';
+                    borderColor = 'border-purple-500/30';
+                }
+                
                 resultsHTML += `
-                    <div class="card-gradient p-6 rounded-lg hover-scale cursor-pointer transition-all duration-300" onclick="showPage('${result.page}')">
+                    <div class="bg-gradient-to-br ${bgColor} p-6 rounded-xl hover-scale cursor-pointer transition-all duration-300 border ${borderColor} shadow-lg hover:shadow-xl" onclick="showPage('${result.page}')">
                         <div class="flex items-center justify-between">
-                            <div>
-                                <h3 class="text-2xl font-bold mb-2">${result.title}</h3>
-                                <p class="text-blue-200">اضغط للانتقال إلى المحتوى</p>
+                            <div class="flex items-center space-x-4 space-x-reverse">
+                                <div class="text-4xl">${icon}</div>
+                                <div>
+                                    <h3 class="text-xl md:text-2xl font-bold mb-2 text-white">${result.title}</h3>
+                                    <p class="text-blue-200 text-sm md:text-base">اضغط للانتقال إلى المحتوى</p>
+                                    <div class="flex items-center mt-2 text-xs text-blue-300">
+                                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                                        </svg>
+                                        <span>محاضرات متاحة</span>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="text-blue-300">
+                            <div class="text-blue-300 opacity-70 group-hover:opacity-100 transition-opacity">
                                 <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                                 </svg>
@@ -2557,16 +2552,33 @@
                             
                             <div class="card-gradient p-6 rounded-lg mb-8">
                                 <h3 class="text-2xl font-bold mb-4">جرب البحث عن:</h3>
-                                <div class="grid md:grid-cols-2 gap-4 text-right">
+                                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 text-right">
                                     <div class="space-y-2">
+                                        <h4 class="font-semibold text-blue-300 mb-2">المواد الأساسية:</h4>
                                         <p class="text-blue-200">• Physiology أو فسيولوجي</p>
                                         <p class="text-blue-200">• Anatomy أو تشريح</p>
                                         <p class="text-blue-200">• Histology أو أنسجة</p>
                                     </div>
                                     <div class="space-y-2">
-                                        <p class="text-blue-200">• فرقة أولى</p>
-                                        <p class="text-blue-200">• فرقة تانية</p>
-                                        <p class="text-blue-200">• محاضرات</p>
+                                        <h4 class="font-semibold text-blue-300 mb-2">مواد الفرقة الثانية:</h4>
+                                        <p class="text-blue-200">• Electro Therapy أو علاج كهربائي</p>
+                                        <p class="text-blue-200">• Neuroanatomy أو نيورو</p>
+                                        <p class="text-blue-200">• تشريح الجهاز العصبي</p>
+                                    </div>
+                                    <div class="space-y-2">
+                                        <h4 class="font-semibold text-blue-300 mb-2">عام:</h4>
+                                        <p class="text-blue-200">• فرقة أولى أو تانية</p>
+                                        <p class="text-blue-200">• محاضرات أو شروحات</p>
+                                        <p class="text-blue-200">• أحمد باسم أو حولنا</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="mt-6 p-4 bg-blue-800/30 rounded-lg">
+                                    <h4 class="font-semibold text-yellow-300 mb-2">💡 نصائح للبحث:</h4>
+                                    <div class="text-sm text-blue-200 space-y-1">
+                                        <p>• يمكنك البحث بالعربية أو الإنجليزية</p>
+                                        <p>• جرب كتابة جزء من اسم المادة فقط</p>
+                                        <p>• ابحث عن اسم المحاضرة المحددة مثل "cell membrane"</p>
                                     </div>
                                 </div>
                             </div>
@@ -2614,62 +2626,141 @@
         }
         
         function performSearchWithTerm(searchTerm) {
-            // Define searchable content with keywords
+            // Define comprehensive searchable content including specific lectures
             const searchableContent = {
-                'physiology': {
+                // Physiology lectures and content
+                'physiology-intro': {
+                    page: 'physiology-lectures',
+                    title: 'محاضرات Physiology 1 - The Cell and Cell Membrane',
+                    keywords: ['physiology', 'فسيولوجي', 'وظائف الاعضاء', 'وظائف', 'اعضاء', 'فيزيولوجي', 'فسيولوجيا', 'cell', 'membrane', 'خلية', 'غشاء', 'cell membrane', 'غشاء الخلية']
+                },
+                'physiology-general': {
                     page: 'physiology-lectures',
                     title: 'محاضرات Physiology 1',
                     keywords: ['physiology', 'فسيولوجي', 'وظائف الاعضاء', 'وظائف', 'اعضاء', 'فيزيولوجي', 'فسيولوجيا']
                 },
-                'anatomy': {
+                
+                // Anatomy lectures and content
+                'anatomy-intro': {
+                    page: 'anatomy-lectures',
+                    title: 'محاضرات Anatomy 1 - Introduction of Anatomy',
+                    keywords: ['anatomy', 'تشريح', 'انتومي', 'تشريحي', 'introduction', 'مقدمة', 'introduction of anatomy', 'مقدمة التشريح']
+                },
+                'anatomy-general': {
                     page: 'anatomy-lectures',
                     title: 'محاضرات Anatomy 1',
                     keywords: ['anatomy', 'تشريح', 'انتومي', 'تشريحي']
                 },
-                'histology': {
+                
+                // Histology lectures and content
+                'histology-cell': {
+                    page: 'histology-lectures',
+                    title: 'محاضرات Histology 1 - Cell and Cell Membrane',
+                    keywords: ['histology', 'انسجة', 'هستولوجي', 'انسجه', 'هيستولوجي', 'cell', 'membrane', 'خلية', 'غشاء', 'cell membrane', 'غشاء الخلية']
+                },
+                'histology-general': {
                     page: 'histology-lectures', 
                     title: 'محاضرات Histology 1',
                     keywords: ['histology', 'انسجة', 'هستولوجي', 'انسجه', 'هيستولوجي']
                 },
-                'electro-therapy': {
+                
+                // Electro Therapy lectures and content
+                'electro-intro': {
+                    page: 'electro-therapy-lectures',
+                    title: 'محاضرات Electro Therapy - Introduction',
+                    keywords: ['electro therapy', 'علاج كهربائي', 'كهرباء', 'كهربائي', 'الكترو', 'electrotherapy', 'علاج كهربي', 'introduction', 'مقدمة']
+                },
+                'electro-general': {
                     page: 'electro-therapy-lectures',
                     title: 'محاضرات Electro Therapy',
                     keywords: ['electro therapy', 'علاج كهربائي', 'كهرباء', 'كهربائي', 'الكترو', 'electrotherapy', 'علاج كهربي']
                 },
-                'neuroanatomy': {
+                
+                // Neuroanatomy lectures and content
+                'neuro-cerebral': {
+                    page: 'neuroanatomy-lectures',
+                    title: 'محاضرات Neuroanatomy - Cerebral hemispheres',
+                    keywords: ['neuroanatomy', 'تشريح الجهاز العصبي', 'نيورو', 'جهاز عصبي', 'مخ', 'دماغ', 'عصبي', 'نيورو انتومي', 'cerebral', 'hemispheres', 'نصفي المخ', 'نصف كروي']
+                },
+                'neuro-general': {
                     page: 'neuroanatomy-lectures',
                     title: 'محاضرات Neuroanatomy',
                     keywords: ['neuroanatomy', 'تشريح الجهاز العصبي', 'نيورو', 'جهاز عصبي', 'مخ', 'دماغ', 'عصبي', 'نيورو انتومي']
                 },
-                'first-year': {
+                
+                // Year and term pages
+                'first-year-first': {
                     page: 'first-year-first',
-                    title: 'الفرقة الأولى',
-                    keywords: ['فرقة اولى', 'اولى', 'first year', 'سنة اولى', 'فرقه اولى']
+                    title: 'الفرقة الأولى - الترم الأول',
+                    keywords: ['فرقة اولى', 'اولى', 'first year', 'سنة اولى', 'فرقه اولى', 'ترم اول', 'الترم الاول', 'first term']
                 },
-                'second-year': {
+                'first-year-second': {
+                    page: 'first-year-second',
+                    title: 'الفرقة الأولى - الترم الثاني',
+                    keywords: ['فرقة اولى', 'اولى', 'first year', 'سنة اولى', 'فرقه اولى', 'ترم تاني', 'الترم الثاني', 'second term']
+                },
+                'second-year-first': {
                     page: 'second-year-first',
-                    title: 'الفرقة الثانية', 
-                    keywords: ['فرقة تانية', 'تانية', 'second year', 'سنة تانية', 'فرقه تانيه', 'ثانية']
+                    title: 'الفرقة الثانية - الترم الأول', 
+                    keywords: ['فرقة تانية', 'تانية', 'second year', 'سنة تانية', 'فرقه تانيه', 'ثانية', 'ترم اول', 'الترم الاول']
+                },
+                'second-year-second': {
+                    page: 'second-year-second',
+                    title: 'الفرقة الثانية - الترم الثاني',
+                    keywords: ['فرقة تانية', 'تانية', 'second year', 'سنة تانية', 'فرقه تانيه', 'ثانية', 'ترم تاني', 'الترم الثاني']
+                },
+                
+                // General search terms
+                'lectures': {
+                    page: 'explanations',
+                    title: 'جميع المحاضرات والشروحات',
+                    keywords: ['محاضرات', 'محاضرة', 'شروحات', 'شرح', 'lectures', 'lecture', 'دروس', 'درس']
+                },
+                'about': {
+                    page: 'about',
+                    title: 'حول المنصة ومؤسسها د/ أحمد باسم',
+                    keywords: ['حولنا', 'عن المنصة', 'احمد باسم', 'ahmed basem', 'مؤسس', 'about']
                 }
             };
             
-            // Search through content
+            // Search through content with improved matching
             let foundResults = [];
             
             for (let key in searchableContent) {
                 const content = searchableContent[key];
-                const matchFound = content.keywords.some(keyword => 
-                    keyword.includes(searchTerm) || searchTerm.includes(keyword)
-                );
+                const matchFound = content.keywords.some(keyword => {
+                    // More flexible matching
+                    const keywordLower = keyword.toLowerCase();
+                    const searchLower = searchTerm.toLowerCase();
+                    
+                    return keywordLower.includes(searchLower) || 
+                           searchLower.includes(keywordLower) ||
+                           // Exact match
+                           keywordLower === searchLower ||
+                           // Partial word matching
+                           keywordLower.split(' ').some(word => searchLower.includes(word)) ||
+                           searchLower.split(' ').some(word => keywordLower.includes(word));
+                });
                 
                 if (matchFound) {
                     foundResults.push(content);
                 }
             }
             
+            // Remove duplicates based on page
+            const uniqueResults = [];
+            const seenPages = new Set();
+            
+            foundResults.forEach(result => {
+                if (!seenPages.has(result.page)) {
+                    seenPages.add(result.page);
+                    uniqueResults.push(result);
+                }
+            });
+            
             // Display search results
-            if (foundResults.length > 0) {
-                showSearchResults(foundResults, searchTerm);
+            if (uniqueResults.length > 0) {
+                showSearchResults(uniqueResults, searchTerm);
             } else {
                 showNoResults(searchTerm);
             }
@@ -2749,5 +2840,5 @@
             }
         });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'982438a22721e169',t:'MTc1ODQwMTcwMC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98246cc101ffe220',t:'MTc1ODQwMzgzNS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
