@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>محاضرات Neuroanatomy - تشريح الجهاز العصبي</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            box-sizing: border-box;
+            font-family: 'Cairo', sans-serif;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #60a5fa 100%);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .brain-icon {
+            background: linear-gradient(45deg, #ec4899, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+
+        .video-placeholder {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 400px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .brain-svg {
+            width: 120px;
+            height: 120px;
+            margin-bottom: 20px;
+        }
+        
+        .topic-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .topic-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+            border-color: #3b82f6;
+        }
+    </style>
+</head>
+<body class="bg-blue-50">
+
+
+    <!-- Hero Section -->
+    <section class="gradient-bg py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-5xl md:text-6xl font-bold text-white mb-4">
+                محاضرات Neuroanatomy
+            </h1>
+            <p class="text-xl text-blue-100 mb-8">
+                تشريح الجهاز العصبي
+            </p>
+        </div>
+    </section>
+
+    <!-- All Lectures Grid -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center text-blue-800 mb-12">جميع المحاضرات</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Lecture 1 -->
+                <div class="card-hover bg-white rounded-xl shadow-lg p-6 border border-gray-100 cursor-pointer" onclick="openLecture()">
+                    <img src="https://i.postimg.cc/WpwgrnN5/2.jpg" alt="Cerebral hemispheres" class="w-full h-48 object-cover rounded-lg mb-4" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-4 mx-auto" style="display: none;">
+                        <span class="text-2xl font-bold text-blue-600">1</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-blue-800 mb-2 text-center">المحاضرة الأولى</h3>
+                    <p class="text-blue-600 text-center font-medium mb-4">Cerebral hemispheres</p>
+                    <button class="bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-full font-bold text-lg transition-colors shadow-lg w-full">
+                        شاهد الآن
+                    </button>
+                </div>
+
+                <!-- Lecture 2 -->
+                <div class="card-hover bg-white rounded-xl shadow-lg p-6 border border-gray-100 cursor-pointer" onclick="openLecture2()">
+                    <img src="https://i.postimg.cc/d3ZMM1VV/1.jpg" alt="Basal Ganglia" class="w-full h-48 object-cover rounded-lg mb-4" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-4 mx-auto" style="display: none;">
+                        <span class="text-2xl font-bold text-blue-600">2</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-blue-800 mb-2 text-center">المحاضرة الثانية</h3>
+                    <p class="text-blue-600 text-center font-medium mb-4">Basal Ganglia</p>
+                    <button class="bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-full font-bold text-lg transition-colors shadow-lg w-full">
+                        شاهد الآن
+                    </button>
+                </div>
+                
+                <!-- Lecture 3 -->
+                <div class="card-hover bg-white rounded-xl shadow-lg p-6 border border-gray-100">
+                    <div class="w-full h-48 bg-purple-100 rounded-lg mb-4 flex items-center justify-center">
+                        <div class="w-20 h-20 bg-purple-200 rounded-full flex items-center justify-center">
+                            <span class="text-3xl font-bold text-purple-600">3</span>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold text-blue-800 mb-2 text-center">المحاضرة الثالثة</h3>
+                    <p class="text-blue-600 text-center mb-4">سيتم إضافتها قريبًا</p>
+                    <button class="bg-gray-400 text-white px-6 py-3 rounded-full font-bold text-lg w-full cursor-not-allowed">
+                        قريبًا
+                    </button>
+                </div>
+                
+                <!-- Lecture 4 -->
+                <div class="card-hover bg-white rounded-xl shadow-lg p-6 border border-blue-100">
+                    <div class="w-full h-48 bg-blue-100 rounded-lg mb-4 flex items-center justify-center">
+                        <div class="w-20 h-20 bg-blue-200 rounded-full flex items-center justify-center">
+                            <span class="text-3xl font-bold text-blue-600">4</span>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold text-blue-800 mb-2 text-center">المحاضرة الرابعة</h3>
+                    <p class="text-blue-600 text-center mb-4">سيتم إضافتها قريبًا</p>
+                    <button class="bg-gray-400 text-white px-6 py-3 rounded-full font-bold text-lg w-full cursor-not-allowed">
+                        قريبًا
+                    </button>
+                </div>
+                
+                <!-- Lecture 5 -->
+                <div class="card-hover bg-white rounded-xl shadow-lg p-6 border border-blue-100">
+                    <div class="w-full h-48 bg-green-100 rounded-lg mb-4 flex items-center justify-center">
+                        <div class="w-20 h-20 bg-green-200 rounded-full flex items-center justify-center">
+                            <span class="text-3xl font-bold text-green-600">5</span>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold text-blue-800 mb-2 text-center">المحاضرة الخامسة</h3>
+                    <p class="text-blue-600 text-center mb-4">سيتم إضافتها قريبًا</p>
+                    <button class="bg-gray-400 text-white px-6 py-3 rounded-full font-bold text-lg w-full cursor-not-allowed">
+                        قريبًا
+                    </button>
+                </div>
+                
+                <!-- Lecture 6 -->
+                <div class="card-hover bg-white rounded-xl shadow-lg p-6 border border-blue-100">
+                    <div class="w-full h-48 bg-pink-100 rounded-lg mb-4 flex items-center justify-center">
+                        <div class="w-20 h-20 bg-pink-200 rounded-full flex items-center justify-center">
+                            <span class="text-3xl font-bold text-pink-600">6</span>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold text-blue-800 mb-2 text-center">المحاضرة السادسة</h3>
+                    <p class="text-blue-600 text-center mb-4">سيتم إضافتها قريبًا</p>
+                    <button class="bg-gray-400 text-white px-6 py-3 rounded-full font-bold text-lg w-full cursor-not-allowed">
+                        قريبًا
+                    </button>
+                </div>
+                
+                <!-- Lecture 7 -->
+                <div class="card-hover bg-white rounded-xl shadow-lg p-6 border border-blue-100">
+                    <div class="w-full h-48 bg-yellow-100 rounded-lg mb-4 flex items-center justify-center">
+                        <div class="w-20 h-20 bg-yellow-200 rounded-full flex items-center justify-center">
+                            <span class="text-3xl font-bold text-yellow-600">7</span>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold text-blue-800 mb-2 text-center">المحاضرة السابعة</h3>
+                    <p class="text-blue-600 text-center mb-4">سيتم إضافتها قريبًا</p>
+                    <button class="bg-gray-400 text-white px-6 py-3 rounded-full font-bold text-lg w-full cursor-not-allowed">
+                        قريبًا
+                    </button>
+                </div>
+
+                <!-- Lecture 8 -->
+                <div class="card-hover bg-white rounded-xl shadow-lg p-6 border border-blue-100">
+                    <div class="w-full h-48 bg-indigo-100 rounded-lg mb-4 flex items-center justify-center">
+                        <div class="w-20 h-20 bg-indigo-200 rounded-full flex items-center justify-center">
+                            <span class="text-3xl font-bold text-indigo-600">8</span>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold text-blue-800 mb-2 text-center">المحاضرة الثامنة</h3>
+                    <p class="text-blue-600 text-center mb-4">سيتم إضافتها قريبًا</p>
+                    <button class="bg-gray-400 text-white px-6 py-3 rounded-full font-bold text-lg w-full cursor-not-allowed">
+                        قريبًا
+                    </button>
+                </div>
+
+                <!-- Lecture 9 -->
+                <div class="card-hover bg-white rounded-xl shadow-lg p-6 border border-blue-100">
+                    <div class="w-full h-48 bg-red-100 rounded-lg mb-4 flex items-center justify-center">
+                        <div class="w-20 h-20 bg-red-200 rounded-full flex items-center justify-center">
+                            <span class="text-3xl font-bold text-red-600">9</span>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold text-blue-800 mb-2 text-center">المحاضرة التاسعة</h3>
+                    <p class="text-blue-600 text-center mb-4">سيتم إضافتها قريبًا</p>
+                    <button class="bg-gray-400 text-white px-6 py-3 rounded-full font-bold text-lg w-full cursor-not-allowed">
+                        قريبًا
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Brain Journey Section -->
+    <section class="py-16 gradient-bg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-white mb-4">
+                    رحلتك داخل الدماغ <span class="brain-icon text-5xl">🧠</span>
+                </h2>
+                <p class="text-xl text-blue-100">استكشف أجزاء الجهاز العصبي المختلفة</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Cerebrum -->
+                <div class="topic-card">
+                    <div class="text-4xl mb-4">🧠</div>
+                    <h3 class="text-xl font-bold text-blue-800 mb-2">Cerebrum</h3>
+                    <p class="text-blue-600 font-medium">(المخ)</p>
+                </div>
+                
+                <!-- Cerebellum -->
+                <div class="topic-card">
+                    <div class="text-4xl mb-4">⚡</div>
+                    <h3 class="text-xl font-bold text-blue-800 mb-2">Cerebellum</h3>
+                    <p class="text-blue-600 font-medium">(المخيخ)</p>
+                </div>
+                
+                <!-- Brainstem -->
+                <div class="topic-card">
+                    <div class="text-4xl mb-4">🔗</div>
+                    <h3 class="text-xl font-bold text-blue-800 mb-2">Brainstem</h3>
+                    <p class="text-blue-600 font-medium">(جذع الدماغ)</p>
+                </div>
+                
+                <!-- Spinal Cord -->
+                <div class="topic-card">
+                    <div class="text-4xl mb-4">🦴</div>
+                    <h3 class="text-xl font-bold text-blue-800 mb-2">Spinal Cord</h3>
+                    <p class="text-blue-600 font-medium">(الحبل الشوكي)</p>
+                </div>
+                
+                <!-- Cranial Nerves -->
+                <div class="topic-card">
+                    <div class="text-4xl mb-4">🌐</div>
+                    <h3 class="text-xl font-bold text-blue-800 mb-2">Cranial Nerves</h3>
+                    <p class="text-blue-600 font-medium">(الأعصاب القحفية)</p>
+                </div>
+                
+                <!-- Functional Areas -->
+                <div class="topic-card">
+                    <div class="text-4xl mb-4">🎯</div>
+                    <h3 class="text-xl font-bold text-blue-800 mb-2">Functional Areas</h3>
+                    <p class="text-blue-600 font-medium">(المناطق الوظيفية)</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-blue-800 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <div class="text-3xl font-bold text-blue-200 mb-4">Studyfy</div>
+                <div class="flex justify-center space-x-6">
+                    <a href="#" class="text-blue-200 hover:text-white transition-colors">الرئيسية</a>
+                    <a href="#" class="text-blue-200 hover:text-white transition-colors">الشروط</a>
+                    <a href="#" class="text-blue-200 hover:text-white transition-colors">حولنا</a>
+                    <a href="#" class="text-blue-200 hover:text-white transition-colors">تواصل معنا</a>
+                </div>
+                <div class="mt-8 pt-8 border-t border-blue-600">
+                    <p class="text-blue-200">&copy; 2024 Studyfy. جميع الحقوق محفوظة.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Add smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add interactive hover effects for topic cards
+        document.querySelectorAll('.topic-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-8px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Add click functionality to lecture cards
+        document.querySelectorAll('.card-hover').forEach(card => {
+            card.addEventListener('click', function() {
+                const lectureNumber = this.querySelector('span').textContent;
+                alert(`المحاضرة ${lectureNumber} ستكون متاحة قريبًا! 📚`);
+            });
+        });
+
+        // Add click functionality to brain journey cards
+        document.querySelectorAll('.topic-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const topicName = this.querySelector('h3').textContent;
+                const arabicName = this.querySelector('p').textContent;
+                alert(`ستتعلم عن ${topicName} ${arabicName} في المحاضرات القادمة! 🧠`);
+            });
+        });
+
+        // Function to open the lecture
+        function openLecture() {
+            window.open('https://drive.google.com/file/d/1l28eSsbhmllm6YjBN-P166fWguJ96IUQ/view', '_blank', 'noopener,noreferrer');
+        }
+
+        // Function to open the second lecture
+        function openLecture2() {
+            window.open('https://drive.google.com/file/d/1r0YWlFRYzKyG9tCF-gQpLeMXk5mkDMEw/view', '_blank', 'noopener,noreferrer');
+        }
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98a74c1e8688adb5',t:'MTc1OTc3NjEzMy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
