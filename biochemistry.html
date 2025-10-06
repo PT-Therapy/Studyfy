@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>محاضرات Biochemistry - الكيمياء الحيوية</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            box-sizing: border-box;
+            font-family: 'Cairo', sans-serif;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #60a5fa 100%);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .status-bar {
+            background: rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+        }
+        
+        .search-input::placeholder {
+            color: #9ca3af;
+        }
+        
+        .coming-soon-badge {
+            background: linear-gradient(45deg, #fbbf24, #f59e0b);
+        }
+        
+        .available-badge {
+            background: linear-gradient(45deg, #10b981, #059669);
+        }
+        
+        .feature-icon {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+        }
+    </style>
+</head>
+<body class="gradient-bg min-h-screen text-white">
+
+
+    <!-- Main Content -->
+    <div class="px-6 py-8">
+        <!-- Hero Section -->
+        <div class="text-center mb-12">
+            <h1 class="text-5xl font-bold mb-4">محاضرات Biochemistry</h1>
+            <p class="text-xl text-blue-100">الكيمياء الحيوية الطبية</p>
+        </div>
+
+        <!-- Lectures Grid -->
+        <div class="mb-16">
+            <h2 class="text-3xl font-bold text-center mb-8">المحاضرات المتاحة</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+                <div class="bg-white/10 backdrop-blur-md rounded-xl p-6 card-hover cursor-pointer" onclick="openLecture()">
+                    <div class="aspect-video bg-gradient-to-br from-blue-900 to-purple-900 rounded-xl mb-4 flex items-center justify-center relative overflow-hidden">
+                        <img src="https://i.postimg.cc/9QyK2KP6/1.jpg" alt="Carbohydrate Metabolism" class="w-full h-full object-cover rounded-xl" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="absolute inset-0 bg-black/20 rounded-xl"></div>
+                        <div class="absolute inset-0 flex items-center justify-center" style="display: none;">
+                            <svg class="w-16 h-16 text-white/30" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                            </svg>
+                        </div>
+                        <!-- Play button overlay -->
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <div class="bg-white/20 backdrop-blur-sm rounded-full p-3 hover:bg-white/30 transition-all">
+                                <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M8 5v14l11-7z"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="text-xl font-semibold">المحاضرة الأولى</h3>
+                        <span class="available-badge text-white px-3 py-1 rounded-full text-xs font-semibold">متاحة الآن</span>
+                    </div>
+                    <p class="text-blue-100 text-sm">Carbohydrate Metabolism</p>
+                </div>
+                
+                <div class="bg-white/10 backdrop-blur-md rounded-xl p-6 card-hover cursor-pointer" onclick="openLecture2()">
+                    <div class="aspect-video bg-gradient-to-br from-blue-900 to-purple-900 rounded-xl mb-4 flex items-center justify-center relative overflow-hidden">
+                        <img src="https://i.postimg.cc/9QyK2KP6/1.jpg" alt="Carbohydrate Metabolism" class="w-full h-full object-cover rounded-xl" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="absolute inset-0 bg-black/20 rounded-xl"></div>
+                        <div class="absolute inset-0 flex items-center justify-center" style="display: none;">
+                            <svg class="w-16 h-16 text-white/30" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                            </svg>
+                        </div>
+                        <!-- Play button overlay -->
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <div class="bg-white/20 backdrop-blur-sm rounded-full p-3 hover:bg-white/30 transition-all">
+                                <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M8 5v14l11-7z"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="text-xl font-semibold">المحاضرة الثانية</h3>
+                        <span class="available-badge text-white px-3 py-1 rounded-full text-xs font-semibold">متاحة الآن</span>
+                    </div>
+                    <p class="text-blue-100 text-sm">Carbohydrate Metabolism</p>
+                </div>
+                
+                <div class="bg-white/10 backdrop-blur-md rounded-xl p-6 card-hover">
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="text-xl font-semibold">المحاضرة الثالثة</h3>
+                        <span class="coming-soon-badge text-white px-3 py-1 rounded-full text-xs font-semibold">قريباً</span>
+                    </div>
+                    <p class="text-blue-100 text-sm">سيتم إضافتها قريباً</p>
+                </div>
+                
+                <div class="bg-white/10 backdrop-blur-md rounded-xl p-6 card-hover">
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="text-xl font-semibold">المحاضرة الرابعة</h3>
+                        <span class="coming-soon-badge text-white px-3 py-1 rounded-full text-xs font-semibold">قريباً</span>
+                    </div>
+                    <p class="text-blue-100 text-sm">سيتم إضافتها قريباً</p>
+                </div>
+                
+                <div class="bg-white/10 backdrop-blur-md rounded-xl p-6 card-hover">
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="text-xl font-semibold">المحاضرة الخامسة</h3>
+                        <span class="coming-soon-badge text-white px-3 py-1 rounded-full text-xs font-semibold">قريباً</span>
+                    </div>
+                    <p class="text-blue-100 text-sm">سيتم إضافتها قريباً</p>
+                </div>
+                
+                <div class="bg-white/10 backdrop-blur-md rounded-xl p-6 card-hover">
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="text-xl font-semibold">المحاضرة السادسة</h3>
+                        <span class="coming-soon-badge text-white px-3 py-1 rounded-full text-xs font-semibold">قريباً</span>
+                    </div>
+                    <p class="text-blue-100 text-sm">سيتم إضافتها قريباً</p>
+                </div>
+                
+                <div class="bg-white/10 backdrop-blur-md rounded-xl p-6 card-hover">
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="text-xl font-semibold">المحاضرة السابعة</h3>
+                        <span class="coming-soon-badge text-white px-3 py-1 rounded-full text-xs font-semibold">قريباً</span>
+                    </div>
+                    <p class="text-blue-100 text-sm">سيتم إضافتها قريباً</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Biochemistry World Section -->
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-bold mb-4">رحلتك داخل عالم Biochemistry 🧬</h2>
+            <p class="text-xl text-blue-100 mb-12 max-w-3xl mx-auto">
+                اكتشف كيف تعمل الجزيئات داخل خلايا جسم الإنسان لبناء الطاقة والحياة
+            </p>
+            
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+                <div class="feature-icon rounded-2xl p-8 card-hover text-center">
+                    <div class="text-5xl mb-4">🧪</div>
+                    <h3 class="text-lg font-semibold mb-2">Enzymes</h3>
+                    <p class="text-sm text-blue-100">(الإنزيمات)</p>
+                </div>
+                
+                <div class="feature-icon rounded-2xl p-8 card-hover text-center">
+                    <div class="text-5xl mb-4">💧</div>
+                    <h3 class="text-lg font-semibold mb-2">Metabolism</h3>
+                    <p class="text-sm text-blue-100">(الأيض)</p>
+                </div>
+                
+                <div class="feature-icon rounded-2xl p-8 card-hover text-center">
+                    <div class="text-5xl mb-4">🍬</div>
+                    <h3 class="text-lg font-semibold mb-2">Carbohydrates</h3>
+                    <p class="text-sm text-blue-100">(الكربوهيدرات)</p>
+                </div>
+                
+                <div class="feature-icon rounded-2xl p-8 card-hover text-center">
+                    <div class="text-5xl mb-4">💪</div>
+                    <h3 class="text-lg font-semibold mb-2">Proteins</h3>
+                    <p class="text-sm text-blue-100">(البروتينات)</p>
+                </div>
+                
+                <div class="feature-icon rounded-2xl p-8 card-hover text-center">
+                    <div class="text-5xl mb-4">🧫</div>
+                    <h3 class="text-lg font-semibold mb-2">Lipids</h3>
+                    <p class="text-sm text-blue-100">(الدهون)</p>
+                </div>
+                
+                <div class="feature-icon rounded-2xl p-8 card-hover text-center">
+                    <div class="text-5xl mb-4">🧠</div>
+                    <h3 class="text-lg font-semibold mb-2">Nucleic acids</h3>
+                    <p class="text-sm text-blue-100">(الأحماض النووية)</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Function to open lecture
+        function openLecture() {
+            window.open('https://drive.google.com/file/d/1Wmhy0RvvD3O0znMhWsGU0SKvzwRAwHLT/view', '_blank', 'noopener,noreferrer');
+        }
+        
+        // Function to open lecture 2
+        function openLecture2() {
+            window.open('https://drive.google.com/drive/folders/1N0YpErGU063PfLsPftWkOkaTYq8YxCeO', '_blank', 'noopener,noreferrer');
+        }
+        
+        // Add interactive functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Search functionality
+            const searchInput = document.querySelector('.search-input');
+            if (searchInput) {
+                searchInput.addEventListener('focus', function() {
+                    this.parentElement.classList.add('ring-2', 'ring-blue-300');
+                });
+                
+                searchInput.addEventListener('blur', function() {
+                    this.parentElement.classList.remove('ring-2', 'ring-blue-300');
+                });
+            }
+            
+            // Card hover effects
+            const cards = document.querySelectorAll('.card-hover');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-5px)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+            
+            // Navigation hover effects
+            const navLinks = document.querySelectorAll('nav a');
+            navLinks.forEach(link => {
+                link.addEventListener('mouseenter', function() {
+                    if (!this.classList.contains('bg-green-500')) {
+                        this.style.color = '#bfdbfe';
+                    }
+                });
+                
+                link.addEventListener('mouseleave', function() {
+                    if (!this.classList.contains('bg-green-500')) {
+                        this.style.color = 'white';
+                    }
+                });
+            });
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98a78b0fe2a2e183',t:'MTc1OTc3ODcxMS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
