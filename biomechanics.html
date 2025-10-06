@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>محاضرات Biomechanics - الميكانيكا الحيوية</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            box-sizing: border-box;
+            font-family: 'Cairo', sans-serif;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #60a5fa 100%);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .icon-box {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .search-input::placeholder {
+            color: #94a3b8;
+        }
+        
+        .coming-soon-badge {
+            background: linear-gradient(45deg, #fbbf24, #f59e0b);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+
+
+    <!-- Hero Section -->
+    <section class="gradient-bg text-white py-16">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <h1 class="text-5xl font-bold mb-4">محاضرات Biomechanics</h1>
+                <p class="text-xl text-blue-100">الميكانيكا الحيوية للحركة البشرية</p>
+            </div>
+
+            <!-- Main Video Section -->
+            <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-8 mb-12 max-w-4xl mx-auto">
+                <div class="aspect-video bg-gradient-to-br from-blue-900 to-blue-700 rounded-xl mb-6 flex items-center justify-center relative overflow-hidden cursor-pointer group" onclick="openLecture()">
+                    <img src="https://i.postimg.cc/L5tDwYZV/1.jpg" alt="Introduction to Biomechanics" class="w-full h-full object-cover rounded-xl" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    
+                    <!-- Fallback SVG if image fails to load -->
+                    <svg viewBox="0 0 400 300" class="w-full h-full" style="display: none;">
+                        <!-- Human figure -->
+                        <circle cx="200" cy="50" r="20" fill="#60a5fa" opacity="0.8"/>
+                        <rect x="190" y="70" width="20" height="60" rx="10" fill="#60a5fa" opacity="0.8"/>
+                        <rect x="185" y="80" width="30" height="8" rx="4" fill="#60a5fa" opacity="0.8"/>
+                        <rect x="185" y="130" width="12" height="40" rx="6" fill="#60a5fa" opacity="0.8"/>
+                        <rect x="203" y="130" width="12" height="40" rx="6" fill="#60a5fa" opacity="0.8"/>
+                        <rect x="175" y="75" width="12" height="30" rx="6" fill="#60a5fa" opacity="0.8"/>
+                        <rect x="213" y="75" width="12" height="30" rx="6" fill="#60a5fa" opacity="0.8"/>
+                        
+                        <!-- Force vectors -->
+                        <defs>
+                            <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                                <polygon points="0 0, 10 3.5, 0 7" fill="#fbbf24"/>
+                            </marker>
+                        </defs>
+                        
+                        <!-- Various force arrows -->
+                        <line x1="200" y1="40" x2="200" y2="10" stroke="#fbbf24" stroke-width="3" marker-end="url(#arrowhead)"/>
+                        <line x1="170" y1="90" x2="140" y2="80" stroke="#fbbf24" stroke-width="3" marker-end="url(#arrowhead)"/>
+                        <line x1="230" y1="90" x2="260" y2="80" stroke="#fbbf24" stroke-width="3" marker-end="url(#arrowhead)"/>
+                        <line x1="191" y1="180" x2="170" y2="200" stroke="#fbbf24" stroke-width="3" marker-end="url(#arrowhead)"/>
+                        <line x1="209" y1="180" x2="230" y2="200" stroke="#fbbf24" stroke-width="3" marker-end="url(#arrowhead)"/>
+                        
+                        <!-- Joint markers -->
+                        <circle cx="200" cy="70" r="4" fill="#ef4444"/>
+                        <circle cx="185" cy="105" r="4" fill="#ef4444"/>
+                        <circle cx="215" cy="105" r="4" fill="#ef4444"/>
+                        <circle cx="191" cy="130" r="4" fill="#ef4444"/>
+                        <circle cx="209" cy="130" r="4" fill="#ef4444"/>
+                        
+                        <!-- Labels -->
+                        <text x="220" y="15" fill="#fbbf24" font-size="12" font-weight="bold">Force</text>
+                        <text x="270" y="85" fill="#fbbf24" font-size="12" font-weight="bold">Torque</text>
+                        <text x="240" y="205" fill="#fbbf24" font-size="12" font-weight="bold">Ground Reaction</text>
+                    </svg>
+                    
+                    <!-- Play button overlay -->
+                    <div class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center group-hover:bg-opacity-40 transition-all duration-300">
+                        <div class="bg-white bg-opacity-90 rounded-full p-4 group-hover:scale-110 transition-transform duration-300">
+                            <svg class="w-8 h-8 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M8 5v14l11-7z"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center">
+                    <h3 class="text-2xl font-bold mb-2">المحاضرة الأولى – INTRODUCTION</h3>
+                    <div class="flex justify-center items-center gap-4 mb-4">
+                        <span class="bg-green-500 text-white px-4 py-2 rounded-full text-sm font-semibold">متاحة الآن</span>
+                    </div>
+                    <p class="text-blue-100 text-sm">Introduction to Biomechanics</p>
+                </div>
+            </div>
+
+            <!-- Upcoming Lectures Grid -->
+            <div class="mb-16">
+                <h2 class="text-3xl font-bold text-center mb-8">المحاضرات القادمة</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="bg-white/10 backdrop-blur-lg rounded-xl p-6 card-hover">
+                        <h3 class="text-xl font-bold mb-3">المحاضرة الثانية</h3>
+                        <p class="text-blue-100 mb-4">سيتم إضافتها قريباً</p>
+                        <span class="coming-soon-badge text-white px-3 py-1 rounded-full text-sm font-semibold">قريباً</span>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-lg rounded-xl p-6 card-hover">
+                        <h3 class="text-xl font-bold mb-3">المحاضرة الثالثة</h3>
+                        <p class="text-blue-100 mb-4">سيتم إضافتها قريباً</p>
+                        <span class="coming-soon-badge text-white px-3 py-1 rounded-full text-sm font-semibold">قريباً</span>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-lg rounded-xl p-6 card-hover">
+                        <h3 class="text-xl font-bold mb-3">المحاضرة الرابعة</h3>
+                        <p class="text-blue-100 mb-4">سيتم إضافتها قريباً</p>
+                        <span class="coming-soon-badge text-white px-3 py-1 rounded-full text-sm font-semibold">قريباً</span>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-lg rounded-xl p-6 card-hover">
+                        <h3 class="text-xl font-bold mb-3">المحاضرة الخامسة</h3>
+                        <p class="text-blue-100 mb-4">سيتم إضافتها قريباً</p>
+                        <span class="coming-soon-badge text-white px-3 py-1 rounded-full text-sm font-semibold">قريباً</span>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-lg rounded-xl p-6 card-hover">
+                        <h3 class="text-xl font-bold mb-3">المحاضرة السادسة</h3>
+                        <p class="text-blue-100 mb-4">سيتم إضافتها قريباً</p>
+                        <span class="coming-soon-badge text-white px-3 py-1 rounded-full text-sm font-semibold">قريباً</span>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-lg rounded-xl p-6 card-hover">
+                        <h3 class="text-xl font-bold mb-3">المحاضرة السابعة</h3>
+                        <p class="text-blue-100 mb-4">سيتم إضافتها قريباً</p>
+                        <span class="coming-soon-badge text-white px-3 py-1 rounded-full text-sm font-semibold">قريباً</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Biomechanics World Section -->
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold mb-4">اكتشف عالم الحركة البشرية ⚙️</h2>
+                <p class="text-xl text-blue-100 max-w-3xl mx-auto">تعلّم كيف تؤثر القوى والعزوم على حركة المفاصل والعضلات في جسم الإنسان</p>
+            </div>
+
+            <!-- Topics Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="icon-box rounded-2xl p-8 text-center card-hover">
+                    <div class="text-6xl mb-4">⚙️</div>
+                    <h3 class="text-xl font-bold mb-2">Kinematics</h3>
+                    <p class="text-blue-100 text-sm">(الحركة بدون قوة)</p>
+                </div>
+                <div class="icon-box rounded-2xl p-8 text-center card-hover">
+                    <div class="text-6xl mb-4">💪</div>
+                    <h3 class="text-xl font-bold mb-2">Kinetics</h3>
+                    <p class="text-blue-100 text-sm">(العوامل المسببة للحركة)</p>
+                </div>
+                <div class="icon-box rounded-2xl p-8 text-center card-hover">
+                    <div class="text-6xl mb-4">🦵</div>
+                    <h3 class="text-xl font-bold mb-2">Levers</h3>
+                    <p class="text-blue-100 text-sm">(الرافعات في الجسم)</p>
+                </div>
+                <div class="icon-box rounded-2xl p-8 text-center card-hover">
+                    <div class="text-6xl mb-4">🧠</div>
+                    <h3 class="text-xl font-bold mb-2">Center of Gravity</h3>
+                    <p class="text-blue-100 text-sm">(مركز الثقل)</p>
+                </div>
+                <div class="icon-box rounded-2xl p-8 text-center card-hover">
+                    <div class="text-6xl mb-4">↔️</div>
+                    <h3 class="text-xl font-bold mb-2">Planes & Axes</h3>
+                    <p class="text-blue-100 text-sm">(المستويات والمحاور)</p>
+                </div>
+                <div class="icon-box rounded-2xl p-8 text-center card-hover">
+                    <div class="text-6xl mb-4">📈</div>
+                    <h3 class="text-xl font-bold mb-2">Gait & Motion Analysis</h3>
+                    <p class="text-blue-100 text-sm">(تحليل المشي والحركة)</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-blue-800 text-white py-8">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <div class="text-2xl font-bold text-blue-200 mb-4">Studyfy</div>
+            <p class="text-blue-100">منصة تعليمية متخصصة في علوم الطب والعلاج الطبيعي</p>
+        </div>
+    </footer>
+
+    <script>
+        // Function to open lecture
+        function openLecture() {
+            window.open('https://drive.google.com/file/d/1fyx7qmTUNPbsvs32XDdWFifeNniFPjcm/view', '_blank', 'noopener,noreferrer');
+        }
+
+        // Add smooth scrolling and interactive effects
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate cards on scroll
+            const cards = document.querySelectorAll('.card-hover');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            });
+
+            cards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'all 0.6s ease';
+                observer.observe(card);
+            });
+
+            // Search functionality
+            const searchInput = document.querySelector('.search-input');
+            if (searchInput) {
+                searchInput.addEventListener('focus', function() {
+                    this.style.transform = 'scale(1.02)';
+                    this.style.boxShadow = '0 4px 20px rgba(59, 130, 246, 0.3)';
+                });
+
+                searchInput.addEventListener('blur', function() {
+                    this.style.transform = 'scale(1)';
+                    this.style.boxShadow = 'none';
+                });
+            }
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98a7a2b4e779e183',t:'MTc1OTc3OTY3OS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
