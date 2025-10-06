@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>محاضرات Muscle Test and Measurements - Studyfy</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            box-sizing: border-box;
+            font-family: 'Cairo', sans-serif;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #60a5fa 100%);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .icon-bg {
+            background: linear-gradient(45deg, #f59e0b, #f97316);
+        }
+        
+        .icon-bg-blue {
+            background: linear-gradient(45deg, #3b82f6, #1d4ed8);
+        }
+        
+        .icon-bg-green {
+            background: linear-gradient(45deg, #10b981, #059669);
+        }
+        
+        .icon-bg-purple {
+            background: linear-gradient(45deg, #8b5cf6, #7c3aed);
+        }
+        
+        .icon-bg-red {
+            background: linear-gradient(45deg, #ef4444, #dc2626);
+        }
+        
+        .icon-bg-indigo {
+            background: linear-gradient(45deg, #6366f1, #4f46e5);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+
+
+    <!-- Main Content -->
+    <div class="gradient-bg min-h-screen">
+        <!-- Hero Section -->
+        <div class="max-w-7xl mx-auto px-6 py-12">
+            <div class="text-center mb-12">
+                <h1 class="text-5xl font-bold text-white mb-4">محاضرات Muscle Test and Measurements</h1>
+                <p class="text-xl text-blue-100">اختبارات العضلات والقياسات في العلاج الطبيعي</p>
+            </div>
+
+            <!-- Main Video Section -->
+            <div class="bg-white rounded-2xl shadow-2xl p-8 mb-12 card-hover">
+                <div class="grid md:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <div class="relative cursor-pointer group" onclick="openLecture()">
+                            <img src="https://i.postimg.cc/bwwJZ7Lk/1.jpg" 
+                                 alt="INTRODUCTION - Muscle Test and Measurements" 
+                                 class="w-full h-64 object-cover rounded-xl shadow-lg group-hover:shadow-2xl transition-all duration-300"
+                                 onerror="this.src=''; this.alt='Image failed to load'; this.style.display='none';">
+                            <div class="absolute inset-0 bg-black bg-opacity-40 rounded-xl flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <div class="text-white text-center">
+                                    <div class="text-4xl mb-2">▶️</div>
+                                    <p class="text-lg font-bold">مشاهدة المحاضرة</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <h2 class="text-3xl font-bold text-gray-800 mb-4">المحاضرة الأولى – INTRODUCTION</h2>
+                        <p class="text-gray-600 mb-6">تعرف على أساسيات اختبار العضلات اليدوي وكيفية تقييم قوة العضلات بدقة</p>
+                        <button onclick="openLecture()" class="bg-green-500 text-white px-8 py-3 rounded-lg font-bold text-lg hover:bg-green-600 transition-colors mb-4">
+                            متاحة الآن
+                        </button>
+                        <p class="text-sm text-gray-500">Introduction to Manual Muscle Testing</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Second Lecture -->
+            <div class="bg-white rounded-2xl shadow-2xl p-8 mb-12 card-hover">
+                <div class="grid md:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <div class="relative cursor-pointer group" onclick="openLecture2()">
+                            <img src="https://i.postimg.cc/Yq4Dt0BQ/2.jpg" 
+                                 alt="Anthropmetric measurements - Muscle Test and Measurements" 
+                                 class="w-full h-64 object-cover rounded-xl shadow-lg group-hover:shadow-2xl transition-all duration-300"
+                                 onerror="this.src=''; this.alt='Image failed to load'; this.style.display='none';">
+                            <div class="absolute inset-0 bg-black bg-opacity-40 rounded-xl flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <div class="text-white text-center">
+                                    <div class="text-4xl mb-2">▶️</div>
+                                    <p class="text-lg font-bold">مشاهدة المحاضرة</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <h2 class="text-3xl font-bold text-gray-800 mb-4">المحاضرة الثانية – Anthropmetric measurements</h2>
+                        <p class="text-gray-600 mb-6">تعلم كيفية قياس أبعاد الجسم والقياسات الأنثروبومترية المختلفة</p>
+                        <button onclick="openLecture2()" class="bg-green-500 text-white px-8 py-3 rounded-lg font-bold text-lg hover:bg-green-600 transition-colors mb-4">
+                            متاحة الآن
+                        </button>
+                        <p class="text-sm text-gray-500">Anthropometric Measurements in Physical Therapy</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Upcoming Lectures -->
+            <div class="mb-12">
+                <h2 class="text-3xl font-bold text-white text-center mb-8">المحاضرات القادمة</h2>
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-xl font-bold text-gray-800">المحاضرة الثالثة</h3>
+                            <span class="bg-yellow-400 text-yellow-800 px-3 py-1 rounded-full text-sm font-bold">قريباً</span>
+                        </div>
+                        <p class="text-gray-600">سيتم إضافتها قريباً</p>
+                    </div>
+                    
+                    <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-xl font-bold text-gray-800">المحاضرة الرابعة</h3>
+                            <span class="bg-yellow-400 text-yellow-800 px-3 py-1 rounded-full text-sm font-bold">قريباً</span>
+                        </div>
+                        <p class="text-gray-600">سيتم إضافتها قريباً</p>
+                    </div>
+                    
+                    <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-xl font-bold text-gray-800">المحاضرة الخامسة</h3>
+                            <span class="bg-yellow-400 text-yellow-800 px-3 py-1 rounded-full text-sm font-bold">قريباً</span>
+                        </div>
+                        <p class="text-gray-600">سيتم إضافتها قريباً</p>
+                    </div>
+                    
+                    <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-xl font-bold text-gray-800">المحاضرة السادسة</h3>
+                            <span class="bg-yellow-400 text-yellow-800 px-3 py-1 rounded-full text-sm font-bold">قريباً</span>
+                        </div>
+                        <p class="text-gray-600">سيتم إضافتها قريباً</p>
+                    </div>
+                    
+                    <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-xl font-bold text-gray-800">المحاضرة السابعة</h3>
+                            <span class="bg-yellow-400 text-yellow-800 px-3 py-1 rounded-full text-sm font-bold">قريباً</span>
+                        </div>
+                        <p class="text-gray-600">سيتم إضافتها قريباً</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Topics Section -->
+            <div class="bg-white rounded-2xl shadow-2xl p-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold text-gray-800 mb-4">اكتشف علم اختبار العضلات والقياسات 🧍‍♂️</h2>
+                    <p class="text-xl text-gray-600 max-w-4xl mx-auto">
+                        تعلّم كيف يتم تقييم قوة العضلات وحركة المفاصل بدقة باستخدام الاختبارات اليدوية والقياسات العملية
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="text-center p-6 card-hover">
+                        <div class="icon-bg w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                            <span class="text-3xl text-white">💪</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Manual Muscle Testing (MMT)</h3>
+                        <p class="text-gray-600">تقنيات الاختبار اليدوي لقوة العضلات</p>
+                    </div>
+
+                    <div class="text-center p-6 card-hover">
+                        <div class="icon-bg-blue w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                            <span class="text-3xl text-white">📏</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Range of Motion (ROM) Measurement</h3>
+                        <p class="text-gray-600">قياس مدى حركة المفاصل</p>
+                    </div>
+
+                    <div class="text-center p-6 card-hover">
+                        <div class="icon-bg-green w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                            <span class="text-3xl text-white">🦵</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Goniometer Use</h3>
+                        <p class="text-gray-600">استخدام جهاز قياس الزوايا</p>
+                    </div>
+
+                    <div class="text-center p-6 card-hover">
+                        <div class="icon-bg-purple w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                            <span class="text-3xl text-white">🧠</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Muscle Grading Scale</h3>
+                        <p class="text-gray-600">مقياس درجات قوة العضلات</p>
+                    </div>
+
+                    <div class="text-center p-6 card-hover">
+                        <div class="icon-bg-red w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                            <span class="text-3xl text-white">🔄</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Functional Assessment</h3>
+                        <p class="text-gray-600">التقييم الوظيفي للعضلات</p>
+                    </div>
+
+                    <div class="text-center p-6 card-hover">
+                        <div class="icon-bg-indigo w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                            <span class="text-3xl text-white">⚙️</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Common Errors & Corrections</h3>
+                        <p class="text-gray-600">الأخطاء الشائعة وتصحيحها</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Function to open lecture
+        function openLecture() {
+            window.open('https://drive.google.com/file/d/15tJje8fXJ2-DiyXD0yB4_lSi1PTSxnle/view', '_blank', 'noopener,noreferrer');
+        }
+
+        // Function to open second lecture
+        function openLecture2() {
+            window.open('https://drive.google.com/file/d/1B5t6MgG4B57bKbL9p3YfxDxxtrSOY-mJ/view?usp=sharing', '_blank', 'noopener,noreferrer');
+        }
+
+        // Add smooth scrolling and interactive effects
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add click effects to cards
+            const cards = document.querySelectorAll('.card-hover');
+            cards.forEach(card => {
+                card.addEventListener('click', function() {
+                    this.style.transform = 'scale(0.98)';
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 150);
+                });
+            });
+
+            // Add search functionality
+            const searchInput = document.querySelector('input[type="text"]');
+            if (searchInput) {
+                searchInput.addEventListener('focus', function() {
+                    this.parentElement.classList.add('ring-2', 'ring-blue-500');
+                });
+                
+                searchInput.addEventListener('blur', function() {
+                    this.parentElement.classList.remove('ring-2', 'ring-blue-500');
+                });
+            }
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98a7b408d6ceadb5',t:'MTc1OTc4MDM4OS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
