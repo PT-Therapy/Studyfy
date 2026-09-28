@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>محاضرت Anatomy 1 - Studyfy</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            box-sizing: border-box;
+            font-family: 'Cairo', sans-serif;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #60a5fa 100%);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .anatomy-card {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .anatomy-card:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body class="gradient-bg min-h-screen">
+
+    <!-- Header -->
+    <header class="bg-blue-600 shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex items-center justify-start">
+                <a href="index.html" class="flex items-center gap-3 hover:opacity-80 transition-opacity duration-300">
+                    <img src="https://i.postimg.cc/hvDzwTmM/image.png" alt="Studyfy Logo" 
+                         class="w-10 h-10 object-contain"
+                         onerror="this.src=''; this.alt='Logo failed to load'; this.style.display='none';">
+                    <span class="text-white font-bold text-2xl">Studyfy</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="max-w-7xl mx-auto px-6 py-8">
+        <!-- Page Title -->
+        <div class="text-center mb-12">
+            <h1 class="text-5xl font-bold text-white mb-4">محاضرات Anatomy 1</h1>
+            <p class="text-2xl text-blue-100">علم التشريح</p>
+        </div>
+
+        <!-- Main Video Section -->
+        <div class="mb-16">
+            <div class="max-w-4xl mx-auto">
+                <!-- Lecture Info -->
+                <div class="text-center mb-8">
+                    <h2 class="text-4xl font-bold text-white mb-4">Introduction</h2>
+                    <div class="flex justify-center items-center gap-6 mb-4">
+                        <span class="bg-green-500 text-white px-6 py-3 rounded-full font-bold text-lg">
+                            متاحة الآن
+                        </span>
+                        <span class="text-blue-100 text-lg">مدة المحاضرة: 45 دقيقة</span>
+                    </div>
+                    <p class="text-blue-200 font-medium text-xl">Introduction to Anatomy</p>
+                </div>
+                
+                <!-- Video Thumbnail -->
+                <div class="relative rounded-3xl overflow-hidden cursor-pointer group shadow-2xl" onclick="openLecture()">
+                    <img src="https://i.postimg.cc/JnxTk3c5/1.jpg" alt="Introduction to Anatomy" 
+                         class="w-full h-80 object-cover transition-all duration-500 group-hover:scale-110"
+                         onerror="this.src=''; this.alt='Image failed to load'; this.style.display='none';">
+                    
+                    <!-- Play Overlay -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20 group-hover:from-black/40 transition-all duration-300 flex items-center justify-center">
+                        <div class="relative">
+                            <!-- Outer Ring -->
+                            <div class="absolute inset-0 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full animate-pulse group-hover:animate-none"></div>
+                            <!-- Inner Circle -->
+                            <div class="relative bg-white/90 backdrop-blur-sm rounded-full p-8 group-hover:bg-white group-hover:scale-110 transition-all duration-300 shadow-2xl">
+                                <!-- Play Triangle -->
+                                <div class="w-0 h-0 border-l-[24px] border-l-blue-600 border-t-[14px] border-t-transparent border-b-[14px] border-b-transparent ml-2 group-hover:border-l-blue-700 transition-colors duration-300"></div>
+                            </div>
+                            <!-- Glow Effect -->
+                            <div class="absolute inset-0 bg-gradient-to-r from-blue-400/50 to-purple-500/50 rounded-full blur-xl group-hover:blur-2xl transition-all duration-300"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Bottom Info -->
+                    <div class="absolute bottom-0 left-0 right-0 p-6">
+                        <div class="bg-gradient-to-r from-blue-600/90 to-purple-600/90 backdrop-blur-sm rounded-2xl p-4">
+                            <div class="text-white font-bold text-xl mb-1">DR/Maryam Eldesouki</div>
+                            <div class="text-blue-100 text-sm">اضغط للمشاهدة والتعلم</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Second Lecture -->
+        <div class="mb-16">
+            <div class="max-w-4xl mx-auto">
+                <!-- Lecture Info -->
+                <div class="text-center mb-8">
+                    <h2 class="text-4xl font-bold text-white mb-4">Skeletal system</h2>
+                    <div class="flex justify-center items-center gap-6 mb-4">
+                        <span class="bg-green-500 text-white px-6 py-3 rounded-full font-bold text-lg">
+                            متاحة الآن
+                        </span>
+                        <span class="text-blue-100 text-lg">مدة المحاضرة: 50 دقيقة</span>
+                    </div>
+                    <p class="text-blue-200 font-medium text-xl">الجهاز الهيكلي</p>
+                </div>
+                
+                <!-- Video Thumbnail -->
+                <div class="relative rounded-3xl overflow-hidden cursor-pointer group shadow-2xl" onclick="openLecture2()">
+                    <img src="https://i.postimg.cc/c18qM9X4/1.jpg" alt="Skeletal system" 
+                         class="w-full h-80 object-cover transition-all duration-500 group-hover:scale-110"
+                         onerror="this.src=''; this.alt='Image failed to load'; this.style.display='none';">
+                    
+                    <!-- Play Overlay -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20 group-hover:from-black/40 transition-all duration-300 flex items-center justify-center">
+                        <div class="relative">
+                            <!-- Outer Ring -->
+                            <div class="absolute inset-0 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full animate-pulse group-hover:animate-none"></div>
+                            <!-- Inner Circle -->
+                            <div class="relative bg-white/90 backdrop-blur-sm rounded-full p-8 group-hover:bg-white group-hover:scale-110 transition-all duration-300 shadow-2xl">
+                                <!-- Play Triangle -->
+                                <div class="w-0 h-0 border-l-[24px] border-l-blue-600 border-t-[14px] border-t-transparent border-b-[14px] border-b-transparent ml-2 group-hover:border-l-blue-700 transition-colors duration-300"></div>
+                            </div>
+                            <!-- Glow Effect -->
+                            <div class="absolute inset-0 bg-gradient-to-r from-blue-400/50 to-purple-500/50 rounded-full blur-xl group-hover:blur-2xl transition-all duration-300"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Bottom Info -->
+                    <div class="absolute bottom-0 left-0 right-0 p-6">
+                        <div class="bg-gradient-to-r from-blue-600/90 to-purple-600/90 backdrop-blur-sm rounded-2xl p-4">
+                            <div class="text-white font-bold text-xl mb-1">DR/Farah Zahran</div>
+                            <div class="text-blue-100 text-sm">اضغط للمشاهدة والتعلم</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Third Lecture -->
+        <div class="mb-16">
+            <div class="max-w-4xl mx-auto">
+                <!-- Lecture Info -->
+                <div class="text-center mb-8">
+                    <h2 class="text-4xl font-bold text-white mb-4">Regions of upper limb</h2>
+                    <div class="flex justify-center items-center gap-6 mb-4">
+                        <span class="bg-green-500 text-white px-6 py-3 rounded-full font-bold text-lg">
+                            متاحة الآن
+                        </span>
+                        <span class="text-blue-100 text-lg">مدة المحاضرة: 55 دقيقة</span>
+                    </div>
+                    <p class="text-blue-200 font-medium text-xl">مناطق الطرف العلوي</p>
+                </div>
+                
+                <!-- Video Thumbnail -->
+                <div class="relative rounded-3xl overflow-hidden cursor-pointer group shadow-2xl" onclick="openLecture3()">
+                    <img src="https://i.postimg.cc/DZnBgd95/1.jpg" alt="Regions of upper limb" 
+                         class="w-full h-80 object-cover transition-all duration-500 group-hover:scale-110"
+                         onerror="this.src=''; this.alt='Image failed to load'; this.style.display='none';">
+                    
+                    <!-- Play Overlay -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20 group-hover:from-black/40 transition-all duration-300 flex items-center justify-center">
+                        <div class="relative">
+                            <!-- Outer Ring -->
+                            <div class="absolute inset-0 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full animate-pulse group-hover:animate-none"></div>
+                            <!-- Inner Circle -->
+                            <div class="relative bg-white/90 backdrop-blur-sm rounded-full p-8 group-hover:bg-white group-hover:scale-110 transition-all duration-300 shadow-2xl">
+                                <!-- Play Triangle -->
+                                <div class="w-0 h-0 border-l-[24px] border-l-blue-600 border-t-[14px] border-t-transparent border-b-[14px] border-b-transparent ml-2 group-hover:border-l-blue-700 transition-colors duration-300"></div>
+                            </div>
+                            <!-- Glow Effect -->
+                            <div class="absolute inset-0 bg-gradient-to-r from-blue-400/50 to-purple-500/50 rounded-full blur-xl group-hover:blur-2xl transition-all duration-300"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Bottom Info -->
+                    <div class="absolute bottom-0 left-0 right-0 p-6">
+                        <div class="bg-gradient-to-r from-blue-600/90 to-purple-600/90 backdrop-blur-sm rounded-2xl p-4">
+                            <div class="text-white font-bold text-xl mb-1">DR/Sara Elsayed</div>
+                            <div class="text-blue-100 text-sm">اضغط للمشاهدة والتعلم</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Upcoming Lectures -->
+        <div class="mb-16">
+            <h2 class="text-4xl font-bold text-white mb-8 text-center">المحاضرات القادمة</h2>
+            <div class="grid md:grid-cols-3 lg:grid-cols-4 gap-6">
+                <div class="bg-blue-600/90 backdrop-blur-sm rounded-2xl p-6 text-center card-hover">
+                    <h3 class="text-white font-bold text-lg mb-2">المحاضرة الرابعة</h3>
+                    <span class="bg-yellow-400 text-black px-3 py-1 rounded-full text-sm font-bold">قريباً</span>
+                </div>
+                <div class="bg-blue-600/90 backdrop-blur-sm rounded-2xl p-6 text-center card-hover">
+                    <h3 class="text-white font-bold text-lg mb-2">المحاضرة الخامسة</h3>
+                    <span class="bg-yellow-400 text-black px-3 py-1 rounded-full text-sm font-bold">قريباً</span>
+                </div>
+                <div class="bg-blue-600/90 backdrop-blur-sm rounded-2xl p-6 text-center card-hover">
+                    <h3 class="text-white font-bold text-lg mb-2">المحاضرة السادسة</h3>
+                    <span class="bg-yellow-400 text-black px-3 py-1 rounded-full text-sm font-bold">قريباً</span>
+                </div>
+                <div class="bg-blue-600/90 backdrop-blur-sm rounded-2xl p-6 text-center card-hover">
+                    <h3 class="text-white font-bold text-lg mb-2">المحاضرة السابعة</h3>
+                    <span class="bg-yellow-400 text-black px-3 py-1 rounded-full text-sm font-bold">قريباً</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Amazing Anatomy World -->
+        <div class="text-center mb-12">
+            <h2 class="text-5xl font-bold text-white mb-6">عالم التشريح المذهل</h2>
+            <p class="text-xl text-blue-100 max-w-3xl mx-auto leading-relaxed">
+                اكتشف أسرار تركيب جسم الإنسان وتعقيداته الرائعة من خلال رحلة تعليمية شيقة ومفصلة
+            </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="bg-gradient-to-br from-red-400 to-red-600 rounded-3xl p-8 text-center anatomy-card">
+                <div class="text-6xl mb-4">💪</div>
+                <h3 class="text-2xl font-bold text-white mb-2">العضلات</h3>
+                <p class="text-red-100">نظام العضلات والحركة</p>
+            </div>
+            
+            <div class="bg-gradient-to-br from-gray-400 to-gray-600 rounded-3xl p-8 text-center anatomy-card">
+                <div class="text-6xl mb-4">🦴</div>
+                <h3 class="text-2xl font-bold text-white mb-2">الهيكل العظمي</h3>
+                <p class="text-gray-100">بنية العظام والمفاصل</p>
+            </div>
+            
+            <div class="bg-gradient-to-br from-purple-400 to-purple-600 rounded-3xl p-8 text-center anatomy-card">
+                <div class="text-6xl mb-4">🧠</div>
+                <h3 class="text-2xl font-bold text-white mb-2">الجهاز العصبي</h3>
+                <p class="text-purple-100">الدماغ والأعصاب</p>
+            </div>
+            
+            <div class="bg-gradient-to-br from-pink-400 to-pink-600 rounded-3xl p-8 text-center anatomy-card">
+                <div class="text-6xl mb-4">❤️</div>
+                <h3 class="text-2xl font-bold text-white mb-2">الأعضاء الحيوية</h3>
+                <p class="text-pink-100">القلب والرئتان والكبد</p>
+            </div>
+            
+            <div class="bg-gradient-to-br from-red-500 to-red-700 rounded-3xl p-8 text-center anatomy-card">
+                <div class="text-6xl mb-4">🩸</div>
+                <h3 class="text-2xl font-bold text-white mb-2">الدورة الدموية</h3>
+                <p class="text-red-100">الأوعية الدموية والدم</p>
+            </div>
+            
+            <div class="bg-gradient-to-br from-green-400 to-green-600 rounded-3xl p-8 text-center anatomy-card">
+                <div class="text-6xl mb-4">⚡️</div>
+                <h3 class="text-2xl font-bold text-white mb-2">الجهاز الهضمي</h3>
+                <p class="text-green-100">المعدة والأمعاء</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-black/20 backdrop-blur-sm mt-16 py-8">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <div class="text-white/80 mb-4">
+                <span class="font-bold text-2xl">Studyfy</span> - منصة التعليم الرقمي
+            </div>
+            <p class="text-blue-200">جميع الحقوق محفوظة © 2024</p>
+        </div>
+    </footer>
+
+    <script>
+        // Open lecture function
+        function openLecture() {
+            window.open('https://drive.google.com/file/d/1yfhuW3YIXkS98fWJXhqFy_HzxaHe24JK/view', '_blank', 'noopener,noreferrer');
+        }
+
+        // Open second lecture function
+        function openLecture2() {
+            window.open('https://drive.google.com/drive/folders/1FT_2Ewg_eC5kJj2xBXmzmQ3AdIORz2Te', '_blank', 'noopener,noreferrer');
+        }
+
+        // Open third lecture function
+        function openLecture3() {
+            window.open('https://drive.google.com/drive/folders/1_nb_xLEnbO5IJzN1Ndau5ToZuDG7qPyh', '_blank', 'noopener,noreferrer');
+        }
+
+        // Add interactive effects
+        document.querySelectorAll('.anatomy-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const title = this.querySelector('h3').textContent;
+                alert(`ستتم إضافة محتوى ${title} قريباً!`);
+            });
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98cfae282051e1e1',t:'MTc2MDE5OTU3OS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
